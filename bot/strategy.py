@@ -138,9 +138,10 @@ def decide(market: dict, est: dict, strat: dict, risk: dict, acct: Account) -> D
         count = min(count, math.floor(best["size"]))
     if count < 1:
         return skip(ticker, "trade size rounds to zero under the current limits", best["edge"])
-    if count * cost_per < float(strat.get("min_bet_dollars", 0)):
+    min_bet = float(strat.get("min_bet_dollars", 0))
+    if count * cost_per + cost_per < min_bet:  # within one contract of the minimum counts as full size
         return skip(ticker, f"only ${count * cost_per:.0f} could be bought at that price "
-                            f"(minimum bet ${float(strat['min_bet_dollars']):.0f})", best["edge"])
+                            f"(minimum bet ${min_bet:.0f})", best["edge"])
 
     return Decision(
         ticker=ticker, action=f"buy_{best['outcome']}",

@@ -1,23 +1,15 @@
 # Kalshi bot
 
-**Updated Sat Nov 21, 4:42 PM EST** · runs every 4 hours · [▶ Run now](https://github.com/noffenkrantz/kalshi-bot/actions/workflows/bot.yml) · [Full report](REPORT.md) · [Last run log](data/last_run.log) · [Setup & settings](SETUP.md)
+**Updated Sat Nov 21, 4:53 PM EST** · runs every 4 hours · [Full report](REPORT.md) · [Last run log](data/last_run.log) · [Setup & settings](SETUP.md)
 
 ## 💵 Simulated account
 
 *Real Kalshi markets at real prices, with Kalshi's fees, settled on what actually happened. The money is pretend: nothing is ever bought.*
 
-### $9,996.66
-−$3.34 since the start ($10,000.00 pretend bankroll) █▁
+### $10,000.00
++$0.00 since the start ($10,000.00 pretend bankroll)
 
-3 open trades ($74.68 in) · none settled yet · open trades valued at today's prices
-
-**Open trades**
-
-| Market | Bet | Cost | Now | P&L |
-|---|---|---|---|---|
-| Where will it rain on Nov 22, 2026? — New… | 28 YES @ 88¢ | $24.85 | 90¢ | +$0.35 |
-| Where will it rain on Nov 22, 2026? — Atl… | 57 NO @ 42¢ | $24.92 | 40¢ | −$1.84 |
-| Where will it rain on Nov 22, 2026? — Phi… | 29 YES @ 85¢ | $24.91 | 80¢ | −$1.86 |
+No trades yet. They appear when Claude finds a real market it thinks is mispriced by enough to beat the fees.
 
 ## 🎯 Is Claude beating the market?
 

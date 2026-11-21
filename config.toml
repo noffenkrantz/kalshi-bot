@@ -40,7 +40,7 @@ max_markets_per_event = 1          # spread research across different events (e.
 min_edge = 0.08                    # expected profit per $1 contract after fees (0.08 = 8 cents)
 min_confidence = "high"            # only bet when Claude is highly confident (low, medium or high)
 bet_size_dollars = 100             # every bet is this size (set to 0 to size by kelly_fraction instead)
-min_bet_dollars = 50               # skip if fewer than $50 of contracts are for sale at that price
+min_bet_dollars = 100              # every bet is the full $100: skip if that much can't be bought at the real price
 kelly_fraction = 0.10              # only used when bet_size_dollars = 0
 fee_rate = 0.07                    # Kalshi's general taker fee coefficient
 min_buy_price = 0.05

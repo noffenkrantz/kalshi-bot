@@ -35,7 +35,7 @@ For every pretend trade:
 - **Price:** it "buys" at the real asking price at that moment, and only as many contracts as were actually for sale at that price.
 - **Fees:** it subtracts Kalshi's standard trading fee.
 - **Result:** it holds the trade until the market settles, then counts it as a win or loss based on the real outcome.
-- **Size:** every bet is $100 (`bet_size_dollars`) from a pretend $10,000 balance (`paper_bankroll`). If fewer than $50 of contracts are for sale at the real price, it skips the bet rather than pretending it could buy more.
+- **Size:** every bet is $100 (`bet_size_dollars`) from a pretend $10,000 balance (`paper_bankroll`). If a full $100 can't be bought at the real price (not enough contracts for sale, or a limit would shrink it), it skips the bet. It never places smaller bets.
 
 **How a real-money result could differ:** a real order lands seconds later, and the price can move in that time. Some markets charge different fees. And a person might sell early instead of holding to the end. At these small sizes, the simulated result should be close to what real money would have done.
 
