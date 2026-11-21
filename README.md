@@ -12,34 +12,33 @@ Claude never decides how much to spend. The rules in `config.toml` do.
 
 ---
 
-## Quick start: phone only, nothing to install
+## Quick start: everything from your phone
 
-This repo runs itself on GitHub every 4 hours. You only add keys.
+The bot lives in this repo and runs itself on GitHub every 4 hours. There's nothing to install. You just add keys in **Settings → Secrets and variables → Actions**. (On a phone browser, Settings may be under the **⋯** menu, or switch to "Desktop site.")
 
-**1. Turn on the brain with your Claude subscription (one time, about 5 minutes, on a computer)**
+**1. Turn on the brain (about 5 minutes)**
+- In your phone's browser, go to **console.anthropic.com**. Add $10 of credit and **set a monthly spend limit** (for example $20) as your backstop.
+- Create an API key and copy it.
+- In this repo: **New repository secret** → name `ANTHROPIC_API_KEY` → paste the key → **Add secret**.
+- **Actions** tab → **kalshi-bot** → **Run workflow**.
 
-This uses your Claude Pro/Max plan instead of a paid API key. Claude Code runs inside the GitHub job and does the research.
+About 5–10 minutes later, open **`REPORT.md`** in this repo: Claude's first forecasts against real Kalshi prices. Each forecast costs roughly $0.10–0.15, and it stops starting new research after about $1 a day.
 
-- Install Claude Code on any Mac or PC:
-  - Mac/Linux, in Terminal: `curl -fsSL https://claude.ai/install.sh | bash`
-  - Windows, in PowerShell: `irm https://claude.ai/install.ps1 | iex`
-  - (or, if you have Node.js 22+: `npm install -g @anthropic-ai/claude-code`)
-- Run `claude setup-token`. A browser window opens. Sign in to your Claude account and approve. A long token then prints in the terminal. Copy it. It's valid for a year, and nothing gets saved on that computer.
-- In this repo on github.com: **Settings → Secrets and variables → Actions → New repository secret**. Name it `CLAUDE_CODE_OAUTH_TOKEN` and paste the token.
-- Go to the **Actions** tab → **kalshi-bot** → **Run workflow** to start now (otherwise it starts on the next 4-hour run).
+**2. Turn on practice trading (whenever you're ready)**
+- Sign up at **demo.kalshi.co**. This is Kalshi's practice site with fake money, separate from your real account.
+- In its account settings, create an **API key**. You'll get a **Key ID** and a **private key**, which is shown once, usually as a file download. Save both right away.
+- Add two secrets: `KALSHI_DEMO_API_KEY_ID` (the Key ID) and `KALSHI_DEMO_PRIVATE_KEY` (the whole private key text, including the `-----BEGIN` and `-----END` lines).
+  - *On an iPhone:* the key file lands in the **Files** app → Downloads. Tap it to view it. If it won't open as text, long-press → **Rename**, add `.txt` to the end, and tap it again. Then select all and copy.
+- The next run starts placing practice trades.
 
-The bot's research counts toward your plan's usage limits, the same ones your own chats use. By default it makes at most 3 forecasts per run and 12 per day. Lower `max_forecasts_per_day` in `config.toml` if you notice it eating into your usage.
+**Controls from your phone**
+- **See results:** `REPORT.md` (the scorecard and latest forecasts) and `data/last_run.log` (what the last run did, including any errors).
+- **Run now:** **Actions** → **kalshi-bot** → **Run workflow**.
+- **Pause everything:** **Settings → Secrets and variables → Actions → Variables** → add `BOT_ENABLED` = `false`. Set it to `true` (or delete it) to restart.
+- **Pause only practice trading:** add the variable `DEMO_TRADING` = `false`.
+- **Change settings:** open `config.toml` in the repo, tap the **pencil** icon, edit, and **Commit changes**. The next run uses the new values.
 
-*Prefer pay-as-you-go instead?* Skip the above and add a secret named `ANTHROPIC_API_KEY` with a key from console.anthropic.com. Set a spend limit there. It costs roughly $0.10–0.15 per forecast.
-
-From then on, Claude forecasts real Kalshi markets and logs paper trades. Open **`REPORT.md`** in this repo any time to see how it's doing.
-
-**2. Turn on practice trading (later, easiest on a computer)**
-- Sign up at **demo.kalshi.co** (fake money). In account settings, create an **API key** and download the private key file.
-- Add two more secrets: `KALSHI_DEMO_API_KEY_ID` (the Key ID), and `KALSHI_DEMO_PRIVATE_KEY` (open the key file and paste all of it, including the `-----BEGIN` and `-----END` lines).
-- That's it. The next run starts placing practice trades.
-
-**Stop everything:** **Settings → Secrets and variables → Actions → Variables → New variable** `BOT_ENABLED` = `false`. Change it back to `true` to restart.
+*Want to use your Claude subscription instead of an API key later?* That needs a computer once: install Claude Code, run `claude setup-token`, and save the token as a secret named `CLAUDE_CODE_OAUTH_TOKEN`. The bot switches to it automatically, and you can delete the API key secret.
 
 The rest of this guide covers running it on your own computer, the settings, and how to read the report.
 

@@ -36,11 +36,19 @@ jobs:
           python-version: "3.12"
       - run: pip install -r requirements.txt
 
+      - name: Start run log
+        run: |
+          mkdir -p data
+          echo "# Last run: $(date -u '+%Y-%m-%d %H:%M UTC')" > data/last_run.log
+          echo "brain: $([ "$HAS_SUBSCRIPTION" = true ] && echo 'Claude subscription' || ([ "$HAS_API_KEY" = true ] && echo 'API key' || echo 'NOT SET UP'))   practice trading: $([ "$HAS_DEMO" = true ] && echo on || echo off)" >> data/last_run.log
+
       - name: Waiting for setup
         if: ${{ env.HAS_SUBSCRIPTION != 'true' && env.HAS_API_KEY != 'true' }}
         run: |
           echo "### Not set up yet" >> "$GITHUB_STEP_SUMMARY"
-          echo "Add the CLAUDE_CODE_OAUTH_TOKEN secret (see README > Quick start) and the bot starts on its next run." >> "$GITHUB_STEP_SUMMARY"
+          msg="Add the ANTHROPIC_API_KEY secret (or CLAUDE_CODE_OAUTH_TOKEN) - see README > Quick start - and the bot starts on its next run."
+          echo "$msg" >> "$GITHUB_STEP_SUMMARY"
+          echo "$msg" >> data/last_run.log
 
       # ---- subscription mode: Claude Code does the research ----
       - name: Pick markets to research
@@ -49,7 +57,9 @@ jobs:
         env:
           KALSHI_DEMO_API_KEY_ID: ${{ secrets.KALSHI_DEMO_API_KEY_ID }}
           KALSHI_DEMO_PRIVATE_KEY: ${{ secrets.KALSHI_DEMO_PRIVATE_KEY }}
-        run: python -m bot prepare
+        run: |
+          printf "\n## prepare\n" >> data/last_run.log
+          python -m bot prepare 2>&1 | tee -a data/last_run.log
 
       - uses: actions/setup-node@v4
         if: ${{ env.HAS_SUBSCRIPTION == 'true' && steps.prep.outputs.count != '0' }}
@@ -68,11 +78,13 @@ jobs:
             --allowedTools "Read,Edit(./work/estimates/**),WebSearch,WebFetch" \
             --permission-mode dontAsk \
             --max-turns 100 \
-            --model sonnet
+            --model sonnet 2>&1 | tail -20 | tee -a data/last_run.log
 
       - name: Record Claude's forecasts
         if: ${{ env.HAS_SUBSCRIPTION == 'true' && steps.prep.outputs.count != '0' }}
-        run: python -m bot ingest
+        run: |
+          printf "\n## ingest\n" >> data/last_run.log
+          python -m bot ingest 2>&1 | tee -a data/last_run.log
 
       # ---- decide and trade (same for both modes) ----
       - name: Shadow run (real prices, paper trades only)
@@ -80,7 +92,9 @@ jobs:
         continue-on-error: true
         env:
           ANTHROPIC_API_KEY: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN == '' && secrets.ANTHROPIC_API_KEY || '' }}
-        run: python -m bot run --mode shadow
+        run: |
+          printf "\n## run --mode shadow\n" >> data/last_run.log
+          python -m bot run --mode shadow 2>&1 | tee -a data/last_run.log
 
       - name: Demo run (practice-money trades)
         if: ${{ (env.HAS_SUBSCRIPTION == 'true' || env.HAS_API_KEY == 'true') && env.HAS_DEMO == 'true' && vars.DEMO_TRADING != 'false' }}
@@ -89,7 +103,9 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN == '' && secrets.ANTHROPIC_API_KEY || '' }}
           KALSHI_DEMO_API_KEY_ID: ${{ secrets.KALSHI_DEMO_API_KEY_ID }}
           KALSHI_DEMO_PRIVATE_KEY: ${{ secrets.KALSHI_DEMO_PRIVATE_KEY }}
-        run: python -m bot run --mode demo
+        run: |
+          printf "\n## run --mode demo\n" >> data/last_run.log
+          python -m bot run --mode demo 2>&1 | tee -a data/last_run.log
 
       - name: Report
         if: ${{ env.HAS_SUBSCRIPTION == 'true' || env.HAS_API_KEY == 'true' }}
@@ -97,7 +113,9 @@ jobs:
         env:
           KALSHI_DEMO_API_KEY_ID: ${{ secrets.KALSHI_DEMO_API_KEY_ID }}
           KALSHI_DEMO_PRIVATE_KEY: ${{ secrets.KALSHI_DEMO_PRIVATE_KEY }}
-        run: python -m bot report
+        run: |
+          printf "\n## report\n" >> data/last_run.log
+          python -m bot report 2>&1 | tee -a data/last_run.log
 
       - name: Save journal
         if: always()
