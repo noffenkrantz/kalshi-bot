@@ -1,6 +1,6 @@
 # Kalshi bot
 
-**Not running yet.** This page becomes your dashboard after the first run: the practice account, open and settled trades, and whether Claude is beating the market.
+**Not running yet.** This page becomes your dashboard after the first run: what the bot's trades would have made with real money, the practice account, and whether Claude is beating the market.
 
 **Turn it on from your phone (about 5 minutes):**
 1. At **console.anthropic.com**: add $10 of credit, set a monthly spend limit, and create an API key.

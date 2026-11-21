@@ -347,7 +347,8 @@ def test_dashboard_shows_practice_and_paper_results(tmp_path, cfg):
     prod.markets["OVER"]["result"] = "no"
     j.append("outcomes", {"env": "shadow", "ticker": "OVER", "result": "no"})
     text = build_dashboard(j, {"shadow": prod, "demo": demo}, NOW + timedelta(hours=4), cfg)
-    assert "## 💵 Practice account (fake money)" in text and "Open trades" in text
+    assert "## 🧪 Practice account (Kalshi demo, fake money)" in text and "Open trades" in text
+    assert text.index("If this were real money") < text.index("Practice account")
     assert "YES @ 42¢" in text and "51¢" in text            # bought at 42, now worth the 51 mid
     assert "Settled trades" in text and "✅ won" in text     # paper NO on OVER won
     assert "forecasts" in text and "Latest forecasts" in text

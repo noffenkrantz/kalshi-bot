@@ -142,8 +142,31 @@ def build_dashboard(journal: Journal, clients: dict[str, KalshiClient], now: dat
             out += [f"> ⚠️ **{key.split(':', 1)[1].capitalize()} mode is paused by a safety check:** "
                     f"{value.get('reason')}", ""]
 
+    # ---- paper trades at real prices ------------------------------------------------
+    out.append("## 📝 If this were real money")
+    out += ["", "*Paper trades on real Kalshi markets: real prices at the moment of the decision, Kalshi's fees, "
+            "and settled on what actually happened. Nothing is actually bought.*"]
+    paper_rows = [{"ticker": d["ticker"], "outcome": d["outcome"], "contracts": d.get("count") or 0,
+                   "cost": d.get("est_cost") or 0.0, "price": d.get("outcome_price"), "ts": d.get("ts")}
+                  for d in journal.rows["decisions"]
+                  if d.get("env") == "shadow" and d.get("action", "").startswith("paper_buy")]
+    if not paper_rows:
+        out += ["", "No paper trades yet. They appear when Claude finds a real market it thinks is mispriced.", ""]
+    else:
+        p_open, p_settled = _book(paper_rows, journal, "shadow")
+        _mark(p_open, clients.get("shadow"))
+        bankroll = float(cfg.get("shadow", {}).get("paper_bankroll", 1000))
+        value = bankroll + sum(p["pnl"] for p in p_settled) + sum(p["pnl"] or 0 for p in p_open)
+        out += ["", f"Pretend bankroll {money(bankroll)} → **{money(value)}** "
+                    f"({money(value - bankroll, sign=True)}, open trades at today's prices)",
+                "", _summary_line(p_open, p_settled)]
+        out += _trade_tables(p_open, p_settled)
+        out.append("")
+
     # ---- practice account (Kalshi demo, fake money) -------------------------------
-    out.append("## 💵 Practice account (fake money)")
+    out.append("## 🧪 Practice account (Kalshi demo, fake money)")
+    out += ["", "*Real orders on Kalshi's practice exchange. This proves the trading works end to end, but "
+            "prices there aren't set by real traders, so don't read much into its profit or loss.*"]
     demo_rows = [{"ticker": o["ticker"], "outcome": o["outcome"], "contracts": o.get("fill_count") or 0,
                   "cost": o.get("spent") or 0.0, "price": o.get("outcome_price"), "ts": o.get("ts")}
                  for o in journal.rows["orders"] if o.get("env") == "demo" and (o.get("fill_count") or 0) > 0]
@@ -161,25 +184,6 @@ def build_dashboard(journal: Journal, clients: dict[str, KalshiClient], now: dat
                     f"{money(last - start, sign=True)} since the bot started ({money(start)}) {spark}"]
         out += ["", _summary_line(d_open, d_settled)]
         out += _trade_tables(d_open, d_settled)
-        out.append("")
-
-    # ---- paper trades at real prices ------------------------------------------------
-    out.append("## 📝 Paper trades at real prices")
-    paper_rows = [{"ticker": d["ticker"], "outcome": d["outcome"], "contracts": d.get("count") or 0,
-                   "cost": d.get("est_cost") or 0.0, "price": d.get("outcome_price"), "ts": d.get("ts")}
-                  for d in journal.rows["decisions"]
-                  if d.get("env") == "shadow" and d.get("action", "").startswith("paper_buy")]
-    if not paper_rows:
-        out += ["", "No paper trades yet. They appear when Claude finds a real market it thinks is mispriced.", ""]
-    else:
-        p_open, p_settled = _book(paper_rows, journal, "shadow")
-        _mark(p_open, clients.get("shadow"))
-        bankroll = float(cfg.get("shadow", {}).get("paper_bankroll", 1000))
-        value = bankroll + sum(p["pnl"] for p in p_settled) + sum(p["pnl"] or 0 for p in p_open)
-        out += ["", f"Pretend bankroll {money(bankroll)} → **{money(value)}** "
-                    f"({money(value - bankroll, sign=True)}, open trades at today's prices)",
-                "", _summary_line(p_open, p_settled)]
-        out += _trade_tables(p_open, p_settled)
         out.append("")
 
     # ---- scorecard ------------------------------------------------------------------
