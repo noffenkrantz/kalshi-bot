@@ -84,6 +84,12 @@ def prepare(cfg: dict, clients: dict[str, KalshiClient], journal: Journal, now: 
     weights = learning.topic_weights(learning.topic_stats(journal, "shadow"))
     all_lessons = lessons_mod.load(work_dir.parent / "data" / "lessons.md")
     rng = random.Random(iso(now))
+    held_events = set()
+    if cfg["strategy"].get("one_position_per_event", True):
+        for row in journal.paper_positions():
+            ev = row.get("event_ticker") or (journal.latest_estimate(row["ticker"]) or {}).get("event_ticker")
+            if ev:
+                held_events.add(ev)
     queue, seen = [], set()
     for mode in order:
         slots = (room - len(queue)) if mode == "shadow" else quota["demo"]
@@ -115,6 +121,8 @@ def prepare(cfg: dict, clients: dict[str, KalshiClient], journal: Journal, now: 
             if category and any(x in category.lower() for x in excluded):
                 continue
             if per_event.get(ev_key, 0) >= int(fcfg.get("max_markets_per_event", 1)):
+                continue
+            if mode == "shadow" and ev_key in held_events:
                 continue
             per_event[ev_key] = per_event.get(ev_key, 0) + 1
             considered += 1

@@ -320,6 +320,8 @@ def run_once(bot: Bot) -> Summary:
             continue
         if per_event.get(ev_key, 0) >= max_per_event:
             continue
+        if strat.get("one_position_per_event", True) and ev_key in acct.held_events:
+            continue  # already holding a bet on this event: no point researching it again
         per_event[ev_key] = per_event.get(ev_key, 0) + 1
         considered += 1
         est = bot.journal.latest_estimate(m["ticker"])

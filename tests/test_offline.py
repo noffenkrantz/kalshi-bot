@@ -496,3 +496,17 @@ def test_report_breakdowns(tmp_path, cfg):
     text = build_report(j, {"shadow": prod}, NOW + timedelta(days=3))
     assert "By topic" in text and "Economics" in text and "By Claude's confidence" in text
     assert "By distance from the market price" in text and "Do the lessons help?" in text
+
+
+def test_no_research_on_events_already_bet(tmp_path, cfg):
+    mk = [market("RAIN-NYC", 0.40, 0.42, volume=5000, event="RAIN"),
+          market("CPI", 0.40, 0.42, volume=3000, event="CPI")]
+    k = FakeKalshi("prod", mk, authed=False)
+    c = FakeClaude({"RAIN-NYC": 0.7, "CPI": 0.7, "RAIN-BOS": 0.7})
+    j = Journal(tmp_path / "data")
+    run_once(Bot(mode="shadow", cfg=cfg, data=k, trade=None, claude=c, journal=j, now=NOW, root=tmp_path))
+    assert {d["ticker"] for d in j.rows["decisions"] if d["action"].startswith("paper_buy")} == {"RAIN-NYC", "CPI"}
+    k.markets["RAIN-BOS"] = market("RAIN-BOS", 0.40, 0.42, volume=9000, event="RAIN")
+    before = len(c.calls)
+    run_once(Bot(mode="shadow", cfg=cfg, data=k, trade=None, claude=c, journal=j, now=NOW + timedelta(hours=1), root=tmp_path))
+    assert len(c.calls) == before          # RAIN-BOS skipped: already betting on the RAIN event
