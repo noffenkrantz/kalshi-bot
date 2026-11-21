@@ -1,6 +1,6 @@
 # Kalshi bot
 
-**Updated Sat Nov 21, 4:53 PM EST** · runs every 4 hours · [Full report](REPORT.md) · [Last run log](data/last_run.log) · [Setup & settings](SETUP.md)
+**Updated Sat Nov 21, 4:59 PM EST** · runs every 4 hours · [▶ Run now](https://github.com/noffenkrantz/kalshi-bot/actions/workflows/bot.yml) · [Full report](REPORT.md) · [Last run log](data/last_run.log) · [Setup & settings](SETUP.md)
 
 ## 💵 Simulated account
 
@@ -13,7 +13,7 @@ No trades yet. They appear when Claude finds a real market it thinks is misprice
 
 ## 🎯 Is Claude beating the market?
 
-12 forecasts made on real markets, none resolved yet. Check back once some markets close.
+13 forecasts made on real markets, none resolved yet. Check back once some markets close.
 
 ## 🧠 What Claude is learning
 
@@ -23,6 +23,7 @@ Nothing has settled yet. Once bets settle, this shows which topics Claude is goo
 
 | Market | Claude | Market | Sure? |
 |---|---|---|---|
+| Highest temperature in Los Angeles on Nov… | 30% | 70% | medium |
 | Lowest temperature in Newark on Nov 22, 2… | 5% | 6% | medium |
 | Highest temperature in Miami on Nov 22, 2… | 45% | 30% | medium |
 | Where will it rain on Nov 22, 2026? — New… | 92% | 92% | medium |
@@ -32,7 +33,6 @@ Nothing has settled yet. Once bets settle, this shows which topics Claude is goo
 | Highest temperature in New York City on N… | 47% | 52% | low |
 | TSA passenger screenings on Nov 21, 2026… | 4% | 14% | medium |
 | Where will it rain on Nov 22, 2026? — Phi… | 94% | 84% | medium |
-| Where will it rain on Nov 22, 2026? — Bos… | 94% | 91% | medium |
 
 ---
 *Simulated trades only, no real money. Not financial advice.*
