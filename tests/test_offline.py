@@ -302,3 +302,32 @@ def test_report_scores_resolved_forecasts(tmp_path, cfg):
     assert "Claude is BETTER than the market" in text
     assert "Paper trades" in text and "2 won" in text
     assert "Not enough data yet: 3/100" in text
+
+
+# ---- subscription mode (Claude Code writes the forecasts) -----------------------------
+def test_subscription_prepare_ingest_then_trade(tmp_path, cfg):
+    from bot.research_queue import ingest, prepare, safe_name
+    prod = FakeKalshi("prod", MARKETS, authed=False)
+    demo = FakeKalshi("demo", [market("DEMO1", 0.40, 0.42)])
+    journal = Journal(tmp_path / "data")
+    work = tmp_path / "work"
+    queue = prepare(cfg, {"shadow": prod, "demo": demo}, journal, NOW, work)
+    assert [q["ticker"] for q in queue] == ["DEMO1", "UNDER", "OVER"]   # 1 demo slot, then shadow up to 3
+    text = (work / "INSTRUCTIONS.md").read_text()
+    assert "work/queue.json" in text and "probability_yes" in text and "{" not in text.split("## The JSON file")[0]
+    # pretend to be Claude Code: write one good file, one broken file, skip one
+    (work / "estimates" / safe_name("UNDER")).write_text(json.dumps({
+        "probability_yes": 0.7, "confidence": "Medium", "rules_clear": True, "resolution_summary": "s",
+        "key_evidence": ["e"], "would_change_my_mind": "w", "red_flags": [], "sources": ["https://x.gov"]}))
+    (work / "estimates" / safe_name("OVER")).write_text("not json")
+    added, problems = ingest(journal, work, NOW)
+    assert added == 1 and len(problems) == 2
+    assert not (work / "queue.json").exists()                          # not ingested twice
+    # the run uses the ingested forecast with no API key at all
+    bot = Bot(mode="shadow", cfg=cfg, data=prod, trade=None, claude=None, journal=journal, now=NOW, root=tmp_path)
+    run_once(bot)
+    paper = [d for d in journal.rows["decisions"] if d["action"].startswith("paper_buy")]
+    assert [(d["ticker"], d["outcome"]) for d in paper] == [("UNDER", "yes")]
+    # next prepare skips the fresh forecast and respects the daily cap
+    cfg["subscription"]["max_forecasts_per_day"] = 1
+    assert prepare(cfg, {"shadow": prod}, journal, NOW, work) == []

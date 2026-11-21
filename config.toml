@@ -17,6 +17,11 @@ show_market_price_to_claude = false  # false = Claude forms its own view, then t
 default = { input = 4.00, output = 20.00 }
 web_search_per_1000 = 10.00
 
+[subscription]   # used when Claude Code researches with your Claude plan (no API key)
+max_forecasts_per_run = 3          # this shares your plan's usage limits with your own chats,
+max_forecasts_per_day = 12         # so keep these modest
+demo_forecasts_per_run = 1         # slots reserved for practice-exchange markets
+
 [filters]   # which markets are worth looking at
 min_hours_to_close = 12            # skip markets about to close (speed races Claude loses)
 max_days_to_close = 10             # short horizons mean results (and feedback) come quickly

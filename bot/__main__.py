@@ -25,11 +25,42 @@ def kalshi_client(env: str, prefix: str | None) -> KalshiClient:
     return KalshiClient(env)
 
 
-def claude_client(cfg: dict) -> ClaudeClient:
+def claude_client(cfg: dict) -> ClaudeClient | None:
+    """API-key mode if ANTHROPIC_API_KEY is set; otherwise None (subscription mode,
+    where Claude Code has already written the forecasts via prepare/ingest)."""
     key = os.environ.get("ANTHROPIC_API_KEY")
     if not key:
-        sys.exit("ANTHROPIC_API_KEY is not set. Copy .env.example to .env and fill it in.")
+        print("No ANTHROPIC_API_KEY: using forecasts made by Claude Code (subscription mode).")
+        return None
     return ClaudeClient(key, cfg["claude"]["prices"])
+
+
+def cmd_prepare(cfg: dict) -> int:
+    from .research_queue import prepare
+    clients = {"shadow": KalshiClient("prod")}
+    demo = kalshi_client("demo", "DEMO")
+    if demo.authenticated and os.environ.get("DEMO_TRADING", "").lower() != "false":
+        clients["demo"] = demo
+    queue = prepare(cfg, clients, Journal(DATA_DIR), utcnow(), ROOT / "work")
+    print(f"{len(queue)} market(s) queued for Claude Code to research:")
+    for item in queue:
+        print(f"  [{item['env']}] {item['ticker']}: {item['question'][:90]}")
+    out = os.environ.get("GITHUB_OUTPUT")
+    if out:
+        with open(out, "a") as f:
+            f.write(f"count={len(queue)}\n")
+    return 0
+
+
+def cmd_ingest() -> int:
+    from .research_queue import ingest
+    added, problems = ingest(Journal(DATA_DIR), ROOT / "work", utcnow())
+    print(f"Recorded {added} forecast(s) from Claude Code.")
+    for p in problems:
+        print(f"  ! {p}")
+    write_step_summary(f"### Claude Code research\n\n- {added} forecast(s) recorded\n"
+                       + "".join(f"- {p}\n" for p in problems))
+    return 0
 
 
 def cmd_check(cfg: dict) -> int:
@@ -121,6 +152,8 @@ def main(argv=None) -> int:
     run = sub.add_parser("run", help="do one pass: scan, research, decide, (maybe) trade")
     run.add_argument("--mode", choices=["shadow", "demo", "live"], default="shadow")
     sub.add_parser("report", help="show how Claude's forecasts and trades are doing")
+    sub.add_parser("prepare", help="subscription mode: queue markets for Claude Code to research")
+    sub.add_parser("ingest", help="subscription mode: record Claude Code's forecasts")
     res = sub.add_parser("resume", help="clear a safety halt")
     res.add_argument("--mode", choices=["shadow", "demo", "live"], required=True)
     args = ap.parse_args(argv)
@@ -132,6 +165,10 @@ def main(argv=None) -> int:
         return cmd_run(cfg, args.mode)
     if args.cmd == "report":
         return cmd_report(cfg)
+    if args.cmd == "prepare":
+        return cmd_prepare(cfg)
+    if args.cmd == "ingest":
+        return cmd_ingest()
     return cmd_resume(args.mode)
 
 

@@ -1,13 +1,15 @@
-# Runs the bot automatically on GitHub's computers, every 3 hours.
+# Runs the bot automatically on GitHub's computers, every 4 hours.
 #
-# - Needs only one secret to start: ANTHROPIC_API_KEY (shadow mode, no trades).
-# - Add KALSHI_DEMO_API_KEY_ID + KALSHI_DEMO_PRIVATE_KEY and practice trading turns on by itself.
-# - Emergency stop: add a repository variable BOT_ENABLED = false (or disable this workflow).
+# Brain, pick ONE secret:
+#   CLAUDE_CODE_OAUTH_TOKEN  uses your Claude subscription (made with `claude setup-token`)
+#   ANTHROPIC_API_KEY        pay-as-you-go Claude API instead
+# Practice trading: add KALSHI_DEMO_API_KEY_ID + KALSHI_DEMO_PRIVATE_KEY and it turns on.
+# Emergency stop: add a repository variable BOT_ENABLED = false (or disable this workflow).
 name: kalshi-bot
 
 on:
   schedule:
-    - cron: "17 */3 * * *"   # every 3 hours, at 17 minutes past (UTC)
+    - cron: "17 */4 * * *"   # every 4 hours, at 17 minutes past (UTC)
   workflow_dispatch: {}       # adds a "Run workflow" button for manual runs
 
 permissions:
@@ -21,11 +23,12 @@ jobs:
   run:
     if: ${{ vars.BOT_ENABLED != 'false' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 45
     env:
-      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-      KALSHI_DEMO_API_KEY_ID: ${{ secrets.KALSHI_DEMO_API_KEY_ID }}
-      KALSHI_DEMO_PRIVATE_KEY: ${{ secrets.KALSHI_DEMO_PRIVATE_KEY }}
+      HAS_SUBSCRIPTION: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN != '' }}
+      HAS_API_KEY: ${{ secrets.ANTHROPIC_API_KEY != '' }}
+      HAS_DEMO: ${{ secrets.KALSHI_DEMO_API_KEY_ID != '' }}
+      DEMO_TRADING: ${{ vars.DEMO_TRADING }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -34,24 +37,66 @@ jobs:
       - run: pip install -r requirements.txt
 
       - name: Waiting for setup
-        if: ${{ env.ANTHROPIC_API_KEY == '' }}
+        if: ${{ env.HAS_SUBSCRIPTION != 'true' && env.HAS_API_KEY != 'true' }}
         run: |
           echo "### Not set up yet" >> "$GITHUB_STEP_SUMMARY"
-          echo "Add the ANTHROPIC_API_KEY secret (Settings > Secrets and variables > Actions) and the bot starts on its next run." >> "$GITHUB_STEP_SUMMARY"
+          echo "Add the CLAUDE_CODE_OAUTH_TOKEN secret (see README > Quick start) and the bot starts on its next run." >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Shadow run (real prices, paper trades only)
-        if: ${{ env.ANTHROPIC_API_KEY != '' }}
+      # ---- subscription mode: Claude Code does the research ----
+      - name: Pick markets to research
+        id: prep
+        if: ${{ env.HAS_SUBSCRIPTION == 'true' }}
+        env:
+          KALSHI_DEMO_API_KEY_ID: ${{ secrets.KALSHI_DEMO_API_KEY_ID }}
+          KALSHI_DEMO_PRIVATE_KEY: ${{ secrets.KALSHI_DEMO_PRIVATE_KEY }}
+        run: python -m bot prepare
+
+      - uses: actions/setup-node@v4
+        if: ${{ env.HAS_SUBSCRIPTION == 'true' && steps.prep.outputs.count != '0' }}
+        with:
+          node-version: "22"
+
+      - name: Claude researches (uses your Claude plan)
+        if: ${{ env.HAS_SUBSCRIPTION == 'true' && steps.prep.outputs.count != '0' }}
         continue-on-error: true
+        timeout-minutes: 25
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          npm install -g @anthropic-ai/claude-code
+          claude -p "Read work/INSTRUCTIONS.md and follow it exactly." \
+            --allowedTools "Read,Edit(./work/estimates/**),WebSearch,WebFetch" \
+            --permission-mode dontAsk \
+            --max-turns 100 \
+            --model sonnet
+
+      - name: Record Claude's forecasts
+        if: ${{ env.HAS_SUBSCRIPTION == 'true' && steps.prep.outputs.count != '0' }}
+        run: python -m bot ingest
+
+      # ---- decide and trade (same for both modes) ----
+      - name: Shadow run (real prices, paper trades only)
+        if: ${{ env.HAS_SUBSCRIPTION == 'true' || env.HAS_API_KEY == 'true' }}
+        continue-on-error: true
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN == '' && secrets.ANTHROPIC_API_KEY || '' }}
         run: python -m bot run --mode shadow
 
       - name: Demo run (practice-money trades)
-        if: ${{ env.ANTHROPIC_API_KEY != '' && env.KALSHI_DEMO_API_KEY_ID != '' && vars.DEMO_TRADING != 'false' }}
+        if: ${{ (env.HAS_SUBSCRIPTION == 'true' || env.HAS_API_KEY == 'true') && env.HAS_DEMO == 'true' && vars.DEMO_TRADING != 'false' }}
         continue-on-error: true
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN == '' && secrets.ANTHROPIC_API_KEY || '' }}
+          KALSHI_DEMO_API_KEY_ID: ${{ secrets.KALSHI_DEMO_API_KEY_ID }}
+          KALSHI_DEMO_PRIVATE_KEY: ${{ secrets.KALSHI_DEMO_PRIVATE_KEY }}
         run: python -m bot run --mode demo
 
       - name: Report
-        if: ${{ env.ANTHROPIC_API_KEY != '' }}
+        if: ${{ env.HAS_SUBSCRIPTION == 'true' || env.HAS_API_KEY == 'true' }}
         continue-on-error: true
+        env:
+          KALSHI_DEMO_API_KEY_ID: ${{ secrets.KALSHI_DEMO_API_KEY_ID }}
+          KALSHI_DEMO_PRIVATE_KEY: ${{ secrets.KALSHI_DEMO_PRIVATE_KEY }}
         run: python -m bot report
 
       - name: Save journal

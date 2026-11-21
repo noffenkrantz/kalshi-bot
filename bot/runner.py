@@ -167,15 +167,19 @@ def scan_markets(client: KalshiClient, f: dict, mode: str, now: datetime) -> lis
 
 
 def is_fresh(est: dict | None, market: dict, bot: Bot) -> bool:
+    return is_fresh_for(est, market, bot.mode, bot.now, bot.cfg["claude"])
+
+
+def is_fresh_for(est: dict | None, market: dict, mode: str, now: datetime, ccfg: dict) -> bool:
+    """A forecast is reused until it's old or the price has moved a lot since."""
     if not est:
         return False
     ts = parse_time(est.get("ts"))
     if not ts:
         return False
-    ccfg = bot.cfg["claude"]
-    if (bot.now - ts).total_seconds() / 3600 > ccfg["reanalyze_after_hours"]:
+    if (now - ts).total_seconds() / 3600 > ccfg["reanalyze_after_hours"]:
         return False
-    if est.get("env") == bot.mode:
+    if est.get("env") == mode:
         mid, old = quotes(market).mid, est.get("market_mid")
         if mid is not None and old is not None and abs(mid - old) >= ccfg["reanalyze_if_price_moves"]:
             return False

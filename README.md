@@ -14,13 +14,23 @@ Claude never decides how much to spend. The rules in `config.toml` do.
 
 ## Quick start: phone only, nothing to install
 
-This repo runs itself on GitHub every 3 hours. You only add keys.
+This repo runs itself on GitHub every 4 hours. You only add keys.
 
-**1. Turn on the brain (about 5 minutes)**
-- Go to **console.anthropic.com**, add $10 of credit, and **set a monthly spend limit** (for example $20).
-- Create an API key and copy it.
-- In this repo on github.com: **Settings → Secrets and variables → Actions → New repository secret**. Name it `ANTHROPIC_API_KEY` and paste the key.
-- Go to the **Actions** tab → **kalshi-bot** → **Run workflow** to start now (otherwise it starts on the next 3-hour run).
+**1. Turn on the brain with your Claude subscription (one time, about 5 minutes, on a computer)**
+
+This uses your Claude Pro/Max plan instead of a paid API key. Claude Code runs inside the GitHub job and does the research.
+
+- Install Claude Code on any Mac or PC:
+  - Mac/Linux, in Terminal: `curl -fsSL https://claude.ai/install.sh | bash`
+  - Windows, in PowerShell: `irm https://claude.ai/install.ps1 | iex`
+  - (or, if you have Node.js 22+: `npm install -g @anthropic-ai/claude-code`)
+- Run `claude setup-token`. A browser window opens. Sign in to your Claude account and approve. A long token then prints in the terminal. Copy it. It's valid for a year, and nothing gets saved on that computer.
+- In this repo on github.com: **Settings → Secrets and variables → Actions → New repository secret**. Name it `CLAUDE_CODE_OAUTH_TOKEN` and paste the token.
+- Go to the **Actions** tab → **kalshi-bot** → **Run workflow** to start now (otherwise it starts on the next 4-hour run).
+
+The bot's research counts toward your plan's usage limits, the same ones your own chats use. By default it makes at most 3 forecasts per run and 12 per day. Lower `max_forecasts_per_day` in `config.toml` if you notice it eating into your usage.
+
+*Prefer pay-as-you-go instead?* Skip the above and add a secret named `ANTHROPIC_API_KEY` with a key from console.anthropic.com. Set a spend limit there. It costs roughly $0.10–0.15 per forecast.
 
 From then on, Claude forecasts real Kalshi markets and logs paper trades. Open **`REPORT.md`** in this repo any time to see how it's doing.
 
@@ -41,7 +51,7 @@ The rest of this guide covers running it on your own computer, the settings, and
 |---|---|---|---|
 | **1. Shadow** | Claude forecasts **real** markets at real prices. The bot records "paper trades" but places nothing. | None (only Claude API costs) | `check` passes and runs work without errors |
 | **2. Demo trading** | The bot places real orders on Kalshi's **practice exchange**, using fake money. | None | A week of clean runs |
-| **3. Automatic** | GitHub runs shadow and demo every 3 hours, even with your laptop closed. | None | You decide, using the report |
+| **3. Automatic** | GitHub runs shadow and demo every 4 hours, even with your laptop closed. | None | You decide, using the report |
 
 Shadow mode is the honest test of whether Claude has an edge, because it uses real prices. Demo mode tests the trading machinery, but the practice exchange is quiet and its prices aren't realistic.
 
@@ -135,7 +145,7 @@ If the bot says "0 markets passed the filters," the practice exchange may just b
 
 ## Step 6: Phase 3, fully automatic (GitHub Actions)
 
-GitHub will run the bot every 3 hours on its own computers and save the journal back to your repository after each run. (If your repo already came set up on GitHub, skip to step 3.) Free GitHub accounts include 2,000 minutes a month for private repos, and this uses roughly 1,000–1,500.
+GitHub will run the bot every 4 hours on its own computers and save the journal back to your repository after each run. (If your repo already came set up on GitHub, skip to step 3.) Free GitHub accounts include 2,000 minutes a month for private repos, and this uses roughly 1,000–1,500.
 
 1. **Create a private repository** on GitHub. It must be private, because the journal records your trades.
 2. **Upload the project** with git, from the project folder:
@@ -150,10 +160,10 @@ GitHub will run the bot every 3 hours on its own computers and save the journal 
    - `ANTHROPIC_API_KEY`: your Claude key
    - `KALSHI_DEMO_API_KEY_ID`: your demo Key ID
    - `KALSHI_DEMO_PRIVATE_KEY`: open the key file in a text editor and paste **the whole thing**, including the `-----BEGIN` and `-----END` lines
-   Only `ANTHROPIC_API_KEY` is required. Without the two Kalshi secrets it runs shadow mode only.
+   You need either `CLAUDE_CODE_OAUTH_TOKEN` (your Claude subscription, see Quick start) or `ANTHROPIC_API_KEY`. Without the two Kalshi secrets it runs shadow mode only.
 4. **Test it**: **Actions** tab → *kalshi-bot* → **Run workflow**. Open the run to see a readable summary of what it did.
 
-From now on it runs every 3 hours. Check runs and `REPORT.md`, and flip the switch, from your phone.
+From now on it runs every 4 hours. Check runs and `REPORT.md`, and flip the switch, from your phone.
 
 - **Emergency stop:** add a variable `BOT_ENABLED` = `false` (Variables tab), or disable the workflow in the Actions tab.
 - **Shadow only:** add a variable `DEMO_TRADING` = `false`.
@@ -216,10 +226,11 @@ Real-money mode then needs **both** `enabled = true` in the `[live]` section of 
 | File | Job |
 |---|---|
 | `bot/kalshi.py` | Talks to Kalshi: signing, markets, balance, positions, orders |
-| `bot/analyst.py` | Claude research (with web search), then the structured estimate |
+| `bot/analyst.py` | Claude research (with web search), then the structured estimate (API-key mode) |
+| `bot/research_queue.py` | Subscription mode: queues markets for Claude Code and reads back its forecasts |
 | `bot/strategy.py` | Fees, edge, sizing and limits (pure math, no AI) |
 | `bot/runner.py` | One full run: safety checks → account → scan → research → decide → trade |
 | `bot/journal.py` | Logs everything to `data/*.jsonl` |
 | `bot/report.py` | The scorecard |
-| `.github/workflows/bot.yml` | The every-3-hours schedule for Phase 3 |
+| `.github/workflows/bot.yml` | The every-4-hours schedule for Phase 3 |
 | `REPORT.md` | Latest scorecard and forecasts, updated after each GitHub run |
