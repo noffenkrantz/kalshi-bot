@@ -13,7 +13,7 @@ on:
   workflow_dispatch: {}       # adds a "Run workflow" button for manual runs
 
 permissions:
-  contents: write             # lets the job save the journal and REPORT.md back to the repo
+  contents: write             # lets the job save the journal and dashboard back to the repo
 
 concurrency:
   group: kalshi-bot
@@ -46,7 +46,7 @@ jobs:
         if: ${{ env.HAS_SUBSCRIPTION != 'true' && env.HAS_API_KEY != 'true' }}
         run: |
           echo "### Not set up yet" >> "$GITHUB_STEP_SUMMARY"
-          msg="Add the ANTHROPIC_API_KEY secret (or CLAUDE_CODE_OAUTH_TOKEN) - see README > Quick start - and the bot starts on its next run."
+          msg="Add the ANTHROPIC_API_KEY secret (or CLAUDE_CODE_OAUTH_TOKEN) - see SETUP.md > Quick start - and the bot starts on its next run."
           echo "$msg" >> "$GITHUB_STEP_SUMMARY"
           echo "$msg" >> data/last_run.log
 
@@ -122,7 +122,7 @@ jobs:
         run: |
           git config user.name "kalshi-bot"
           git config user.email "kalshi-bot@users.noreply.github.com"
-          git add data/ REPORT.md 2>/dev/null || git add data/
+          git add data/ REPORT.md README.md 2>/dev/null || git add data/
           git commit -m "journal: run $(date -u +%Y-%m-%dT%H:%MZ)" || echo "nothing new"
           git pull --rebase --autostash || true
           git push || echo "push failed; will retry next run"

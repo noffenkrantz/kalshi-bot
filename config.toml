@@ -51,6 +51,9 @@ max_dollars_spent_per_day = 100
 max_trades_per_run = 3
 max_drawdown = 0.30                # halt if account value falls 30% below its peak
 
+[dashboard]
+timezone = "America/New_York"   # times shown on the dashboard
+
 [shadow]
 paper_bankroll = 1000              # pretend bankroll for shadow-mode paper trades
 

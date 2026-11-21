@@ -92,7 +92,7 @@ def cmd_check(cfg: dict) -> int:
             print("[--] Kalshi DEMO key not set up yet (fine for Phase 1 shadow mode)")
     except (KalshiError, ValueError, OSError) as e:
         print(f"[X] Kalshi DEMO account: {e}"); ok = False
-    print("\nAll good." if ok else "\nFix the [X] items above (see README > Troubleshooting).")
+    print("\nAll good." if ok else "\nFix the [X] items above (see SETUP.md > Troubleshooting).")
     return 0 if ok else 1
 
 
@@ -103,7 +103,7 @@ def cmd_run(cfg: dict, mode: str) -> int:
     elif mode == "demo":
         data = trade = kalshi_client("demo", "DEMO")
         if not trade.authenticated:
-            sys.exit("Demo mode needs KALSHI_DEMO_API_KEY_ID and a demo private key (see README step 4).")
+            sys.exit("Demo mode needs KALSHI_DEMO_API_KEY_ID and a demo private key (see SETUP.md step 4).")
     else:
         data = trade = kalshi_client("prod", "PROD")
         if not trade.authenticated:
@@ -134,6 +134,8 @@ def cmd_report(cfg: dict) -> int:
         lines.append(f"| {r.get('ts', '')[:16]} | {str(r.get('question', r.get('ticker')))[:70]} | "
                      f"{r.get('prob_yes', 0):.0%} | {'' if mid is None else f'{mid:.0%}'} | {r.get('confidence')} |")
     (ROOT / "REPORT.md").write_text("\n".join(lines) + "\n")
+    from .dashboard import build_dashboard
+    (ROOT / "README.md").write_text(build_dashboard(journal, clients, utcnow(), cfg))
     return 0
 
 
