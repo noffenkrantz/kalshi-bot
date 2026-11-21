@@ -1,15 +1,14 @@
-# Last run: 2026-11-21 21:58 UTC
+# Last run: 2026-11-21 22:04 UTC
 brain: API key
 
 ## run --mode shadow
 Paper account: $10,000.00 free, $0.00 in 0 open paper positions
-317 markets passed the filters
-Forecast KXHIGHLAX-26NOV22-B67.5 [Climate and Weather, focus]: Claude 30% YES (medium) vs market 70% - Highest temperature in Los Angeles on Nov 22, 2026? — 67° to 68°
+328 markets passed the filters
 Daily research budget reached; using existing forecasts only
-Done: 1 new forecasts, 0 paper trades. Claude spend today (shadow) ~$2.03 of $2.00
+Done: 0 new forecasts, 0 paper trades. Claude spend today (shadow) ~$2.03 of $2.00
 
 ## report
-# Kalshi bot report - 2026-11-21T21:59:32+00:00
+# Kalshi bot report - 2026-11-21T22:04:55+00:00
 
 ## SHADOW
 Forecasts: 13 made, 0 resolved
