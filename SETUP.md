@@ -43,7 +43,7 @@ For every pretend trade:
 
 ## Costs
 
-- **Claude:** roughly $0.10–0.15 per forecast. It stops starting new research after about $1 a day (`daily_budget_usd`), so about $30 a month at most. Forecasts are reused for 8 hours, so most runs cost little.
+- **Claude:** roughly $0.10–0.15 per forecast. It stops starting new research after about $2 a day (`daily_budget_usd`), so about $60 a month at most, roughly 15 forecasts a day. Forecasts are reused for 8 hours, so most runs cost little.
 - **GitHub:** free. Private repos include 2,000 Actions minutes a month, and this uses well under that.
 
 ## Settings worth knowing (`config.toml`)

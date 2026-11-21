@@ -5,7 +5,7 @@
 model = "claude-sonnet-5-5"        # does the research (good balance of cost and quality)
 judge_model = "claude-sonnet-5-5"  # turns the research into a final number
 max_searches_per_market = 4        # web searches Claude may run per market
-daily_budget_usd = 1.00            # per mode, per day (UTC): stop starting new research after ~this much
+daily_budget_usd = 2.00            # per day (UTC): stop starting new research after ~this much
 max_new_analyses_per_run = 4       # new markets researched per run
 reanalyze_after_hours = 8          # reuse a forecast for this long...
 reanalyze_if_price_moves = 0.10    # ...unless the price moves 10 cents or more
