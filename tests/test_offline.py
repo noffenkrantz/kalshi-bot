@@ -358,8 +358,9 @@ def test_dashboard_shows_simulated_account(tmp_path, cfg):
     from bot.dashboard import build_dashboard
     prod = FakeKalshi("prod", MARKETS, authed=False)
     j = Journal(tmp_path / "data")
-    empty = build_dashboard(j, {"shadow": prod}, NOW, cfg)
+    empty = build_dashboard(j, {"shadow": prod}, NOW, cfg, record=True)
     assert "### $10,000.00" in empty and "No trades yet" in empty and "Practice" not in empty
+    assert "<picture>" in empty and len(j.rows["equity"]) == 1   # chart appears even before any bets
     run_once(Bot(mode="shadow", cfg=cfg, data=prod, trade=None, claude=FakeClaude(PROBS), journal=j, now=NOW, root=tmp_path))
     prod.markets["UNDER"]["yes_bid_dollars"], prod.markets["UNDER"]["yes_ask_dollars"] = "0.5000", "0.5200"
     j.append("outcomes", {"env": "shadow", "ticker": "OVER", "result": "no"})
@@ -367,9 +368,11 @@ def test_dashboard_shows_simulated_account(tmp_path, cfg):
     assert "## 💵 Simulated account" in text and "Open trades" in text and "Settled trades" in text
     assert "228 YES @ 42¢" in text and "51¢" in text           # bought at 42, now worth the 51 mid
     assert "✅ won" in text and "Practice" not in text
-    assert j.rows["equity"][-1]["env"] == "shadow"            # trend line history recorded
+    assert j.rows["equity"][-1]["env"] == "shadow"            # balance history recorded every run
     text2 = build_dashboard(j, {"shadow": prod}, NOW + timedelta(hours=8), cfg, record=True)
-    assert any(ch in text2 for ch in "▁▂▃▄▅▆▇█")
+    assert "<picture>" in text2 and "data/balance-dark.svg" in text2
+    light = (tmp_path / "data" / "balance-light.svg").read_text()
+    assert light.startswith("<svg") and "<path" in light and "Start $10,000" in light
 
 
 def test_one_market_per_event(tmp_path, cfg):
@@ -521,3 +524,15 @@ def test_confidence_scale_normalizing():
     assert normalize_confidence(" medium-low ") == "medium-low"
     assert normalize_confidence("HIGH") == "high"
     assert normalize_confidence("very sure") == "low" and normalize_confidence(None) == "low"
+
+
+def test_balance_chart_svg():
+    from xml.etree import ElementTree
+    from zoneinfo import ZoneInfo
+    from bot.chart import balance_svg
+    pts = [(NOW + timedelta(hours=4 * i), 10000 + 100 * ((-1) ** i) * i) for i in range(20)]
+    for theme in ("light", "dark"):
+        svg = balance_svg(pts, 10000, theme, ZoneInfo("America/New_York"))
+        root = ElementTree.fromstring(svg)                  # well-formed XML
+        assert root.tag.endswith("svg") and "Nov 21" in svg and "Start $10,000" in svg
+    assert "grows with each run" in balance_svg(pts[:1], 10000)

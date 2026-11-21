@@ -1,6 +1,6 @@
 # Kalshi bot
 
-**Updated Sat Nov 21, 5:04 PM EST** · runs every 4 hours · [▶ Run now](https://github.com/noffenkrantz/kalshi-bot/actions/workflows/bot.yml) · [Full report](REPORT.md) · [Last run log](data/last_run.log) · [Setup & settings](SETUP.md)
+**Updated Sat Nov 21, 5:22 PM EST** · runs every 4 hours · [▶ Run now](https://github.com/noffenkrantz/kalshi-bot/actions/workflows/bot.yml) · [Full report](REPORT.md) · [Last run log](data/last_run.log) · [Setup & settings](SETUP.md)
 
 ## 💵 Simulated account
 
@@ -8,6 +8,11 @@
 
 ### $10,000.00
 +$0.00 since the start ($10,000.00 pretend bankroll)
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="data/balance-dark.svg">
+  <img alt="Chart of the simulated balance over time, now $10,000.00" src="data/balance-light.svg" width="100%">
+</picture>
 
 No trades yet. They appear when Claude finds a real market it thinks is mispriced by enough to beat the fees.
 

@@ -16,6 +16,7 @@ from .learning import focus_label, topic_stats, topic_weights
 from .kalshi import KalshiClient, KalshiError
 from .report import MIN_RESOLVED_FOR_VERDICT, _brier
 from .strategy import quotes
+from .chart import write_balance_charts
 from .util import iso, parse_time, to_float, valid_price
 
 SPARK = "▁▂▃▄▅▆▇█"
@@ -158,12 +159,20 @@ def build_dashboard(journal: Journal, clients: dict[str, KalshiClient], now: dat
     open_, settled = _book(rows, journal, "shadow")
     _mark(open_, clients.get("shadow"))
     value = bankroll + sum(p["pnl"] for p in settled) + sum(p["pnl"] or 0 for p in open_)
-    if record and rows:
+    if record:   # one point per run, so the chart grows every 4 hours
         journal.append("equity", {"ts": iso(now), "env": "shadow", "equity": round(value, 2)})
-    history = [r["equity"] for r in journal.rows["equity"] if r.get("env") == "shadow"][-24:]
+    history = [(parse_time(r["ts"]), r["equity"]) for r in journal.rows["equity"]
+               if r.get("env") == "shadow" and parse_time(r.get("ts"))]
+    if record:
+        write_balance_charts(history, bankroll, journal.dir, tz)
     out += ["", f"### {money(value)}",
-            f"{money(value - bankroll, sign=True)} since the start ({money(bankroll)} pretend bankroll) "
-            f"{sparkline(history)}".rstrip()]
+            f"{money(value - bankroll, sign=True)} since the start ({money(bankroll)} pretend bankroll)"]
+    if (journal.dir / "balance-light.svg").exists():
+        alt = f"Chart of the simulated balance over time, now {money(value)}"
+        out += ["", "<picture>",
+                '  <source media="(prefers-color-scheme: dark)" srcset="data/balance-dark.svg">',
+                f'  <img alt="{alt}" src="data/balance-light.svg" width="100%">',
+                "</picture>"]
     if not rows:
         out += ["", "No trades yet. They appear when Claude finds a real market it thinks is mispriced "
                     "by enough to beat the fees.", ""]
