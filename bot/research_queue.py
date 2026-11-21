@@ -86,6 +86,7 @@ def prepare(cfg: dict, clients: dict[str, KalshiClient], journal: Journal, now: 
             print(f"Couldn't scan {mode} markets: {e}")
             continue
         events: dict = {}
+        per_event: dict = {}
         considered = 0
         for m in candidates:
             if len(queue) >= limit or considered >= fcfg.get("max_candidates_considered", 40):
@@ -103,6 +104,9 @@ def prepare(cfg: dict, clients: dict[str, KalshiClient], journal: Journal, now: 
             category = str(event.get("category") or "").lower()
             if category and any(x in category for x in excluded):
                 continue
+            if per_event.get(ev_key, 0) >= int(fcfg.get("max_markets_per_event", 1)):
+                continue
+            per_event[ev_key] = per_event.get(ev_key, 0) + 1
             considered += 1
             if is_fresh_for(journal.latest_estimate(ticker), m, mode, now, ccfg):
                 continue

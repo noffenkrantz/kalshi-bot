@@ -94,7 +94,7 @@ def real_account(bot: Bot, risk: dict, today: str) -> Account | None:
     cash = to_float(bal.get("balance_dollars"))
     if cash is None:
         cash = (bal.get("balance") or 0) / 100
-    held, exposure, value = set(), 0.0, 0.0
+    held, held_events, exposure, value = set(), set(), 0.0, 0.0
     for pos in bot.trade.get_positions():
         n = to_float(pos.get("position_fp"), 0.0)
         if not n:
@@ -104,7 +104,10 @@ def real_account(bot: Bot, risk: dict, today: str) -> Account | None:
         cost = to_float(pos.get("market_exposure_dollars"), 0.0)
         exposure += cost
         try:
-            mid = quotes(bot.trade.get_market(ticker)).mid
+            pm = bot.trade.get_market(ticker)
+            mid = quotes(pm).mid
+            if pm.get("event_ticker"):
+                held_events.add(pm["event_ticker"])
         except KalshiError:
             mid = None
         value += cost if mid is None else (n * mid if n > 0 else -n * (1 - mid))
@@ -120,7 +123,8 @@ def real_account(bot: Bot, risk: dict, today: str) -> Account | None:
         halt(bot, f"account fell {1 - equity / peak:.0%} below its peak (limit {risk['max_drawdown']:.0%})")
         return None
     return Account(bankroll=cash, exposure=exposure, open_positions=len(held),
-                   spent_today=bot.journal.order_spend_on(bot.mode, today), held_tickers=held)
+                   spent_today=bot.journal.order_spend_on(bot.mode, today), held_tickers=held,
+                   held_events=held_events)
 
 
 def paper_account(bot: Bot, today: str) -> Account:
@@ -132,8 +136,11 @@ def paper_account(bot: Bot, today: str) -> Account:
     bankroll = float(bot.cfg.get("shadow", {}).get("paper_bankroll", 1000)) - exposure
     bot.summary.add(f"Paper account: ${max(bankroll, 0):,.2f} free, ${exposure:,.2f} in "
                     f"{len(open_rows)} open paper positions")
+    held_events = {r.get("event_ticker") or (bot.journal.latest_estimate(r["ticker"]) or {}).get("event_ticker")
+                   for r in open_rows}
     return Account(bankroll=max(bankroll, 0.0), exposure=exposure, open_positions=len(open_rows),
-                   spent_today=spent, held_tickers={r["ticker"] for r in open_rows})
+                   spent_today=spent, held_tickers={r["ticker"] for r in open_rows},
+                   held_events={e for e in held_events if e})
 
 
 # ---- market scan ----------------------------------------------------------------
@@ -234,6 +241,8 @@ def place_and_verify(bot: Bot, m: dict, d: Decision, acct: Account) -> None:
         acct.bankroll -= spent
         acct.open_positions += 1
         acct.held_tickers.add(ticker)
+        if m.get("event_ticker"):
+            acct.held_events.add(m["event_ticker"])
         s.add(f"BOUGHT {filled:g} {d.outcome.upper()} on {ticker} at ${d.outcome_price:.2f} "
               f"(edge {d.edge:+.2f}/contract, cost ${spent:.2f})")
     else:
@@ -277,6 +286,8 @@ def run_once(bot: Bot) -> Summary:
     budget_left = ccfg["daily_budget_usd"] - bot.journal.claude_spend_on(today, bot.mode)
     excluded = [c.lower() for c in fcfg.get("exclude_categories", [])]
     events: dict = {}
+    per_event: dict = {}
+    max_per_event = int(fcfg.get("max_markets_per_event", 1))
     new_forecasts = trades = considered = 0
 
     for m in candidates:
@@ -293,6 +304,9 @@ def run_once(bot: Bot) -> Summary:
         category = str(event.get("category") or "").lower()
         if category and any(x in category for x in excluded):
             continue
+        if per_event.get(ev_key, 0) >= max_per_event:
+            continue
+        per_event[ev_key] = per_event.get(ev_key, 0) + 1
         considered += 1
 
         est = bot.journal.latest_estimate(ticker)
@@ -327,7 +341,8 @@ def run_once(bot: Bot) -> Summary:
 
         d = decide(m, est, strat, risk, acct)
         q = quotes(m)
-        base = {"ts": iso(bot.now), "env": bot.mode, "ticker": ticker, "close_time": m.get("close_time"),
+        base = {"ts": iso(bot.now), "env": bot.mode, "ticker": ticker, "event_ticker": ev_key,
+                "close_time": m.get("close_time"),
                 "market_mid": q.mid, "prob_yes": est.get("prob_yes"), "edge": d.edge}
         if d.action == "skip":
             if is_new:
@@ -346,6 +361,7 @@ def run_once(bot: Bot) -> Summary:
             acct.bankroll -= d.est_cost
             acct.open_positions += 1
             acct.held_tickers.add(ticker)
+            acct.held_events.add(ev_key)
             trades += 1
             s.add(f"Paper trade: would buy {d.count} {d.outcome.upper()} on {ticker} at "
                   f"${d.outcome_price:.2f} (edge {d.edge:+.2f}/contract, ~${d.est_cost:.2f})")

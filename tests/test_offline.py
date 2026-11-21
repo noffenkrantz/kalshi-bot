@@ -135,9 +135,9 @@ def make_bot(tmp_path, cfg, mode, kalshi, claude, now=NOW):
 
 
 MARKETS = [
-    market("UNDER", 0.40, 0.42, volume=5000),   # Claude says 70% -> buy YES
-    market("OVER", 0.60, 0.62, volume=4000),    # Claude says 30% -> buy NO
-    market("FAIR", 0.49, 0.51, volume=3000),    # Claude says 50% -> skip
+    market("UNDER", 0.40, 0.42, volume=5000, event="EV1"),   # Claude says 70% -> buy YES
+    market("OVER", 0.60, 0.62, volume=4000, event="EV2"),    # Claude says 30% -> buy NO
+    market("FAIR", 0.49, 0.51, volume=3000, event="EV3"),    # Claude says 50% -> skip
     market("SPORTY", 0.30, 0.32, volume=9000, event="SPORT"),  # excluded category
     market("WIDE", 0.20, 0.50, volume=9000),    # spread too wide
     market("SOON", 0.40, 0.42, volume=9000, close_hours=2),  # closes too soon
@@ -350,3 +350,22 @@ def test_dashboard_shows_simulated_account(tmp_path, cfg):
     assert j.rows["equity"][-1]["env"] == "shadow"            # trend line history recorded
     text2 = build_dashboard(j, {"shadow": prod}, NOW + timedelta(hours=8), cfg, record=True)
     assert any(ch in text2 for ch in "▁▂▃▄▅▆▇█")
+
+
+def test_one_market_per_event(tmp_path, cfg):
+    same_event = [market("RAIN-NYC", 0.40, 0.42, volume=5000, event="RAIN"),
+                  market("RAIN-BOS", 0.40, 0.42, volume=4000, event="RAIN"),
+                  market("CPI", 0.40, 0.42, volume=3000, event="CPI")]
+    c = FakeClaude({"RAIN-NYC": 0.7, "RAIN-BOS": 0.7, "CPI": 0.7})
+    j = Journal(tmp_path / "data")
+    k = FakeKalshi("prod", same_event, authed=False)
+    run_once(Bot(mode="shadow", cfg=cfg, data=k, trade=None, claude=c, journal=j, now=NOW, root=tmp_path))
+    assert {e["ticker"] for e in j.rows["estimates"]} == {"RAIN-NYC", "CPI"}     # only one per event researched
+    # even with a fresh forecast for the second city, no second trade on the same event
+    j.append("estimates", {"ts": "2026-11-20T18:00:00+00:00", "env": "shadow", "ticker": "RAIN-BOS",
+                           "event_ticker": "RAIN", "prob_yes": 0.7, "confidence": "high", "rules_clear": True,
+                           "market_mid": 0.41})
+    cfg["filters"]["max_markets_per_event"] = 5
+    run_once(Bot(mode="shadow", cfg=cfg, data=k, trade=None, claude=c, journal=j, now=NOW + timedelta(hours=1), root=tmp_path))
+    paper = [d["ticker"] for d in j.rows["decisions"] if d["action"].startswith("paper_buy")]
+    assert sorted(paper) == ["CPI", "RAIN-NYC"]

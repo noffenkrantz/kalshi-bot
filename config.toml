@@ -34,6 +34,7 @@ exclude_categories = ["Sports", "Crypto"]   # fast-moving markets where bots hav
 include_series = []                # e.g. ["KXHIGHNY"] to focus on specific series; empty = everything
 max_markets_scanned = 10000
 max_candidates_considered = 40     # top markets by volume to consider each run
+max_markets_per_event = 1          # spread research across different events (e.g. not 4 cities' rain on one day)
 
 [strategy]   # when a trade is worth making
 min_edge = 0.05                    # expected profit per $1 contract after fees (0.05 = 5 cents)
@@ -42,6 +43,7 @@ kelly_fraction = 0.10              # bet sizing: a tenth of the "Kelly" amount (
 fee_rate = 0.07                    # Kalshi's general taker fee coefficient
 min_buy_price = 0.05
 max_buy_price = 0.95
+one_position_per_event = true      # one trade per event: bets on the same event win or lose together
 
 [risk]   # limits on each simulated trade, like a cautious real account
 max_dollars_per_trade = 25

@@ -64,6 +64,7 @@ class Account:
     open_positions: int = 0
     spent_today: float = 0.0
     held_tickers: set = field(default_factory=set)
+    held_events: set = field(default_factory=set)
 
 
 @dataclass
@@ -89,6 +90,8 @@ def decide(market: dict, est: dict, strat: dict, risk: dict, acct: Account) -> D
     ticker = market["ticker"]
     if ticker in acct.held_tickers:
         return skip(ticker, "already holding a position here")
+    if strat.get("one_position_per_event", True) and market.get("event_ticker") in acct.held_events:
+        return skip(ticker, "already holding a trade on this event (bets on one event move together)")
     if not est.get("rules_clear"):
         return skip(ticker, "Claude flagged the rules as unclear")
     conf = str(est.get("confidence", "low")).lower()
