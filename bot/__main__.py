@@ -135,7 +135,7 @@ def cmd_report(cfg: dict) -> int:
                      f"{r.get('prob_yes', 0):.0%} | {'' if mid is None else f'{mid:.0%}'} | {r.get('confidence')} |")
     (ROOT / "REPORT.md").write_text("\n".join(lines) + "\n")
     from .dashboard import build_dashboard
-    (ROOT / "README.md").write_text(build_dashboard(journal, clients, utcnow(), cfg))
+    (ROOT / "README.md").write_text(build_dashboard(journal, clients, utcnow(), cfg, record=True))
     return 0
 
 

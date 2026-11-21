@@ -29,7 +29,7 @@ min_price = 0.05                   # skip near-certain markets
 max_price = 0.95
 max_spread = 0.08                  # skip markets where bid and ask are far apart
 min_volume_24h = 200               # contracts traded in the last day (real markets)
-demo_min_volume_24h = 0            # the practice exchange is much quieter
+demo_min_volume_24h = 0            # only used by the optional practice-exchange mode
 exclude_categories = ["Sports", "Crypto"]   # fast-moving markets where bots have the edge
 include_series = []                # e.g. ["KXHIGHNY"] to focus on specific series; empty = everything
 max_markets_scanned = 10000
@@ -43,7 +43,7 @@ fee_rate = 0.07                    # Kalshi's general taker fee coefficient
 min_buy_price = 0.05
 max_buy_price = 0.95
 
-[risk]   # hard limits for practice trading (demo)
+[risk]   # limits on each simulated trade, like a cautious real account
 max_dollars_per_trade = 25
 max_total_exposure = 250
 max_open_positions = 15
@@ -55,7 +55,7 @@ max_drawdown = 0.30                # halt if account value falls 30% below its p
 timezone = "America/New_York"   # times shown on the dashboard
 
 [shadow]
-paper_bankroll = 1000              # pretend bankroll for shadow-mode paper trades
+paper_bankroll = 1000              # pretend starting balance for the simulated account
 
 [live]   # REAL MONEY. Also locked behind the ALLOW_REAL_MONEY=yes environment variable.
 enabled = false

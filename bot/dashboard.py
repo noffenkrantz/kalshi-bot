@@ -13,7 +13,7 @@ from .journal import Journal
 from .kalshi import KalshiClient, KalshiError
 from .report import MIN_RESOLVED_FOR_VERDICT, _brier
 from .strategy import quotes
-from .util import parse_time, to_float, valid_price
+from .util import iso, parse_time, to_float, valid_price
 
 SPARK = "▁▂▃▄▅▆▇█"
 
@@ -127,7 +127,9 @@ def _summary_line(open_: list[dict], settled: list[dict]) -> str:
     return " · ".join(parts)
 
 
-def build_dashboard(journal: Journal, clients: dict[str, KalshiClient], now: datetime, cfg: dict) -> str:
+def build_dashboard(journal: Journal, clients: dict[str, KalshiClient], now: datetime, cfg: dict,
+                    record: bool = False) -> str:
+    """record=True also saves today's simulated account value, so the trend line grows each run."""
     tz = ZoneInfo(cfg.get("dashboard", {}).get("timezone", "America/New_York"))
     repo = None
     if os.environ.get("GITHUB_REPOSITORY"):
@@ -137,53 +139,34 @@ def build_dashboard(journal: Journal, clients: dict[str, KalshiClient], now: dat
 
     out = ["# Kalshi bot", "",
            f"**Updated {when(now, tz)}** · runs every 4 hours · " + " · ".join(links), ""]
-    for key, value in journal.state.items():
-        if key.startswith("halted:"):
-            out += [f"> ⚠️ **{key.split(':', 1)[1].capitalize()} mode is paused by a safety check:** "
-                    f"{value.get('reason')}", ""]
+    halted = journal.state.get("halted:shadow")
+    if halted:
+        out += [f"> ⚠️ **Paused by a safety check:** {halted.get('reason')}", ""]
 
-    # ---- paper trades at real prices ------------------------------------------------
-    out.append("## 📝 If this were real money")
-    out += ["", "*Paper trades on real Kalshi markets: real prices at the moment of the decision, Kalshi's fees, "
-            "and settled on what actually happened. Nothing is actually bought.*"]
-    paper_rows = [{"ticker": d["ticker"], "outcome": d["outcome"], "contracts": d.get("count") or 0,
-                   "cost": d.get("est_cost") or 0.0, "price": d.get("outcome_price"), "ts": d.get("ts")}
-                  for d in journal.rows["decisions"]
-                  if d.get("env") == "shadow" and d.get("action", "").startswith("paper_buy")]
-    if not paper_rows:
-        out += ["", "No paper trades yet. They appear when Claude finds a real market it thinks is mispriced.", ""]
+    # ---- simulated account: real markets and prices, fake money ---------------------
+    bankroll = float(cfg.get("shadow", {}).get("paper_bankroll", 1000))
+    out.append("## 💵 Simulated account")
+    out += ["", "*Real Kalshi markets at real prices, with Kalshi's fees, settled on what actually happened. "
+                "The money is pretend: nothing is ever bought.*"]
+    rows = [{"ticker": d["ticker"], "outcome": d["outcome"], "contracts": d.get("count") or 0,
+             "cost": d.get("est_cost") or 0.0, "price": d.get("outcome_price"), "ts": d.get("ts")}
+            for d in journal.rows["decisions"]
+            if d.get("env") == "shadow" and d.get("action", "").startswith("paper_buy")]
+    open_, settled = _book(rows, journal, "shadow")
+    _mark(open_, clients.get("shadow"))
+    value = bankroll + sum(p["pnl"] for p in settled) + sum(p["pnl"] or 0 for p in open_)
+    if record and rows:
+        journal.append("equity", {"ts": iso(now), "env": "shadow", "equity": round(value, 2)})
+    history = [r["equity"] for r in journal.rows["equity"] if r.get("env") == "shadow"][-24:]
+    out += ["", f"### {money(value)}",
+            f"{money(value - bankroll, sign=True)} since the start ({money(bankroll)} pretend bankroll) "
+            f"{sparkline(history)}".rstrip()]
+    if not rows:
+        out += ["", "No trades yet. They appear when Claude finds a real market it thinks is mispriced "
+                    "by enough to beat the fees.", ""]
     else:
-        p_open, p_settled = _book(paper_rows, journal, "shadow")
-        _mark(p_open, clients.get("shadow"))
-        bankroll = float(cfg.get("shadow", {}).get("paper_bankroll", 1000))
-        value = bankroll + sum(p["pnl"] for p in p_settled) + sum(p["pnl"] or 0 for p in p_open)
-        out += ["", f"Pretend bankroll {money(bankroll)} → **{money(value)}** "
-                    f"({money(value - bankroll, sign=True)}, open trades at today's prices)",
-                "", _summary_line(p_open, p_settled)]
-        out += _trade_tables(p_open, p_settled)
-        out.append("")
-
-    # ---- practice account (Kalshi demo, fake money) -------------------------------
-    out.append("## 🧪 Practice account (Kalshi demo, fake money)")
-    out += ["", "*Real orders on Kalshi's practice exchange. This proves the trading works end to end, but "
-            "prices there aren't set by real traders, so don't read much into its profit or loss.*"]
-    demo_rows = [{"ticker": o["ticker"], "outcome": o["outcome"], "contracts": o.get("fill_count") or 0,
-                  "cost": o.get("spent") or 0.0, "price": o.get("outcome_price"), "ts": o.get("ts")}
-                 for o in journal.rows["orders"] if o.get("env") == "demo" and (o.get("fill_count") or 0) > 0]
-    equity = [r for r in journal.rows["equity"] if r.get("env") == "demo"]
-    if not equity and not demo_rows:
-        out += ["", "Not turned on yet. Add your Kalshi demo keys ([Setup](SETUP.md), Quick start step 2) "
-                "and the bot starts placing practice trades.", ""]
-    else:
-        d_open, d_settled = _book(demo_rows, journal, "demo")
-        _mark(d_open, clients.get("demo"))
-        if equity:
-            start, last = equity[0]["equity"], equity[-1]["equity"]
-            spark = sparkline([r["equity"] for r in equity][-24:])
-            out += ["", f"### {money(last)}",
-                    f"{money(last - start, sign=True)} since the bot started ({money(start)}) {spark}"]
-        out += ["", _summary_line(d_open, d_settled)]
-        out += _trade_tables(d_open, d_settled)
+        out += ["", _summary_line(open_, settled) + " · open trades valued at today's prices"]
+        out += _trade_tables(open_, settled)
         out.append("")
 
     # ---- scorecard ------------------------------------------------------------------
@@ -218,5 +201,5 @@ def build_dashboard(journal: Journal, clients: dict[str, KalshiClient], now: dat
                        f"{'–' if mid is None else f'{mid:.0%}'} | {r.get('confidence', '')} |")
         out.append("")
 
-    out += ["---", "*Practice money and paper trades only. Not financial advice.*", ""]
+    out += ["---", "*Simulated trades only, no real money. Not financial advice.*", ""]
     return "\n".join(out)

@@ -334,21 +334,19 @@ def test_subscription_prepare_ingest_then_trade(tmp_path, cfg):
 
 
 # ---- dashboard ---------------------------------------------------------------------
-def test_dashboard_shows_practice_and_paper_results(tmp_path, cfg):
+def test_dashboard_shows_simulated_account(tmp_path, cfg):
     from bot.dashboard import build_dashboard
     prod = FakeKalshi("prod", MARKETS, authed=False)
-    demo = FakeKalshi("demo", MARKETS)
     j = Journal(tmp_path / "data")
-    empty = build_dashboard(j, {"shadow": prod, "demo": demo}, NOW, cfg)
-    assert "Not turned on yet" in empty and "No paper trades yet" in empty
+    empty = build_dashboard(j, {"shadow": prod}, NOW, cfg)
+    assert "### $1,000.00" in empty and "No trades yet" in empty and "Practice" not in empty
     run_once(Bot(mode="shadow", cfg=cfg, data=prod, trade=None, claude=FakeClaude(PROBS), journal=j, now=NOW, root=tmp_path))
-    run_once(Bot(mode="demo", cfg=cfg, data=demo, trade=demo, claude=FakeClaude(PROBS), journal=j, now=NOW, root=tmp_path))
-    demo.markets["UNDER"]["yes_bid_dollars"], demo.markets["UNDER"]["yes_ask_dollars"] = "0.5000", "0.5200"
-    prod.markets["OVER"]["result"] = "no"
+    prod.markets["UNDER"]["yes_bid_dollars"], prod.markets["UNDER"]["yes_ask_dollars"] = "0.5000", "0.5200"
     j.append("outcomes", {"env": "shadow", "ticker": "OVER", "result": "no"})
-    text = build_dashboard(j, {"shadow": prod, "demo": demo}, NOW + timedelta(hours=4), cfg)
-    assert "## 🧪 Practice account (Kalshi demo, fake money)" in text and "Open trades" in text
-    assert text.index("If this were real money") < text.index("Practice account")
-    assert "YES @ 42¢" in text and "51¢" in text            # bought at 42, now worth the 51 mid
-    assert "Settled trades" in text and "✅ won" in text     # paper NO on OVER won
-    assert "forecasts" in text and "Latest forecasts" in text
+    text = build_dashboard(j, {"shadow": prod}, NOW + timedelta(hours=4), cfg, record=True)
+    assert "## 💵 Simulated account" in text and "Open trades" in text and "Settled trades" in text
+    assert "57 YES @ 42¢" in text and "51¢" in text           # bought at 42, now worth the 51 mid
+    assert "✅ won" in text and "Practice" not in text
+    assert j.rows["equity"][-1]["env"] == "shadow"            # trend line history recorded
+    text2 = build_dashboard(j, {"shadow": prod}, NOW + timedelta(hours=8), cfg, record=True)
+    assert any(ch in text2 for ch in "▁▂▃▄▅▆▇█")
