@@ -121,9 +121,13 @@ def decide(market: dict, est: dict, strat: dict, risk: dict, acct: Account) -> D
     if acct.open_positions >= risk["max_open_positions"]:
         return skip(ticker, "max open positions reached", best["edge"])
     cost_per = best["price"] + best["fee"]
-    kelly = (best["prob"] - cost_per) / (1 - cost_per)
+    if strat.get("bet_size_dollars"):          # flat bet size, e.g. $100 every time
+        target = float(strat["bet_size_dollars"])
+    else:                                       # or a cautious fraction of the Kelly amount
+        kelly = (best["prob"] - cost_per) / (1 - cost_per)
+        target = acct.bankroll * strat["kelly_fraction"] * kelly
     dollars = min(
-        acct.bankroll * strat["kelly_fraction"] * kelly,
+        target,
         risk["max_dollars_per_trade"],
         risk["max_total_exposure"] - acct.exposure,
         risk["max_dollars_spent_per_day"] - acct.spent_today,
@@ -134,6 +138,9 @@ def decide(market: dict, est: dict, strat: dict, risk: dict, acct: Account) -> D
         count = min(count, math.floor(best["size"]))
     if count < 1:
         return skip(ticker, "trade size rounds to zero under the current limits", best["edge"])
+    if count * cost_per < float(strat.get("min_bet_dollars", 0)):
+        return skip(ticker, f"only ${count * cost_per:.0f} could be bought at that price "
+                            f"(minimum bet ${float(strat['min_bet_dollars']):.0f})", best["edge"])
 
     return Decision(
         ticker=ticker, action=f"buy_{best['outcome']}",

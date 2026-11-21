@@ -87,7 +87,7 @@ class FakeKalshi:
 class FakeClaude:
     """Research call -> pauses once, then returns notes. Judge call -> JSON."""
 
-    def __init__(self, probs: dict, confidence="medium"):
+    def __init__(self, probs: dict, confidence="high"):
         self.probs = probs
         self.confidence = confidence
         self.calls = []
@@ -198,15 +198,20 @@ def test_fee_matches_kalshi_formula():
 def test_decide_buy_yes_buy_no_and_skip(cfg):
     acct = Account(bankroll=1000)
     s, r = cfg["strategy"], cfg["risk"]
-    d = decide(MARKETS[0], {"prob_yes": 0.70, "confidence": "medium", "rules_clear": True}, s, r, acct)
+    d = decide(MARKETS[0], {"prob_yes": 0.70, "confidence": "high", "rules_clear": True}, s, r, acct)
     assert d.action == "buy_yes" and d.book_side == "bid" and d.api_price == "0.4200"
-    assert 0 < d.count * 0.42 <= r["max_dollars_per_trade"]
-    d = decide(MARKETS[1], {"prob_yes": 0.30, "confidence": "medium", "rules_clear": True}, s, r, acct)
+    assert 95 <= d.est_cost <= 101                          # flat ~$100 bet
+    d = decide(MARKETS[1], {"prob_yes": 0.30, "confidence": "high", "rules_clear": True}, s, r, acct)
     # buy NO at 0.40 == sell YES at the YES bid of 0.60
     assert d.action == "buy_no" and d.book_side == "ask" and d.api_price == "0.6000"
     assert abs(d.outcome_price - 0.40) < 1e-9
     assert decide(MARKETS[2], {"prob_yes": 0.50, "confidence": "high", "rules_clear": True}, s, r, acct).action == "skip"
+    assert decide(MARKETS[0], {"prob_yes": 0.70, "confidence": "medium", "rules_clear": True}, s, r, acct).action == "skip"
     assert decide(MARKETS[0], {"prob_yes": 0.70, "confidence": "low", "rules_clear": True}, s, r, acct).action == "skip"
+    small_edge = decide(MARKETS[0], {"prob_yes": 0.48, "confidence": "high", "rules_clear": True}, s, r, acct)
+    assert small_edge.action == "skip" and "below" in small_edge.reason   # 6 cents < 8 cent minimum
+    thin = dict(MARKETS[0], yes_ask_size_fp="40.00")                       # only ~$17 for sale
+    assert "minimum bet" in decide(thin, {"prob_yes": 0.70, "confidence": "high", "rules_clear": True}, s, r, acct).reason
     assert decide(MARKETS[0], {"prob_yes": 0.70, "confidence": "high", "rules_clear": False}, s, r, acct).action == "skip"
     full = Account(bankroll=1000, exposure=r["max_total_exposure"])
     assert decide(MARKETS[0], {"prob_yes": 0.70, "confidence": "high", "rules_clear": True}, s, r, full).action == "skip"
@@ -317,7 +322,7 @@ def test_subscription_prepare_ingest_then_trade(tmp_path, cfg):
     assert "work/queue.json" in text and "probability_yes" in text and "{" not in text.split("## The JSON file")[0]
     # pretend to be Claude Code: write one good file, one broken file, skip one
     (work / "estimates" / safe_name("UNDER")).write_text(json.dumps({
-        "probability_yes": 0.7, "confidence": "Medium", "rules_clear": True, "resolution_summary": "s",
+        "probability_yes": 0.7, "confidence": "High", "rules_clear": True, "resolution_summary": "s",
         "key_evidence": ["e"], "would_change_my_mind": "w", "red_flags": [], "sources": ["https://x.gov"]}))
     (work / "estimates" / safe_name("OVER")).write_text("not json")
     added, problems = ingest(journal, work, NOW)
@@ -339,13 +344,13 @@ def test_dashboard_shows_simulated_account(tmp_path, cfg):
     prod = FakeKalshi("prod", MARKETS, authed=False)
     j = Journal(tmp_path / "data")
     empty = build_dashboard(j, {"shadow": prod}, NOW, cfg)
-    assert "### $1,000.00" in empty and "No trades yet" in empty and "Practice" not in empty
+    assert "### $10,000.00" in empty and "No trades yet" in empty and "Practice" not in empty
     run_once(Bot(mode="shadow", cfg=cfg, data=prod, trade=None, claude=FakeClaude(PROBS), journal=j, now=NOW, root=tmp_path))
     prod.markets["UNDER"]["yes_bid_dollars"], prod.markets["UNDER"]["yes_ask_dollars"] = "0.5000", "0.5200"
     j.append("outcomes", {"env": "shadow", "ticker": "OVER", "result": "no"})
     text = build_dashboard(j, {"shadow": prod}, NOW + timedelta(hours=4), cfg, record=True)
     assert "## 💵 Simulated account" in text and "Open trades" in text and "Settled trades" in text
-    assert "57 YES @ 42¢" in text and "51¢" in text           # bought at 42, now worth the 51 mid
+    assert "228 YES @ 42¢" in text and "51¢" in text           # bought at 42, now worth the 51 mid
     assert "✅ won" in text and "Practice" not in text
     assert j.rows["equity"][-1]["env"] == "shadow"            # trend line history recorded
     text2 = build_dashboard(j, {"shadow": prod}, NOW + timedelta(hours=8), cfg, record=True)

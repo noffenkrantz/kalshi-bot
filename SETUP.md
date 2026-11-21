@@ -35,7 +35,7 @@ For every pretend trade:
 - **Price:** it "buys" at the real asking price at that moment, and only as many contracts as were actually for sale at that price.
 - **Fees:** it subtracts Kalshi's standard trading fee.
 - **Result:** it holds the trade until the market settles, then counts it as a win or loss based on the real outcome.
-- **Size:** it uses a pretend $1,000 balance (`paper_bankroll`), with limits such as $25 max per trade.
+- **Size:** every bet is $100 (`bet_size_dollars`) from a pretend $10,000 balance (`paper_bankroll`). If fewer than $50 of contracts are for sale at the real price, it skips the bet rather than pretending it could buy more.
 
 **How a real-money result could differ:** a real order lands seconds later, and the price can move in that time. Some markets charge different fees. And a person might sell early instead of holding to the end. At these small sizes, the simulated result should be close to what real money would have done.
 
@@ -48,10 +48,11 @@ For every pretend trade:
 
 ## Settings worth knowing (`config.toml`)
 
-- `paper_bankroll` (default 1000): the pretend starting balance.
-- `max_dollars_per_trade`, `max_total_exposure`, `max_open_positions`: limits on the pretend trades, so they behave like a cautious real account.
-- `min_edge` (default 0.05): how much better than the price, after fees, Claude's estimate must be. Higher means fewer, more selective trades.
-- `min_confidence`: "medium" by default. Set it to "high" to be pickier.
+- `paper_bankroll` (default 10000): the pretend starting balance.
+- `bet_size_dollars` (default 100): the size of every bet.
+- `max_total_exposure`, `max_open_positions`: caps on how much is in open bets at once (default $3,000 across up to 30 bets).
+- `min_edge` (default 0.08): how much better than the price, after fees, Claude's estimate must be (8 cents per $1 contract). Higher means fewer, more selective bets.
+- `min_confidence`: "high" by default, so it bets only when Claude is highly confident. Set it to "medium" for more bets.
 - `include_series`: focus on specific Kalshi series (the ticker prefix, like `KXHIGHNY`) instead of scanning everything. Narrowing to topics where research matters, such as economic data, weather or scheduled announcements, often works better.
 - `exclude_categories`: Sports and Crypto are skipped by default, because those prices move fast and professional bots win there.
 - `daily_budget_usd`, `max_new_analyses_per_run`: how much Claude research to do.
