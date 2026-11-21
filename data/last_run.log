@@ -1,23 +1,23 @@
-# Last run: 2026-11-21 21:03 UTC
+# Last run: 2026-11-21 21:40 UTC
 brain: API key
 
 ## run --mode shadow
 Paper account: $9,925.32 free, $74.68 in 3 open paper positions
-254 markets passed the filters
-Forecast KXTSAD-26NOV21-T2600000 [Economics, focus]: Claude 4% YES (medium) vs market 14% - TSA passenger screenings on Nov 21, 2026 — At least 2,600,000 passengers
-Forecast KXHIGHNY-26NOV22-T61 [Climate and Weather, focus]: Claude 47% YES (low) vs market 52% - Highest temperature in New York City on Nov 22, 2026? — 60° or below
-Forecast KXTRUMPAPPROVE-26NOV22-E38.4 [Politics, focus]: Claude 30% YES (low) vs market 78% - Trump's RCP approval average on Nov 22, 2026? — 38.4%
-Forecast KXHIGHTATL-26NOV22-T65 [Climate and Weather, explore]: Claude 48% YES (low) vs market 76% - Highest temperature in Atlanta on Nov 22, 2026? — 64° or below
-Done: 4 new forecasts, 0 paper trades. Claude spend today (shadow) ~$1.25 of $2.00
+284 markets passed the filters
+Forecast KXTRUMPAPPROVE-26NOV22-E38.4 [Politics, focus]: Claude 40% YES (medium) vs market 26% - Trump's RCP approval average on Nov 22, 2026? — 38.4%
+Forecast KXRAIN-26NOV22-EWR [Climate and Weather, focus]: Claude 92% YES (medium) vs market 92% - Where will it rain on Nov 22, 2026? — Newark
+Forecast KXHIGHMIA-26NOV22-B83.5 [Climate and Weather, focus]: Claude 45% YES (medium) vs market 30% - Highest temperature in Miami on Nov 22, 2026? — 83° to 84°
+Forecast KXLOWTEWR-26NOV22-B45.5 [Climate and Weather, explore]: Claude 5% YES (medium) vs market 6% - Lowest temperature in Newark on Nov 22, 2026? — 45° to 46°
+Done: 4 new forecasts, 0 paper trades. Claude spend today (shadow) ~$1.85 of $2.00
 
 ## report
-# Kalshi bot report - 2026-11-21T21:05:01+00:00
+# Kalshi bot report - 2026-11-21T21:42:17+00:00
 
 ## SHADOW
-Forecasts: 8 made, 0 resolved
+Forecasts: 12 made, 0 resolved
 Paper trades (at real prices, assuming fills at the ask): 3 total, 0 settled, 0 won, P&L on settled ~$+0.00
 
-Claude API spend: ~$1.25 in the last 7 days, ~$1.25 all time
+Claude API spend: ~$1.85 in the last 7 days, ~$1.85 all time
 
 ## Verdict
 Not enough data yet: 0/100 shadow forecasts have resolved. Keep collecting before drawing conclusions.

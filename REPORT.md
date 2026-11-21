@@ -1,10 +1,10 @@
-# Kalshi bot report - 2026-11-21T21:05:01+00:00
+# Kalshi bot report - 2026-11-21T21:42:17+00:00
 
 ## SHADOW
-Forecasts: 8 made, 0 resolved
+Forecasts: 12 made, 0 resolved
 Paper trades (at real prices, assuming fills at the ask): 3 total, 0 settled, 0 won, P&L on settled ~$+0.00
 
-Claude API spend: ~$1.25 in the last 7 days, ~$1.25 all time
+Claude API spend: ~$1.85 in the last 7 days, ~$1.85 all time
 
 ## Verdict
 Not enough data yet: 0/100 shadow forecasts have resolved. Keep collecting before drawing conclusions.
@@ -13,6 +13,10 @@ Not enough data yet: 0/100 shadow forecasts have resolved. Keep collecting befor
 
 | When (UTC) | Market | Claude | Market price | Confidence |
 |---|---|---|---|---|
+| 2026-11-21T21:40 | Lowest temperature in Newark on Nov 22, 2026? — 45° to 46° | 5% | 6% | medium |
+| 2026-11-21T21:40 | Highest temperature in Miami on Nov 22, 2026? — 83° to 84° | 45% | 30% | medium |
+| 2026-11-21T21:40 | Where will it rain on Nov 22, 2026? — Newark | 92% | 92% | medium |
+| 2026-11-21T21:40 | Trump's RCP approval average on Nov 22, 2026? — 38.4% | 40% | 26% | medium |
 | 2026-11-21T21:03 | Highest temperature in Atlanta on Nov 22, 2026? — 64° or below | 48% | 76% | low |
 | 2026-11-21T21:03 | Trump's RCP approval average on Nov 22, 2026? — 38.4% | 30% | 78% | low |
 | 2026-11-21T21:03 | Highest temperature in New York City on Nov 22, 2026? — 60° or below | 47% | 52% | low |
