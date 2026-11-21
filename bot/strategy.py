@@ -9,7 +9,14 @@ from dataclasses import dataclass, field
 
 from .util import to_float, valid_price
 
-CONFIDENCE_RANK = {"low": 0, "medium": 1, "high": 2}
+CONFIDENCE_LEVELS = ["low", "medium-low", "medium", "medium-high", "high"]
+CONFIDENCE_RANK = {level: i for i, level in enumerate(CONFIDENCE_LEVELS)}
+
+
+def normalize_confidence(value) -> str:
+    """Accepts "Medium High", "medium_high", "MEDIUM-HIGH"... -> "medium-high". Unknown -> "low"."""
+    v = "-".join(str(value or "").lower().replace("_", " ").replace("-", " ").split())
+    return v if v in CONFIDENCE_RANK else "low"
 
 
 def fee_per_contract(price: float, rate: float = 0.07) -> float:
@@ -94,8 +101,8 @@ def decide(market: dict, est: dict, strat: dict, risk: dict, acct: Account) -> D
         return skip(ticker, "already holding a trade on this event (bets on one event move together)")
     if not est.get("rules_clear"):
         return skip(ticker, "Claude flagged the rules as unclear")
-    conf = str(est.get("confidence", "low")).lower()
-    if CONFIDENCE_RANK.get(conf, 0) < CONFIDENCE_RANK[strat["min_confidence"]]:
+    conf = normalize_confidence(est.get("confidence"))
+    if CONFIDENCE_RANK[conf] < CONFIDENCE_RANK[normalize_confidence(strat["min_confidence"])]:
         return skip(ticker, f"confidence is {conf}")
 
     q = quotes(market)

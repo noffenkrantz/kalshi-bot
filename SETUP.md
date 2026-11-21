@@ -68,7 +68,7 @@ Post-mortems count toward the daily research budget, at about $0.03–0.06 each.
 - `bet_size_dollars` (default 100): the size of every bet.
 - `max_total_exposure`, `max_open_positions`: caps on how much is in open bets at once (default $3,000 across up to 30 bets).
 - `min_edge` (default 0.08): how much better than the price, after fees, Claude's estimate must be (8 cents per $1 contract). Higher means fewer, more selective bets.
-- `min_confidence`: "high" by default, so it bets only when Claude is highly confident. Set it to "medium" for more bets.
+- `min_confidence`: Claude rates each forecast low, medium-low, medium, medium-high or high. By default it bets at **medium-high or high**. Set it to "high" for fewer bets, or "medium" for more.
 - `include_series`: focus on specific Kalshi series (the ticker prefix, like `KXHIGHNY`) instead of scanning everything. Narrowing to topics where research matters, such as economic data, weather or scheduled announcements, often works better.
 - `exclude_categories`: Sports and Crypto are skipped by default, because those prices move fast and professional bots win there.
 - `daily_budget_usd`, `max_new_analyses_per_run`: how much Claude research to do.

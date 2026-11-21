@@ -219,6 +219,9 @@ def test_decide_buy_yes_buy_no_and_skip(cfg):
     assert abs(d.outcome_price - 0.40) < 1e-9
     assert decide(MARKETS[2], {"prob_yes": 0.50, "confidence": "high", "rules_clear": True}, s, r, acct).action == "skip"
     assert decide(MARKETS[0], {"prob_yes": 0.70, "confidence": "medium", "rules_clear": True}, s, r, acct).action == "skip"
+    assert decide(MARKETS[0], {"prob_yes": 0.70, "confidence": "medium-high", "rules_clear": True}, s, r, acct).action == "buy_yes"
+    assert decide(MARKETS[0], {"prob_yes": 0.70, "confidence": "Medium High", "rules_clear": True}, s, r, acct).action == "buy_yes"
+    assert decide(MARKETS[0], {"prob_yes": 0.70, "confidence": "medium-low", "rules_clear": True}, s, r, acct).action == "skip"
     assert decide(MARKETS[0], {"prob_yes": 0.70, "confidence": "low", "rules_clear": True}, s, r, acct).action == "skip"
     small_edge = decide(MARKETS[0], {"prob_yes": 0.48, "confidence": "high", "rules_clear": True}, s, r, acct)
     assert small_edge.action == "skip" and "below" in small_edge.reason   # 6 cents < 8 cent minimum
@@ -510,3 +513,11 @@ def test_no_research_on_events_already_bet(tmp_path, cfg):
     before = len(c.calls)
     run_once(Bot(mode="shadow", cfg=cfg, data=k, trade=None, claude=c, journal=j, now=NOW + timedelta(hours=1), root=tmp_path))
     assert len(c.calls) == before          # RAIN-BOS skipped: already betting on the RAIN event
+
+
+def test_confidence_scale_normalizing():
+    from bot.strategy import normalize_confidence
+    assert normalize_confidence("Medium_High") == "medium-high"
+    assert normalize_confidence(" medium-low ") == "medium-low"
+    assert normalize_confidence("HIGH") == "high"
+    assert normalize_confidence("very sure") == "low" and normalize_confidence(None) == "low"

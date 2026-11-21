@@ -20,7 +20,7 @@ from .analyst import JUDGE_SYSTEM, RESEARCH_SYSTEM, _parse_json, describe_market
 from .journal import Journal
 from .kalshi import KalshiClient, KalshiError
 from .runner import is_fresh_for, scan_markets
-from .strategy import quotes
+from .strategy import normalize_confidence, quotes
 from .util import iso
 
 SUBSCRIPTION_MODEL = "claude-code (subscription)"
@@ -44,7 +44,7 @@ Some markets have a `lessons` field: lessons from reviewing past settled bets. R
 
 Each file must be one JSON object with exactly these keys:
 - "probability_yes": number from 0 to 1, your probability that the market resolves YES
-- "confidence": "low", "medium" or "high"
+- "confidence": "low", "medium-low", "medium", "medium-high" or "high"
 - "rules_clear": true or false
 - "resolution_summary": one sentence on what has to happen for YES
 - "key_evidence": list of short strings (the most important facts, with dates)
@@ -177,9 +177,7 @@ def ingest(journal: Journal, work_dir: Path, now: datetime) -> tuple[int, list[s
                 p /= 100.0
             if not 0.0 <= p <= 1.0:
                 raise ValueError(f"probability {p} out of range")
-            confidence = str(data.get("confidence", "low")).lower()
-            if confidence not in ("low", "medium", "high"):
-                confidence = "low"
+            confidence = normalize_confidence(data.get("confidence"))
         except (ValueError, KeyError, TypeError) as e:
             problems.append(f"{ticker}: unreadable estimate ({e})")
             continue
