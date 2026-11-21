@@ -135,7 +135,7 @@ def _parse_json(text: str) -> dict:
 
 
 def research_market(claude: ClaudeClient, ccfg: dict, market: dict, event: dict,
-                    now: datetime, meter: CostMeter) -> Estimate:
+                    now: datetime, meter: CostMeter, lessons_block: str = "") -> Estimate:
     model = ccfg["model"]
     judge_model = ccfg.get("judge_model") or model
     market_text = describe_market(market, event, now, ccfg.get("show_market_price_to_claude", False))
@@ -143,7 +143,7 @@ def research_market(claude: ClaudeClient, ccfg: dict, market: dict, event: dict,
     # ---- 1. research with web search --------------------------------------
     tools = [{"type": "web_search_20250305", "name": "web_search",
               "max_uses": int(ccfg.get("max_searches_per_market", 4))}]
-    messages = [{"role": "user", "content": market_text}]
+    messages = [{"role": "user", "content": market_text + lessons_block}]
     texts, sources = [], []
     for _ in range(6):  # a long turn can pause; send it back unchanged to continue
         resp = claude.create({"model": model, "max_tokens": 4000, "system": RESEARCH_SYSTEM,

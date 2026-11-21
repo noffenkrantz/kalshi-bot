@@ -11,7 +11,7 @@ from pathlib import Path
 
 from .util import iso, parse_time, utcnow
 
-TABLES = ("estimates", "decisions", "orders", "claude_costs", "outcomes", "equity")
+TABLES = ("estimates", "decisions", "orders", "claude_costs", "outcomes", "equity", "postmortems")
 
 
 class Journal:

@@ -6,6 +6,9 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
 
+import random
+
+from . import learning, lessons as lessons_mod
 from .analyst import AnalystError, CostMeter, question_text, research_market
 from .claude import ClaudeClient, ClaudeError
 from .config import ROOT, effective_risk
@@ -280,68 +283,108 @@ def run_once(bot: Bot) -> Summary:
     else:
         acct = paper_account(bot, today)
 
+    budget_left = ccfg["daily_budget_usd"] - bot.journal.claude_spend_on(today, bot.mode)
+    lcfg = cfg.get("learning", {})
+    lessons_path = bot.root / "data" / "lessons.md"
+
+    # 1) Learn from settled bets first (simulation mode only).
+    if bot.mode == "shadow" and bot.claude is not None and budget_left > 0:
+        from .postmortem import run_postmortems
+        budget_left -= run_postmortems(bot.journal, bot.claude, bot.data, cfg, lessons_path,
+                                       bot.now, budget_left, s.add)
+
     candidates = scan_markets(bot.data, fcfg, bot.mode, bot.now)
     s.add(f"{len(candidates)} markets passed the filters")
 
-    budget_left = ccfg["daily_budget_usd"] - bot.journal.claude_spend_on(today, bot.mode)
+    # 2) Sort candidates into "forecast still fresh" and "needs new research", by topic.
     excluded = [c.lower() for c in fcfg.get("exclude_categories", [])]
     events: dict = {}
     per_event: dict = {}
     max_per_event = int(fcfg.get("max_markets_per_event", 1))
-    new_forecasts = trades = considered = 0
-
+    category_map = dict(bot.journal.state.get("event_categories", {}))
+    ready, pool, considered = [], [], 0
     for m in candidates:
-        if considered >= fcfg.get("max_candidates_considered", 40):
+        if considered >= fcfg.get("max_candidates_considered", 120):
             break
-        ticker = m["ticker"]
         ev_key = m.get("event_ticker")
         if ev_key not in events:
             try:
                 events[ev_key] = bot.data.get_event(ev_key) if ev_key else {}
             except KalshiError:
                 events[ev_key] = {}
+            if ev_key and events[ev_key].get("category"):
+                category_map[ev_key] = events[ev_key]["category"]
         event = events[ev_key]
-        category = str(event.get("category") or "").lower()
-        if category and any(x in category for x in excluded):
+        category = str(event.get("category") or "")
+        if category and any(x in category.lower() for x in excluded):
             continue
         if per_event.get(ev_key, 0) >= max_per_event:
             continue
         per_event[ev_key] = per_event.get(ev_key, 0) + 1
         considered += 1
+        est = bot.journal.latest_estimate(m["ticker"])
+        if is_fresh(est, m, bot):
+            ready.append((m, event, est, False))
+        else:
+            pool.append({"m": m, "event": event, "topic": category or learning.UNKNOWN_TOPIC})
+    if len(category_map) > 4000:
+        category_map = dict(list(category_map.items())[-4000:])
+    bot.journal.set_state("event_categories", category_map)
 
-        est = bot.journal.latest_estimate(ticker)
-        is_new = False
-        if not is_fresh(est, m, bot):
-            if bot.claude is None or new_forecasts >= ccfg["max_new_analyses_per_run"] or budget_left <= 0:
-                continue
-            meter = CostMeter()
-            new_forecasts += 1
-            try:
-                e = research_market(bot.claude, ccfg, m, event, bot.now, meter)
-            except (AnalystError, ClaudeError) as err:
-                s.add(f"Research failed for {ticker}: {err}")
-                continue
-            finally:
-                bot.journal.append("claude_costs", {"ts": iso(bot.now), "env": bot.mode, "ticker": ticker,
-                                                    "usd": round(meter.total, 4)})
-                budget_left -= meter.total
-            q = quotes(m)
-            est = bot.journal.append("estimates", {
-                "ts": iso(bot.now), "env": bot.mode, "ticker": ticker,
-                "event_ticker": m.get("event_ticker"), "question": question_text(m, event),
-                "close_time": m.get("close_time"), "market_mid": q.mid, "yes_bid": q.yes_bid,
-                "yes_ask": q.yes_ask, "prob_yes": e.probability_yes, "confidence": e.confidence,
-                "rules_clear": e.rules_clear, "summary": e.resolution_summary,
-                "evidence": e.key_evidence, "would_change_mind": e.would_change_my_mind,
-                "red_flags": e.red_flags, "sources": e.sources, "model": e.model,
-                "cost_usd": round(meter.total, 4)})
-            is_new = True
-            s.add(f"Forecast {ticker}: Claude {e.probability_yes:.0%} YES ({e.confidence}) vs market "
-                  f"{q.mid:.0%} - {question_text(m, event)[:90]}")
+    # 3) Spend the research budget where Claude has done well, plus 20% exploration.
+    weights = learning.topic_weights(learning.topic_stats(bot.journal, bot.mode))
+    slots = ccfg["max_new_analyses_per_run"] if bot.claude is not None else 0
+    picks = learning.allocate(pool, slots, weights, float(lcfg.get("explore_share", 0.2)),
+                              random.Random(iso(bot.now)))
+    all_lessons = lessons_mod.load(lessons_path)
+    new_forecasts = 0
+    for pick in picks:
+        if budget_left <= 0:
+            s.add("Daily research budget reached; using existing forecasts only")
+            break
+        m, event, topic = pick["m"], pick["event"], pick["topic"]
+        ticker = m["ticker"]
+        use_lessons = lessons_mod.uses_lessons(ticker, float(lcfg.get("lessons_holdout_share", 0.2)))
+        topic_lessons = lessons_mod.relevant(all_lessons, topic) if use_lessons else []
+        meter = CostMeter()
+        new_forecasts += 1
+        try:
+            e = research_market(bot.claude, ccfg, m, event, bot.now, meter,
+                                lessons_mod.prompt_block(topic_lessons))
+        except (AnalystError, ClaudeError) as err:
+            s.add(f"Research failed for {ticker}: {err}")
+            continue
+        finally:
+            bot.journal.append("claude_costs", {"ts": iso(bot.now), "env": bot.mode, "ticker": ticker,
+                                                "usd": round(meter.total, 4)})
+            budget_left -= meter.total
+        q = quotes(m)
+        est = bot.journal.append("estimates", {
+            "ts": iso(bot.now), "env": bot.mode, "ticker": ticker,
+            "event_ticker": m.get("event_ticker"), "category": topic, "question": question_text(m, event),
+            "close_time": m.get("close_time"), "market_mid": q.mid, "yes_bid": q.yes_bid,
+            "yes_ask": q.yes_ask, "prob_yes": e.probability_yes, "confidence": e.confidence,
+            "rules_clear": e.rules_clear, "summary": e.resolution_summary,
+            "evidence": e.key_evidence, "would_change_mind": e.would_change_my_mind,
+            "red_flags": e.red_flags, "sources": e.sources, "notes": e.notes[:3000], "model": e.model,
+            "used_lessons": use_lessons, "lessons_given": len(topic_lessons),
+            "picked_by": pick["picked_by"], "cost_usd": round(meter.total, 4)})
+        ready.append((m, event, est, True))
+        s.add(f"Forecast {ticker} [{topic}, {pick['picked_by']}]: Claude {e.probability_yes:.0%} YES "
+              f"({e.confidence}) vs market {q.mid:.0%} - {question_text(m, event)[:80]}")
 
+    # 4) Decide, best edge first, within the limits.
+    def edge_of(item):
+        d = decide(item[0], item[2], strat, risk, acct)
+        return d.edge if d.action != "skip" and d.edge is not None else -1.0
+    ready.sort(key=edge_of, reverse=True)
+    trades = 0
+    for m, event, est, is_new in ready:
+        ticker, ev_key = m["ticker"], m.get("event_ticker")
         d = decide(m, est, strat, risk, acct)
         q = quotes(m)
         base = {"ts": iso(bot.now), "env": bot.mode, "ticker": ticker, "event_ticker": ev_key,
+                "category": est.get("category") or category_map.get(ev_key),
                 "close_time": m.get("close_time"),
                 "market_mid": q.mid, "prob_yes": est.get("prob_yes"), "edge": d.edge}
         if d.action == "skip":
@@ -352,7 +395,7 @@ def run_once(bot: Bot) -> Summary:
             s.add(f"Trade limit for this run reached; not trading {ticker}")
             continue
 
-        if bot.trade is None:  # shadow mode: record what it would have done, at real prices
+        if bot.trade is None:  # simulation: record what it would have done, at real prices
             bot.journal.append("decisions", {**base, "action": f"paper_{d.action}", "reason": d.reason,
                                              "outcome": d.outcome, "outcome_price": d.outcome_price,
                                              "count": d.count, "est_cost": d.est_cost})

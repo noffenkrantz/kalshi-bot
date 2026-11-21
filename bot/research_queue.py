@@ -10,10 +10,12 @@ Then `python -m bot run` decides and trades exactly as before, with no API key.
 from __future__ import annotations
 
 import json
+import random
 import re
 from datetime import datetime
 from pathlib import Path
 
+from . import learning, lessons as lessons_mod
 from .analyst import JUDGE_SYSTEM, RESEARCH_SYSTEM, _parse_json, describe_market, question_text
 from .journal import Journal
 from .kalshi import KalshiClient, KalshiError
@@ -35,6 +37,8 @@ The markets to research are listed in `work/queue.json`. For EACH market in that
 3. Write your final estimate as a JSON file at the path given in its `output_file` field.
 
 Finish one market completely, including writing its file, before starting the next.
+
+Some markets have a `lessons` field: lessons from reviewing past settled bets. Read them before researching that market and apply them where relevant, without letting them override clear evidence.
 
 ## The JSON file
 
@@ -76,9 +80,15 @@ def prepare(cfg: dict, clients: dict[str, KalshiClient], journal: Journal, now: 
     quota = {"demo": min(room, int(scfg.get("demo_forecasts_per_run", 1))) if "demo" in clients else 0}
     excluded = [c.lower() for c in fcfg.get("exclude_categories", [])]
 
+    lcfg = cfg.get("learning", {})
+    weights = learning.topic_weights(learning.topic_stats(journal, "shadow"))
+    all_lessons = lessons_mod.load(work_dir.parent / "data" / "lessons.md")
+    rng = random.Random(iso(now))
     queue, seen = [], set()
     for mode in order:
-        limit = room if mode == "shadow" else quota["demo"]
+        slots = (room - len(queue)) if mode == "shadow" else quota["demo"]
+        if slots <= 0:
+            continue
         client = clients[mode]
         try:
             candidates = scan_markets(client, fcfg, mode, now)
@@ -87,9 +97,9 @@ def prepare(cfg: dict, clients: dict[str, KalshiClient], journal: Journal, now: 
             continue
         events: dict = {}
         per_event: dict = {}
-        considered = 0
+        pool, considered = [], 0
         for m in candidates:
-            if len(queue) >= limit or considered >= fcfg.get("max_candidates_considered", 40):
+            if considered >= fcfg.get("max_candidates_considered", 120):
                 break
             ticker = m["ticker"]
             if ticker in seen:
@@ -101,8 +111,8 @@ def prepare(cfg: dict, clients: dict[str, KalshiClient], journal: Journal, now: 
                 except KalshiError:
                     events[ev_key] = {}
             event = events[ev_key]
-            category = str(event.get("category") or "").lower()
-            if category and any(x in category for x in excluded):
+            category = str(event.get("category") or "")
+            if category and any(x in category.lower() for x in excluded):
                 continue
             if per_event.get(ev_key, 0) >= int(fcfg.get("max_markets_per_event", 1)):
                 continue
@@ -110,15 +120,25 @@ def prepare(cfg: dict, clients: dict[str, KalshiClient], journal: Journal, now: 
             considered += 1
             if is_fresh_for(journal.latest_estimate(ticker), m, mode, now, ccfg):
                 continue
+            pool.append({"m": m, "event": event, "topic": category or learning.UNKNOWN_TOPIC})
+        for pick in learning.allocate(pool, slots, weights, float(lcfg.get("explore_share", 0.2)), rng):
+            m, event, topic = pick["m"], pick["event"], pick["topic"]
+            ticker = m["ticker"]
             seen.add(ticker)
+            use_lessons = lessons_mod.uses_lessons(ticker, float(lcfg.get("lessons_holdout_share", 0.2)))
+            topic_lessons = lessons_mod.relevant(all_lessons, topic) if use_lessons else []
             q = quotes(m)
-            queue.append({
-                "ticker": ticker, "env": mode, "event_ticker": ev_key,
+            item = {
+                "ticker": ticker, "env": mode, "event_ticker": m.get("event_ticker"), "category": topic,
                 "question": question_text(m, event), "close_time": m.get("close_time"),
                 "market_mid": q.mid, "yes_bid": q.yes_bid, "yes_ask": q.yes_ask,
                 "output_file": f"work/estimates/{safe_name(ticker)}",
                 "market": describe_market(m, event, now, ccfg.get("show_market_price_to_claude", False)),
-            })
+                "used_lessons": use_lessons, "picked_by": pick["picked_by"],
+            }
+            if topic_lessons:
+                item["lessons"] = [l["text"] for l in topic_lessons]
+            queue.append(item)
 
     est_dir = work_dir / "estimates"
     est_dir.mkdir(parents=True, exist_ok=True)
@@ -166,6 +186,8 @@ def ingest(journal: Journal, work_dir: Path, now: datetime) -> tuple[int, list[s
             "would_change_mind": str(data.get("would_change_my_mind", ""))[:300],
             "red_flags": [str(x)[:300] for x in data.get("red_flags", [])][:6],
             "sources": [str(x) for x in data.get("sources", [])][:10],
+            "category": item.get("category"), "used_lessons": item.get("used_lessons"),
+            "lessons_given": len(item.get("lessons", [])), "picked_by": item.get("picked_by"),
             "model": SUBSCRIPTION_MODEL, "cost_usd": 0.0,
         })
         added += 1

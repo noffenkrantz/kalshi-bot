@@ -93,12 +93,24 @@ class FakeClaude:
         self.calls = []
         self.paused = set()
 
+    postmortem_replies: dict = {}   # ticker -> dict reply for post-mortem reviews
+
     def create(self, body):
         self.calls.append(body)
+        if body.get("system", "").startswith("You review one settled"):
+            brief = body["messages"][0]["content"]
+            ticker = brief.split("Ticker: ")[1].split()[0]
+            reply = self.postmortem_replies.get(ticker, {"verdict": "bad_luck", "what_happened": "x",
+                                                         "mistake": "", "lesson": "", "applies_to": "this topic",
+                                                         "reinforces": 0})
+            return {"stop_reason": "end_turn", "usage": {"input_tokens": 2000, "output_tokens": 200},
+                    "content": [{"type": "text", "text": "Review notes.\n" + json.dumps(reply)}]}
         text = body["messages"][0]["content"]
+        self.lessons_seen = getattr(self, "lessons_seen", {})
         ticker = text.split("Market ticker: ")[1].split("\n")[0]
         if "tools" in body:
             assert body["tools"][0]["type"] == "web_search_20250305"
+            self.lessons_seen[ticker] = "Lessons from reviewing" in text
             if ticker not in self.paused:
                 self.paused.add(ticker)
                 return {"stop_reason": "pause_turn", "usage": {"input_tokens": 1000, "output_tokens": 100},
@@ -374,3 +386,113 @@ def test_one_market_per_event(tmp_path, cfg):
     run_once(Bot(mode="shadow", cfg=cfg, data=k, trade=None, claude=c, journal=j, now=NOW + timedelta(hours=1), root=tmp_path))
     paper = [d["ticker"] for d in j.rows["decisions"] if d["action"].startswith("paper_buy")]
     assert sorted(paper) == ["CPI", "RAIN-NYC"]
+
+
+
+# ---- self-improvement ----------------------------------------------------------------
+def test_topic_stats_and_budget_allocation(tmp_path):
+    import random
+    from bot import learning
+    j = Journal(tmp_path / "data")
+    for i in range(10):   # Weather: Claude right 8/10 when disagreeing; Politics: 2/10
+        for topic, right in (("Weather", i < 8), ("Politics", i < 2)):
+            t = f"{topic}-{i}"
+            j.append("estimates", {"env": "shadow", "ticker": t, "category": topic, "prob_yes": 0.8, "market_mid": 0.5})
+            j.append("outcomes", {"env": "shadow", "ticker": t, "result": "yes" if right else "no"})
+    stats = learning.topic_stats(j)
+    assert stats["Weather"]["wins"] == 8 and stats["Politics"]["wins"] == 2 and stats["Weather"]["disagreements"] == 10
+    weights = learning.topic_weights(stats)
+    assert learning.focus_label("Weather", weights) == "⬆ more"
+    assert learning.focus_label("Politics", weights) == "⬇ less"
+    assert learning.focus_label("Brand new topic", weights) == "normal"
+    pool = [{"topic": t, "m": {"ticker": f"{t}{i}"}} for t in ("Weather", "Politics", "New") for i in range(200)]
+    focus = learning.allocate(pool, 300, weights, 0.0, random.Random(1))
+    n = {t: sum(1 for x in focus if x["topic"] == t) for t in ("Weather", "Politics", "New")}
+    assert n["Weather"] > n["New"] > n["Politics"] > 0          # follows results, but nobody is cut off
+    explore = learning.allocate(pool, 300, weights, 1.0, random.Random(1))
+    assert all(x["picked_by"] == "explore" for x in explore)
+    assert sum(1 for x in explore if x["topic"] == "Politics") > 60   # exploration spreads evenly
+
+
+def test_lessons_file(tmp_path):
+    from bot import lessons
+    path = tmp_path / "lessons.md"
+    assert lessons.add_or_reinforce(path, "Weather", "Check whether a trace counts as zero.", 0, "2026-11-23") == "added"
+    assert lessons.add_or_reinforce(path, "All", "Prefer the resolution source over news.", 0, "2026-11-24") == "added"
+    assert lessons.add_or_reinforce(path, "All", "prefer the resolution source over news.", 0, "2026-11-25") == "skipped"
+    assert lessons.add_or_reinforce(path, "", "", 1, "2026-11-25") == "reinforced"
+    loaded = lessons.load(path)
+    assert loaded[0]["count"] == 2 and loaded[1]["topic"] == "All"
+    assert [l["text"] for l in lessons.relevant(loaded, "weather")] == [l["text"] for l in loaded]
+    assert len(lessons.relevant(loaded, "Economics")) == 1
+    # you can delete a lesson from your phone by removing its line
+    path.write_text("\n".join(l for l in path.read_text().splitlines() if "trace" not in l))
+    assert [l["topic"] for l in lessons.load(path)] == ["All"]
+    for i in range(40):
+        lessons.add_or_reinforce(path, "X", f"lesson {i}", 0, "2026-12-01", max_lessons=30)
+    assert len(lessons.load(path)) == 30
+    holdout = [t for t in (f"T{i}" for i in range(500)) if not lessons.uses_lessons(t, 0.2)]
+    assert 60 < len(holdout) < 140 and lessons.uses_lessons(holdout[0], 0.2) is False
+
+
+def test_postmortems_turn_only_process_mistakes_into_lessons(tmp_path, cfg):
+    prod = FakeKalshi("prod", MARKETS, authed=False)
+    c = FakeClaude(PROBS)
+    j = Journal(tmp_path / "data")
+    run_once(Bot(mode="shadow", cfg=cfg, data=prod, trade=None, claude=c, journal=j, now=NOW, root=tmp_path))
+    assert {d["ticker"] for d in j.rows["decisions"] if d["action"].startswith("paper_buy")} == {"UNDER", "OVER"}
+    est = j.latest_estimate("UNDER")
+    assert est["category"] == "Economics" and est["picked_by"] in ("focus", "explore") and "notes" in est
+    # both markets close and settle; UNDER (bought YES) loses, OVER (bought NO) wins
+    later = NOW + timedelta(days=3)
+    prod.markets["UNDER"]["result"], prod.markets["OVER"]["result"] = "no", "no"
+    c.postmortem_replies = {
+        "UNDER": {"verdict": "process_mistake", "what_happened": "Used a two-day-old forecast.",
+                  "mistake": "stale source", "lesson": "Use the latest official release, not older articles.",
+                  "applies_to": "this topic", "reinforces": 0},
+        "OVER": {"verdict": "bad_luck", "what_happened": "Fine.", "mistake": "",
+                 "lesson": "This should be ignored because it's bad luck.", "applies_to": "all topics", "reinforces": 0},
+    }
+    bot = Bot(mode="shadow", cfg=cfg, data=prod, trade=None, claude=c, journal=j, now=later, root=tmp_path)
+    run_once(bot)
+    reviews = {p["ticker"]: p for p in j.rows["postmortems"]}
+    assert reviews["UNDER"]["verdict"] == "process_mistake" and reviews["UNDER"]["lesson_action"] == "added"
+    assert reviews["OVER"]["verdict"] == "bad_luck" and reviews["OVER"]["lesson"] == ""
+    from bot import lessons
+    saved = lessons.load(tmp_path / "data" / "lessons.md")
+    assert [(l["topic"], l["text"]) for l in saved] == [("Economics", "Use the latest official release, not older articles.")]
+    assert any("Post-mortem UNDER: process mistake" in line for line in bot.summary.lines)
+    # reviewed once only
+    run_once(Bot(mode="shadow", cfg=cfg, data=prod, trade=None, claude=c, journal=j, now=later + timedelta(hours=4), root=tmp_path))
+    assert len(j.rows["postmortems"]) == 2
+    # lessons reach new research, except for the control group
+    from bot.dashboard import build_dashboard
+    text = build_dashboard(j, {"shadow": prod}, later, cfg)
+    assert "What Claude is learning" in text and "Use the latest official release" in text and "1 process mistake" in text
+
+
+def test_lessons_reach_research_except_control_group(tmp_path, cfg):
+    from bot import lessons
+    ticker_with = next(t for t in (f"MKT{i}" for i in range(100)) if lessons.uses_lessons(t, 0.2))
+    ticker_without = next(t for t in (f"MKT{i}" for i in range(100)) if not lessons.uses_lessons(t, 0.2))
+    mk = [market(ticker_with, 0.40, 0.42, event="E1"), market(ticker_without, 0.40, 0.42, event="E2")]
+    (tmp_path / "data").mkdir()
+    lessons.add_or_reinforce(tmp_path / "data" / "lessons.md", "Economics", "Check the release calendar.", 0, "2026-11-20")
+    c = FakeClaude({ticker_with: 0.7, ticker_without: 0.7})
+    j = Journal(tmp_path / "data")
+    run_once(Bot(mode="shadow", cfg=cfg, data=FakeKalshi("prod", mk, authed=False), trade=None, claude=c,
+                 journal=j, now=NOW, root=tmp_path))
+    assert c.lessons_seen == {ticker_with: True, ticker_without: False}
+    assert j.latest_estimate(ticker_with)["used_lessons"] is True
+    assert j.latest_estimate(ticker_without)["used_lessons"] is False
+
+
+def test_report_breakdowns(tmp_path, cfg):
+    prod = FakeKalshi("prod", MARKETS, authed=False)
+    j = Journal(tmp_path / "data")
+    run_once(Bot(mode="shadow", cfg=cfg, data=prod, trade=None, claude=FakeClaude(PROBS), journal=j, now=NOW, root=tmp_path))
+    for t in ("UNDER", "OVER", "FAIR"):
+        prod.markets[t]["result"] = "yes"
+    text = build_report(j, {"shadow": prod}, NOW + timedelta(days=3))
+    assert "By topic" in text and "Economics" in text and "By Claude's confidence" in text
+    assert "By distance from the market price" in text and "Do the lessons help?" in text

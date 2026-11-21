@@ -6,10 +6,13 @@ paper trades at real prices, then whether Claude is beating the market.
 from __future__ import annotations
 
 import os
+from collections import Counter
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
+from . import lessons as lessons_mod
 from .journal import Journal
+from .learning import focus_label, topic_stats, topic_weights
 from .kalshi import KalshiClient, KalshiError
 from .report import MIN_RESOLVED_FOR_VERDICT, _brier
 from .strategy import quotes
@@ -190,6 +193,42 @@ def build_dashboard(journal: Journal, clients: dict[str, KalshiClient], now: dat
                  if len(resolved) < MIN_RESOLVED_FOR_VERDICT else "")
         out += ["", f"{ahead}: accuracy score {cb:.3f} for Claude vs {mb:.3f} for the market price "
                     f"(lower is better) on {len(resolved)} resolved forecast{'s' if len(resolved) != 1 else ''}.{early}", ""]
+
+    # ---- learning -------------------------------------------------------------------
+    stats = topic_stats(journal, "shadow")
+    weights = topic_weights(stats)
+    reviews = [p for p in journal.rows["postmortems"] if p.get("env") == "shadow"]
+    lessons = lessons_mod.load(journal.dir / "lessons.md")
+    explore = float(cfg.get("learning", {}).get("explore_share", 0.2))
+    out.append("## 🧠 What Claude is learning")
+    if not stats and not reviews and not lessons:
+        out += ["", "Nothing has settled yet. Once bets settle, this shows which topics Claude is good at, "
+                    "where it's focusing its research, and lessons it has learned from its mistakes.", ""]
+    else:
+        if stats:
+            out += ["", "**Where Claude is good** (settled forecasts where Claude and the market disagreed "
+                        "by 5+ points)", "", "| Topic | Claude beat the market | Research focus |", "|---|---|---|"]
+            for topic, st in sorted(stats.items(), key=lambda kv: -kv[1]["n"]):
+                beat = f"{st['wins']} of {st['disagreements']}" if st["disagreements"] else "no disagreements yet"
+                out.append(f"| {short(topic, 28)} | {beat} | {focus_label(topic, weights)} |")
+            out += ["", f"*{explore:.0%} of research is always spread at random, so every topic keeps "
+                        "getting chances.*"]
+        if reviews:
+            c = Counter(p.get("verdict") for p in reviews)
+            out += ["", f"**Post-mortems:** {len(reviews)} settled bet{'s' if len(reviews) != 1 else ''} reviewed: "
+                        f"{c['good_call']} good call{'s' if c['good_call'] != 1 else ''}, {c['bad_luck']} bad luck, "
+                        f"{c['process_mistake']} process mistake{'s' if c['process_mistake'] != 1 else ''}"
+                        + (f", {c['unclear']} unclear" if c["unclear"] else "") + "."]
+            icon = {"good_call": "✅", "bad_luck": "🎲", "process_mistake": "🔧", "unclear": "❔"}
+            for p in reversed(reviews[-3:]):
+                q = (journal.latest_estimate(p["ticker"]) or {}).get("question") or p["ticker"]
+                out.append(f"- {icon.get(p.get('verdict'), '•')} {short(q, 40)}: {short(p.get('what_happened'), 110)}")
+        out += ["", f"**Lessons learned ({len(lessons)})** · [see all or edit](data/lessons.md)"]
+        if lessons:
+            out += [f"- [{l['topic']}] {l['text']}" for l in reversed(lessons[-5:])]
+        else:
+            out.append("- None yet. Only process mistakes become lessons, never bad luck.")
+        out.append("")
 
     # ---- latest forecasts -----------------------------------------------------------
     recent = journal.rows["estimates"][-10:]

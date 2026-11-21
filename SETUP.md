@@ -41,6 +41,22 @@ For every pretend trade:
 
 **When you'll see results:** it only picks markets that settle within 12 hours to 10 days. So the first wins and losses come within days. Allow 2–3 weeks for about 100 settled forecasts, which is enough to tell skill from luck.
 
+## How it learns
+
+Claude's underlying model doesn't change. What improves is where the bot spends its research and the instructions Claude reads before researching. Both show up in the dashboard's **🧠 What Claude is learning** section.
+
+**1. Learning where Claude is good.** Every settled forecast is scored against the market price at the time it was made. Results are grouped by topic (Kalshi's category, like Climate and Weather or Economics), by Claude's confidence, and by how far Claude was from the market. New research then follows the results:
+- 80% goes to topics in proportion to how often Claude has beaten the market there. Each topic starts out assumed average, so a few results can't swing it much.
+- 20% (`explore_share`) is spread at random, so a topic that had an unlucky streak still gets chances.
+
+**2. Learning from mistakes, not luck.** After each simulated bet settles, Claude writes a post-mortem. It looks at the rules, what it believed, its sources and what actually happened, and can search once or twice to check. It then labels the bet **good call**, **bad luck**, **process mistake** or **unclear**. Only a process mistake (a misread rule, a stale source, missed information) becomes a lesson, and only if no existing lesson already covers it. A 90% call that loses 1 time in 10 is bad luck, not a lesson.
+
+Lessons live in [`data/lessons.md`](data/lessons.md), tagged by topic. Claude reads the relevant ones before researching a market. You can delete a lesson by editing that file and removing its line.
+
+**Checking the lessons actually help:** about 1 in 5 markets (`lessons_holdout_share`) is always researched *without* lessons. `REPORT.md` compares the two groups once enough have settled. If the lessons don't beat the control group, they're not helping.
+
+Post-mortems count toward the daily research budget, at about $0.03–0.06 each. They run only with an API key; in subscription mode the topic learning still works, but post-mortems are skipped.
+
 ## Costs
 
 - **Claude:** roughly $0.10–0.15 per forecast. It stops starting new research after about $2 a day (`daily_budget_usd`), so about $60 a month at most, roughly 15 forecasts a day. Forecasts are reused for 8 hours, so most runs cost little.
@@ -56,6 +72,7 @@ For every pretend trade:
 - `include_series`: focus on specific Kalshi series (the ticker prefix, like `KXHIGHNY`) instead of scanning everything. Narrowing to topics where research matters, such as economic data, weather or scheduled announcements, often works better.
 - `exclude_categories`: Sports and Crypto are skipped by default, because those prices move fast and professional bots win there.
 - `daily_budget_usd`, `max_new_analyses_per_run`: how much Claude research to do.
+- `[learning]`: `explore_share` (default 20% random research), `lessons_holdout_share` (default 20% without lessons), `max_postmortems_per_run`.
 
 ## Reading the dashboard
 
@@ -93,7 +110,9 @@ This needs a computer once. Install Claude Code (`curl -fsSL https://claude.ai/i
 | `bot/analyst.py` | Claude research with web search, then a structured estimate |
 | `bot/research_queue.py` | Subscription mode: Claude Code does the research instead |
 | `bot/strategy.py` | Fees, edge, sizing and limits (pure math, no AI) |
-| `bot/runner.py` | One full run: scan → research → decide → record simulated trades |
+| `bot/learning.py` | Topic scorecard and research-budget allocation |
+| `bot/postmortem.py`, `bot/lessons.py` | Post-mortems and the lessons file |
+| `bot/runner.py` | One full run: review settled bets → scan → research → decide → record simulated trades |
 | `bot/journal.py` | Logs everything to `data/*.jsonl` |
 | `bot/report.py`, `bot/dashboard.py` | The scorecard (`REPORT.md`) and dashboard (`README.md`) |
 | `.github/workflows/bot.yml` | The every-4-hours schedule |

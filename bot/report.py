@@ -8,6 +8,7 @@ from __future__ import annotations
 
 from datetime import datetime, timedelta
 
+from . import learning
 from .journal import Journal
 from .kalshi import KalshiClient, KalshiError
 from .runner import update_outcomes
@@ -94,6 +95,32 @@ def build_report(journal: Journal, clients: dict[str, KalshiClient], now: dateti
         eq = [r for r in journal.rows["equity"] if r.get("env") == env]
         if len(eq) >= 2:
             out.append(f"Account value: ${eq[0]['equity']:,.2f} at first run -> ${eq[-1]['equity']:,.2f} now")
+        out.append("")
+
+    rows = learning.settled_forecasts(journal, "shadow")
+    if rows:
+        out.append("## Where Claude does well (simulation, settled forecasts)")
+        for title, key in (("By topic", lambda r: r["topic"]),
+                           ("By Claude's confidence", lambda r: str(r.get("confidence"))),
+                           ("By distance from the market price", learning.distance_bucket)):
+            out += ["", f"**{title}**", "",
+                    "| Group | Forecasts | Claude score | Market score | Claude beat market when they disagreed |",
+                    "|---|---|---|---|---|"]
+            for name, st in sorted(learning.group_stats(rows, key).items(), key=lambda kv: -kv[1]["n"]):
+                beat = f"{st['wins']} of {st['disagreements']}" if st["disagreements"] else "–"
+                out.append(f"| {name} | {st['n']} | {st['claude_brier']:.3f} | {st['market_brier']:.3f} | {beat} |")
+        out += ["", "(Scores are Brier scores: lower is better.)", ""]
+        with_l = [r for r in rows if r.get("used_lessons") is True]
+        without = [r for r in rows if r.get("used_lessons") is False]
+        out.append("**Do the lessons help?** (about 20% of markets are researched without lessons, as a control)")
+        if with_l and without:
+            bw = _brier([(r["prob_yes"], r["y"]) for r in with_l])
+            bo = _brier([(r["prob_yes"], r["y"]) for r in without])
+            out.append(f"With lessons: {bw:.3f} on {len(with_l)} forecasts · without: {bo:.3f} on {len(without)}. "
+                       + ("Lessons look helpful so far." if bw < bo else "No sign yet that lessons help.")
+                       + " Small samples are noisy.")
+        else:
+            out.append("Not enough settled forecasts in both groups yet.")
         out.append("")
 
     week_ago = iso(now - timedelta(days=7))

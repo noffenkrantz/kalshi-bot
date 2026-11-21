@@ -33,7 +33,7 @@ demo_min_volume_24h = 0            # only used by the optional practice-exchange
 exclude_categories = ["Sports", "Crypto"]   # fast-moving markets where bots have the edge
 include_series = []                # e.g. ["KXHIGHNY"] to focus on specific series; empty = everything
 max_markets_scanned = 10000
-max_candidates_considered = 40     # top markets by volume to consider each run
+max_candidates_considered = 120    # top markets by volume to consider each run (across all topics)
 max_markets_per_event = 1          # spread research across different events (e.g. not 4 cities' rain on one day)
 
 [strategy]   # when a trade is worth making
@@ -54,6 +54,13 @@ max_open_positions = 30
 max_dollars_spent_per_day = 1000
 max_trades_per_run = 3
 max_drawdown = 0.30                # halt if account value falls 30% below its peak
+
+[learning]   # self-improvement
+explore_share = 0.20               # share of research spread at random across topics, so none gets written off
+lessons_holdout_share = 0.20       # share of markets researched WITHOUT lessons, to check the lessons help
+max_postmortems_per_run = 3        # settled bets reviewed per run
+postmortem_searches = 2            # web searches allowed per review
+max_lessons = 30
 
 [dashboard]
 timezone = "America/New_York"   # times shown on the dashboard
