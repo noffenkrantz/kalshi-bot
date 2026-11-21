@@ -1,0 +1,16 @@
+# secrets: never commit these
+.env
+secrets/*
+!secrets/.gitkeep
+*.pem
+*.key
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+
+# emergency stop file (local only)
+STOP

@@ -1,0 +1,59 @@
+# Settings for the bot. Money amounts are in US dollars.
+# Change a value, save, and the next run uses it.
+
+[claude]
+model = "claude-sonnet-5-5"        # does the research (good balance of cost and quality)
+judge_model = "claude-sonnet-5-5"  # turns the research into a final number
+max_searches_per_market = 4        # web searches Claude may run per market
+daily_budget_usd = 1.00            # per mode, per day (UTC): stop starting new research after ~this much
+max_new_analyses_per_run = 4       # new markets researched per run
+reanalyze_after_hours = 8          # reuse a forecast for this long...
+reanalyze_if_price_moves = 0.10    # ...unless the price moves 10 cents or more
+show_market_price_to_claude = false  # false = Claude forms its own view, then the code compares
+
+[claude.prices]   # USD per million tokens, used to track spend. Update if pricing changes.
+"claude-sonnet-5-5" = { input = 2.00, output = 10.00 }
+"claude-opus-5-5" = { input = 4.00, output = 20.00 }
+default = { input = 4.00, output = 20.00 }
+web_search_per_1000 = 10.00
+
+[filters]   # which markets are worth looking at
+min_hours_to_close = 12            # skip markets about to close (speed races Claude loses)
+max_days_to_close = 10             # short horizons mean results (and feedback) come quickly
+min_price = 0.05                   # skip near-certain markets
+max_price = 0.95
+max_spread = 0.08                  # skip markets where bid and ask are far apart
+min_volume_24h = 200               # contracts traded in the last day (real markets)
+demo_min_volume_24h = 0            # the practice exchange is much quieter
+exclude_categories = ["Sports", "Crypto"]   # fast-moving markets where bots have the edge
+include_series = []                # e.g. ["KXHIGHNY"] to focus on specific series; empty = everything
+max_markets_scanned = 10000
+max_candidates_considered = 40     # top markets by volume to consider each run
+
+[strategy]   # when a trade is worth making
+min_edge = 0.05                    # expected profit per $1 contract after fees (0.05 = 5 cents)
+min_confidence = "medium"          # low, medium or high
+kelly_fraction = 0.10              # bet sizing: a tenth of the "Kelly" amount (cautious)
+fee_rate = 0.07                    # Kalshi's general taker fee coefficient
+min_buy_price = 0.05
+max_buy_price = 0.95
+
+[risk]   # hard limits for practice trading (demo)
+max_dollars_per_trade = 25
+max_total_exposure = 250
+max_open_positions = 15
+max_dollars_spent_per_day = 100
+max_trades_per_run = 3
+max_drawdown = 0.30                # halt if account value falls 30% below its peak
+
+[shadow]
+paper_bankroll = 1000              # pretend bankroll for shadow-mode paper trades
+
+[live]   # REAL MONEY. Also locked behind the ALLOW_REAL_MONEY=yes environment variable.
+enabled = false
+max_dollars_per_trade = 5
+max_total_exposure = 50
+max_open_positions = 5
+max_dollars_spent_per_day = 20
+max_trades_per_run = 1
+max_drawdown = 0.20

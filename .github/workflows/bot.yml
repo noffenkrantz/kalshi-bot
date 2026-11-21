@@ -1,0 +1,65 @@
+# Runs the bot automatically on GitHub's computers, every 3 hours.
+#
+# - Needs only one secret to start: ANTHROPIC_API_KEY (shadow mode, no trades).
+# - Add KALSHI_DEMO_API_KEY_ID + KALSHI_DEMO_PRIVATE_KEY and practice trading turns on by itself.
+# - Emergency stop: add a repository variable BOT_ENABLED = false (or disable this workflow).
+name: kalshi-bot
+
+on:
+  schedule:
+    - cron: "17 */3 * * *"   # every 3 hours, at 17 minutes past (UTC)
+  workflow_dispatch: {}       # adds a "Run workflow" button for manual runs
+
+permissions:
+  contents: write             # lets the job save the journal and REPORT.md back to the repo
+
+concurrency:
+  group: kalshi-bot
+  cancel-in-progress: false
+
+jobs:
+  run:
+    if: ${{ vars.BOT_ENABLED != 'false' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      KALSHI_DEMO_API_KEY_ID: ${{ secrets.KALSHI_DEMO_API_KEY_ID }}
+      KALSHI_DEMO_PRIVATE_KEY: ${{ secrets.KALSHI_DEMO_PRIVATE_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+
+      - name: Waiting for setup
+        if: ${{ env.ANTHROPIC_API_KEY == '' }}
+        run: |
+          echo "### Not set up yet" >> "$GITHUB_STEP_SUMMARY"
+          echo "Add the ANTHROPIC_API_KEY secret (Settings > Secrets and variables > Actions) and the bot starts on its next run." >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Shadow run (real prices, paper trades only)
+        if: ${{ env.ANTHROPIC_API_KEY != '' }}
+        continue-on-error: true
+        run: python -m bot run --mode shadow
+
+      - name: Demo run (practice-money trades)
+        if: ${{ env.ANTHROPIC_API_KEY != '' && env.KALSHI_DEMO_API_KEY_ID != '' && vars.DEMO_TRADING != 'false' }}
+        continue-on-error: true
+        run: python -m bot run --mode demo
+
+      - name: Report
+        if: ${{ env.ANTHROPIC_API_KEY != '' }}
+        continue-on-error: true
+        run: python -m bot report
+
+      - name: Save journal
+        if: always()
+        run: |
+          git config user.name "kalshi-bot"
+          git config user.email "kalshi-bot@users.noreply.github.com"
+          git add data/ REPORT.md 2>/dev/null || git add data/
+          git commit -m "journal: run $(date -u +%Y-%m-%dT%H:%MZ)" || echo "nothing new"
+          git pull --rebase --autostash || true
+          git push || echo "push failed; will retry next run"

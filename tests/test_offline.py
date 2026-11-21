@@ -1,0 +1,304 @@
+"""Offline tests: a full bot cycle against a fake Kalshi and a fake Claude.
+
+Run with:  python -m pytest -q
+No network, no keys, no money.
+"""
+from __future__ import annotations
+
+import base64
+import json
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+
+import pytest
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.asymmetric import padding, rsa
+
+from bot.config import load_config
+from bot.journal import Journal
+from bot.kalshi import KalshiClient, KalshiError, sign
+from bot.report import build_report
+from bot.runner import Bot, run_once
+from bot.strategy import Account, decide, order_fee
+
+NOW = datetime(2026, 11, 20, 18, 0, tzinfo=timezone.utc)
+ROOT = Path(__file__).resolve().parent.parent
+
+
+def market(ticker, yes_bid, yes_ask, volume=1000, close_hours=48, event="EV1"):
+    return {
+        "ticker": ticker, "event_ticker": event, "market_type": "binary",
+        "yes_sub_title": f"{ticker} happens", "rules_primary": f"Resolves YES if {ticker} happens.",
+        "close_time": (NOW + timedelta(hours=close_hours)).isoformat().replace("+00:00", "Z"),
+        "yes_bid_dollars": f"{yes_bid:.4f}", "yes_ask_dollars": f"{yes_ask:.4f}",
+        "no_bid_dollars": f"{1 - yes_ask:.4f}", "no_ask_dollars": f"{1 - yes_bid:.4f}",
+        "yes_bid_size_fp": "500.00", "yes_ask_size_fp": "500.00",
+        "volume_24h_fp": f"{volume:.2f}", "result": "",
+    }
+
+
+class FakeKalshi:
+    def __init__(self, env, markets, authed=True, flip_direction=False, cash=1000.0):
+        self.env = env
+        self.markets = {m["ticker"]: m for m in markets}
+        self.authenticated = authed
+        self.orders, self.positions = {}, []
+        self.flip_direction = flip_direction
+        self.cash = cash
+
+    def exchange_status(self):
+        return {"trading_active": True}
+
+    def iter_markets(self, max_markets=5000, **params):
+        assert params.get("status") == "open" and params.get("mve_filter") == "exclude"
+        yield from list(self.markets.values())[:max_markets]
+
+    def get_market(self, ticker):
+        return self.markets[ticker]
+
+    def get_event(self, event_ticker):
+        return {"title": f"Event {event_ticker}", "category": "Sports" if event_ticker == "SPORT" else "Economics"}
+
+    def get_balance(self):
+        return {"balance": int(self.cash * 100), "balance_dollars": f"{self.cash:.4f}", "portfolio_value": 0}
+
+    def get_positions(self):
+        return self.positions
+
+    def create_order(self, ticker, book_side, count, price, client_order_id=None, time_in_force="immediate_or_cancel"):
+        assert book_side in ("bid", "ask") and isinstance(price, str)
+        oid = f"o{len(self.orders) + 1}"
+        outcome = "yes" if book_side == "bid" else "no"
+        if self.flip_direction:
+            outcome = "no" if outcome == "yes" else "yes"
+        self.orders[oid] = {"order_id": oid, "ticker": ticker, "book_side": book_side, "price": price,
+                            "count": count, "outcome_side": outcome, "status": "executed"}
+        cost_each = float(price) if book_side == "bid" else 1 - float(price)
+        self.cash -= count * cost_each
+        self.positions.append({"ticker": ticker, "position_fp": f"{count if outcome == 'yes' else -count:.2f}",
+                               "market_exposure_dollars": f"{count * cost_each:.4f}"})
+        return {"order_id": oid, "client_order_id": client_order_id or "cid", "fill_count": f"{count:.2f}",
+                "remaining_count": "0.00", "average_fee_paid": "0.0175", "ts_ms": 1}
+
+    def get_order(self, order_id):
+        return self.orders[order_id]
+
+
+class FakeClaude:
+    """Research call -> pauses once, then returns notes. Judge call -> JSON."""
+
+    def __init__(self, probs: dict, confidence="medium"):
+        self.probs = probs
+        self.confidence = confidence
+        self.calls = []
+        self.paused = set()
+
+    def create(self, body):
+        self.calls.append(body)
+        text = body["messages"][0]["content"]
+        ticker = text.split("Market ticker: ")[1].split("\n")[0]
+        if "tools" in body:
+            assert body["tools"][0]["type"] == "web_search_20250305"
+            if ticker not in self.paused:
+                self.paused.add(ticker)
+                return {"stop_reason": "pause_turn", "usage": {"input_tokens": 1000, "output_tokens": 100},
+                        "content": [{"type": "server_tool_use", "id": "s1", "name": "web_search",
+                                     "input": {"query": ticker}}]}
+            assert body["messages"][-1]["role"] == "assistant"  # paused turn sent back
+            return {"stop_reason": "end_turn",
+                    "usage": {"input_tokens": 8000, "output_tokens": 600, "server_tool_use": {"web_search_requests": 2}},
+                    "content": [{"type": "web_search_tool_result", "tool_use_id": "s1",
+                                 "content": [{"type": "web_search_result", "url": f"https://example.gov/{ticker}"}]},
+                                {"type": "text", "text": f"Research on {ticker}. Probability about {self.probs[ticker]}.",
+                                 "citations": [{"url": f"https://example.gov/{ticker}"}]}]}
+        assert body["output_config"]["format"]["type"] == "json_schema"
+        payload = {"probability_yes": self.probs[ticker], "confidence": self.confidence.upper(),
+                   "rules_clear": True, "resolution_summary": "x", "key_evidence": ["e"],
+                   "would_change_my_mind": "y", "red_flags": []}
+        return {"stop_reason": "end_turn", "usage": {"input_tokens": 3000, "output_tokens": 200},
+                "content": [{"type": "text", "text": json.dumps(payload)}]}
+
+    def cost_usd(self, usage, model):
+        usage = usage or {}
+        searches = (usage.get("server_tool_use") or {}).get("web_search_requests", 0)
+        return usage.get("input_tokens", 0) * 2 / 1e6 + usage.get("output_tokens", 0) * 10 / 1e6 + searches * 0.01
+
+
+@pytest.fixture
+def cfg():
+    return load_config(ROOT / "config.toml")
+
+
+def make_bot(tmp_path, cfg, mode, kalshi, claude, now=NOW):
+    return Bot(mode=mode, cfg=cfg, data=kalshi, trade=None if mode == "shadow" else kalshi,
+               claude=claude, journal=Journal(tmp_path / "data"), now=now, root=tmp_path)
+
+
+MARKETS = [
+    market("UNDER", 0.40, 0.42, volume=5000),   # Claude says 70% -> buy YES
+    market("OVER", 0.60, 0.62, volume=4000),    # Claude says 30% -> buy NO
+    market("FAIR", 0.49, 0.51, volume=3000),    # Claude says 50% -> skip
+    market("SPORTY", 0.30, 0.32, volume=9000, event="SPORT"),  # excluded category
+    market("WIDE", 0.20, 0.50, volume=9000),    # spread too wide
+    market("SOON", 0.40, 0.42, volume=9000, close_hours=2),  # closes too soon
+]
+PROBS = {"UNDER": 0.70, "OVER": 0.30, "FAIR": 0.50}
+
+
+# ---- signing ----------------------------------------------------------------------
+def test_signature_verifies_with_kalshi_scheme():
+    key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
+    sig = sign(key, "1700000000000", "get", "/trade-api/v2/portfolio/balance")
+    key.public_key().verify(
+        base64.b64decode(sig), b"1700000000000GET/trade-api/v2/portfolio/balance",
+        padding.PSS(mgf=padding.MGF1(hashes.SHA256()), salt_length=padding.PSS.DIGEST_LENGTH),
+        hashes.SHA256())
+
+
+def test_client_signs_full_path_without_query_and_builds_v2_order():
+    key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
+    seen = []
+
+    class Resp:
+        status_code, content = 201, b"{}"
+        text = "{}"
+
+        def json(self):
+            return {"order_id": "abc", "fill_count": "1.00"}
+
+    class Session:
+        def request(self, method, url, params=None, json=None, headers=None, timeout=None):
+            seen.append((method, url, params, json, headers))
+            return Resp()
+
+    c = KalshiClient("demo", key_id="kid", private_key=key, session=Session(), min_interval=0)
+    c.create_order("TICK", "ask", 3, "0.4000")
+    method, url, params, body, headers = seen[0]
+    assert url == "https://external-api.demo.kalshi.co/trade-api/v2/portfolio/events/orders"
+    assert body["side"] == "ask" and body["count"] == "3" and body["price"] == "0.4000"
+    assert body["time_in_force"] == "immediate_or_cancel"
+    assert body["self_trade_prevention_type"] == "taker_at_cross"
+    ts = headers["KALSHI-ACCESS-TIMESTAMP"]
+    key.public_key().verify(
+        base64.b64decode(headers["KALSHI-ACCESS-SIGNATURE"]),
+        (ts + "POST/trade-api/v2/portfolio/events/orders").encode(),
+        padding.PSS(mgf=padding.MGF1(hashes.SHA256()), salt_length=padding.PSS.DIGEST_LENGTH),
+        hashes.SHA256())
+    with pytest.raises(KalshiError):
+        KalshiClient("demo").get_balance()  # no key -> refuses
+
+
+# ---- strategy -------------------------------------------------------------------------
+def test_fee_matches_kalshi_formula():
+    assert order_fee(0.50, 100) == 1.75
+    assert order_fee(0.50, 1) == 0.02     # 0.0175 rounds up to the next cent
+    assert order_fee(0.90, 10) == 0.07    # 0.063 -> 0.07
+
+
+def test_decide_buy_yes_buy_no_and_skip(cfg):
+    acct = Account(bankroll=1000)
+    s, r = cfg["strategy"], cfg["risk"]
+    d = decide(MARKETS[0], {"prob_yes": 0.70, "confidence": "medium", "rules_clear": True}, s, r, acct)
+    assert d.action == "buy_yes" and d.book_side == "bid" and d.api_price == "0.4200"
+    assert 0 < d.count * 0.42 <= r["max_dollars_per_trade"]
+    d = decide(MARKETS[1], {"prob_yes": 0.30, "confidence": "medium", "rules_clear": True}, s, r, acct)
+    # buy NO at 0.40 == sell YES at the YES bid of 0.60
+    assert d.action == "buy_no" and d.book_side == "ask" and d.api_price == "0.6000"
+    assert abs(d.outcome_price - 0.40) < 1e-9
+    assert decide(MARKETS[2], {"prob_yes": 0.50, "confidence": "high", "rules_clear": True}, s, r, acct).action == "skip"
+    assert decide(MARKETS[0], {"prob_yes": 0.70, "confidence": "low", "rules_clear": True}, s, r, acct).action == "skip"
+    assert decide(MARKETS[0], {"prob_yes": 0.70, "confidence": "high", "rules_clear": False}, s, r, acct).action == "skip"
+    full = Account(bankroll=1000, exposure=r["max_total_exposure"])
+    assert decide(MARKETS[0], {"prob_yes": 0.70, "confidence": "high", "rules_clear": True}, s, r, full).action == "skip"
+
+
+# ---- full runs ------------------------------------------------------------------------
+def test_shadow_run_paper_trades_and_respects_filters(tmp_path, cfg):
+    k, c = FakeKalshi("prod", MARKETS, authed=False), FakeClaude(PROBS)
+    bot = make_bot(tmp_path, cfg, "shadow", k, c)
+    run_once(bot)
+    j = bot.journal
+    tickers = {e["ticker"] for e in j.rows["estimates"]}
+    assert tickers == {"UNDER", "OVER", "FAIR"}            # filters removed the other three
+    paper = [d for d in j.rows["decisions"] if d["action"].startswith("paper_buy")]
+    assert {(d["ticker"], d["outcome"]) for d in paper} == {("UNDER", "yes"), ("OVER", "no")}
+    assert not k.orders                                     # shadow never trades
+    assert j.rows["estimates"][0]["sources"] == ["https://example.gov/UNDER"]
+    calls = len(c.calls)
+    run_once(make_bot(tmp_path, cfg, "shadow", k, c, now=NOW + timedelta(hours=1)))
+    assert len(c.calls) == calls                            # fresh forecasts reused, no new Claude spend
+
+
+def test_demo_run_places_correct_orders_and_limits(tmp_path, cfg):
+    k, c = FakeKalshi("demo", MARKETS), FakeClaude(PROBS)
+    bot = make_bot(tmp_path, cfg, "demo", k, c)
+    run_once(bot)
+    placed = {(o["ticker"], o["book_side"], o["price"]) for o in k.orders.values()}
+    assert placed == {("UNDER", "bid", "0.4200"), ("OVER", "ask", "0.6000")}
+    rows = bot.journal.rows["orders"]
+    assert all(r["status"] == "executed" and r.get("verified") for r in rows)
+    # second run: already holding both, so no new orders
+    run_once(make_bot(tmp_path, cfg, "demo", k, c, now=NOW + timedelta(hours=1)))
+    assert len(k.orders) == 2
+
+
+def test_max_trades_per_run(tmp_path, cfg):
+    cfg["risk"]["max_trades_per_run"] = 1
+    k = FakeKalshi("demo", MARKETS)
+    run_once(make_bot(tmp_path, cfg, "demo", k, FakeClaude(PROBS)))
+    assert len(k.orders) == 1
+
+
+def test_direction_mismatch_halts(tmp_path, cfg):
+    k = FakeKalshi("demo", MARKETS, flip_direction=True)
+    bot = make_bot(tmp_path, cfg, "demo", k, FakeClaude(PROBS))
+    run_once(bot)
+    assert len(k.orders) == 1                               # stopped right after the first bad order
+    assert "halted:demo" in bot.journal.state
+    bot2 = make_bot(tmp_path, cfg, "demo", k, FakeClaude(PROBS))
+    run_once(bot2)
+    assert len(k.orders) == 1 and "Not running" in bot2.summary.lines[0]
+
+
+def test_daily_claude_budget_stops_research(tmp_path, cfg):
+    cfg["claude"]["daily_budget_usd"] = 0.001
+    c = FakeClaude(PROBS)
+    bot = make_bot(tmp_path, cfg, "shadow", FakeKalshi("prod", MARKETS, authed=False), c)
+    run_once(bot)
+    assert len(bot.journal.rows["estimates"]) == 1          # one analysis, then budget exhausted
+
+
+def test_drawdown_halts(tmp_path, cfg):
+    k = FakeKalshi("demo", MARKETS, cash=1000)
+    j = Journal(tmp_path / "data")
+    j.set_state("peak_equity:demo", 2000.0)
+    bot = make_bot(tmp_path, cfg, "demo", k, FakeClaude(PROBS))
+    run_once(bot)
+    assert not k.orders and "halted:demo" in bot.journal.state
+
+
+def test_stop_file_and_live_lock(tmp_path, cfg, monkeypatch):
+    (tmp_path / "STOP").write_text("")
+    bot = make_bot(tmp_path, cfg, "demo", FakeKalshi("demo", MARKETS), FakeClaude(PROBS))
+    run_once(bot)
+    assert "STOP" in bot.summary.lines[0]
+    (tmp_path / "STOP").unlink()
+    monkeypatch.delenv("ALLOW_REAL_MONEY", raising=False)
+    k = FakeKalshi("prod", MARKETS)
+    bot = make_bot(tmp_path, cfg, "live", k, FakeClaude(PROBS))
+    run_once(bot)
+    assert not k.orders and "locked" in bot.summary.lines[0]
+
+
+def test_report_scores_resolved_forecasts(tmp_path, cfg):
+    k = FakeKalshi("prod", MARKETS, authed=False)
+    run_once(make_bot(tmp_path, cfg, "shadow", k, FakeClaude(PROBS)))
+    k.markets["UNDER"]["result"] = "yes"
+    k.markets["OVER"]["result"] = "no"
+    k.markets["FAIR"]["result"] = "yes"
+    j = Journal(tmp_path / "data")
+    text = build_report(j, {"shadow": k}, NOW + timedelta(days=3))
+    assert "3 resolved" in text
+    assert "Claude is BETTER than the market" in text
+    assert "Paper trades" in text and "2 won" in text
+    assert "Not enough data yet: 3/100" in text
