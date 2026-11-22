@@ -16,17 +16,16 @@ from .learning import focus_label, topic_for, topic_stats, topic_weights
 from .util import iso, parse_time
 
 TEMPLATE = Path(__file__).with_name("site_template.html")
-RUN_HOURS_UTC = (0, 4, 8, 12, 16, 20)   # matches the workflow's cron "17 */4 * * *"
+RUN_GAP = timedelta(minutes=210)   # matches MIN_GAP_MINUTES in .github/workflows/bot.yml
+CHECK_MINUTE = 41                   # the workflow checks hourly at :41 past (cron "41 * * * *")
 
 
 def next_run(now: datetime) -> datetime:
-    for add_days in (0, 1):
-        day = (now + timedelta(days=add_days)).astimezone(timezone.utc)
-        for h in RUN_HOURS_UTC:
-            t = day.replace(hour=h, minute=17, second=0, microsecond=0)
-            if t > now:
-                return t
-    return now + timedelta(hours=4)
+    """First hourly check at least RUN_GAP after this run, i.e. when the next run is due.
+    GitHub can still start it a little late."""
+    earliest = (now + RUN_GAP).astimezone(timezone.utc)
+    t = earliest.replace(minute=CHECK_MINUTE, second=0, microsecond=0)
+    return t if t >= earliest else t + timedelta(hours=1)
 
 
 def build_site_data(journal: Journal, clients: dict[str, KalshiClient], now: datetime, cfg: dict) -> dict:

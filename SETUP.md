@@ -2,7 +2,7 @@
 
 [← Back to the dashboard](README.md)
 
-A trading simulator that runs itself on GitHub every 4 hours:
+A trading simulator that runs itself on GitHub about every 4 hours:
 
 - **Watch:** pulls real open markets and live prices from Kalshi.
 - **Think:** Claude reads each market's rules, searches the web, and gives a probability ("70% YES").
@@ -26,10 +26,14 @@ About 5–10 minutes later, the repo's front page shows the dashboard. Tip: in S
 
 The results page shows the balance chart, open and settled bets, Claude's calls next to the market's, and what Claude is learning. After every run the bot rebuilds it into `site/index.html`, and it's published in two places:
 
-- **Public, on GitHub Pages:** https://noffenkrantz.github.io/kalshi-bot/ (also linked as **Results site** at the top of the repo's front page). The `results-site` workflow republishes it a minute or so after each run. Anyone with the link can open it; a `noindex` tag keeps it out of search engines.
+- **Public, on GitHub Pages:** https://noffenkrantz.github.io/kalshi-bot/ (also linked as **Results site** at the top of the repo's front page). Each bot run republishes it as its last step. To republish without running the bot: **Actions → results-site → Run workflow**. Anyone with the link can open it; a `noindex` tag keeps it out of search engines.
   - One-time setup: **Settings → Pages → Build and deployment → Source: GitHub Actions**, then **Actions → results-site → Run workflow** (or just wait for the next bot run).
-  - To take it down: **Settings → Pages → Unpublish site**, or disable the `results-site` workflow.
+  - To take it down: **Settings → Pages → Unpublish site**.
 - **Private, in Claude:** **Kalshi Bot Results** (in Claude, under your artifacts). A Claude scheduled task republishes it about an hour after each run. Only you can see it unless you share it from the page.
+
+## Schedule
+
+GitHub often starts scheduled runs late, or skips them when it's busy. So the workflow checks every hour (at 41 minutes past), and its first step only lets a real run through once 3½ hours have passed since the last one. That gives a run about every 4 hours even when GitHub drops some checks. The skipped checks take a few seconds each and are free on a public repo. In the **Actions** tab they show up as short runs where only the `gate` step ran. **Run workflow** always runs right away.
 
 ## Controls from your phone
 

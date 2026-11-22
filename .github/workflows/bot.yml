@@ -1,4 +1,9 @@
-# Runs the bot automatically on GitHub's computers, every 4 hours.
+# Runs the bot automatically on GitHub's computers, about every 4 hours.
+#
+# Why hourly: GitHub often starts scheduled runs late or skips them when it's busy. So it
+# checks every hour, and the "gate" job lets a real run through only once 3.5+ hours have
+# passed since the last one. Skipped checks take a few seconds and cost nothing.
+# Manual runs ("Run workflow") always go ahead.
 #
 # Brain, pick ONE secret:
 #   CLAUDE_CODE_OAUTH_TOKEN  uses your Claude subscription (made with `claude setup-token`)
@@ -9,7 +14,7 @@ name: kalshi-bot
 
 on:
   schedule:
-    - cron: "17 */4 * * *"   # every 4 hours, at 17 minutes past (UTC)
+    - cron: "41 * * * *"     # check every hour at 41 past (UTC); the gate decides whether to run
   workflow_dispatch: {}       # adds a "Run workflow" button for manual runs
 
 permissions:
@@ -20,8 +25,37 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  run:
+  gate:
     if: ${{ vars.BOT_ENABLED != 'false' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      due: ${{ steps.check.outputs.due }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Is a run due?
+        id: check
+        env:
+          MIN_GAP_MINUTES: "210"    # 3.5 hours; with hourly checks this gives a run about every 4 hours
+        run: |
+          last=$(head -1 data/last_run.log 2>/dev/null | sed -n 's/^# Last run: //p')
+          last_s=$(date -u -d "$last" +%s 2>/dev/null || echo 0)
+          ago=$(( ($(date -u +%s) - last_s) / 60 ))
+          if [ "$GITHUB_EVENT_NAME" != "schedule" ]; then
+            due=true; why="manual run"
+          elif [ -z "$last" ]; then
+            due=true; why="no previous run found"
+          elif [ "$ago" -ge "$MIN_GAP_MINUTES" ]; then
+            due=true; why="last run ${last:-unknown}, ${ago} min ago"
+          else
+            due=false; why="last run $last, only ${ago} min ago; waiting for ${MIN_GAP_MINUTES}"
+          fi
+          echo "due=$due" >> "$GITHUB_OUTPUT"
+          echo "Run due: $due ($why)" | tee -a "$GITHUB_STEP_SUMMARY"
+
+  run:
+    needs: gate
+    if: ${{ needs.gate.outputs.due == 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     env:
@@ -107,3 +141,38 @@ jobs:
           git commit -m "journal: run $(date -u +%Y-%m-%dT%H:%MZ)" || echo "nothing new"
           git pull --rebase --autostash || true
           git push || echo "push failed; will retry next run"
+
+  # Publishes the freshly built results page (site/) to GitHub Pages, only after a real run.
+  # (The "results-site" workflow, pages.yml, is the manual "publish now" button.)
+  pages:
+    needs: run
+    if: ${{ !cancelled() && needs.run.result != 'skipped' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main           # includes the results the run just saved
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4
+        continue-on-error: true   # GitHub sometimes can't find a just-uploaded page; retry once below
+      - name: Wait before retrying
+        if: ${{ steps.deployment.outcome == 'failure' }}
+        run: sleep 30
+      - id: deployment2
+        if: ${{ steps.deployment.outcome == 'failure' }}
+        uses: actions/deploy-pages@v4

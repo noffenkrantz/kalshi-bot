@@ -1,14 +1,13 @@
-# Publishes the results page (site/index.html) to GitHub Pages after every bot run.
+# Manual "publish now" button for the results page (site/index.html) on GitHub Pages.
+# The bot workflow (bot.yml) already publishes the page at the end of every real run;
+# use this only to republish without running the bot.
 #
 # One-time setup: Settings → Pages → Build and deployment → Source: "GitHub Actions".
 # The page is then at https://<your-username>.github.io/<repo-name>/
-# To take it down: Settings → Pages → Unpublish site (or disable this workflow).
+# To take it down: Settings → Pages → Unpublish site.
 name: results-site
 
 on:
-  workflow_run:
-    workflows: [kalshi-bot]   # runs after each bot run finishes, using the page it just saved
-    types: [completed]
   workflow_dispatch: {}       # adds a "Run workflow" button to publish right now
 
 permissions:
@@ -22,7 +21,6 @@ concurrency:
 
 jobs:
   deploy:
-    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion != 'cancelled' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     environment:
@@ -31,10 +29,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: main           # the latest commit, including the bot's newest results
+          ref: main
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
       - id: deployment
+        uses: actions/deploy-pages@v4
+        continue-on-error: true   # GitHub sometimes can't find a just-uploaded page; retry once below
+      - name: Wait before retrying
+        if: ${{ steps.deployment.outcome == 'failure' }}
+        run: sleep 30
+      - id: deployment2
+        if: ${{ steps.deployment.outcome == 'failure' }}
         uses: actions/deploy-pages@v4
