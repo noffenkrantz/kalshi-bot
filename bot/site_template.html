@@ -12,10 +12,10 @@
 /* VOICE work: an account statement, set like a newspaper graphics desk
    IDEA the monthly statement of a pretend brokerage account run by Claude
    PICTURE the balance line from the $10,000 start, full width, with a crosshair
-   COLOUR white, ink #0b0b10, signal green #00a862 for the balance, mist #eafaf2 band; night #07130d
+   COLOUR black and white only: ink on paper, greys for secondary text and rules; inverted at night. Gains and losses read by their + / − sign
    TYPE Space Grotesk 500/600 for figures and titles + Inter for text
-   LAYOUT finding across the top, mist band with balance + chart + ruled figure row, then bets, calls, learning; stacks under 600px */
-:root{color-scheme:light dark;--bg:light-dark(#ffffff,#07130d);--ink:light-dark(#0b0b10,#e8f1ec);--ink2:light-dark(#4a4d55,#b3c2ba);--muted:light-dark(#6f737b,#86978e);--rule:light-dark(#e2e6e3,#1e3027);--mist:light-dark(#eafaf2,#0c2118);--green:light-dark(#00a862,#2fcf87);--up:light-dark(#00733f,#56dc9e);--down:light-dark(#b3261e,#ff8f80);--chip:light-dark(#f2f4f3,#14271e)}
+   LAYOUT finding + Refresh across the top, balance + chart + ruled figure row, then bets, calls, learning; stacks under 600px */
+:root{color-scheme:light dark;--bg:light-dark(#ffffff,#000000);--ink:light-dark(#000000,#ffffff);--ink2:light-dark(#3d3d3d,#c8c8c8);--muted:light-dark(#6b6b6b,#9b9b9b);--rule:light-dark(#e3e3e3,#2a2a2a)}
 :root[data-theme=light]{color-scheme:light}
 :root[data-theme=dark]{color-scheme:dark}
 *{box-sizing:border-box;min-width:0}
@@ -27,16 +27,24 @@ h1{font-size:clamp(30px,4.6vw,48px);line-height:1.05;font-weight:600;margin:0 0 
 h2{font-size:24px;line-height:1.15;font-weight:600;margin:0 0 6px}
 p{margin:0}
 .sub{color:var(--ink2);max-width:64ch}
+.status{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 16px;font:500 14px/1 Inter,system-ui,sans-serif;color:var(--bg);background:var(--ink);border:1px solid var(--ink);border-radius:999px;cursor:pointer}
+.btn:hover{color:var(--ink);background:var(--bg)}
+.btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.btn:disabled{cursor:default;opacity:.7}
+.btn svg{width:16px;height:16px;flex:none}
+.btn:disabled svg{animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.btn:disabled svg{animation:none}}
 .note{color:var(--muted);font-size:14px;margin-bottom:14px}
-.hero{background:var(--mist)}
+.hero{border-top:1px solid var(--rule)}
 .balance{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;margin-bottom:6px}
 .big{font-size:clamp(44px,7vw,72px);font-weight:600;line-height:1}
 .chg{font-size:18px;font-weight:600;white-space:nowrap}
-.up{color:var(--up)}
-.down{color:var(--down)}
+.up,.down{color:var(--ink)}
 .fig{position:relative;height:clamp(230px,34vw,360px);margin-top:8px}
 .fig>svg{position:absolute;inset:0;width:100%;height:100%;touch-action:pan-y}
-svg text{font:12px Inter,system-ui,sans-serif;fill:var(--muted);paint-order:stroke;stroke:var(--mist);stroke-width:4px}
+svg text{font:12px Inter,system-ui,sans-serif;fill:var(--muted);paint-order:stroke;stroke:var(--bg);stroke-width:4px}
 .grid{stroke:var(--rule);stroke-width:1}
 .base{stroke:var(--muted);stroke-width:1.25;stroke-dasharray:none;opacity:.7}
 .tip{position:absolute;pointer-events:none;background:var(--bg);color:var(--ink);border:1px solid var(--rule);border-radius:8px;padding:6px 10px;font-size:13px;line-height:1.35;white-space:nowrap;box-shadow:0 2px 10px rgb(0 0 0/.08)}
@@ -51,16 +59,16 @@ td{padding:10px 10px 10px 0;border-bottom:1px solid var(--rule);vertical-align:t
 td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 .q{font-weight:500}
 .meta{display:block;font-size:13px;color:var(--muted)}
-.tag{display:inline-block;font-size:12px;font-weight:600;padding:1px 7px;border-radius:99px;background:var(--chip);color:var(--ink2);white-space:nowrap}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:0 7px;border-radius:99px;border:1px solid var(--ink);color:var(--ink);white-space:nowrap}
 .empty{color:var(--ink2);padding:14px 0;border-top:1px solid var(--rule)}
 .legend{display:flex;gap:18px;font-size:13px;color:var(--ink2);margin-bottom:6px}
 .key{display:inline-block;width:11px;height:11px;border-radius:50%;vertical-align:-1px;margin-right:6px}
 .call{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr) auto;gap:6px 18px;align-items:center;padding:11px 0;border-bottom:1px solid var(--rule)}
 .track{position:relative;height:22px}
 .track::before{content:"";position:absolute;left:0;right:0;top:10px;height:2px;background:var(--rule)}
-.span{position:absolute;top:8px;height:6px;border-radius:3px;background:color-mix(in srgb,var(--green) 35%,transparent)}
+.span{position:absolute;top:8px;height:6px;border-radius:3px;background:color-mix(in srgb,var(--ink) 22%,transparent)}
 .dot{position:absolute;top:4px;width:14px;height:14px;margin-left:-7px;border-radius:50%;border:2px solid var(--bg)}
-.dc{background:var(--green)}
+.dc{background:var(--ink)}
 .dm{background:var(--bg);border:2.5px solid var(--ink)}
 .vals{font-size:14px;white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums}
 .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:32px 48px}
@@ -87,7 +95,10 @@ table{font-size:14px}
 <body>
 <header class="band"><div class="wrap">
   <h1 id="finding">Loading results</h1>
-  <p class="sub" id="subline"></p>
+  <div class="status">
+    <p class="sub" id="subline"></p>
+    <button type="button" class="btn" id="refresh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg><span>Refresh</span></button>
+  </div>
 </div></header>
 
 <section class="band hero" aria-labelledby="balh"><div class="wrap">
@@ -112,7 +123,7 @@ table{font-size:14px}
 <section class="band" aria-labelledby="callsh"><div class="wrap">
   <h2 id="callsh">Claude's calls vs the market</h2>
   <p class="note">The chance of YES. The gap between the dots is where a bet can come from.</p>
-  <div class="legend"><span><span class="key" style="background:var(--green)"></span>Claude</span><span><span class="key" style="border:2.5px solid var(--ink)"></span>Market price</span></div>
+  <div class="legend"><span><span class="key" style="background:var(--ink)"></span>Claude</span><span><span class="key" style="border:2.5px solid var(--ink)"></span>Market price</span></div>
   <div id="calls"></div>
 </div></section>
 
@@ -150,6 +161,12 @@ else if (!S.settled_n) finding = `${S.open_n} bet${S.open_n === 1 ? '' : 's'} pl
 else finding = `${change >= 0 ? 'Up' : 'Down'} ${money0(Math.abs(change))} after ${S.settled_n} settled bet${S.settled_n === 1 ? '' : 's'}`;
 $('finding').textContent = finding;
 $('subline').textContent = `Updated ${when(D.updated)} · next run about ${when(D.next_run)}`;
+$('refresh').addEventListener('click', e => {
+  const b = e.currentTarget;
+  b.disabled = true;
+  b.querySelector('span').textContent = 'Refreshing…';
+  location.reload();   // the page is rebuilt after every bot run; reloading picks up the newest one
+});
 $('bal').textContent = money(D.balance);
 $('chg').innerHTML = `<span class="${cls(change)}">${money(change, true)} (${(change / D.start * 100).toFixed(1)}%)</span> <span style="color:var(--ink2);font-weight:500">since the $${D.start.toLocaleString('en-US')} start</span>`;
 
@@ -229,13 +246,13 @@ const drawChart = () => {
   h += `<line class="base" x1="${m.l}" x2="${W - m.r}" y1="${ys}" y2="${ys}"/><text x="${m.l + 6}" y="${Y(D.start) - m.t > 18 ? ys - 7 : ys + 16}" style="fill:var(--ink2)">Start ${money0(D.start)}</text>`;
   if (pts.length > 1) {
     const line = pts.map((p, i) => `${i ? 'L' : 'M'}${X(p[0]).toFixed(1)},${Y(p[1]).toFixed(1)}`).join('');
-    h += `<path d="${line}L${X(t1).toFixed(1)},${ys}L${X(pts[0][0]).toFixed(1)},${ys}Z" fill="var(--green)" opacity=".12"/>`;
-    h += `<path d="${line}" fill="none" stroke="var(--green)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`;
+    h += `<path d="${line}L${X(t1).toFixed(1)},${ys}L${X(pts[0][0]).toFixed(1)},${ys}Z" fill="var(--ink)" opacity=".06"/>`;
+    h += `<path d="${line}" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`;
   }
   const last = pts[pts.length - 1], ex = X(last[0]), ey = Y(last[1]);
-  h += `<circle cx="${ex}" cy="${ey}" r="5.5" fill="var(--green)" stroke="var(--mist)" stroke-width="2"/>`;
+  h += `<circle cx="${ex}" cy="${ey}" r="5.5" fill="var(--ink)" stroke="var(--bg)" stroke-width="2"/>`;
   h += `<text x="${ex + 10}" y="${ey + 4}" style="fill:var(--ink);font-weight:600;font-size:14px">${money0(last[1])}</text>`;
-  h += `<g id="cross" style="display:none"><line id="cx" class="grid" y1="${m.t}" y2="${H - m.b}" style="stroke:var(--ink2)"/><circle id="cd" r="5" fill="var(--green)" stroke="var(--mist)" stroke-width="2"/></g>`;
+  h += `<g id="cross" style="display:none"><line id="cx" class="grid" y1="${m.t}" y2="${H - m.b}" style="stroke:var(--ink2)"/><circle id="cd" r="5" fill="var(--ink)" stroke="var(--bg)" stroke-width="2"/></g>`;
   if (pts.length === 1) h += `<text x="${(m.l + W - m.r) / 2}" y="${ys + 34}" text-anchor="middle">The line grows with each run, every 4 hours</text>`;
   s.innerHTML = h;
   G = {X, Y, W, m};
