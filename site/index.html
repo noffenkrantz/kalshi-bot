@@ -7,82 +7,88 @@
 <title>Kalshi Bot Results</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400..700&display=swap" rel="stylesheet">
 <style>
 /* VOICE work: an account statement, set like a newspaper graphics desk
    IDEA the monthly statement of a pretend brokerage account run by Claude
    PICTURE the balance line from the $10,000 start, full width, with a crosshair
-   COLOUR black and white only: ink on paper, greys for secondary text and rules; inverted at night. Gains and losses read by their + / − sign
-   TYPE Space Grotesk 500/600 for figures and titles + Inter for text
+   COLOUR black and white with splashes: one blue accent (top bar, Refresh, balance line, Claude's dots), green for gains, red for losses; inverted at night
+   TYPE Source Sans 3 throughout: humanist, easy to read, tabular figures by default; 17px body
    LAYOUT finding + Refresh across the top, balance + chart + ruled figure row, then bets, calls, learning; stacks under 600px */
-:root{color-scheme:light dark;--bg:light-dark(#ffffff,#000000);--ink:light-dark(#000000,#ffffff);--ink2:light-dark(#3d3d3d,#c8c8c8);--muted:light-dark(#6b6b6b,#9b9b9b);--rule:light-dark(#e3e3e3,#2a2a2a)}
+:root{color-scheme:light dark;
+  --bg:light-dark(#ffffff,#000000);--ink:light-dark(#111111,#f2f2f2);--ink2:light-dark(#3d3d3d,#c8c8c8);--muted:light-dark(#666666,#9d9d9d);--rule:light-dark(#e4e4e4,#2a2a2c);
+  --accent:light-dark(#2457e6,#7ea2ff);--on-accent:light-dark(#ffffff,#000000);
+  --up:light-dark(#0b7a41,#5ad58f);--down:light-dark(#c4342b,#ff8a7d)}
 :root[data-theme=light]{color-scheme:light}
 :root[data-theme=dark]{color-scheme:dark}
 *{box-sizing:border-box;min-width:0}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:clip;border-top:5px solid var(--accent);-webkit-font-smoothing:antialiased}
+button{font-family:inherit}
 .wrap{max-width:1240px;margin:0 auto;padding-inline:max(16px,4vw)}
 .band{padding-block:clamp(24px,3.5vw,48px)}
-h1,h2,.big,.fv{font-family:"Space Grotesk",Inter,system-ui,sans-serif;letter-spacing:-.02em}
-h1{font-size:clamp(30px,4.6vw,48px);line-height:1.05;font-weight:600;margin:0 0 10px;text-wrap:balance;max-width:22ch}
-h2{font-size:24px;line-height:1.15;font-weight:600;margin:0 0 6px}
+h1{font-size:clamp(32px,4.8vw,50px);line-height:1.08;font-weight:700;letter-spacing:-.01em;margin:0 0 12px;text-wrap:balance;max-width:22ch}
+h2{font-size:26px;line-height:1.2;font-weight:700;margin:0 0 6px}
 p{margin:0}
 .sub{color:var(--ink2);max-width:64ch}
 .status{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
-.btn{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 16px;font:500 14px/1 Inter,system-ui,sans-serif;color:var(--bg);background:var(--ink);border:1px solid var(--ink);border-radius:999px;cursor:pointer}
-.btn:hover{color:var(--ink);background:var(--bg)}
-.btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
-.btn:disabled{cursor:default;opacity:.7}
-.btn svg{width:16px;height:16px;flex:none}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:0 18px;font-size:16px;font-weight:600;line-height:1;color:var(--on-accent);background:var(--accent);border:0;border-radius:999px;cursor:pointer}
+.btn:hover{background:color-mix(in srgb,var(--accent) 85%,var(--ink))}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.btn:disabled{cursor:default;opacity:.75}
+.btn svg{width:17px;height:17px;flex:none}
 .btn:disabled svg{animation:spin 1s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){.btn:disabled svg{animation:none}}
-.note{color:var(--muted);font-size:14px;margin-bottom:14px}
+.note{color:var(--muted);font-size:15px;margin-bottom:14px}
 .hero{border-top:1px solid var(--rule)}
 .balance{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;margin-bottom:6px}
-.big{font-size:clamp(44px,7vw,72px);font-weight:600;line-height:1}
-.chg{font-size:18px;font-weight:600;white-space:nowrap}
-.up,.down{color:var(--ink)}
+.big{font-size:clamp(46px,7.2vw,76px);font-weight:700;line-height:1;letter-spacing:-.015em}
+.chg{font-size:19px;font-weight:600;white-space:nowrap}
+.up{color:var(--up)}
+.down{color:var(--down)}
 .fig{position:relative;height:clamp(230px,34vw,360px);margin-top:8px}
 .fig>svg{position:absolute;inset:0;width:100%;height:100%;touch-action:pan-y}
-svg text{font:12px Inter,system-ui,sans-serif;fill:var(--muted);paint-order:stroke;stroke:var(--bg);stroke-width:4px}
+svg text{font:13px "Source Sans 3",system-ui,sans-serif;fill:var(--muted);paint-order:stroke;stroke:var(--bg);stroke-width:4px}
 .grid{stroke:var(--rule);stroke-width:1}
 .base{stroke:var(--muted);stroke-width:1.25;stroke-dasharray:none;opacity:.7}
-.tip{position:absolute;pointer-events:none;background:var(--bg);color:var(--ink);border:1px solid var(--rule);border-radius:8px;padding:6px 10px;font-size:13px;line-height:1.35;white-space:nowrap;box-shadow:0 2px 10px rgb(0 0 0/.08)}
+.tip{position:absolute;pointer-events:none;background:var(--bg);color:var(--ink);border:1px solid var(--rule);border-radius:8px;padding:6px 10px;font-size:14px;line-height:1.35;white-space:nowrap;box-shadow:0 2px 10px rgb(0 0 0/.08)}
 .figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(10em,1fr));border-top:1px solid var(--ink);margin-top:18px}
 .figs>div{padding:12px 14px 4px 0;border-bottom:1px solid var(--rule)}
-.fv{font-size:26px;font-weight:600;line-height:1.1;white-space:nowrap}
-.fl{font-size:13px;color:var(--ink2)}
+.fv{font-size:28px;font-weight:700;line-height:1.1;white-space:nowrap}
+.fl{font-size:14px;color:var(--ink2)}
 .scroll{overflow-x:auto}
-table{width:100%;border-collapse:collapse;font-size:15px}
-th{font-weight:500;color:var(--muted);font-size:13px;text-align:left;padding:8px 10px 8px 0;border-bottom:1px solid var(--ink)}
+table{width:100%;border-collapse:collapse;font-size:16px}
+th{font-weight:600;color:var(--muted);font-size:14px;text-align:left;padding:8px 10px 8px 0;border-bottom:1px solid var(--ink)}
 td{padding:10px 10px 10px 0;border-bottom:1px solid var(--rule);vertical-align:top}
 td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
-.q{font-weight:500}
-.meta{display:block;font-size:13px;color:var(--muted)}
-.tag{display:inline-block;font-size:12px;font-weight:600;padding:0 7px;border-radius:99px;border:1px solid var(--ink);color:var(--ink);white-space:nowrap}
+.q{font-weight:600}
+.meta{display:block;font-size:14px;font-weight:400;color:var(--muted)}
+.tag{display:inline-block;font-size:13px;font-weight:700;padding:0 8px;border-radius:99px;border:1px solid currentColor;white-space:nowrap}
+.tag.won{color:var(--up);background:color-mix(in srgb,var(--up) 10%,transparent)}
+.tag.lost{color:var(--down);background:color-mix(in srgb,var(--down) 10%,transparent)}
 .empty{color:var(--ink2);padding:14px 0;border-top:1px solid var(--rule)}
-.legend{display:flex;gap:18px;font-size:13px;color:var(--ink2);margin-bottom:6px}
+.legend{display:flex;gap:18px;font-size:14px;color:var(--ink2);margin-bottom:6px}
 .key{display:inline-block;width:11px;height:11px;border-radius:50%;vertical-align:-1px;margin-right:6px}
 .call{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr) auto;gap:6px 18px;align-items:center;padding:11px 0;border-bottom:1px solid var(--rule)}
 .track{position:relative;height:22px}
 .track::before{content:"";position:absolute;left:0;right:0;top:10px;height:2px;background:var(--rule)}
-.span{position:absolute;top:8px;height:6px;border-radius:3px;background:color-mix(in srgb,var(--ink) 22%,transparent)}
+.span{position:absolute;top:8px;height:6px;border-radius:3px;background:color-mix(in srgb,var(--accent) 30%,transparent)}
 .dot{position:absolute;top:4px;width:14px;height:14px;margin-left:-7px;border-radius:50%;border:2px solid var(--bg)}
-.dc{background:var(--ink)}
+.dc{background:var(--accent)}
 .dm{background:var(--bg);border:2.5px solid var(--ink)}
-.vals{font-size:14px;white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums}
+.vals{font-size:15px;white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums}
 .two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:32px 48px}
 .lessons{list-style:none;padding:0;margin:0}
 .lessons li{padding:10px 0;border-bottom:1px solid var(--rule)}
-.foot{border-top:1px solid var(--rule);color:var(--ink2);font-size:14px}
+.foot{border-top:1px solid var(--rule);color:var(--ink2);font-size:15px}
 .foot p+p{margin-top:6px}
 @media(max-width:600px){
-table{font-size:14px}
+table{font-size:15px}
 .stack thead{display:none}
 .stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--rule)}
 .stack td{display:flex;justify-content:space-between;gap:12px;border:0;padding:3px 0;text-align:right}
-.stack td::before{content:attr(data-l);color:var(--muted);font-size:13px;text-align:left}
-.stack td.q{display:block;text-align:left;font-size:15px}
+.stack td::before{content:attr(data-l);color:var(--muted);font-size:14px;text-align:left}
+.stack td.q{display:block;text-align:left;font-size:16px}
 .stack td.q::before{content:none}
 .stack td.w{display:block;text-align:left}
 .stack td.w::before{display:block;margin-bottom:2px}
@@ -102,7 +108,7 @@ table{font-size:14px}
 </div></header>
 
 <section class="band hero" aria-labelledby="balh"><div class="wrap">
-  <h2 id="balh" class="fl" style="font:500 14px Inter,system-ui,sans-serif;letter-spacing:0;color:var(--ink2)">Simulated balance · real Kalshi markets and prices, pretend money</h2>
+  <h2 id="balh" class="fl" style="font-size:15px;font-weight:400;color:var(--ink2)">Simulated balance · real Kalshi markets and prices, pretend money</h2>
   <div class="balance"><div class="big" id="bal"></div><div class="chg" id="chg"></div></div>
   <div class="fig" id="balfig"><svg id="balsvg" role="img" aria-label="Balance over time"></svg><div class="tip" id="tip" hidden></div></div>
   <div class="figs" id="figs"></div>
@@ -123,7 +129,7 @@ table{font-size:14px}
 <section class="band" aria-labelledby="callsh"><div class="wrap">
   <h2 id="callsh">Claude's calls vs the market</h2>
   <p class="note">The chance of YES. The gap between the dots is where a bet can come from.</p>
-  <div class="legend"><span><span class="key" style="background:var(--ink)"></span>Claude</span><span><span class="key" style="border:2.5px solid var(--ink)"></span>Market price</span></div>
+  <div class="legend"><span><span class="key" style="background:var(--accent)"></span>Claude</span><span><span class="key" style="border:2.5px solid var(--ink)"></span>Market price</span></div>
   <div id="calls"></div>
 </div></section>
 
@@ -191,7 +197,7 @@ if (D.open.length) {
 const verdict = {good_call: 'Good call', bad_luck: 'Bad luck', process_mistake: 'Process mistake', unclear: 'Unclear'};
 if (D.settled.length) {
   $('settled').innerHTML = `<div class="scroll"><table class="stack"><thead><tr><th>Market</th><th>Bet</th><th>Result</th><th class="n">P&amp;L</th><th>Review</th></tr></thead><tbody>` +
-    D.settled.map(b => `<tr><td class="q">${esc(b.q)}<span class="meta">${esc(b.topic)} · Claude ${pct(b.claude)} vs market ${pct(b.market)}</span></td><td class="n">${bet(b)}</td><td><span class="tag">${b.won ? 'Won' : 'Lost'}</span></td><td class="n ${cls(b.pnl)}">${money(b.pnl, true)}</td><td class="w">${b.verdict ? `<b>${esc(verdict[b.verdict] || b.verdict)}.</b> ${esc(b.note)}` : '<span class="meta">Review pending</span>'}</td></tr>`).join('') + `</tbody></table></div>`;
+    D.settled.map(b => `<tr><td class="q">${esc(b.q)}<span class="meta">${esc(b.topic)} · Claude ${pct(b.claude)} vs market ${pct(b.market)}</span></td><td class="n">${bet(b)}</td><td><span class="tag ${b.won ? 'won' : 'lost'}">${b.won ? 'Won' : 'Lost'}</span></td><td class="n ${cls(b.pnl)}">${money(b.pnl, true)}</td><td class="w">${b.verdict ? `<b>${esc(verdict[b.verdict] || b.verdict)}.</b> ${esc(b.note)}` : '<span class="meta">Review pending</span>'}</td></tr>`).join('') + `</tbody></table></div>`;
 } else $('settled').innerHTML = `<p class="empty">Nothing settled yet. Results appear after Kalshi settles a market, usually within a day of the event.</p>`;
 
 // ---- calls: dumbbells on a 0–100% track
@@ -246,13 +252,13 @@ const drawChart = () => {
   h += `<line class="base" x1="${m.l}" x2="${W - m.r}" y1="${ys}" y2="${ys}"/><text x="${m.l + 6}" y="${Y(D.start) - m.t > 18 ? ys - 7 : ys + 16}" style="fill:var(--ink2)">Start ${money0(D.start)}</text>`;
   if (pts.length > 1) {
     const line = pts.map((p, i) => `${i ? 'L' : 'M'}${X(p[0]).toFixed(1)},${Y(p[1]).toFixed(1)}`).join('');
-    h += `<path d="${line}L${X(t1).toFixed(1)},${ys}L${X(pts[0][0]).toFixed(1)},${ys}Z" fill="var(--ink)" opacity=".06"/>`;
-    h += `<path d="${line}" fill="none" stroke="var(--ink)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`;
+    h += `<path d="${line}L${X(t1).toFixed(1)},${ys}L${X(pts[0][0]).toFixed(1)},${ys}Z" fill="var(--accent)" opacity=".10"/>`;
+    h += `<path d="${line}" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`;
   }
   const last = pts[pts.length - 1], ex = X(last[0]), ey = Y(last[1]);
-  h += `<circle cx="${ex}" cy="${ey}" r="5.5" fill="var(--ink)" stroke="var(--bg)" stroke-width="2"/>`;
+  h += `<circle cx="${ex}" cy="${ey}" r="5.5" fill="var(--accent)" stroke="var(--bg)" stroke-width="2"/>`;
   h += `<text x="${ex + 10}" y="${ey + 4}" style="fill:var(--ink);font-weight:600;font-size:14px">${money0(last[1])}</text>`;
-  h += `<g id="cross" style="display:none"><line id="cx" class="grid" y1="${m.t}" y2="${H - m.b}" style="stroke:var(--ink2)"/><circle id="cd" r="5" fill="var(--ink)" stroke="var(--bg)" stroke-width="2"/></g>`;
+  h += `<g id="cross" style="display:none"><line id="cx" class="grid" y1="${m.t}" y2="${H - m.b}" style="stroke:var(--ink2)"/><circle id="cd" r="5" fill="var(--accent)" stroke="var(--bg)" stroke-width="2"/></g>`;
   if (pts.length === 1) h += `<text x="${(m.l + W - m.r) / 2}" y="${ys + 34}" text-anchor="middle">The line grows with each run, every 4 hours</text>`;
   s.innerHTML = h;
   G = {X, Y, W, m};
