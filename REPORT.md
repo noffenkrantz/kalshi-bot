@@ -1,10 +1,11 @@
-# Kalshi bot report - 2026-11-21T22:04:55+00:00
+# Kalshi bot report - 2026-11-22T04:27:10+00:00
 
 ## SHADOW
-Forecasts: 13 made, 0 resolved
+Forecasts: 14 made, 0 resolved
 Paper trades (at real prices, assuming fills at the ask): 0 total, 0 settled, 0 won, P&L on settled ~$+0.00
+Account value: $10,000.00 at first run -> $10,000.00 now
 
-Claude API spend: ~$2.03 in the last 7 days, ~$2.03 all time
+Claude API spend: ~$2.16 in the last 7 days, ~$2.16 all time
 
 ## Verdict
 Not enough data yet: 0/100 shadow forecasts have resolved. Keep collecting before drawing conclusions.
@@ -13,6 +14,7 @@ Not enough data yet: 0/100 shadow forecasts have resolved. Keep collecting befor
 
 | When (UTC) | Market | Claude | Market price | Confidence |
 |---|---|---|---|---|
+| 2026-11-22T04:26 | What will the biggest earthquake be on Nov 22, 2026? — Magnitude of at | 11% | 17% | medium |
 | 2026-11-21T21:58 | Highest temperature in Los Angeles on Nov 22, 2026? — 67° to 68° | 30% | 70% | medium |
 | 2026-11-21T21:40 | Lowest temperature in Newark on Nov 22, 2026? — 45° to 46° | 5% | 6% | medium |
 | 2026-11-21T21:40 | Highest temperature in Miami on Nov 22, 2026? — 83° to 84° | 45% | 30% | medium |
