@@ -22,6 +22,10 @@ It never places a real order and never touches your money. The only real cost is
 
 About 5–10 minutes later, the repo's front page shows the dashboard. Tip: in Safari, Share → **Add to Home Screen** makes it open like an app.
 
+## Results site
+
+A private results page lives in your Claude account: **Kalshi Bot Results** (in Claude, under your artifacts). It shows the balance chart, open and settled bets, Claude's calls next to the market's, and what Claude is learning. After every run the bot rebuilds the page into `site/index.html`, and a Claude scheduled task republishes it about an hour after each run. Only you can see it unless you share it from the page.
+
 ## Controls from your phone
 
 - **See results:** the repo's front page (the dashboard). `REPORT.md` has the detailed scorecard, and `data/last_run.log` shows what the last run did, including any errors.

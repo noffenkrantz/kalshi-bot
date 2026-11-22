@@ -136,6 +136,8 @@ def cmd_report(cfg: dict) -> int:
     (ROOT / "REPORT.md").write_text("\n".join(lines) + "\n")
     from .dashboard import build_dashboard
     (ROOT / "README.md").write_text(build_dashboard(journal, clients, utcnow(), cfg, record=True))
+    from .site import write_site
+    write_site(journal, clients, utcnow(), cfg, ROOT / "site" / "index.html")
     return 0
 
 
