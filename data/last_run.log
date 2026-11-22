@@ -1,21 +1,25 @@
-# Last run: 2026-11-22 06:54 UTC
+# Last run: 2026-11-22 15:54 UTC
 brain: API key
 
 ## run --mode shadow
 Paper account: $10,000.00 free, $0.00 in 0 open paper positions
-82 markets passed the filters
-Forecast KXTRUTHSOCIALD-26NOV22-T5 [Politics, explore]: Claude 5% YES (medium-high) vs market 20% - Trump Truth Social posts on Nov 22, 2026? — <5
-Done: 1 new forecasts, 0 paper trades. Claude spend today (shadow) ~$0.21 of $2.00
+197 markets passed the filters
+Forecast KXDIESELD-26NOV23-T5.815 [Economics, focus]: Claude 42% YES (medium-low) vs market 94% - Diesel prices tomorrow — Above $5.815
+Forecast KXRAIN-26NOV23-ABQ [Climate and Weather, focus]: Claude 12% YES (medium) vs market 56% - Where will it rain on Nov 23, 2026? — Albuquerque
+Forecast KXHIGHTHOU-26NOV23-T68 [Climate and Weather, focus]: Claude 20% YES (medium) vs market 78% - Highest temperature in Houston on Nov 23, 2026? — 67° or below
+Forecast KXAAAGASD-26NOV23-3.6350 [Economics, focus]: Claude 12% YES (medium-high) vs market 26% - US gas prices tomorrow — Above 3.6350
+Paper trade: would buy 131 NO on KXAAAGASD-26NOV23-3.6350 at $0.75 (edge +0.12/contract, ~$99.97)
+Done: 4 new forecasts, 1 paper trades. Claude spend today (shadow) ~$0.85 of $2.00
 
 ## report
-# Kalshi bot report - 2026-11-22T06:54:41+00:00
+# Kalshi bot report - 2026-11-22T15:56:12+00:00
 
 ## SHADOW
-Forecasts: 15 made, 0 resolved
-Paper trades (at real prices, assuming fills at the ask): 0 total, 0 settled, 0 won, P&L on settled ~$+0.00
+Forecasts: 19 made, 0 resolved
+Paper trades (at real prices, assuming fills at the ask): 1 total, 0 settled, 0 won, P&L on settled ~$+0.00
 Account value: $10,000.00 at first run -> $10,000.00 now
 
-Claude API spend: ~$2.24 in the last 7 days, ~$2.24 all time
+Claude API spend: ~$2.88 in the last 7 days, ~$2.88 all time
 
 ## Verdict
 Not enough data yet: 0/100 shadow forecasts have resolved. Keep collecting before drawing conclusions.
