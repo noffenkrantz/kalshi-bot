@@ -24,7 +24,12 @@ About 5–10 minutes later, the repo's front page shows the dashboard. Tip: in S
 
 ## Results site
 
-A private results page lives in your Claude account: **Kalshi Bot Results** (in Claude, under your artifacts). It shows the balance chart, open and settled bets, Claude's calls next to the market's, and what Claude is learning. After every run the bot rebuilds the page into `site/index.html`, and a Claude scheduled task republishes it about an hour after each run. Only you can see it unless you share it from the page.
+The results page shows the balance chart, open and settled bets, Claude's calls next to the market's, and what Claude is learning. After every run the bot rebuilds it into `site/index.html`, and it's published in two places:
+
+- **Public, on GitHub Pages:** https://noffenkrantz.github.io/kalshi-bot/ (also linked as **Results site** at the top of the repo's front page). The `results-site` workflow republishes it a minute or so after each run. Anyone with the link can open it; a `noindex` tag keeps it out of search engines.
+  - One-time setup: **Settings → Pages → Build and deployment → Source: GitHub Actions**, then **Actions → results-site → Run workflow** (or just wait for the next bot run).
+  - To take it down: **Settings → Pages → Unpublish site**, or disable the `results-site` workflow.
+- **Private, in Claude:** **Kalshi Bot Results** (in Claude, under your artifacts). A Claude scheduled task republishes it about an hour after each run. Only you can see it unless you share it from the page.
 
 ## Controls from your phone
 

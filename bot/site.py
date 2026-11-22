@@ -1,5 +1,6 @@
 """Builds site/index.html: a self-contained results page (data embedded) that is published
-as a private Claude artifact. Rebuilt after every run by `python -m bot report`."""
+to GitHub Pages (.github/workflows/pages.yml) and as a private Claude artifact.
+Rebuilt after every run by `python -m bot report`."""
 from __future__ import annotations
 
 import json

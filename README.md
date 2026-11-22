@@ -1,6 +1,6 @@
 # Kalshi bot
 
-**Updated Sat Nov 21, 5:22 PM EST** · runs every 4 hours · [▶ Run now](https://github.com/noffenkrantz/kalshi-bot/actions/workflows/bot.yml) · [Full report](REPORT.md) · [Last run log](data/last_run.log) · [Setup & settings](SETUP.md)
+**Updated Sat Nov 21, 5:22 PM EST** · runs every 4 hours · [▶ Run now](https://github.com/noffenkrantz/kalshi-bot/actions/workflows/bot.yml) · [Results site](https://noffenkrantz.github.io/kalshi-bot/) · [Full report](REPORT.md) · [Last run log](data/last_run.log) · [Setup & settings](SETUP.md)
 
 ## 💵 Simulated account
 

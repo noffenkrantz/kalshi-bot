@@ -139,6 +139,9 @@ def build_dashboard(journal: Journal, clients: dict[str, KalshiClient], now: dat
     if os.environ.get("GITHUB_REPOSITORY"):
         repo = f"{os.environ.get('GITHUB_SERVER_URL', 'https://github.com')}/{os.environ['GITHUB_REPOSITORY']}"
     links = [f"[▶ Run now]({repo}/actions/workflows/bot.yml)"] if repo else []
+    if repo and repo.startswith("https://github.com/"):
+        owner, name = os.environ["GITHUB_REPOSITORY"].split("/", 1)
+        links.append(f"[Results site](https://{owner.lower()}.github.io/{name}/)")   # GitHub Pages, see pages.yml
     links += ["[Full report](REPORT.md)", "[Last run log](data/last_run.log)", "[Setup & settings](SETUP.md)"]
 
     out = ["# Kalshi bot", "",

@@ -1,0 +1,40 @@
+# Publishes the results page (site/index.html) to GitHub Pages after every bot run.
+#
+# One-time setup: Settings → Pages → Build and deployment → Source: "GitHub Actions".
+# The page is then at https://<your-username>.github.io/<repo-name>/
+# To take it down: Settings → Pages → Unpublish site (or disable this workflow).
+name: results-site
+
+on:
+  workflow_run:
+    workflows: [kalshi-bot]   # runs after each bot run finishes, using the page it just saved
+    types: [completed]
+  workflow_dispatch: {}       # adds a "Run workflow" button to publish right now
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion != 'cancelled' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main           # the latest commit, including the bot's newest results
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4
