@@ -1,25 +1,57 @@
-# Last run: 2026-11-22 15:54 UTC
+# Last run: 2026-11-22 21:59 UTC
 brain: API key
 
 ## run --mode shadow
-Paper account: $10,000.00 free, $0.00 in 0 open paper positions
-197 markets passed the filters
-Forecast KXDIESELD-26NOV23-T5.815 [Economics, focus]: Claude 42% YES (medium-low) vs market 94% - Diesel prices tomorrow — Above $5.815
-Forecast KXRAIN-26NOV23-ABQ [Climate and Weather, focus]: Claude 12% YES (medium) vs market 56% - Where will it rain on Nov 23, 2026? — Albuquerque
-Forecast KXHIGHTHOU-26NOV23-T68 [Climate and Weather, focus]: Claude 20% YES (medium) vs market 78% - Highest temperature in Houston on Nov 23, 2026? — 67° or below
-Forecast KXAAAGASD-26NOV23-3.6350 [Economics, focus]: Claude 12% YES (medium-high) vs market 26% - US gas prices tomorrow — Above 3.6350
-Paper trade: would buy 131 NO on KXAAAGASD-26NOV23-3.6350 at $0.75 (edge +0.12/contract, ~$99.97)
-Done: 4 new forecasts, 1 paper trades. Claude spend today (shadow) ~$0.85 of $2.00
+Recorded 1 newly resolved market(s)
+Paper account: $9,900.03 free, $99.97 in 1 open paper positions
+321 markets passed the filters
+Forecast KXAAAGASCDVT-26NOV23-LD [Economics, focus]: Claude 45% YES (medium-low) vs market 42% - Vermont gas price tomorrow — Large decrease
+Forecast KXAAAGASCDCT-26NOV23-SD [Economics, focus]: Claude 42% YES (medium) vs market 72% - Connecticut gas price tomorrow — Small decrease
+Forecast KXTRUMPAPPROVE-26NOV23-E37.9 [Politics, focus]: Claude 40% YES (medium-low) vs market 40% - Trump's RCP approval average on Nov 23, 2026? — 37.9%
+Forecast KXHIGHLAX-26NOV23-B71.5 [Climate and Weather, focus]: Claude 10% YES (medium-low) vs market 6% - Highest temperature in Los Angeles on Nov 23, 2026? — 71° to 72°
+Done: 4 new forecasts, 0 paper trades. Claude spend today (shadow) ~$1.42 of $2.00
 
 ## report
-# Kalshi bot report - 2026-11-22T15:56:12+00:00
+# Kalshi bot report - 2026-11-22T22:00:56+00:00
 
 ## SHADOW
-Forecasts: 19 made, 0 resolved
+Forecasts: 23 made, 2 resolved
+Accuracy (Brier, lower is better): Claude 0.1250 vs market price 0.3341 -> Claude is BETTER than the market
+When Claude disagreed with the market by 8%+: Claude was closer 1 of 2 times
+Calibration (when Claude says X%, how often is it YES?):
+  20%-40%:   1 forecasts, avg said 30%, actually YES 0%
+  40%-60%:   1 forecasts, avg said 40%, actually YES 0%
 Paper trades (at real prices, assuming fills at the ask): 1 total, 0 settled, 0 won, P&L on settled ~$+0.00
-Account value: $10,000.00 at first run -> $10,000.00 now
+Account value: $10,000.00 at first run -> $9,997.62 now
 
-Claude API spend: ~$2.88 in the last 7 days, ~$2.88 all time
+## Where Claude does well (simulation, settled forecasts)
+
+**By topic**
+
+| Group | Forecasts | Claude score | Market score | Claude beat market when they disagreed |
+|---|---|---|---|---|
+| Politics | 2 | 0.125 | 0.334 | 1 of 2 |
+
+**By Claude's confidence**
+
+| Group | Forecasts | Claude score | Market score | Claude beat market when they disagreed |
+|---|---|---|---|---|
+| low | 1 | 0.090 | 0.601 | 1 of 1 |
+| medium | 1 | 0.160 | 0.068 | 0 of 1 |
+
+**By distance from the market price**
+
+| Group | Forecasts | Claude score | Market score | Claude beat market when they disagreed |
+|---|---|---|---|---|
+| 15+ pts from market | 1 | 0.090 | 0.601 | 1 of 1 |
+| 5–15 pts from market | 1 | 0.160 | 0.068 | 0 of 1 |
+
+(Scores are Brier scores: lower is better.)
+
+**Do the lessons help?** (about 20% of markets are researched without lessons, as a control)
+Not enough settled forecasts in both groups yet.
+
+Claude API spend: ~$3.46 in the last 7 days, ~$3.46 all time
 
 ## Verdict
-Not enough data yet: 0/100 shadow forecasts have resolved. Keep collecting before drawing conclusions.
+Not enough data yet: 2/100 shadow forecasts have resolved. Keep collecting before drawing conclusions.
