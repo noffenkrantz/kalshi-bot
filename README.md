@@ -1,30 +1,32 @@
 # Kalshi bot
 
-**Updated Sun Nov 22, 8:31 PM EST** · runs every 4 hours · [▶ Run now](https://github.com/noffenkrantz/kalshi-bot/actions/workflows/bot.yml) · [Results site](https://noffenkrantz.github.io/kalshi-bot/) · [Full report](REPORT.md) · [Where prices lag](LAGS.md) · [Last run log](data/last_run.log) · [Setup & settings](SETUP.md)
+**Updated Sun Nov 22, 10:12 PM EST** · runs every 4 hours · [▶ Run now](https://github.com/noffenkrantz/kalshi-bot/actions/workflows/bot.yml) · [Results site](https://noffenkrantz.github.io/kalshi-bot/) · [Full report](REPORT.md) · [Where prices lag](LAGS.md) · [Last run log](data/last_run.log) · [Setup & settings](SETUP.md)
 
 ## 💵 Simulated account
 
 *Real Kalshi markets at real prices, with Kalshi's fees, settled on what actually happened. The money is pretend: nothing is ever bought.*
 
-### $9,928.19
-−$71.81 since the start ($10,000.00 pretend bankroll)
+### $10,000.00
++$0.00 since the start ($10,000.00 pretend bankroll). Real balance: settled bets only.
+
+Projected: **$9,928.19** (−$71.81) if the open bets whose prices have moved ended at today's prices.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="data/balance-dark.svg">
-  <img alt="Chart of the simulated balance over time, now $9,928.19" src="data/balance-light.svg" width="100%">
+  <img alt="Chart of the real balance over time, now $10,000.00, with the projection dashed" src="data/balance-light.svg" width="100%">
 </picture>
 
-1 open trade ($99.97 in) · none settled yet · open trades valued at today's prices
+1 open trade ($99.97 in) · none settled yet · projected = what an open trade would be worth if it ended at today's price, shown once its price has moved
 
 **Open trades**
 
-| Market | Bet | Cost | Now | P&L |
+| Market | Bet | Cost | Now | Projected |
 |---|---|---|---|---|
 | US gas prices tomorrow — Above 3.6350 | 131 NO @ 75¢ | $99.97 | 21¢ | −$71.81 |
 
 ## 🎯 Is Claude beating the market?
 
-**Claude is ahead**: accuracy score 0.125 for Claude vs 0.334 for the market price (lower is better) on 2 resolved forecasts. Too early to trust: 2/100 resolved.
+**Claude is ahead**: accuracy score 0.087 for Claude vs 0.232 for the market price (lower is better) on 3 resolved forecasts. Too early to trust: 3/100 resolved.
 
 ## 🧠 What Claude is learning
 
@@ -33,6 +35,7 @@
 | Topic | Claude beat the market | Research focus |
 |---|---|---|
 | Politics | 1 of 2 | normal |
+| Climate and Weather | 1 of 1 | ⬆ more |
 
 *20% of research is always spread at random, so every topic keeps getting chances.*
 

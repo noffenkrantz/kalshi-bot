@@ -1,14 +1,15 @@
-# Kalshi bot report - 2026-11-23T01:31:45+00:00
+# Kalshi bot report - 2026-11-23T03:12:28+00:00
 
 ## SHADOW
-Forecasts: 23 made, 2 resolved
-Accuracy (Brier, lower is better): Claude 0.1250 vs market price 0.3341 -> Claude is BETTER than the market
+Forecasts: 23 made, 3 resolved
+Accuracy (Brier, lower is better): Claude 0.0874 vs market price 0.2324 -> Claude is BETTER than the market
 When Claude disagreed with the market by 8%+: Claude was closer 1 of 2 times
 Calibration (when Claude says X%, how often is it YES?):
+  0%-20%:   1 forecasts, avg said 11%, actually YES 0%
   20%-40%:   1 forecasts, avg said 30%, actually YES 0%
   40%-60%:   1 forecasts, avg said 40%, actually YES 0%
 Paper trades (at real prices, assuming fills at the ask): 1 total, 0 settled, 0 won, P&L on settled ~$+0.00
-Account value: $10,000.00 at first run -> $9,956.36 now
+Account value: $10,000.00 at first run -> $9,928.19 now
 
 ## Where Claude does well (simulation, settled forecasts)
 
@@ -17,30 +18,31 @@ Account value: $10,000.00 at first run -> $9,956.36 now
 | Group | Forecasts | Claude score | Market score | Claude beat market when they disagreed |
 |---|---|---|---|---|
 | Politics | 2 | 0.125 | 0.334 | 1 of 2 |
+| Climate and Weather | 1 | 0.012 | 0.029 | 1 of 1 |
 
 **By Claude's confidence**
 
 | Group | Forecasts | Claude score | Market score | Claude beat market when they disagreed |
 |---|---|---|---|---|
+| medium | 2 | 0.086 | 0.048 | 1 of 2 |
 | low | 1 | 0.090 | 0.601 | 1 of 1 |
-| medium | 1 | 0.160 | 0.068 | 0 of 1 |
 
 **By distance from the market price**
 
 | Group | Forecasts | Claude score | Market score | Claude beat market when they disagreed |
 |---|---|---|---|---|
+| 5–15 pts from market | 2 | 0.086 | 0.048 | 1 of 2 |
 | 15+ pts from market | 1 | 0.090 | 0.601 | 1 of 1 |
-| 5–15 pts from market | 1 | 0.160 | 0.068 | 0 of 1 |
 
 (Scores are Brier scores: lower is better.)
 
 **Do the lessons help?** (about 20% of markets are researched without lessons, as a control)
-Not enough settled forecasts in both groups yet.
+With lessons: 0.012 on 1 forecasts · without: 0.125 on 2. Lessons look helpful so far. Small samples are noisy.
 
 Claude API spend: ~$3.46 in the last 7 days, ~$3.46 all time
 
 ## Verdict
-Not enough data yet: 2/100 shadow forecasts have resolved. Keep collecting before drawing conclusions.
+Not enough data yet: 3/100 shadow forecasts have resolved. Keep collecting before drawing conclusions.
 
 ## Latest forecasts
 
