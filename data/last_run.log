@@ -1,18 +1,16 @@
-# Last run: 2026-11-22 21:59 UTC
+# Last run: 2026-11-23 01:29 UTC
 brain: API key
 
 ## run --mode shadow
-Recorded 1 newly resolved market(s)
 Paper account: $9,900.03 free, $99.97 in 1 open paper positions
-321 markets passed the filters
-Forecast KXAAAGASCDVT-26NOV23-LD [Economics, focus]: Claude 45% YES (medium-low) vs market 42% - Vermont gas price tomorrow — Large decrease
-Forecast KXAAAGASCDCT-26NOV23-SD [Economics, focus]: Claude 42% YES (medium) vs market 72% - Connecticut gas price tomorrow — Small decrease
-Forecast KXTRUMPAPPROVE-26NOV23-E37.9 [Politics, focus]: Claude 40% YES (medium-low) vs market 40% - Trump's RCP approval average on Nov 23, 2026? — 37.9%
-Forecast KXHIGHLAX-26NOV23-B71.5 [Climate and Weather, focus]: Claude 10% YES (medium-low) vs market 6% - Highest temperature in Los Angeles on Nov 23, 2026? — 71° to 72°
-Done: 4 new forecasts, 0 paper trades. Claude spend today (shadow) ~$1.42 of $2.00
+114 markets passed the filters
+Done: 0 new forecasts, 0 paper trades. Claude spend today (shadow) ~$0.00 of $2.00
+
+## lag scan
+Lag scan: 60000 markets settled since Nov 22 01:30 UTC; scanned 98 across 9 categories, 83 price jumps found
 
 ## report
-# Kalshi bot report - 2026-11-22T22:00:56+00:00
+# Kalshi bot report - 2026-11-23T01:31:45+00:00
 
 ## SHADOW
 Forecasts: 23 made, 2 resolved
@@ -22,7 +20,7 @@ Calibration (when Claude says X%, how often is it YES?):
   20%-40%:   1 forecasts, avg said 30%, actually YES 0%
   40%-60%:   1 forecasts, avg said 40%, actually YES 0%
 Paper trades (at real prices, assuming fills at the ask): 1 total, 0 settled, 0 won, P&L on settled ~$+0.00
-Account value: $10,000.00 at first run -> $9,997.62 now
+Account value: $10,000.00 at first run -> $9,956.36 now
 
 ## Where Claude does well (simulation, settled forecasts)
 

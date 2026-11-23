@@ -1,4 +1,4 @@
-# Kalshi bot report - 2026-11-22T22:00:56+00:00
+# Kalshi bot report - 2026-11-23T01:31:45+00:00
 
 ## SHADOW
 Forecasts: 23 made, 2 resolved
@@ -8,7 +8,7 @@ Calibration (when Claude says X%, how often is it YES?):
   20%-40%:   1 forecasts, avg said 30%, actually YES 0%
   40%-60%:   1 forecasts, avg said 40%, actually YES 0%
 Paper trades (at real prices, assuming fills at the ask): 1 total, 0 settled, 0 won, P&L on settled ~$+0.00
-Account value: $10,000.00 at first run -> $9,997.62 now
+Account value: $10,000.00 at first run -> $9,956.36 now
 
 ## Where Claude does well (simulation, settled forecasts)
 

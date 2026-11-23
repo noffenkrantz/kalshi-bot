@@ -1,17 +1,17 @@
 # Kalshi bot
 
-**Updated Sun Nov 22, 5:00 PM EST** · runs every 4 hours · [▶ Run now](https://github.com/noffenkrantz/kalshi-bot/actions/workflows/bot.yml) · [Results site](https://noffenkrantz.github.io/kalshi-bot/) · [Full report](REPORT.md) · [Last run log](data/last_run.log) · [Setup & settings](SETUP.md)
+**Updated Sun Nov 22, 8:31 PM EST** · runs every 4 hours · [▶ Run now](https://github.com/noffenkrantz/kalshi-bot/actions/workflows/bot.yml) · [Results site](https://noffenkrantz.github.io/kalshi-bot/) · [Full report](REPORT.md) · [Where prices lag](LAGS.md) · [Last run log](data/last_run.log) · [Setup & settings](SETUP.md)
 
 ## 💵 Simulated account
 
 *Real Kalshi markets at real prices, with Kalshi's fees, settled on what actually happened. The money is pretend: nothing is ever bought.*
 
-### $9,956.36
-−$43.64 since the start ($10,000.00 pretend bankroll)
+### $9,928.19
+−$71.81 since the start ($10,000.00 pretend bankroll)
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="data/balance-dark.svg">
-  <img alt="Chart of the simulated balance over time, now $9,956.36" src="data/balance-light.svg" width="100%">
+  <img alt="Chart of the simulated balance over time, now $9,928.19" src="data/balance-light.svg" width="100%">
 </picture>
 
 1 open trade ($99.97 in) · none settled yet · open trades valued at today's prices
@@ -20,7 +20,7 @@
 
 | Market | Bet | Cost | Now | P&L |
 |---|---|---|---|---|
-| US gas prices tomorrow — Above 3.6350 | 131 NO @ 75¢ | $99.97 | 43¢ | −$43.64 |
+| US gas prices tomorrow — Above 3.6350 | 131 NO @ 75¢ | $99.97 | 21¢ | −$71.81 |
 
 ## 🎯 Is Claude beating the market?
 
