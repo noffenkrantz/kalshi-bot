@@ -556,3 +556,29 @@ def test_results_site_builds_and_is_injection_safe(tmp_path, cfg):
     assert next_run(NOW).strftime("%H:%M") == "21:41"           # NOW is 18:00 UTC: 3.5h later, then the next :41 check
     assert next_run(NOW.replace(minute=11)).strftime("%H:%M") == "21:41"   # 21:41 exactly is fine
     assert next_run(NOW.replace(minute=12)).strftime("%H:%M") == "22:41"
+
+
+def test_real_balance_counts_only_settled_bets_and_projection_only_moved_ones(tmp_path):
+    from bot.dashboard import _book, balance_lines
+    j = Journal(tmp_path / "data")
+    j.append("equity", {"ts": "2026-11-20T00:00:00+00:00", "env": "shadow", "equity": 10000.0})
+    for t, side, price, n in (("WON", "yes", 0.40, 250), ("MOVED", "no", 0.75, 131), ("FLAT", "yes", 0.50, 199)):
+        j.append("decisions", {"ts": "2026-11-20T01:00:00+00:00", "env": "shadow", "ticker": t, "action": f"paper_buy_{side}",
+                               "outcome": side, "outcome_price": price, "count": n, "est_cost": round(n * price + 1.0, 2)})
+    j.append("outcomes", {"ts": "2026-11-20T12:00:00+00:00", "env": "shadow", "ticker": "WON", "result": "yes"})
+    rows = [{"ticker": d["ticker"], "outcome": d["outcome"], "contracts": d["count"], "cost": d["est_cost"],
+             "price": d["outcome_price"], "ts": d["ts"]} for d in j.rows["decisions"]]
+    open_, settled = _book(rows, j, "shadow")
+    for p in open_:   # what _mark would set: NO is now 21c; the flat bet is still at 51c
+        p["now"] = 0.21 if p["ticker"] == "MOVED" else 0.51
+        p["value"] = p["contracts"] * p["now"]
+        p["pnl"] = p["value"] - p["cost"]
+    realized, projected, real, proj = balance_lines(j, open_, settled, 10000.0, NOW)
+    assert realized == round(10000 + 250 - 101.0, 2)                       # only the settled win
+    moved = next(p for p in open_ if p["ticker"] == "MOVED")
+    flat = next(p for p in open_ if p["ticker"] == "FLAT")
+    assert flat["proj"] is None and moved["proj"] < -70
+    assert projected == round(realized + moved["proj"], 2)
+    assert [v for _, v in real] == [10000.0, realized, realized]           # steps when the bet settled
+    assert real[1][0] == datetime(2026, 11, 20, 12, tzinfo=timezone.utc)
+    assert proj[-1] == (NOW, projected)

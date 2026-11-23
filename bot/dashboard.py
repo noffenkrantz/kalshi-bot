@@ -101,13 +101,43 @@ def _mark(open_: list[dict], client: KalshiClient | None) -> None:
         p["pnl"] = (p["value"] - p["cost"]) if p["value"] is not None else None
 
 
+MOVE_MIN = 0.02   # an open bet counts toward the projection once its price has moved 2+ cents
+
+
+def balance_lines(journal: Journal, open_: list[dict], settled: list[dict], bankroll: float,
+                  now: datetime) -> tuple[float, float, list, list]:
+    """The real balance counts only bets that have settled, and steps when each one does.
+    The projection adds open bets whose price has moved since they were placed, valued at
+    today's price (what they'd be worth if they ended now). Call after _mark."""
+    for p in open_:
+        p["moved"] = p.get("now") is not None and abs(p["now"] - p["avg_price"]) >= MOVE_MIN
+        p["proj"] = p["pnl"] if p["moved"] else None
+    realized = round(bankroll + sum(p["pnl"] for p in settled), 2)
+    projected = round(realized + sum(p["proj"] or 0 for p in open_), 2)
+    eq = [r for r in journal.rows["equity"] if r.get("env") == "shadow" and parse_time(r.get("ts"))]
+    start_t = parse_time(eq[0]["ts"]) if eq else now
+    settled_at = {}
+    for r in journal.rows["outcomes"]:
+        if r.get("env") == "shadow":
+            settled_at.setdefault(r["ticker"], parse_time(r.get("ts")))
+    real, bal = [(start_t, bankroll)], bankroll
+    for t, pnl in sorted((max(settled_at.get(p["ticker"]) or now, start_t), p["pnl"]) for p in settled):
+        bal += pnl
+        real.append((t, round(bal, 2)))
+    real.append((now, realized))
+    proj = [(parse_time(r["ts"]), r.get("projected", r["equity"])) for r in eq]
+    if not proj or (now - proj[-1][0]).total_seconds() > 60:
+        proj.append((now, projected))
+    return realized, projected, real, proj
+
+
 def _trade_tables(open_: list[dict], settled: list[dict]) -> list[str]:
     out = []
     if open_:
-        out += ["", "**Open trades**", "", "| Market | Bet | Cost | Now | P&L |", "|---|---|---|---|---|"]
+        out += ["", "**Open trades**", "", "| Market | Bet | Cost | Now | Projected |", "|---|---|---|---|---|"]
         for p in sorted(open_, key=lambda x: x.get("ts") or "", reverse=True):
             bet = f"{p['contracts']:g} {p['outcome'].upper()} @ {cents(p['avg_price'])}"
-            pnl = money(p["pnl"], sign=True) if p["pnl"] is not None else "–"
+            pnl = money(p["proj"], sign=True) if p.get("proj") is not None else "–"
             out.append(f"| {short(p['question'])} | {bet} | {money(p['cost'])} | {cents(p['now'])} | {pnl} |")
     if settled:
         out += ["", "**Settled trades**", "", "| Market | Bet | Result | P&L |", "|---|---|---|---|"]
@@ -162,17 +192,21 @@ def build_dashboard(journal: Journal, clients: dict[str, KalshiClient], now: dat
             if d.get("env") == "shadow" and d.get("action", "").startswith("paper_buy")]
     open_, settled = _book(rows, journal, "shadow")
     _mark(open_, clients.get("shadow"))
-    value = bankroll + sum(p["pnl"] for p in settled) + sum(p["pnl"] or 0 for p in open_)
-    if record:   # one point per run, so the chart grows every 4 hours
-        journal.append("equity", {"ts": iso(now), "env": "shadow", "equity": round(value, 2)})
-    history = [(parse_time(r["ts"]), r["equity"]) for r in journal.rows["equity"]
-               if r.get("env") == "shadow" and parse_time(r.get("ts"))]
+    if record:   # one projection point per run; the real line steps when bets settle
+        realized, projected, _, _ = balance_lines(journal, open_, settled, bankroll, now)
+        journal.append("equity", {"ts": iso(now), "env": "shadow", "equity": projected,
+                                  "realized": realized, "projected": projected})
+    realized, projected, real_line, proj_line = balance_lines(journal, open_, settled, bankroll, now)
     if record:
-        write_balance_charts(history, bankroll, journal.dir, tz)
-    out += ["", f"### {money(value)}",
-            f"{money(value - bankroll, sign=True)} since the start ({money(bankroll)} pretend bankroll)"]
+        write_balance_charts(real_line, bankroll, journal.dir, tz, projected=proj_line)
+    out += ["", f"### {money(realized)}",
+            f"{money(realized - bankroll, sign=True)} since the start ({money(bankroll)} pretend bankroll). "
+            "Real balance: settled bets only."]
+    if abs(projected - realized) >= 0.01:
+        out += ["", f"Projected: **{money(projected)}** ({money(projected - realized, sign=True)}) if the open bets "
+                    "whose prices have moved ended at today's prices."]
     if (journal.dir / "balance-light.svg").exists():
-        alt = f"Chart of the simulated balance over time, now {money(value)}"
+        alt = f"Chart of the real balance over time, now {money(realized)}, with the projection dashed"
         out += ["", "<picture>",
                 '  <source media="(prefers-color-scheme: dark)" srcset="data/balance-dark.svg">',
                 f'  <img alt="{alt}" src="data/balance-light.svg" width="100%">',
@@ -181,7 +215,8 @@ def build_dashboard(journal: Journal, clients: dict[str, KalshiClient], now: dat
         out += ["", "No trades yet. They appear when Claude finds a real market it thinks is mispriced "
                     "by enough to beat the fees.", ""]
     else:
-        out += ["", _summary_line(open_, settled) + " · open trades valued at today's prices"]
+        out += ["", _summary_line(open_, settled) + " · projected = what an open trade would be worth "
+                    "if it ended at today's price, shown once its price has moved"]
         out += _trade_tables(open_, settled)
         out.append("")
 

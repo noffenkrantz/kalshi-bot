@@ -94,7 +94,12 @@ def build_report(journal: Journal, clients: dict[str, KalshiClient], now: dateti
 
         eq = [r for r in journal.rows["equity"] if r.get("env") == env]
         if len(eq) >= 2:
-            out.append(f"Account value: ${eq[0]['equity']:,.2f} at first run -> ${eq[-1]['equity']:,.2f} now")
+            last = eq[-1]
+            if "realized" in last:
+                out.append(f"Real balance (settled bets only): ${last['realized']:,.2f}; projected with moved open "
+                           f"bets at today's prices: ${last['projected']:,.2f}")
+            else:
+                out.append(f"Account value: ${eq[0]['equity']:,.2f} at first run -> ${last['equity']:,.2f} now")
         out.append("")
 
     rows = learning.settled_forecasts(journal, "shadow")

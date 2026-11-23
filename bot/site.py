@@ -10,7 +10,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 from . import lessons as lessons_mod
-from .dashboard import _book, _mark
+from .dashboard import _book, _mark, balance_lines
 from .journal import Journal
 from .kalshi import KalshiClient
 from .lags import summarize as lag_summary
@@ -39,7 +39,7 @@ def build_site_data(journal: Journal, clients: dict[str, KalshiClient], now: dat
             if d.get("env") == "shadow" and d.get("action", "").startswith("paper_buy")]
     open_, settled = _book(rows, journal, "shadow")
     _mark(open_, clients.get("shadow"))
-    balance = start + sum(p["pnl"] for p in settled) + sum(p["pnl"] or 0 for p in open_)
+    balance, projected, real_line, proj_line = balance_lines(journal, open_, settled, start, now)
 
     reviews = {p["ticker"]: p for p in journal.rows["postmortems"] if p.get("env") == "shadow"}
     first_dec = {}
@@ -60,13 +60,9 @@ def build_site_data(journal: Journal, clients: dict[str, KalshiClient], now: dat
             r = reviews.get(p["ticker"], {})
             out.update(won=p["won"], pnl=round(p["pnl"], 2), verdict=r.get("verdict"), note=r.get("what_happened"))
         else:
-            out.update(now=p.get("now"), pnl=None if p.get("pnl") is None else round(p["pnl"], 2))
+            out.update(now=p.get("now"), proj=None if p.get("proj") is None else round(p["proj"], 2))
         return out
 
-    history = [[r["ts"], r["equity"]] for r in journal.rows["equity"]
-               if r.get("env") == "shadow" and parse_time(r.get("ts"))]
-    if not history or history[-1][1] != round(balance, 2):
-        history.append([iso(now), round(balance, 2)])
 
     resolved = []
     for e in journal.rows["estimates"]:
@@ -89,8 +85,10 @@ def build_site_data(journal: Journal, clients: dict[str, KalshiClient], now: dat
     today = now.strftime("%Y-%m-%d")
     wins = sum(1 for p in settled if p["won"])
     return {
-        "updated": iso(now), "next_run": iso(next_run(now)), "start": start, "balance": round(balance, 2),
-        "history": history[-400:],
+        "updated": iso(now), "next_run": iso(next_run(now)), "start": start, "balance": balance,
+        "projected": projected,
+        "real_line": [[iso(t), v] for t, v in real_line][-400:],
+        "proj_line": [[iso(t), round(v, 2)] for t, v in proj_line][-400:],
         "open": [bet_row(p) for p in sorted(open_, key=lambda x: x.get("ts") or "", reverse=True)],
         "settled": [bet_row(p) for p in sorted(settled, key=lambda x: x.get("ts") or "", reverse=True)][:40],
         "stats": {"open_n": len(open_), "open_cost": round(sum(p["cost"] for p in open_), 2),

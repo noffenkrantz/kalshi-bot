@@ -1,8 +1,9 @@
 """Balance-over-time chart for the dashboard, drawn as a plain SVG image.
 
-Single series (no legend; the heading names it), 2px line, end dot with a surface ring and
-a direct value label, hairline gridlines, and a labeled reference line at the starting
-balance. Light and dark versions use the same roles stepped for each surface. It's a static
+The real balance (settled bets only) is the solid line, stepping when a bet settles, with an
+end dot, a surface ring and a direct value label. The projection (open bets that have moved,
+at today's prices) is a thin dashed line in a quieter color, labeled at its end. Hairline
+gridlines and a labeled reference line at the starting balance. Light and dark versions use the same roles stepped for each surface. It's a static
 image in the README, so there's no hover layer; the trade tables carry the detail.
 """
 from __future__ import annotations
@@ -13,9 +14,9 @@ from zoneinfo import ZoneInfo
 
 THEMES = {
     "light": {"surface": "#fcfcfb", "text": "#0b0b0b", "text2": "#52514e", "muted": "#898781",
-              "grid": "#e1e0d9", "baseline": "#c3c2b7", "series": "#2a78d6"},
+              "grid": "#e1e0d9", "baseline": "#c3c2b7", "series": "#2a78d6", "proj": "#7c7b76"},
     "dark": {"surface": "#1a1a19", "text": "#f0efec", "text2": "#c3c2b7", "muted": "#898781",
-             "grid": "#2c2c2a", "baseline": "#383835", "series": "#3987e5"},
+             "grid": "#2c2c2a", "baseline": "#383835", "series": "#3987e5", "proj": "#a3a29c"},
 }
 FONT = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
 W, H = 720, 280
@@ -54,16 +55,20 @@ def _x_ticks(t0: datetime, t1: datetime, tz: ZoneInfo) -> list[tuple[datetime, s
 
 
 def balance_svg(points: list[tuple[datetime, float]], start: float, theme: str = "light",
-                tz: ZoneInfo | None = None) -> str:
+                tz: ZoneInfo | None = None, projected: list[tuple[datetime, float]] | None = None) -> str:
     c = THEMES[theme]
     tz = tz or ZoneInfo("America/New_York")
     points = sorted(points)
     if not points:
         points = [(datetime.now(tz), start)]
-    t0, t1 = points[0][0], points[-1][0]
+    proj = sorted(projected or [])
+    show_proj = any(abs(v - points[-1][1]) >= 0.01 for _, v in proj[-1:]) or any(
+        abs(v - start) >= 0.01 for _, v in proj)
+    t0 = min([points[0][0]] + [t for t, _ in proj])
+    t1 = max([points[-1][0]] + [t for t, _ in proj])
     if t1 <= t0:                          # a single point sits at the right edge, by its label
         t0 = t1 - timedelta(hours=4)
-    values = [v for _, v in points] + [start]
+    values = [v for _, v in points] + [start] + ([v for _, v in proj] if show_proj else [])
     lo, hi = min(values), max(values)
     if hi - lo < 400:                     # bets are $100, so show at least a $400 window
         mid = (hi + lo) / 2
@@ -108,13 +113,27 @@ def balance_svg(points: list[tuple[datetime, float]], start: float, theme: str =
     label_y = ys - 6 if y(start) - TOP > 18 else ys + 15
     parts.append(f'<text x="{LEFT + 6}" y="{label_y}" font-size="11" fill="{c["text2"]}">'
                  f'Start {_money(start)}</text>')
-    # the line
+    # projection: dashed, quieter, labeled at its end
+    if show_proj and len(proj) > 1:
+        d = " ".join(f'{"M" if i == 0 else "L"}{x(t):.1f},{y(val):.1f}' for i, (t, val) in enumerate(proj))
+        parts.append(f'<path d="{d}" fill="none" stroke="{c["proj"]}" stroke-width="1.5" stroke-dasharray="5 4" '
+                     f'stroke-linejoin="round"/>')
+    # the real line, stepping when a bet settles
     if len(points) > 1:
-        d = " ".join(f'{"M" if i == 0 else "L"}{x(t):.1f},{y(val):.1f}' for i, (t, val) in enumerate(points))
-        parts.append(f'<path d="{d}" fill="none" stroke="{c["series"]}" stroke-width="2" '
+        d = f"M{x(points[0][0]):.1f},{y(points[0][1]):.1f}" + "".join(
+            f" H{x(t):.1f} V{y(val):.1f}" for t, val in points[1:])
+        parts.append(f'<path d="{d}" fill="none" stroke="{c["series"]}" stroke-width="2.5" '
                      f'stroke-linejoin="round" stroke-linecap="round"/>')
     # end dot with surface ring + direct label
     ex, ey = x(points[-1][0]), y(now_v)
+    if show_proj:
+        pv = proj[-1][1]
+        px, py = x(proj[-1][0]), y(pv)
+        # the real line's labels take ey-10..ey+21; keep the projection's label clear of them
+        label_y = py + 4 if abs(py - ey) >= 34 else (ey + 36 if py >= ey else ey - 16)
+        parts.append(f'<circle cx="{px:.1f}" cy="{py:.1f}" r="3.5" fill="{c["surface"]}" stroke="{c["proj"]}" stroke-width="1.5"/>')
+        parts.append(f'<text x="{px + 10:.1f}" y="{label_y:.1f}" font-size="11" fill="{c["text2"]}" '
+                     f'style="font-variant-numeric: tabular-nums">Projected {_money(pv)}</text>')
     parts.append(f'<circle cx="{ex:.1f}" cy="{ey:.1f}" r="5" fill="{c["series"]}" stroke="{c["surface"]}" stroke-width="2"/>')
     parts.append(f'<text x="{ex + 10:.1f}" y="{ey + 1:.1f}" font-size="14" font-weight="600" fill="{c["text"]}" '
                  f'style="font-variant-numeric: tabular-nums">{_money(now_v)}</text>')
@@ -127,6 +146,7 @@ def balance_svg(points: list[tuple[datetime, float]], start: float, theme: str =
     return "\n".join(parts)
 
 
-def write_balance_charts(points: list[tuple[datetime, float]], start: float, out_dir, tz: ZoneInfo) -> None:
+def write_balance_charts(points: list[tuple[datetime, float]], start: float, out_dir, tz: ZoneInfo,
+                         projected: list[tuple[datetime, float]] | None = None) -> None:
     for theme in ("light", "dark"):
-        (out_dir / f"balance-{theme}.svg").write_text(balance_svg(points, start, theme, tz))
+        (out_dir / f"balance-{theme}.svg").write_text(balance_svg(points, start, theme, tz, projected))
