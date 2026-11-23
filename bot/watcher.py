@@ -55,7 +55,7 @@ DEFAULTS = {
     "push_every_minutes": 10,
     "pull_every_minutes": 10,
     "heartbeat_minutes": 60,
-    "station_overrides": {"DJT": "KPBI"},  # CLI code -> weather station, where it isn't "K" + code
+    "station_overrides": {},               # CLI code -> weather station, if one isn't "K" + code
 }
 FOLLOWUP_MINUTES = (5, 30, 60)
 _MONTHS = {m: i for i, m in enumerate(

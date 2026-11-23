@@ -199,5 +199,6 @@ def test_not_that_citys_day_yet_and_unknown_station(tmp_path):
 def test_station_override(tmp_path):
     m = rain_market(city="WPB", cli="DJT")
     w, _ = make_watcher(tmp_path, [m], [metar(NOW - timedelta(minutes=9), "0010")])
+    w.w["station_overrides"] = {"DJT": "KPBI"}
     w.tick()
     assert w.signals[m["ticker"]]["station"] == "KPBI"
