@@ -1,4 +1,4 @@
-"""Command line: python -m bot check | run --mode shadow|demo|live | report | resume --mode ..."""
+"""Command line: python -m bot check | run --mode shadow|demo|live | report | watch | resume --mode ..."""
 from __future__ import annotations
 
 import argparse
@@ -141,6 +141,16 @@ def cmd_report(cfg: dict) -> int:
     return 0
 
 
+def cmd_watch(cfg: dict, args) -> int:
+    from .nws import NWSClient
+    from .watcher import inspect
+    if args.inspect:
+        inspect(KalshiClient("prod"), NWSClient())
+        return 0
+    print("Nothing to do yet: use --inspect")
+    return 0
+
+
 def cmd_resume(mode: str) -> int:
     journal = Journal(DATA_DIR)
     journal.set_state(f"halted:{mode}", None)
@@ -158,6 +168,8 @@ def main(argv=None) -> int:
     sub.add_parser("report", help="show how Claude's forecasts and trades are doing")
     sub.add_parser("prepare", help="subscription mode: queue markets for Claude Code to research")
     sub.add_parser("ingest", help="subscription mode: record Claude Code's forecasts")
+    w = sub.add_parser("watch", help="data watcher: official weather readings vs live prices")
+    w.add_argument("--inspect", action="store_true", help="print what the live data looks like, change nothing")
     res = sub.add_parser("resume", help="clear a safety halt")
     res.add_argument("--mode", choices=["shadow", "demo", "live"], required=True)
     args = ap.parse_args(argv)
@@ -173,6 +185,8 @@ def main(argv=None) -> int:
         return cmd_prepare(cfg)
     if args.cmd == "ingest":
         return cmd_ingest()
+    if args.cmd == "watch":
+        return cmd_watch(cfg, args)
     return cmd_resume(args.mode)
 
 

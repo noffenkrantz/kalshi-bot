@@ -150,6 +150,9 @@ class KalshiClient:
     def get_event(self, event_ticker: str) -> dict:
         return self.request("GET", f"/events/{event_ticker}").get("event", {})
 
+    def get_series(self, series_ticker: str) -> dict:
+        return self.request("GET", f"/series/{series_ticker}").get("series", {})
+
     # ---- portfolio (needs a key) ----------------------------------------------
     def get_balance(self) -> dict:
         self.require_auth()
