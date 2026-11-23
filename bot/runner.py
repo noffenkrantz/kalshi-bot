@@ -130,20 +130,26 @@ def real_account(bot: Bot, risk: dict, today: str) -> Account | None:
                    held_events=held_events)
 
 
-def paper_account(bot: Bot, today: str) -> Account:
-    open_rows = bot.journal.paper_positions()
+def paper_account_from(journal: Journal, cfg: dict, today: str) -> Account:
+    """The simulated account, shared by research bets and the data watcher's bets."""
+    open_rows = journal.paper_positions()
     exposure = sum(r.get("est_cost", 0.0) for r in open_rows)
-    spent = sum(r.get("est_cost", 0.0) for r in bot.journal.rows["decisions"]
+    spent = sum(r.get("est_cost", 0.0) for r in journal.rows["decisions"]
                 if r.get("env") == "shadow" and r.get("action", "").startswith("paper_buy")
                 and r.get("ts", "").startswith(today))
-    bankroll = float(bot.cfg.get("shadow", {}).get("paper_bankroll", 1000)) - exposure
-    bot.summary.add(f"Paper account: ${max(bankroll, 0):,.2f} free, ${exposure:,.2f} in "
-                    f"{len(open_rows)} open paper positions")
-    held_events = {r.get("event_ticker") or (bot.journal.latest_estimate(r["ticker"]) or {}).get("event_ticker")
+    bankroll = float(cfg.get("shadow", {}).get("paper_bankroll", 1000)) - exposure
+    held_events = {r.get("event_ticker") or (journal.latest_estimate(r["ticker"]) or {}).get("event_ticker")
                    for r in open_rows}
     return Account(bankroll=max(bankroll, 0.0), exposure=exposure, open_positions=len(open_rows),
                    spent_today=spent, held_tickers={r["ticker"] for r in open_rows},
                    held_events={e for e in held_events if e})
+
+
+def paper_account(bot: Bot, today: str) -> Account:
+    acct = paper_account_from(bot.journal, bot.cfg, today)
+    bot.summary.add(f"Paper account: ${acct.bankroll:,.2f} free, ${acct.exposure:,.2f} in "
+                    f"{acct.open_positions} open paper positions")
+    return acct
 
 
 # ---- market scan ----------------------------------------------------------------

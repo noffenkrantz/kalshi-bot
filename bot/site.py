@@ -31,7 +31,8 @@ def next_run(now: datetime) -> datetime:
 def build_site_data(journal: Journal, clients: dict[str, KalshiClient], now: datetime, cfg: dict) -> dict:
     start = float(cfg.get("shadow", {}).get("paper_bankroll", 10000))
     rows = [{"ticker": d["ticker"], "outcome": d["outcome"], "contracts": d.get("count") or 0,
-             "cost": d.get("est_cost") or 0.0, "price": d.get("outcome_price"), "ts": d.get("ts")}
+             "cost": d.get("est_cost") or 0.0, "price": d.get("outcome_price"), "ts": d.get("ts"),
+             "question": d.get("question")}
             for d in journal.rows["decisions"]
             if d.get("env") == "shadow" and d.get("action", "").startswith("paper_buy")]
     open_, settled = _book(rows, journal, "shadow")
@@ -50,7 +51,9 @@ def build_site_data(journal: Journal, clients: dict[str, KalshiClient], now: dat
         out = {"q": p["question"], "side": p["outcome"], "contracts": p["contracts"], "price": p["avg_price"],
                "cost": round(p["cost"], 2), "claude": d.get("prob_yes", p.get("claude")),
                "market": d.get("market_mid"), "placed": p.get("ts"), "closes": d.get("close_time") or est.get("close_time"),
-               "topic": topic_for(est or d, journal)}
+               "topic": topic_for(est or d, journal), "src": d.get("source") or "research"}
+        if out["src"] == "watcher":
+            out["why"] = d.get("reason")
         if "won" in p:
             r = reviews.get(p["ticker"], {})
             out.update(won=p["won"], pnl=round(p["pnl"], 2), verdict=r.get("verdict"), note=r.get("what_happened"))

@@ -48,6 +48,8 @@ def pending_reviews(journal, env: str = "shadow") -> list[dict]:
     for d in journal.rows["decisions"]:
         if d.get("env") != env or not d.get("action", "").startswith("paper_buy"):
             continue
+        if d.get("source") == "watcher":   # data-watcher bets have no Claude forecast to review
+            continue
         ticker = d["ticker"]
         if ticker in reviewed or ticker in seen:
             continue

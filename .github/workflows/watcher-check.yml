@@ -1,5 +1,5 @@
-# Manual test of the data watcher against live Kalshi and National Weather Service data.
-# Prints what it sees to the log. Changes nothing and places no trades.
+# Manual test of the rain watcher against live Kalshi and National Weather Service data.
+# Prints what it sees to the log. Saves nothing, pushes nothing, places no bets.
 name: watcher-check
 
 on:
@@ -18,4 +18,16 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -r requirements.txt
-      - run: python -m bot watch --inspect
+      - name: What the live data looks like
+        run: python -m bot watch --inspect
+      - name: One pass of the watcher (dry run)
+        run: python -m bot watch --once --dry-run
+
+  container:
+    # Builds the same container the always-on server runs, and does one dry pass inside it.
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build -t kalshi-watcher .
+      - run: docker run --rm kalshi-watcher python -m bot watch --once --dry-run

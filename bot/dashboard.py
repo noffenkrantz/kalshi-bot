@@ -60,14 +60,14 @@ def _book(rows: list[dict], journal: Journal, env: str) -> tuple[list[dict], lis
     for r in rows:
         key = (r["ticker"], r["outcome"])
         p = book.setdefault(key, {"ticker": r["ticker"], "outcome": r["outcome"], "contracts": 0.0,
-                                  "cost": 0.0, "paid": 0.0, "ts": r.get("ts")})
+                                  "cost": 0.0, "paid": 0.0, "ts": r.get("ts"), "row_question": r.get("question")})
         p["contracts"] += r["contracts"]
         p["cost"] += r["cost"]                       # includes fees
         p["paid"] += r["contracts"] * (r.get("price") or 0.0)  # price only
     open_, settled = [], []
     for p in book.values():
         est = journal.latest_estimate(p["ticker"]) or {}
-        p["question"] = est.get("question") or p["ticker"]
+        p["question"] = est.get("question") or p.get("row_question") or p["ticker"]
         p["claude"] = est.get("prob_yes")
         p["avg_price"] = p["paid"] / p["contracts"] if p["contracts"] else 0.0
         result = journal.outcome(env, p["ticker"])
@@ -156,7 +156,8 @@ def build_dashboard(journal: Journal, clients: dict[str, KalshiClient], now: dat
     out += ["", "*Real Kalshi markets at real prices, with Kalshi's fees, settled on what actually happened. "
                 "The money is pretend: nothing is ever bought.*"]
     rows = [{"ticker": d["ticker"], "outcome": d["outcome"], "contracts": d.get("count") or 0,
-             "cost": d.get("est_cost") or 0.0, "price": d.get("outcome_price"), "ts": d.get("ts")}
+             "cost": d.get("est_cost") or 0.0, "price": d.get("outcome_price"), "ts": d.get("ts"),
+             "question": d.get("question")}
             for d in journal.rows["decisions"]
             if d.get("env") == "shadow" and d.get("action", "").startswith("paper_buy")]
     open_, settled = _book(rows, journal, "shadow")

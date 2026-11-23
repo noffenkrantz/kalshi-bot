@@ -11,7 +11,12 @@ from pathlib import Path
 
 from .util import iso, parse_time, utcnow
 
-TABLES = ("estimates", "decisions", "orders", "claude_costs", "outcomes", "equity", "postmortems")
+TABLES = ("estimates", "decisions", "orders", "claude_costs", "outcomes", "equity", "postmortems",
+          "watch_decisions", "watch_signals")
+# The data watcher (bot/watcher.py) runs on a separate server and writes only its own
+# watch_* files, so its git pushes never collide with the scheduled bot's. Its pretend bets
+# (watch_decisions) are merged into rows["decisions"] here, so the shared simulated account,
+# the results page and settlement all include them.
 
 
 class Journal:
@@ -19,6 +24,8 @@ class Journal:
         self.dir = Path(data_dir)
         self.dir.mkdir(parents=True, exist_ok=True)
         self.rows = {name: self._load(name) for name in TABLES}
+        self.rows["decisions"] = sorted(self.rows["decisions"] + self.rows["watch_decisions"],
+                                        key=lambda r: r.get("ts") or "")
         state_path = self.dir / "state.json"
         self.state = json.loads(state_path.read_text()) if state_path.exists() else {}
 
@@ -39,6 +46,8 @@ class Journal:
     def append(self, name: str, row: dict) -> dict:
         row = {"ts": iso(utcnow()), **row}
         self.rows[name].append(row)
+        if name == "watch_decisions":
+            self.rows["decisions"].append(row)
         with open(self.dir / f"{name}.jsonl", "a") as f:
             f.write(json.dumps(row, separators=(",", ":")) + "\n")
         return row

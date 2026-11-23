@@ -1,0 +1,8 @@
+.git
+data
+site
+work
+secrets
+tests
+.env
+**/__pycache__

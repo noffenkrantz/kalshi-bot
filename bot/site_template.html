@@ -190,14 +190,14 @@ $('figs').innerHTML = figs.map(([v, l, c]) => `<div><div class="fv ${c || ''}">$
 // ---- tables
 const bet = b => `${esc(b.contracts)} ${b.side.toUpperCase()} @ ${cents(b.price)}`;
 if (D.open.length) {
-  $('openbets').innerHTML = `<div class="scroll"><table class="stack"><thead><tr><th>Market</th><th>Bet</th><th class="n">Cost</th><th class="n">Now</th><th class="n">P&amp;L</th><th class="n">Claude / market</th><th class="n">Closes</th></tr></thead><tbody>` +
-    D.open.map(b => `<tr><td class="q">${esc(b.q)}<span class="meta">${esc(b.topic)}</span></td><td class="n">${bet(b)}</td><td class="n">${money(b.cost)}</td><td class="n">${cents(b.now)}</td><td class="n ${cls(b.pnl)}">${b.pnl == null ? '–' : money(b.pnl, true)}</td><td class="n">${pct(b.claude)} / ${pct(b.market)}</td><td class="n">${day(b.closes)}</td></tr>`).join('') + `</tbody></table></div>`;
+  $('openbets').innerHTML = `<div class="scroll"><table class="stack"><thead><tr><th>Market</th><th>Bet</th><th class="n">Cost</th><th class="n">Now</th><th class="n">P&amp;L</th><th class="n">Forecast / market</th><th class="n">Closes</th></tr></thead><tbody>` +
+    D.open.map(b => `<tr><td class="q">${esc(b.q)}<span class="meta">${esc(b.topic)}${b.src === 'watcher' ? ' · Rain watcher: rain already reported' : ''}</span></td><td class="n">${bet(b)}</td><td class="n">${money(b.cost)}</td><td class="n">${cents(b.now)}</td><td class="n ${cls(b.pnl)}">${b.pnl == null ? '–' : money(b.pnl, true)}</td><td class="n">${b.src === 'watcher' ? 'Watcher' : 'Claude'} ${pct(b.claude)} / ${pct(b.market)}</td><td class="n">${day(b.closes)}</td></tr>`).join('') + `</tbody></table></div>`;
 } else $('openbets').innerHTML = `<p class="empty">None right now. A bet is placed when Claude is ${esc(D.rules.conf)} or high confidence and at least ${Math.round(D.rules.edge * 100)}¢ per contract better than the price after fees.</p>`;
 
 const verdict = {good_call: 'Good call', bad_luck: 'Bad luck', process_mistake: 'Process mistake', unclear: 'Unclear'};
 if (D.settled.length) {
   $('settled').innerHTML = `<div class="scroll"><table class="stack"><thead><tr><th>Market</th><th>Bet</th><th>Result</th><th class="n">P&amp;L</th><th>Review</th></tr></thead><tbody>` +
-    D.settled.map(b => `<tr><td class="q">${esc(b.q)}<span class="meta">${esc(b.topic)} · Claude ${pct(b.claude)} vs market ${pct(b.market)}</span></td><td class="n">${bet(b)}</td><td><span class="tag ${b.won ? 'won' : 'lost'}">${b.won ? 'Won' : 'Lost'}</span></td><td class="n ${cls(b.pnl)}">${money(b.pnl, true)}</td><td class="w">${b.verdict ? `<b>${esc(verdict[b.verdict] || b.verdict)}.</b> ${esc(b.note)}` : '<span class="meta">Review pending</span>'}</td></tr>`).join('') + `</tbody></table></div>`;
+    D.settled.map(b => `<tr><td class="q">${esc(b.q)}<span class="meta">${esc(b.topic)} · ${b.src === 'watcher' ? 'Rain watcher' : 'Claude'} ${pct(b.claude)} vs market ${pct(b.market)}</span></td><td class="n">${bet(b)}</td><td><span class="tag ${b.won ? 'won' : 'lost'}">${b.won ? 'Won' : 'Lost'}</span></td><td class="n ${cls(b.pnl)}">${money(b.pnl, true)}</td><td class="w">${b.verdict ? `<b>${esc(verdict[b.verdict] || b.verdict)}.</b> ${esc(b.note)}` : b.src === 'watcher' ? `<span class="meta">${esc(b.why)}</span>` : '<span class="meta">Review pending</span>'}</td></tr>`).join('') + `</tbody></table></div>`;
 } else $('settled').innerHTML = `<p class="empty">Nothing settled yet. Results appear after Kalshi settles a market, usually within a day of the event.</p>`;
 
 // ---- calls: dumbbells on a 0–100% track

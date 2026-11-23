@@ -143,12 +143,11 @@ def cmd_report(cfg: dict) -> int:
 
 def cmd_watch(cfg: dict, args) -> int:
     from .nws import NWSClient
-    from .watcher import inspect
+    from .watcher import inspect, serve
     if args.inspect:
         inspect(KalshiClient("prod"), NWSClient())
         return 0
-    print("Nothing to do yet: use --inspect")
-    return 0
+    return serve(once=args.once, dry_run=args.dry_run)
 
 
 def cmd_resume(mode: str) -> int:
@@ -170,6 +169,8 @@ def main(argv=None) -> int:
     sub.add_parser("ingest", help="subscription mode: record Claude Code's forecasts")
     w = sub.add_parser("watch", help="data watcher: official weather readings vs live prices")
     w.add_argument("--inspect", action="store_true", help="print what the live data looks like, change nothing")
+    w.add_argument("--once", action="store_true", help="one pass, then stop")
+    w.add_argument("--dry-run", action="store_true", help="print signals and bets but save and push nothing")
     res = sub.add_parser("resume", help="clear a safety halt")
     res.add_argument("--mode", choices=["shadow", "demo", "live"], required=True)
     args = ap.parse_args(argv)
