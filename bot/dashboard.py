@@ -142,7 +142,7 @@ def build_dashboard(journal: Journal, clients: dict[str, KalshiClient], now: dat
     if repo and repo.startswith("https://github.com/"):
         owner, name = os.environ["GITHUB_REPOSITORY"].split("/", 1)
         links.append(f"[Results site](https://{owner.lower()}.github.io/{name}/)")   # GitHub Pages, see pages.yml
-    links += ["[Full report](REPORT.md)", "[Last run log](data/last_run.log)", "[Setup & settings](SETUP.md)"]
+    links += ["[Full report](REPORT.md)", "[Where prices lag](LAGS.md)", "[Last run log](data/last_run.log)", "[Setup & settings](SETUP.md)"]
 
     out = ["# Kalshi bot", "",
            f"**Updated {when(now, tz)}** · runs every 4 hours · " + " · ".join(links), ""]

@@ -141,6 +141,12 @@ table{font-size:15px}
   </div>
 </div></section>
 
+<section class="band" aria-labelledby="lagh"><div class="wrap">
+  <h2 id="lagh">Where prices lag</h2>
+  <p class="note" id="lagnote">Scans settled markets in every category. After a sudden price jump, does the price keep drifting the same way? Positive numbers mean the market was slow there.</p>
+  <div id="lags"></div>
+</div></section>
+
 <footer class="band foot"><div class="wrap">
   <p id="rules"></p>
   <p>Simulated trades only, no real money. Not financial advice.</p>
@@ -220,6 +226,21 @@ const R = D.reviews, nrev = Object.values(R).reduce((a, b) => a + b, 0);
 if (nrev) $('revline').textContent = `${nrev} settled bet${nrev === 1 ? '' : 's'} reviewed: ${R.good_call || 0} good call${(R.good_call || 0) === 1 ? '' : 's'}, ${R.bad_luck || 0} bad luck, ${R.process_mistake || 0} process mistake${(R.process_mistake || 0) === 1 ? '' : 's'}. Only process mistakes become lessons.`;
 $('lessons').innerHTML = D.lessons.length ? D.lessons.slice(0, 8).map(l => `<li>${esc(l.text)}<span class="meta">${esc(l.topic)}${l.count > 1 ? ` · seen ${l.count} times` : ''}</span></li>`).join('')
   : `<li class="empty" style="border:0">None yet. A lesson is added only when a review finds a real process mistake, like a misread rule or a stale source.</li>`;
+// ---- lag scanner
+const L = D.lags || {cats: [], top: []};
+const sc = v => v == null ? '–' : (v >= 0 ? '+' : '−') + Math.abs(v * 100).toFixed(1) + '¢';
+const read = {lags: 'Lags', drifts: 'Drifts', overreacts: 'Overreacts', 'keeps up': 'Keeps up', early: 'Too early'};
+const rtag = v => `<span class="tag ${v === 'lags' || v === 'drifts' ? 'won' : v === 'overreacts' ? 'lost' : ''}">${esc(read[v] || v)}</span>`;
+if (L.cats.length) {
+  $('lags').innerHTML = `<p class="fl" style="margin-bottom:6px">${L.markets.toLocaleString('en-US')} markets, ${L.jumps.toLocaleString('en-US')} price jumps so far. <b>Drift</b>: how much further the price moved the same way 30 minutes after a jump. <b>Follow</b>: profit per $1 bet from following the jump a minute later at the real price, after fees.</p>` +
+    `<div class="scroll"><table class="stack"><thead><tr><th>Category</th><th class="n">Jumps</th><th class="n">Drift 30 min</th><th class="n">Follow</th><th>Read</th></tr></thead><tbody>` +
+    L.cats.map(c => `<tr><td class="q">${esc(c.name)}<span class="meta">${c.markets} markets</span></td><td class="n">${c.jumps}</td><td class="n ${cls(c.d30)}">${sc(c.d30)}</td><td class="n ${cls(c.follow)}">${sc(c.follow)}</td><td>${rtag(c.verdict)}</td></tr>`).join('') +
+    `</tbody></table></div>` +
+    (L.top.length ? `<p class="fl" style="margin:18px 0 6px">Market types where following a jump paid best</p><ul class="lessons">` +
+      L.top.map(s => `<li><b>${esc(s.name)}</b> ${rtag(s.verdict)}<span class="meta">${esc(s.category)} · ${s.jumps} jumps · drift ${sc(s.d30)} · follow ${sc(s.follow)}</span></li>`).join('') + `</ul>` : '') +
+    (L.url ? `<p class="fl" style="margin-top:12px"><a href="${esc(L.url)}" style="color:var(--accent)">Full lag report</a></p>` : '');
+} else $('lags').innerHTML = `<p class="empty">The first scan runs with the next bot run.</p>`;
+
 $('rules').textContent = `Rules: $${D.rules.bet} per bet, only at ${D.rules.conf} or high confidence with an edge of ${Math.round(D.rules.edge * 100)}¢+ per contract after fees, one bet per event. Runs every 4 hours; up to $${D.rules.budget} a day of Claude research.`;
 
 // ---- balance chart

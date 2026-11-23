@@ -4,6 +4,7 @@ Rebuilt after every run by `python -m bot report`."""
 from __future__ import annotations
 
 import json
+import os
 from collections import Counter
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -12,6 +13,7 @@ from . import lessons as lessons_mod
 from .dashboard import _book, _mark
 from .journal import Journal
 from .kalshi import KalshiClient
+from .lags import summarize as lag_summary
 from .learning import focus_label, topic_for, topic_stats, topic_weights
 from .util import iso, parse_time
 
@@ -107,6 +109,23 @@ def build_site_data(journal: Journal, clients: dict[str, KalshiClient], now: dat
         "rules": {"bet": cfg["strategy"].get("bet_size_dollars", 100), "conf": cfg["strategy"].get("min_confidence"),
                   "edge": cfg["strategy"].get("min_edge"), "budget": cfg["claude"].get("daily_budget_usd")},
         "spend_today": round(journal.claude_spend_on(today, "shadow"), 2),
+        "lags": lag_data(journal),
+    }
+
+
+def lag_data(journal: Journal) -> dict:
+    """Compact lag-scanner summary for the page (full tables are in LAGS.md)."""
+    s = lag_summary(journal.rows["lag_scan"], top=5)
+    repo = os.environ.get("GITHUB_REPOSITORY")
+    def m(x):
+        return None if x is None else round(x, 4)
+    return {
+        "markets": s["markets"], "jumps": s["jumps"],
+        "url": f"https://github.com/{repo}/blob/main/LAGS.md" if repo else None,
+        "cats": [{"name": c["name"], "markets": c["markets"], "jumps": c["jumps"], "d30": m(c["d30"]["mean"]),
+                  "follow": m(c["follow"]["mean"]), "verdict": c["verdict"]} for c in s["categories"]],
+        "top": [{"name": x["name"], "category": x["category"], "jumps": x["jumps"], "d30": m(x["d30"]["mean"]),
+                 "follow": m(x["follow"]["mean"]), "verdict": x["verdict"]} for x in s["series_top"]],
     }
 
 

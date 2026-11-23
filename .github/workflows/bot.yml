@@ -125,6 +125,14 @@ jobs:
           printf "\n## run --mode shadow\n" >> data/last_run.log
           python -m bot run --mode shadow 2>&1 | tee -a data/last_run.log
 
+      # ---- lag scanner: where do prices keep drifting after news? (no Claude, read-only) ----
+      - name: Lag scan
+        continue-on-error: true
+        timeout-minutes: 15
+        run: |
+          printf "\n## lag scan\n" >> data/last_run.log
+          python -m bot lags --scan 2>&1 | tee -a data/last_run.log
+
       - name: Report
         if: ${{ env.HAS_SUBSCRIPTION == 'true' || env.HAS_API_KEY == 'true' }}
         continue-on-error: true
@@ -137,7 +145,7 @@ jobs:
         run: |
           git config user.name "kalshi-bot"
           git config user.email "kalshi-bot@users.noreply.github.com"
-          git add data/ REPORT.md README.md site/ 2>/dev/null || git add data/
+          git add data/ REPORT.md README.md LAGS.md site/ 2>/dev/null || git add data/
           git commit -m "journal: run $(date -u +%Y-%m-%dT%H:%MZ)" || echo "nothing new"
           git pull --rebase --autostash || true
           git push || echo "push failed; will retry next run"

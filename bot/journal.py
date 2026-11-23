@@ -12,7 +12,7 @@ from pathlib import Path
 from .util import iso, parse_time, utcnow
 
 TABLES = ("estimates", "decisions", "orders", "claude_costs", "outcomes", "equity", "postmortems",
-          "watch_decisions", "watch_signals")
+          "watch_decisions", "watch_signals", "lag_scan")
 # The data watcher (bot/watcher.py) runs on a separate server and writes only its own
 # watch_* files, so its git pushes never collide with the scheduled bot's. Its pretend bets
 # (watch_decisions) are merged into rows["decisions"] here, so the shared simulated account,

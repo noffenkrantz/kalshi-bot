@@ -138,6 +138,8 @@ def cmd_report(cfg: dict) -> int:
     (ROOT / "README.md").write_text(build_dashboard(journal, clients, utcnow(), cfg, record=True))
     from .site import write_site
     write_site(journal, clients, utcnow(), cfg, ROOT / "site" / "index.html")
+    from .lags import report_markdown, summarize
+    (ROOT / "LAGS.md").write_text(report_markdown(summarize(journal.rows["lag_scan"])))
     return 0
 
 
@@ -151,11 +153,18 @@ def cmd_watch(cfg: dict, args) -> int:
 
 
 def cmd_lags(cfg: dict, args) -> int:
-    from .lags import probe
+    from .lags import probe, report_markdown, scan, summarize
     if args.probe:
         probe(KalshiClient("prod"))
         return 0
-    print("Nothing to do yet: use --probe")
+    journal = Journal(DATA_DIR)
+    if args.scan:
+        n = scan(KalshiClient("prod"), journal, hours=args.hours, per_category=args.per_category)
+        write_step_summary(f"### Lag scan\n\n- {n} settled markets scanned\n")
+    text = report_markdown(summarize(journal.rows["lag_scan"]))
+    (ROOT / "LAGS.md").write_text(text)
+    if not args.scan:
+        print(text)
     return 0
 
 
@@ -182,6 +191,9 @@ def main(argv=None) -> int:
     w.add_argument("--dry-run", action="store_true", help="print signals and bets but save and push nothing")
     lg = sub.add_parser("lags", help="lag scanner: where prices respond slowly to news")
     lg.add_argument("--probe", action="store_true", help="print what Kalshi's price history looks like")
+    lg.add_argument("--scan", action="store_true", help="scan markets settled since the last scan")
+    lg.add_argument("--hours", type=float, default=None, help="scan this many hours back instead")
+    lg.add_argument("--per-category", type=int, default=20, help="markets per category per scan")
     res = sub.add_parser("resume", help="clear a safety halt")
     res.add_argument("--mode", choices=["shadow", "demo", "live"], required=True)
     args = ap.parse_args(argv)
