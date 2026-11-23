@@ -1,0 +1,17 @@
+# Render Blueprint for the always-on rain watcher (bot/watcher.py). See SETUP.md > Rain watcher.
+# Render dashboard: New > Blueprint > pick this repo. It asks for GITHUB_TOKEN once.
+# Uses Render's default worker size (the smallest paid instance); background workers have no free tier.
+services:
+  - type: worker
+    name: kalshi-rain-watcher
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    maxShutdownDelaySeconds: 60    # time to save and push results when Render restarts it
+    buildFilter:
+      paths:                       # redeploy only for code changes, not the bot's result commits
+        - bot/**
+        - Dockerfile
+        - requirements.txt
+    envVars:
+      - key: GITHUB_TOKEN          # fine-grained token: Contents read/write on this repo only
+        sync: false

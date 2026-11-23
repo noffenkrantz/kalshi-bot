@@ -39,23 +39,24 @@ Kalshi's daily "Will it rain in <city>?" markets resolve YES if the city's weath
 - **Pretend bets:** if YES is still cheap enough to leave an edge (settings under `[watcher]` in `config.toml`), it places a pretend $100 bet in the same simulated account. These show on the results page as "Rain watcher" after the next bot run.
 - **No Claude, no tokens, no real money.** `data/watch_status.json` shows when it last checked in (about hourly).
 
-It needs a computer that's always on, so it runs on a small hosting service rather than GitHub. These steps use Railway; they work from a phone browser and take about 10 minutes.
+It needs a computer that's always on, so it runs on Render rather than GitHub. The repo's `render.yaml` sets it up; the steps work from a phone browser and take about 10 minutes.
 
-**Cost:** Railway's Hobby plan is $5 a month, which includes $5 of usage; the watcher should need roughly half of that. New accounts get a one-time $5 trial credit that lasts 30 days.
+**Cost:** a Render background worker on the smallest paid instance is $7 a month (billed by the second), on top of your Render plan. Workers have no free tier.
 
 1. **Make a GitHub token** so the watcher can save its results to this repo. On GitHub: your profile picture → **Settings** → **Developer settings** → **Personal access tokens** → **Fine-grained tokens** → **Generate new token**.
    - Name: `kalshi-watcher`. Pick an expiration (you'll make a new token when it runs out).
    - **Repository access:** Only select repositories → `kalshi-bot`.
    - **Permissions → Repository permissions → Contents:** Read and write.
    - Tap **Generate token** and copy it.
-2. **Create the server:** go to railway.com → **Login** with GitHub → **New Project** → **Deploy from GitHub repo** → `kalshi-bot`. If asked, let Railway's GitHub app see the repo. Railway finds the `Dockerfile` and starts building.
-3. **Add the token:** open the new service → **Variables** → **New Variable**: name `GITHUB_TOKEN`, value: the token you copied. Railway restarts the service with it.
-4. **Keep data commits from restarting it:** service → **Settings** → **Watch Paths**: add `/bot/**` and `/Dockerfile`. Then only code changes trigger a redeploy, not the bot's result commits.
-5. **Check it's running:** service → **Deployments** → **View logs**. You should see `cloned noffenkrantz/kalshi-bot` and `watcher started`. Within an hour, `data/watch_status.json` appears in the repo.
+2. **Create the worker:** in the Render dashboard, **New** → **Blueprint** → connect GitHub if asked and pick `kalshi-bot`, branch `main`. Render reads `render.yaml` and shows one service, `kalshi-rain-watcher`.
+3. **Paste the token** when Render asks for `GITHUB_TOKEN`, then tap **Deploy Blueprint**.
+4. **Check it's running:** open `kalshi-rain-watcher` → **Logs**. You should see `cloned noffenkrantz/kalshi-bot` and `watcher started`. Within an hour, `data/watch_status.json` appears in the repo.
+
+Only code changes (`bot/`, `Dockerfile`, `requirements.txt`) redeploy it; the bot's result commits don't. Settings changes in `config.toml` don't need a redeploy: the watcher re-reads them about every 10 minutes.
 
 **Controls:**
 - **Stop betting, keep watching:** in `config.toml`, set `enabled = false` under `[watcher]`. It picks this up within about 10 minutes.
-- **Stop it entirely:** remove the service (or the project) in Railway. Nothing else depends on it.
+- **Stop it entirely:** suspend or delete `kalshi-rain-watcher` in Render. Nothing else depends on it.
 - **Test without a server:** **Actions** → **watcher-check** → **Run workflow**. It does one dry pass on live data and saves nothing.
 
 ## Schedule
