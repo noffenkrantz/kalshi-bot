@@ -22,6 +22,9 @@ jobs:
         run: python -m bot watch --inspect
       - name: One pass of the watcher (dry run)
         run: python -m bot watch --once --dry-run
+      - name: Price-history probe (lag scanner)
+        run: python -m bot lags --probe
+        continue-on-error: true
 
   container:
     # Builds the same container the always-on server runs, and does one dry pass inside it.
