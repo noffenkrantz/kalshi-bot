@@ -1,7 +1,7 @@
-# Kalshi bot report - 2026-11-24T01:13:35+00:00
+# Kalshi bot report - 2026-11-24T03:18:19+00:00
 
 ## SHADOW
-Forecasts: 28 made, 18 resolved
+Forecasts: 29 made, 18 resolved
 Accuracy (Brier, lower is better): Claude 0.2870 vs market price 0.2024 -> Claude is WORSE than the market
 When Claude disagreed with the market by 8%+: Claude was closer 3 of 12 times
 Calibration (when Claude says X%, how often is it YES?):
@@ -45,7 +45,7 @@ Real balance (settled bets only): $9,900.03; projected with moved open bets at t
 **Do the lessons help?** (about 20% of markets are researched without lessons, as a control)
 With lessons: 0.193 on 8 forecasts · without: 0.198 on 6. Lessons look helpful so far. Small samples are noisy.
 
-Claude API spend: ~$4.32 in the last 7 days, ~$4.32 all time
+Claude API spend: ~$4.43 in the last 7 days, ~$4.43 all time
 
 ## Verdict
 Not enough data yet: 18/100 shadow forecasts have resolved. Keep collecting before drawing conclusions.
@@ -54,6 +54,7 @@ Not enough data yet: 18/100 shadow forecasts have resolved. Keep collecting befo
 
 | When (UTC) | Market | Claude | Market price | Confidence |
 |---|---|---|---|---|
+| 2026-11-24T03:17 | S&P price on Nov 24, 2026 at 4pm EST? — 7,235 or above | 50% | 57% | medium-low |
 | 2026-11-24T01:12 | S&P price on Nov 24, 2026 at 4pm EST? — 7,095 or above | 76% | 94% | medium-low |
 | 2026-11-23T13:37 | Where will it rain on Nov 24, 2026? — Tampa | 20% | 40% | medium |
 | 2026-11-23T13:37 | Michigan gas price tomorrow — Large decrease | 50% | 15% | medium-low |
@@ -68,4 +69,3 @@ Not enough data yet: 18/100 shadow forecasts have resolved. Keep collecting befo
 | 2026-11-22T15:54 | Where will it rain on Nov 23, 2026? — Albuquerque | 12% | 56% | medium |
 | 2026-11-22T15:54 | Diesel prices tomorrow — Above $5.815 | 42% | 94% | medium-low |
 | 2026-11-22T06:54 | Trump Truth Social posts on Nov 22, 2026? — <5 | 5% | 20% | medium-high |
-| 2026-11-22T04:26 | What will the biggest earthquake be on Nov 22, 2026? — Magnitude of at | 11% | 17% | medium |

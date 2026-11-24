@@ -1,21 +1,20 @@
-# Last run: 2026-11-24 01:12 UTC
+# Last run: 2026-11-24 03:17 UTC
 brain: API key
 
 ## run --mode shadow
-Recorded 9 newly resolved market(s)
 Paper account: $10,000.00 free, $0.00 in 0 open paper positions
-76 markets passed the filters
-Forecast KXINXU-26NOV24H1600-T7094.9999 [Financials, focus]: Claude 76% YES (medium-low) vs market 94% - S&P price on Nov 24, 2026 at 4pm EST? — 7,095 or above
-Done: 1 new forecasts, 0 paper trades. Claude spend today (shadow) ~$0.18 of $2.00
+88 markets passed the filters
+Forecast KXINXU-26NOV24H1600-T7234.9999 [Financials, focus]: Claude 50% YES (medium-low) vs market 57% - S&P price on Nov 24, 2026 at 4pm EST? — 7,235 or above
+Done: 1 new forecasts, 0 paper trades. Claude spend today (shadow) ~$0.29 of $2.00
 
 ## lag scan
-Lag scan: 45721 markets settled since Nov 23 13:09 UTC; scanned 127 across 10 categories, 102 price jumps found
+Lag scan: 11266 markets settled since Nov 24 00:42 UTC; scanned 91 across 9 categories, 57 price jumps found
 
 ## report
-# Kalshi bot report - 2026-11-24T01:13:35+00:00
+# Kalshi bot report - 2026-11-24T03:18:19+00:00
 
 ## SHADOW
-Forecasts: 28 made, 18 resolved
+Forecasts: 29 made, 18 resolved
 Accuracy (Brier, lower is better): Claude 0.2870 vs market price 0.2024 -> Claude is WORSE than the market
 When Claude disagreed with the market by 8%+: Claude was closer 3 of 12 times
 Calibration (when Claude says X%, how often is it YES?):
@@ -59,7 +58,7 @@ Real balance (settled bets only): $9,900.03; projected with moved open bets at t
 **Do the lessons help?** (about 20% of markets are researched without lessons, as a control)
 With lessons: 0.193 on 8 forecasts · without: 0.198 on 6. Lessons look helpful so far. Small samples are noisy.
 
-Claude API spend: ~$4.32 in the last 7 days, ~$4.32 all time
+Claude API spend: ~$4.43 in the last 7 days, ~$4.43 all time
 
 ## Verdict
 Not enough data yet: 18/100 shadow forecasts have resolved. Keep collecting before drawing conclusions.

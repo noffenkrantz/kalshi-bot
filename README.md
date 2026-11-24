@@ -1,6 +1,6 @@
 # Kalshi bot
 
-**Updated Mon Nov 23, 8:13 PM EST** · runs every 4 hours · [▶ Run now](https://github.com/noffenkrantz/kalshi-bot/actions/workflows/bot.yml) · [Results site](https://noffenkrantz.github.io/kalshi-bot/) · [Full report](REPORT.md) · [Where prices lag](LAGS.md) · [Last run log](data/last_run.log) · [Setup & settings](SETUP.md)
+**Updated Mon Nov 23, 10:18 PM EST** · runs when you press Run · [▶ Run now](https://github.com/noffenkrantz/kalshi-bot/actions/workflows/bot.yml) · [Results site](https://noffenkrantz.github.io/kalshi-bot/) · [Full report](REPORT.md) · [Where prices lag](LAGS.md) · [Last run log](data/last_run.log) · [Setup & settings](SETUP.md)
 
 ## 💵 Simulated account
 
@@ -48,6 +48,7 @@
 
 | Market | Claude | Market | Sure? |
 |---|---|---|---|
+| S&P price on Nov 24, 2026 at 4pm EST? — 7… | 50% | 57% | medium-low |
 | S&P price on Nov 24, 2026 at 4pm EST? — 7… | 76% | 94% | medium-low |
 | Where will it rain on Nov 24, 2026? — Tam… | 20% | 40% | medium |
 | Michigan gas price tomorrow — Large decre… | 50% | 15% | medium-low |
@@ -57,7 +58,6 @@
 | Trump's RCP approval average on Nov 23, 2… | 40% | 40% | medium-low |
 | Connecticut gas price tomorrow — Small de… | 42% | 72% | medium |
 | Vermont gas price tomorrow — Large decrea… | 45% | 42% | medium-low |
-| US gas prices tomorrow — Above 3.6350 | 12% | 26% | medium-high |
 
 ---
 *Simulated trades only, no real money. Not financial advice.*
