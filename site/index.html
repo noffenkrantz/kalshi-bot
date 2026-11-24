@@ -12,9 +12,9 @@
 /* VOICE work: an account statement, set like a newspaper graphics desk
    IDEA the monthly statement of a pretend brokerage account run by Claude
    PICTURE the real balance (settled bets, stepped) from the $10,000 start, with the projection dashed beside it; crosshair shows both
-   COLOUR black and white with splashes: one blue accent (top bar, Refresh, balance line, Claude's dots), green for gains, red for losses; inverted at night
+   COLOUR black and white with splashes: one blue accent (top bar, Run, balance line, Claude's dots), green for gains, red for losses; inverted at night
    TYPE Source Sans 3 throughout: humanist, easy to read, tabular figures by default; 17px body
-   LAYOUT finding + Refresh across the top, balance + chart + ruled figure row, then bets, calls, learning; stacks under 600px */
+   LAYOUT finding + Run (with live progress) across the top, balance + chart + ruled figure row, then bets, calls, learning; stacks under 600px */
 :root{color-scheme:light dark;
   --bg:light-dark(#ffffff,#000000);--ink:light-dark(#111111,#f2f2f2);--ink2:light-dark(#3d3d3d,#c8c8c8);--muted:light-dark(#666666,#9d9d9d);--rule:light-dark(#e4e4e4,#2a2a2c);
   --accent:light-dark(#2457e6,#7ea2ff);--on-accent:light-dark(#ffffff,#000000);
@@ -22,6 +22,7 @@
 :root[data-theme=light]{color-scheme:light}
 :root[data-theme=dark]{color-scheme:dark}
 *{box-sizing:border-box;min-width:0}
+[hidden]{display:none!important}
 body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:clip;border-top:5px solid var(--accent);-webkit-font-smoothing:antialiased}
 button{font-family:inherit}
 .wrap{max-width:1240px;margin:0 auto;padding-inline:max(16px,4vw)}
@@ -36,9 +37,20 @@ p{margin:0}
 .btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .btn:disabled{cursor:default;opacity:.75}
 .btn svg{width:17px;height:17px;flex:none}
-.btn:disabled svg{animation:spin 1s linear infinite}
+.btn .ico-spin{display:none}
+.btn:disabled .ico-play{display:none}
+.btn:disabled .ico-spin{display:block;animation:spin 1s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-@media(prefers-reduced-motion:reduce){.btn:disabled svg{animation:none}}
+@media(prefers-reduced-motion:reduce){.btn:disabled .ico-spin{animation:none}}
+.runstate{font-size:15px;color:var(--ink2);margin:10px 0 0;min-height:1.6em}
+.runstate a,.setup a,.linkbtn{color:var(--accent)}
+.setup{margin-top:14px;padding:16px 18px;border:1px solid var(--rule);border-radius:12px;max-width:640px;font-size:15px}
+.setup ol{padding-left:20px;margin:8px 0 12px}
+.setup li{margin-bottom:4px}
+.tokrow{display:flex;flex-wrap:wrap;gap:8px}
+.tokrow input{flex:1 1 220px;min-height:42px;padding:0 12px;border:1px solid var(--muted);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;font-size:16px}
+.tokrow input:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.linkbtn{background:none;border:0;padding:0;font:inherit;cursor:pointer;text-decoration:underline}
 .note{color:var(--muted);font-size:15px;margin-bottom:14px}
 .hero{border-top:1px solid var(--rule)}
 .balance{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;margin-bottom:6px}
@@ -104,7 +116,18 @@ table{font-size:15px}
   <h1 id="finding">Loading results</h1>
   <div class="status">
     <p class="sub" id="subline"></p>
-    <button type="button" class="btn" id="refresh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg><span>Refresh</span></button>
+    <button type="button" class="btn" id="runbtn" hidden><svg class="ico-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg><svg class="ico-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-6.2-8.56"/></svg><span>Run</span></button>
+  </div>
+  <p class="runstate" id="runstate" role="status" aria-live="polite"></p>
+  <div class="setup" id="setup" hidden>
+    <p><b>One-time setup on this device.</b> To start runs from this page, paste a GitHub token that can only run this bot. It's saved in this browser and nowhere else.</p>
+    <ol>
+      <li>On GitHub: profile picture → <b>Settings</b> → <b>Developer settings</b> → <b>Personal access tokens</b> → <b>Fine-grained tokens</b> → <b>Generate new token</b>.</li>
+      <li><b>Repository access:</b> Only select repositories → <b>kalshi-bot</b>.</li>
+      <li><b>Permissions</b> → Repository permissions → <b>Actions: Read and write</b>. Generate it and copy it.</li>
+    </ol>
+    <div class="tokrow"><input id="tok" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…" aria-label="GitHub token"><button type="button" class="btn" id="toksave">Save and run</button></div>
+    <p class="fl" style="margin-top:10px">Or <a id="ghlink" href="#" target="_blank" rel="noopener">run it on GitHub</a> instead: tap <b>Run workflow</b>, then <b>Run workflow</b> again.</p>
   </div>
 </div></header>
 
@@ -157,7 +180,7 @@ table{font-size:15px}
 
 <script>
 {
-const D = {"updated":"2026-11-24T01:13:35+00:00","next_run":"2026-11-24T05:13:00+00:00","start":10000.0,"balance":9900.03,"projected":9900.03,"real_line":[["2026-11-21T21:53:00+00:00",10000.0],["2026-11-23T13:37:36+00:00",9900.03],["2026-11-24T01:13:35+00:00",9900.03]],"proj_line":[["2026-11-21T21:53:00+00:00",10000.0],["2026-11-21T22:22:48+00:00",10000.0],["2026-11-22T04:27:10+00:00",10000.0],["2026-11-22T06:54:41+00:00",10000.0],["2026-11-22T15:56:12+00:00",9997.62],["2026-11-22T22:00:56+00:00",9956.36],["2026-11-23T01:31:45+00:00",9928.19],["2026-11-23T03:12:28+00:00",9928.19],["2026-11-23T13:40:06+00:00",9900.03],["2026-11-24T01:13:35+00:00",9900.03]],"open":[],"settled":[{"q":"US gas prices tomorrow \u2014 Above 3.6350","side":"no","contracts":131.0,"price":0.75,"cost":99.97,"claude":0.12,"market":0.255,"placed":"2026-11-22T15:54:44+00:00","closes":"2026-11-23T04:59:00Z","topic":"Economics","src":"research","won":false,"pnl":-99.97,"verdict":"bad_luck","note":"AAA's national average fell only about 0.82 cents on Nov 23, from $3.6448 to $3.6366. That stayed just above the $3.6350 threshold, so the market resolved YES."}],"stats":{"open_n":0,"open_cost":0,"settled_n":1,"wins":0,"losses":1,"settled_pnl":-99.97,"forecasts_n":28,"resolved_n":18,"claude_brier":0.287,"market_brier":0.2024},"forecasts":[{"q":"S\u0026P price on Nov 24, 2026 at 4pm EST? \u2014 7,095 or above","claude":0.76,"market":0.935,"conf":"medium-low","ts":"2026-11-24T01:12:11+00:00","topic":"Financials","bet":false,"result":null},{"q":"Where will it rain on Nov 24, 2026? \u2014 Tampa","claude":0.2,"market":0.4,"conf":"medium","ts":"2026-11-23T13:37:36+00:00","topic":"Climate and Weather","bet":false,"result":null},{"q":"Michigan gas price tomorrow \u2014 Large decrease","claude":0.5,"market":0.14500000000000002,"conf":"medium-low","ts":"2026-11-23T13:37:36+00:00","topic":"Economics","bet":false,"result":null},{"q":"Diesel prices tomorrow \u2014 Above $5.805","claude":0.06,"market":0.095,"conf":"medium","ts":"2026-11-23T13:37:36+00:00","topic":"Economics","bet":false,"result":null},{"q":"US gas prices tomorrow \u2014 Above 3.6150","claude":0.52,"market":0.15000000000000002,"conf":"medium-low","ts":"2026-11-23T13:37:36+00:00","topic":"Economics","bet":false,"result":null},{"q":"Highest temperature in Los Angeles on Nov 23, 2026? \u2014 71\u00b0 to 72\u00b0","claude":0.1,"market":0.065,"conf":"medium-low","ts":"2026-11-22T21:59:22+00:00","topic":"Climate and Weather","bet":false,"result":null},{"q":"Trump's RCP approval average on Nov 23, 2026? \u2014 37.9%","claude":0.4,"market":0.395,"conf":"medium-low","ts":"2026-11-22T21:59:22+00:00","topic":"Politics","bet":false,"result":"no"},{"q":"Connecticut gas price tomorrow \u2014 Small decrease","claude":0.42,"market":0.715,"conf":"medium","ts":"2026-11-22T21:59:22+00:00","topic":"Economics","bet":false,"result":null},{"q":"Vermont gas price tomorrow \u2014 Large decrease","claude":0.45,"market":0.41500000000000004,"conf":"medium-low","ts":"2026-11-22T21:59:22+00:00","topic":"Economics","bet":false,"result":null},{"q":"US gas prices tomorrow \u2014 Above 3.6350","claude":0.12,"market":0.255,"conf":"medium-high","ts":"2026-11-22T15:54:44+00:00","topic":"Economics","bet":true,"result":"yes"},{"q":"Highest temperature in Houston on Nov 23, 2026? \u2014 67\u00b0 or below","claude":0.2,"market":0.775,"conf":"medium","ts":"2026-11-22T15:54:44+00:00","topic":"Climate and Weather","bet":false,"result":null},{"q":"Where will it rain on Nov 23, 2026? \u2014 Albuquerque","claude":0.12,"market":0.555,"conf":"medium","ts":"2026-11-22T15:54:44+00:00","topic":"Climate and Weather","bet":false,"result":null}],"topics":[{"topic":"Climate and Weather","n":11,"dis":7,"wins":1,"focus":"\u2b07 less"},{"topic":"Politics","n":4,"dis":3,"wins":2,"focus":"normal"},{"topic":"Economics","n":3,"dis":3,"wins":1,"focus":"\u2b07 less"}],"reviews":{"bad_luck":1},"lessons":[],"rules":{"bet":100,"conf":"medium-high","edge":0.08,"budget":2.0},"spend_today":0.18,"lags":{"markets":430,"jumps":381,"url":"https://github.com/noffenkrantz/kalshi-bot/blob/main/LAGS.md","cats":[{"name":"Politics","markets":12,"jumps":14,"d30":0.0364,"follow":0.1947,"verdict":"early"},{"name":"Financials","markets":70,"jumps":20,"d30":0.0257,"follow":0.0455,"verdict":"early"},{"name":"Crypto","markets":80,"jumps":24,"d30":-0.0194,"follow":-0.0062,"verdict":"early"},{"name":"Economics","markets":24,"jumps":59,"d30":0.0038,"follow":-0.0287,"verdict":"keeps up"},{"name":"Sports","markets":80,"jumps":210,"d30":0.0059,"follow":-0.0485,"verdict":"keeps up"},{"name":"Climate and Weather","markets":49,"jumps":54,"d30":0.0143,"follow":-0.1451,"verdict":"overreacts"},{"name":"Elections","markets":24,"jumps":0,"d30":null,"follow":null,"verdict":"early"},{"name":"Commodities","markets":80,"jumps":0,"d30":null,"follow":null,"verdict":"early"},{"name":"Science and Technology","markets":4,"jumps":0,"d30":null,"follow":null,"verdict":"early"},{"name":"Entertainment","markets":7,"jumps":0,"d30":null,"follow":null,"verdict":"early"}],"top":[{"name":"NFL Game","category":"Sports","jumps":13,"d30":0.0227,"follow":0.1655,"verdict":"early"},{"name":"Pro Football Spread","category":"Sports","jumps":13,"d30":-0.0064,"follow":0.1276,"verdict":"early"},{"name":"Challenger ATP ","category":"Sports","jumps":31,"d30":-0.0548,"follow":0.0953,"verdict":"keeps up"},{"name":"ITF Women's Match","category":"Sports","jumps":16,"d30":0.1229,"follow":0.068,"verdict":"early"},{"name":"Bitcoin price Above/below","category":"Crypto","jumps":24,"d30":-0.0194,"follow":-0.0062,"verdict":"early"}]}};
+const D = {"updated":"2026-11-24T01:13:35+00:00","start":10000.0,"balance":9900.03,"projected":9900.03,"real_line":[["2026-11-21T21:53:00+00:00",10000.0],["2026-11-23T13:37:36+00:00",9900.03],["2026-11-24T01:13:35+00:00",9900.03]],"proj_line":[["2026-11-21T21:53:00+00:00",10000.0],["2026-11-21T22:22:48+00:00",10000.0],["2026-11-22T04:27:10+00:00",10000.0],["2026-11-22T06:54:41+00:00",10000.0],["2026-11-22T15:56:12+00:00",9997.62],["2026-11-22T22:00:56+00:00",9956.36],["2026-11-23T01:31:45+00:00",9928.19],["2026-11-23T03:12:28+00:00",9928.19],["2026-11-23T13:40:06+00:00",9900.03],["2026-11-24T01:13:35+00:00",9900.03]],"open":[],"settled":[{"q":"US gas prices tomorrow \u2014 Above 3.6350","side":"no","contracts":131.0,"price":0.75,"cost":99.97,"claude":0.12,"market":0.255,"placed":"2026-11-22T15:54:44+00:00","closes":"2026-11-23T04:59:00Z","topic":"Economics","src":"research","won":false,"pnl":-99.97,"verdict":"bad_luck","note":"AAA's national average fell only about 0.82 cents on Nov 23, from $3.6448 to $3.6366. That stayed just above the $3.6350 threshold, so the market resolved YES."}],"stats":{"open_n":0,"open_cost":0,"settled_n":1,"wins":0,"losses":1,"settled_pnl":-99.97,"forecasts_n":28,"resolved_n":18,"claude_brier":0.287,"market_brier":0.2024},"forecasts":[{"q":"S\u0026P price on Nov 24, 2026 at 4pm EST? \u2014 7,095 or above","claude":0.76,"market":0.935,"conf":"medium-low","ts":"2026-11-24T01:12:11+00:00","topic":"Financials","bet":false,"result":null},{"q":"Where will it rain on Nov 24, 2026? \u2014 Tampa","claude":0.2,"market":0.4,"conf":"medium","ts":"2026-11-23T13:37:36+00:00","topic":"Climate and Weather","bet":false,"result":null},{"q":"Michigan gas price tomorrow \u2014 Large decrease","claude":0.5,"market":0.14500000000000002,"conf":"medium-low","ts":"2026-11-23T13:37:36+00:00","topic":"Economics","bet":false,"result":null},{"q":"Diesel prices tomorrow \u2014 Above $5.805","claude":0.06,"market":0.095,"conf":"medium","ts":"2026-11-23T13:37:36+00:00","topic":"Economics","bet":false,"result":null},{"q":"US gas prices tomorrow \u2014 Above 3.6150","claude":0.52,"market":0.15000000000000002,"conf":"medium-low","ts":"2026-11-23T13:37:36+00:00","topic":"Economics","bet":false,"result":null},{"q":"Highest temperature in Los Angeles on Nov 23, 2026? \u2014 71\u00b0 to 72\u00b0","claude":0.1,"market":0.065,"conf":"medium-low","ts":"2026-11-22T21:59:22+00:00","topic":"Climate and Weather","bet":false,"result":null},{"q":"Trump's RCP approval average on Nov 23, 2026? \u2014 37.9%","claude":0.4,"market":0.395,"conf":"medium-low","ts":"2026-11-22T21:59:22+00:00","topic":"Politics","bet":false,"result":"no"},{"q":"Connecticut gas price tomorrow \u2014 Small decrease","claude":0.42,"market":0.715,"conf":"medium","ts":"2026-11-22T21:59:22+00:00","topic":"Economics","bet":false,"result":null},{"q":"Vermont gas price tomorrow \u2014 Large decrease","claude":0.45,"market":0.41500000000000004,"conf":"medium-low","ts":"2026-11-22T21:59:22+00:00","topic":"Economics","bet":false,"result":null},{"q":"US gas prices tomorrow \u2014 Above 3.6350","claude":0.12,"market":0.255,"conf":"medium-high","ts":"2026-11-22T15:54:44+00:00","topic":"Economics","bet":true,"result":"yes"},{"q":"Highest temperature in Houston on Nov 23, 2026? \u2014 67\u00b0 or below","claude":0.2,"market":0.775,"conf":"medium","ts":"2026-11-22T15:54:44+00:00","topic":"Climate and Weather","bet":false,"result":null},{"q":"Where will it rain on Nov 23, 2026? \u2014 Albuquerque","claude":0.12,"market":0.555,"conf":"medium","ts":"2026-11-22T15:54:44+00:00","topic":"Climate and Weather","bet":false,"result":null}],"topics":[{"topic":"Climate and Weather","n":11,"dis":7,"wins":1,"focus":"\u2b07 less"},{"topic":"Politics","n":4,"dis":3,"wins":2,"focus":"normal"},{"topic":"Economics","n":3,"dis":3,"wins":1,"focus":"\u2b07 less"}],"reviews":{"bad_luck":1},"lessons":[],"rules":{"bet":100,"conf":"medium-high","edge":0.08,"budget":2.0},"spend_today":0.18,"lags":{"markets":430,"jumps":381,"url":"https://github.com/noffenkrantz/kalshi-bot/blob/main/LAGS.md","cats":[{"name":"Politics","markets":12,"jumps":14,"d30":0.0364,"follow":0.1947,"verdict":"early"},{"name":"Financials","markets":70,"jumps":20,"d30":0.0257,"follow":0.0455,"verdict":"early"},{"name":"Crypto","markets":80,"jumps":24,"d30":-0.0194,"follow":-0.0062,"verdict":"early"},{"name":"Economics","markets":24,"jumps":59,"d30":0.0038,"follow":-0.0287,"verdict":"keeps up"},{"name":"Sports","markets":80,"jumps":210,"d30":0.0059,"follow":-0.0485,"verdict":"keeps up"},{"name":"Climate and Weather","markets":49,"jumps":54,"d30":0.0143,"follow":-0.1451,"verdict":"overreacts"},{"name":"Elections","markets":24,"jumps":0,"d30":null,"follow":null,"verdict":"early"},{"name":"Commodities","markets":80,"jumps":0,"d30":null,"follow":null,"verdict":"early"},{"name":"Science and Technology","markets":4,"jumps":0,"d30":null,"follow":null,"verdict":"early"},{"name":"Entertainment","markets":7,"jumps":0,"d30":null,"follow":null,"verdict":"early"}],"top":[{"name":"NFL Game","category":"Sports","jumps":13,"d30":0.0227,"follow":0.1655,"verdict":"early"},{"name":"Pro Football Spread","category":"Sports","jumps":13,"d30":-0.0064,"follow":0.1276,"verdict":"early"},{"name":"Challenger ATP ","category":"Sports","jumps":31,"d30":-0.0548,"follow":0.0953,"verdict":"keeps up"},{"name":"ITF Women's Match","category":"Sports","jumps":16,"d30":0.1229,"follow":0.068,"verdict":"early"},{"name":"Bitcoin price Above/below","category":"Crypto","jumps":24,"d30":-0.0194,"follow":-0.0062,"verdict":"early"}]},"repo":"noffenkrantz/kalshi-bot"};
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const money = (v, sign) => (sign ? (v >= 0 ? '+' : '−') : (v < 0 ? '−' : '')) + '$' + Math.abs(v).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
@@ -175,13 +198,95 @@ if (!S.open_n && !S.settled_n) finding = 'No bets yet. Claude is waiting for a c
 else if (!S.settled_n) finding = `${S.open_n} bet${S.open_n === 1 ? '' : 's'} placed, waiting for results`;
 else finding = `${change >= 0 ? 'Up' : 'Down'} ${money0(Math.abs(change))} after ${S.settled_n} settled bet${S.settled_n === 1 ? '' : 's'}`;
 $('finding').textContent = finding;
-$('subline').textContent = `Updated ${when(D.updated)} · next run about ${when(D.next_run)}`;
-$('refresh').addEventListener('click', e => {
-  const b = e.currentTarget;
-  b.disabled = true;
-  b.querySelector('span').textContent = 'Refreshing…';
-  location.reload();   // the page is rebuilt after every bot run; reloading picks up the newest one
-});
+$('subline').textContent = `Updated ${when(D.updated)}`;
+
+// ---- Run button: starts a run on GitHub, shows progress, reloads when the new results are out.
+// The token (Actions: read and write on this repo only) lives in this browser's storage only.
+(() => {
+  const repo = D.repo, wf = 'bot.yml', api = `https://api.github.com/repos/${repo}`;
+  if (!repo) return;
+  const KEY = 'kalshi-bot-run-token', onPages = /\.github\.io$/.test(location.hostname);
+  const ghRun = `https://github.com/${repo}/actions/workflows/${wf}`;
+  const btn = $('runbtn'), state = $('runstate'), setup = $('setup');
+  btn.hidden = false;
+  $('ghlink').href = ghRun;
+  const get = () => { try { return localStorage.getItem(KEY) || ''; } catch (e) { return ''; } };
+  const put = v => { try { v ? localStorage.setItem(KEY, v) : localStorage.removeItem(KEY); } catch (e) {} };
+  const hdr = t => Object.assign({Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28'}, t ? {Authorization: `Bearer ${t}`} : {});
+  const say = html => { state.innerHTML = html; };
+  const busy = (on, label) => { btn.disabled = on; btn.querySelector('span').textContent = label || (on ? 'Running…' : 'Run'); };
+  const dur = ms => { const s = Math.max(0, Math.round(ms / 1000)); return s < 60 ? `${s}s` : `${Math.floor(s / 60)}m ${String(s % 60).padStart(2, '0')}s`; };
+  let timer = null;
+  const latest = async () => {
+    const r = await fetch(`${api}/actions/workflows/${wf}/runs?per_page=1`, {headers: hdr(get()), cache: 'no-store'});
+    if (!r.ok) throw new Error(String(r.status));
+    return ((await r.json()).workflow_runs || [])[0] || null;
+  };
+  const follow = since => {
+    clearInterval(timer);
+    busy(true);
+    const tick = async () => {
+      let run;
+      try { run = await latest(); } catch (e) { say('Started. Progress isn’t available right now; reload in a few minutes.'); clearInterval(timer); busy(false); return; }
+      if (!run || Date.parse(run.created_at) < since - 60e3) { say('Starting… waiting for GitHub to pick it up.'); return; }
+      if (run.status !== 'completed') {
+        const age = Date.now() - Date.parse(run.run_started_at || run.created_at);
+        say(`${run.status === 'in_progress' ? 'Running' : 'Queued on GitHub'}… ${dur(age)} <span style="color:var(--muted)">· usually 2–4 minutes</span>`);
+        return;
+      }
+      clearInterval(timer);
+      if (run.conclusion === 'success') {
+        say('Done. Loading the new results…');
+        setTimeout(() => location.replace(location.pathname + '?t=' + Date.now()), 15000);
+      } else {
+        busy(false);
+        say(`The run didn’t finish (${esc(run.conclusion || 'stopped')}). <a href="${esc(run.html_url)}" target="_blank" rel="noopener">See what happened</a>`);
+      }
+    };
+    tick();
+    timer = setInterval(tick, 10000);
+  };
+  const start = async token => {
+    busy(true, 'Starting…');
+    say('');
+    const t0 = Date.now();
+    let r;
+    try {
+      r = await fetch(`${api}/actions/workflows/${wf}/dispatches`, {method: 'POST', headers: hdr(token), body: JSON.stringify({ref: 'main'})});
+    } catch (e) { busy(false); say('Couldn’t reach GitHub. Check your connection and try again.'); return; }
+    if (r.status === 204) { follow(t0); return; }
+    busy(false);
+    if ([401, 403, 404].includes(r.status)) {
+      put('');
+      setup.hidden = false;
+      say('GitHub didn’t accept the saved token (it may have expired, or be missing the Actions permission). Paste a new one below.');
+    } else say(`GitHub couldn’t start it (error ${r.status}). <a href="${ghRun}" target="_blank" rel="noopener">Run it on GitHub instead</a>`);
+  };
+  btn.addEventListener('click', () => {
+    if (!onPages) { window.open(ghRun, '_blank', 'noopener'); return; }   // e.g. inside Claude: use GitHub's own Run button
+    const t = get();
+    if (t) start(t);
+    else { setup.hidden = !setup.hidden; if (!setup.hidden) $('tok').focus(); }
+  });
+  $('toksave').addEventListener('click', () => {
+    const v = $('tok').value.trim();
+    if (!v) { $('tok').focus(); return; }
+    put(v);
+    $('tok').value = '';
+    setup.hidden = true;
+    start(v);
+  });
+  $('tok').addEventListener('keydown', e => { if (e.key === 'Enter') $('toksave').click(); });
+  if (get()) {
+    const f = document.createElement('p');
+    f.innerHTML = '<button type="button" class="linkbtn">Forget the Run token on this device</button>';
+    f.querySelector('button').addEventListener('click', () => { put(''); f.remove(); say('Token removed from this device.'); });
+    document.querySelector('.foot .wrap').appendChild(f);
+  }
+  if (onPages) latest().then(run => {   // a run already going (e.g. started on another device)? show it
+    if (run && run.status !== 'completed' && Date.now() - Date.parse(run.created_at) < 30 * 60e3) follow(Date.parse(run.created_at));
+  }).catch(() => {});
+})();
 $('bal').textContent = money(D.balance);
 $('chg').innerHTML = `<span class="${cls(change)}">${money(change, true)} (${(change / D.start * 100).toFixed(1)}%)</span> <span style="color:var(--ink2);font-weight:500">since the $${D.start.toLocaleString('en-US')} start</span>`;
 const projGap = (D.projected ?? D.balance) - D.balance;
@@ -249,7 +354,7 @@ if (L.cats.length) {
     (L.url ? `<p class="fl" style="margin-top:12px"><a href="${esc(L.url)}" style="color:var(--accent)">Full lag report</a></p>` : '');
 } else $('lags').innerHTML = `<p class="empty">The first scan runs with the next bot run.</p>`;
 
-$('rules').textContent = `Rules: $${D.rules.bet} per bet, only at ${D.rules.conf} or high confidence with an edge of ${Math.round(D.rules.edge * 100)}¢+ per contract after fees, one bet per event. Runs every 4 hours; up to $${D.rules.budget} a day of Claude research.`;
+$('rules').textContent = `Rules: $${D.rules.bet} per bet, only at ${D.rules.conf} or high confidence with an edge of ${Math.round(D.rules.edge * 100)}¢+ per contract after fees, one bet per event. Runs when you press Run; up to $${D.rules.budget} a day of Claude research.`;
 
 // ---- balance chart: the real line steps when a bet settles; the projection is dashed
 const s = $('balsvg'), tip = $('tip');

@@ -2,7 +2,7 @@
 
 [← Back to the dashboard](README.md)
 
-A trading simulator that runs itself every 4 hours on an always-on Render service, with GitHub as a backup:
+A trading simulator that runs on GitHub whenever you press **Run** on the results page:
 
 - **Watch:** pulls real open markets and live prices from Kalshi.
 - **Think:** Claude reads each market's rules, searches the web, and gives a probability ("70% YES").
@@ -14,54 +14,54 @@ It never places a real order and never touches your money. The only real cost is
 
 ---
 
-## Turn it on (Render, about 10 minutes from your phone)
+## Turn it on
 
-The bot lives on one always-on Render service. Every 4 hours it does a research run (Claude forecasts, simulated trades, the lag scan, the report), and in between it runs the rain watcher. Each run saves its results to this repo, and the results page updates a minute later. GitHub's own timer proved unreliable (it skipped most scheduled runs), so GitHub is now only a backup.
+1. **Claude API key:** at **console.anthropic.com**, add credit, **set a monthly spend limit** (for example $20) as a backstop, then create an API key and copy it.
+2. In this repo: **Settings → Secrets and variables → Actions → New repository secret**. Name it `ANTHROPIC_API_KEY`, paste the key, and tap **Add secret**. (On a phone browser, Settings may be under the **⋯** menu, or switch to "Desktop site.")
+3. Open the results page and tap **Run** (see below).
 
-**Cost:** a Render background worker on the smallest paid instance is $7 a month, on top of your Render plan, plus Claude usage (see Costs).
+## The Run button
 
-1. **Claude API key:** at **console.anthropic.com**, set a **monthly spend limit** (for example $20) as a backstop, then create an API key and copy it. (A key saved in GitHub can't be read back, so make a new one for Render.)
-2. **GitHub token,** so the service can save results to this repo. On GitHub: your profile picture → **Settings** → **Developer settings** → **Personal access tokens** → **Fine-grained tokens** → **Generate new token**.
-   - Name: `kalshi-bot`. Pick an expiration (you'll make a new token when it runs out).
-   - **Repository access:** Only select repositories → `kalshi-bot`.
-   - **Permissions → Repository permissions → Contents:** Read and write.
-   - Tap **Generate token** and copy it.
-3. **Create the service:** in the Render dashboard, **New** → **Blueprint** → connect GitHub if asked and pick `kalshi-bot`, branch `main`. Render reads `render.yaml` and shows one service, `kalshi-bot`.
-4. **Paste the two secrets** when Render asks: `GITHUB_TOKEN` and `ANTHROPIC_API_KEY`. Tap **Deploy Blueprint**.
-5. **Check it's running:** open `kalshi-bot` → **Logs**. You should see `cloned noffenkrantz/kalshi-bot`, `server started`, and (if the last run was 4+ hours ago) `research run starting`. A few minutes later the repo gets a `journal: run …` commit and the results page updates.
+There's no timer: the bot runs when you tap **Run** at the top of the results page (GitHub's own timer skipped most scheduled runs, so it was removed). A run takes about 2–4 minutes: it records any bets that settled, does Claude's research, places pretend bets, runs the lag scan and rebuilds the report. The button shows progress and reloads the page when the new results are published.
 
-Only code changes (`bot/`, `Dockerfile`, `requirements.txt`) redeploy the service; its own result commits don't. Research runs use the repo's latest code and `config.toml`, so most changes need no redeploy at all.
+**One-time setup on each phone or computer:** the first tap asks for a GitHub token that can only start this bot's runs. It's saved in that browser only.
+- On GitHub: your profile picture → **Settings** → **Developer settings** → **Personal access tokens** → **Fine-grained tokens** → **Generate new token**.
+- Name: `kalshi-run`. **Repository access:** Only select repositories → `kalshi-bot`. **Permissions → Repository permissions → Actions:** Read and write.
+- Generate it, copy it, and paste it into the box under the Run button.
 
-**GitHub backup:** the `kalshi-bot` workflow in the **Actions** tab still checks hourly, but only runs if there's been no run for 5 hours (say, Render is down). For it to work, keep the `ANTHROPIC_API_KEY` repo secret (**Settings → Secrets and variables → Actions**).
+Without a token, **Actions** → **kalshi-bot** → **Run workflow** does the same thing. If someone else got the token, the worst they could do is start runs, and research spending is capped at `daily_budget_usd` a day. To remove it from a device, tap **Forget the Run token on this device** at the bottom of the page; to cancel it everywhere, delete it on GitHub.
+
+**Good to know:** bets only get marked won or lost, and the lag scan only collects data, when a run happens, so runs at least once a day keep things current.
 
 ## Results site
 
 The results page shows the balance chart, open and settled bets, Claude's calls next to the market's, and what Claude is learning. After every run the bot rebuilds it into `site/index.html`, and it's published in two places:
 
-- **Public, on GitHub Pages:** https://noffenkrantz.github.io/kalshi-bot/ (also linked as **Results site** at the top of the repo's front page). It republishes automatically whenever a run saves a new page. To republish by hand: **Actions → results-site → Run workflow**. Anyone with the link can open it; a `noindex` tag keeps it out of search engines.
+- **Public, on GitHub Pages:** https://noffenkrantz.github.io/kalshi-bot/ (also linked as **Results site** at the top of the repo's front page). Every run republishes it. To republish by hand: **Actions → results-site → Run workflow**. Anyone with the link can see it, but only a device with your Run token can start a run. Anyone with the link can open it; a `noindex` tag keeps it out of search engines.
   - One-time setup: **Settings → Pages → Build and deployment → Source: GitHub Actions**, then **Actions → results-site → Run workflow** (or just wait for the next bot run).
   - To take it down: **Settings → Pages → Unpublish site**.
 - **Private, in Claude:** **Kalshi Bot Results** (in Claude, under your artifacts). A Claude scheduled task republishes it about an hour after each run. Only you can see it unless you share it from the page.
 
 ## Rain watcher
 
-Kalshi's daily "Will it rain in <city>?" markets resolve YES if the city's weather station records any measurable rain that day (a trace doesn't count), and they keep trading until midnight. Once the station has reported rain, the answer is all but known. Between research runs, the Render service reads the stations' official reports (National Weather Service, free) every couple of minutes and compares them with live Kalshi prices:
+Kalshi's daily "Will it rain in <city>?" markets resolve YES if the city's weather station records any measurable rain that day (a trace doesn't count), and they keep trading until midnight. Once the station has reported rain, the answer is all but known. An optional always-on Render service reads the stations' official reports (National Weather Service, free) every couple of minutes and compares them with live Kalshi prices:
 
 - **Signals:** every time a station reports rain, it logs the price then, the price when the report came out, and the price 5, 30 and 60 minutes later, in `data/watch_signals.jsonl`. That shows whether it's actually ahead of the market.
 - **Pretend bets:** if YES is still cheap enough to leave an edge (settings under `[watcher]` in `config.toml`), it places a pretend $100 bet in the same simulated account. These show on the results page as "Rain watcher".
-- **No Claude, no tokens, no real money.** `data/watch_status.json` shows when the service last checked in (about hourly) and when the next research run is due.
+- **No Claude, no tokens, no real money.** `data/watch_status.json` shows when the service last checked in (about hourly).
+
+**Setup (optional, $7 a month on Render):**
+1. Make a GitHub token: as above, but name it `kalshi-watcher` and give it **Contents: Read and write** (instead of Actions).
+2. In Render: **New** → **Blueprint** → pick `kalshi-bot`, branch `main`. It shows one service, `kalshi-rain-watcher`. Paste the token when it asks for `GITHUB_TOKEN`, then **Deploy Blueprint**.
+3. Its **Logs** should show `cloned noffenkrantz/kalshi-bot` and `server started`. Suspend or delete it in Render to stop it.
 
 **Controls:** to stop rain bets but keep watching, set `enabled = false` under `[watcher]` in `config.toml` (picked up within about 10 minutes). To test on live data without saving anything: **Actions** → **watcher-check** → **Run workflow**.
-
-## Schedule
-
-The Render service starts a research run 4 hours after the previous one, to the minute. The GitHub workflow is a backup: it checks hourly but only runs if 5 hours have passed with no run. Skipped checks show up in the **Actions** tab as short runs where only the `gate` step ran. **Run workflow** always runs right away, and the Render service then waits 4 hours from that run.
 
 ## Controls from your phone
 
 - **See results:** the repo's front page (the dashboard). `REPORT.md` has the detailed scorecard, and `data/last_run.log` shows what the last run did, including any errors.
-- **Run now:** **Actions** → **kalshi-bot** → **Run workflow** (runs on GitHub; the Render service picks up from there).
-- **Pause:** add a file named `STOP` to the repo (**Add file** → **Create new file**, name it `STOP`, commit). Runs and rain bets stop until you delete it. To stop the service itself, suspend `kalshi-bot` in Render. The GitHub backup also has its own switch: **Settings → Secrets and variables → Actions → Variables** → `BOT_ENABLED` = `false`.
+- **Run:** the **Run** button on the results page, or **Actions** → **kalshi-bot** → **Run workflow**.
+- **Pause:** add a file named `STOP` to the repo (**Add file** → **Create new file**, name it `STOP`, commit). Runs and rain bets stop until you delete it. Or **Settings → Secrets and variables → Actions → Variables** → `BOT_ENABLED` = `false`.
 - **Change settings:** open `config.toml`, tap the **pencil** icon, edit, then **Commit changes**. The next run uses them.
 
 ## How the simulation works
@@ -95,8 +95,8 @@ Post-mortems count toward the daily research budget, at about $0.03–0.06 each.
 ## Costs
 
 - **Claude:** roughly $0.10–0.15 per forecast. It stops starting new research after about $2 a day (`daily_budget_usd`), so about $60 a month at most, roughly 15 forecasts a day. Forecasts are reused for 8 hours, so most runs cost little.
-- **Render:** $7 a month for the always-on service (smallest paid instance), on top of your Render plan.
-- **GitHub:** free. Private repos include 2,000 Actions minutes a month, and the backup checks use well under that.
+- **GitHub:** free. Private repos include 2,000 Actions minutes a month; each run uses about 3.
+- **Render (optional, rain watcher only):** $7 a month for the smallest always-on instance, on top of your Render plan.
 
 ## Settings worth knowing (`config.toml`)
 
@@ -133,7 +133,7 @@ This needs a computer once. Install Claude Code (`curl -fsSL https://claude.ai/i
 
 ## Troubleshooting
 
-- **Nothing on the dashboard after a run:** open `data/last_run.log`. It shows each step's output and any errors. If it's more than 4 hours old, check the `kalshi-bot` service's **Logs** in Render, and `data/watch_status.json` for when it last checked in.
+- **Nothing on the dashboard after a run:** open `data/last_run.log`. It shows each step's output and any errors. If the Run button says the run didn't finish, its link opens the run on GitHub with each step's log.
 - **"Research failed" lines:** usually a Claude API problem (no credit, wrong key, or a model name change). Check the `model` setting in `config.toml`.
 - **"0 markets passed the filters":** the filters may be too strict for the moment. Try a higher `max_spread` or a lower `min_volume_24h`.
 - **"Paused by a safety check":** read the reason. To clear it from a computer, run `python -m bot resume --mode shadow`, or ask Claude to clear it.
@@ -149,13 +149,13 @@ This needs a computer once. Install Claude Code (`curl -fsSL https://claude.ai/i
 | `bot/learning.py` | Topic scorecard and research-budget allocation |
 | `bot/postmortem.py`, `bot/lessons.py` | Post-mortems and the lessons file |
 | `bot/runner.py` | One full run: review settled bets → scan → research → decide → record simulated trades |
-| `bot/server.py` | The always-on Render service: a run every 4 hours, the rain watcher in between, saving to GitHub |
+| `bot/server.py` | The optional always-on Render service: runs the rain watcher and saves its results to GitHub |
 | `bot/watcher.py`, `bot/nws.py` | The rain watcher and the National Weather Service reader |
 | `bot/lags.py` | The lag scanner (`LAGS.md`) |
 | `bot/journal.py` | Logs everything to `data/*.jsonl` |
 | `bot/report.py`, `bot/dashboard.py` | The scorecard (`REPORT.md`) and dashboard (`README.md`) |
-| `render.yaml`, `Dockerfile` | The Render service |
-| `.github/workflows/bot.yml` | The GitHub backup (runs only if Render missed a run) |
+| `render.yaml`, `Dockerfile` | The optional Render service (rain watcher) |
+| `.github/workflows/bot.yml` | A run, started by the Run button or **Run workflow** |
 | `tests/` | Offline tests: `python -m pytest -q` |
 
 (The code also has practice-exchange and real-money modes for running on a computer. The automatic runs don't use them.)

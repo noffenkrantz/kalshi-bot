@@ -6,7 +6,7 @@ from __future__ import annotations
 import json
 import os
 from collections import Counter
-from datetime import datetime, timedelta, timezone
+from datetime import datetime
 from pathlib import Path
 
 from . import lessons as lessons_mod
@@ -18,14 +18,6 @@ from .learning import focus_label, topic_for, topic_stats, topic_weights
 from .util import iso
 
 TEMPLATE = Path(__file__).with_name("site_template.html")
-RUN_EVERY = timedelta(hours=4)     # matches bot/server.py (the Render service)
-
-
-def next_run(now: datetime) -> datetime:
-    """The server starts the next run 4 hours after this one."""
-    return (now + RUN_EVERY).astimezone(timezone.utc).replace(second=0, microsecond=0)
-
-
 def build_site_data(journal: Journal, clients: dict[str, KalshiClient], now: datetime, cfg: dict) -> dict:
     start = float(cfg.get("shadow", {}).get("paper_bankroll", 10000))
     rows = [{"ticker": d["ticker"], "outcome": d["outcome"], "contracts": d.get("count") or 0,
@@ -81,7 +73,7 @@ def build_site_data(journal: Journal, clients: dict[str, KalshiClient], now: dat
     today = now.strftime("%Y-%m-%d")
     wins = sum(1 for p in settled if p["won"])
     return {
-        "updated": iso(now), "next_run": iso(next_run(now)), "start": start, "balance": balance,
+        "updated": iso(now), "repo": os.environ.get("GITHUB_REPOSITORY"), "start": start, "balance": balance,
         "projected": projected,
         "real_line": [[iso(t), v] for t, v in real_line][-400:],
         "proj_line": [[iso(t), round(v, 2)] for t, v in proj_line][-400:],

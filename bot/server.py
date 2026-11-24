@@ -1,7 +1,8 @@
 """The bot's always-on home (Render): one process that runs everything on its own clock.
 
-    python -m bot serve                    research every 4 hours + the rain watcher in between
-    python -m bot watch [--once] [--dry-run]   the rain watcher alone
+    python -m bot watch [--once] [--dry-run]   the rain watcher alone (what render.yaml runs)
+    python -m bot serve                    also a research run every 4 hours (not used by default:
+                                           research runs on GitHub when you press Run)
 
 Every 4 hours it does what a GitHub run used to do, in a clone of the repo: simulated trading
 with Claude's research, the lag scan, and the report (README, REPORT.md, LAGS.md, the results

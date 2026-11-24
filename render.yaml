@@ -1,10 +1,10 @@
-# Render Blueprint: the bot's always-on home (python -m bot serve). See SETUP.md > Turn it on.
-# It runs research every 4 hours plus the rain watcher, and saves results to this repo.
-# Render dashboard: New > Blueprint > pick this repo. It asks for the two secrets once.
+# OPTIONAL Render Blueprint for the always-on rain watcher (python -m bot watch). See SETUP.md >
+# Rain watcher. Research runs don't need it: they run on GitHub when you press Run.
+# Render dashboard: New > Blueprint > pick this repo. It asks for GITHUB_TOKEN once.
 # Uses Render's default worker size (the smallest paid instance); background workers have no free tier.
 services:
   - type: worker
-    name: kalshi-bot
+    name: kalshi-rain-watcher
     runtime: docker
     dockerfilePath: ./Dockerfile
     maxShutdownDelaySeconds: 60    # time to save and push results when Render restarts it
@@ -15,6 +15,4 @@ services:
         - requirements.txt
     envVars:
       - key: GITHUB_TOKEN          # fine-grained token: Contents read/write on this repo only
-        sync: false
-      - key: ANTHROPIC_API_KEY     # Claude API key for the research (console.anthropic.com)
         sync: false

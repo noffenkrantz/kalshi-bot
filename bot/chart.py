@@ -141,7 +141,7 @@ def balance_svg(points: list[tuple[datetime, float]], start: float, theme: str =
                  f'style="font-variant-numeric: tabular-nums">{_signed(now_v - start)}</text>')
     if len(points) == 1:
         parts.append(f'<text x="{LEFT + pw / 2:.0f}" y="{TOP + ph / 2 + 30:.0f}" text-anchor="middle" font-size="12" '
-                     f'fill="{c["muted"]}">The line grows with each run (every 4 hours)</text>')
+                     f'fill="{c["muted"]}">The line grows with each run</text>')
     parts.append("</svg>")
     return "\n".join(parts)
 

@@ -1,8 +1,7 @@
-# BACKUP runner. The bot normally runs on Render every 4 hours (python -m bot serve, see
-# SETUP.md). GitHub's own timer is unreliable (it often skips scheduled runs), so this workflow
-# only steps in if no run has happened for 5 hours, e.g. while the Render service is down or
-# before it's set up. It checks hourly; skipped checks take a few seconds and cost nothing.
-# Manual runs ("Run workflow") always go ahead.
+# Runs the bot on GitHub's computers when you start it: the Run button on the results page,
+# or Actions > kalshi-bot > Run workflow. There's no timer (GitHub's skipped most scheduled runs).
+# A run takes a few minutes: simulated trading with Claude's research, the lag scan, the report,
+# then the results page is republished.
 #
 # Brain, pick ONE secret:
 #   CLAUDE_CODE_OAUTH_TOKEN  uses your Claude subscription (made with `claude setup-token`)
@@ -12,9 +11,7 @@
 name: kalshi-bot
 
 on:
-  schedule:
-    - cron: "41 * * * *"     # check every hour at 41 past (UTC); the gate decides whether to run
-  workflow_dispatch: {}       # adds a "Run workflow" button for manual runs
+  workflow_dispatch: {}       # started by the page's Run button or "Run workflow" in the Actions tab
 
 permissions:
   contents: write             # lets the job save the journal and dashboard back to the repo
@@ -24,37 +21,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  gate:
-    if: ${{ vars.BOT_ENABLED != 'false' }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    outputs:
-      due: ${{ steps.check.outputs.due }}
-    steps:
-      - uses: actions/checkout@v4
-      - name: Is a run due?
-        id: check
-        env:
-          MIN_GAP_MINUTES: "300"    # 5 hours: Render runs every 4, so this only fires if Render missed one
-        run: |
-          last=$(head -1 data/last_run.log 2>/dev/null | sed -n 's/^# Last run: //p')
-          last_s=$(date -u -d "$last" +%s 2>/dev/null || echo 0)
-          ago=$(( ($(date -u +%s) - last_s) / 60 ))
-          if [ "$GITHUB_EVENT_NAME" != "schedule" ]; then
-            due=true; why="manual run"
-          elif [ -z "$last" ]; then
-            due=true; why="no previous run found"
-          elif [ "$ago" -ge "$MIN_GAP_MINUTES" ]; then
-            due=true; why="last run ${last:-unknown}, ${ago} min ago"
-          else
-            due=false; why="last run $last, only ${ago} min ago; waiting for ${MIN_GAP_MINUTES}"
-          fi
-          echo "due=$due" >> "$GITHUB_OUTPUT"
-          echo "Run due: $due ($why)" | tee -a "$GITHUB_STEP_SUMMARY"
-
   run:
-    needs: gate
-    if: ${{ needs.gate.outputs.due == 'true' }}
+    if: ${{ vars.BOT_ENABLED != 'false' }}
     runs-on: ubuntu-latest
     timeout-minutes: 45
     env:

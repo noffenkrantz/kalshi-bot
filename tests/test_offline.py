@@ -540,7 +540,7 @@ def test_balance_chart_svg():
 
 def test_results_site_builds_and_is_injection_safe(tmp_path, cfg):
     import re
-    from bot.site import build_site_data, render_site, next_run
+    from bot.site import build_site_data, render_site
     prod = FakeKalshi("prod", MARKETS, authed=False)
     j = Journal(tmp_path / "data")
     run_once(Bot(mode="shadow", cfg=cfg, data=prod, trade=None, claude=FakeClaude(PROBS), journal=j, now=NOW, root=tmp_path))
@@ -553,7 +553,6 @@ def test_results_site_builds_and_is_injection_safe(tmp_path, cfg):
     assert html.count("</script>") == 2                         # only the page's own two script tags
     blob = script.split(";\nconst $ =", 1)[0]
     assert json.loads(blob)["forecasts"][-1]["q"].startswith("Evil </script>")  # round-trips intact
-    assert next_run(NOW).strftime("%H:%M") == "22:00"           # NOW is 18:00 UTC; runs are 4 hours apart
 
 
 def test_real_balance_counts_only_settled_bets_and_projection_only_moved_ones(tmp_path):
