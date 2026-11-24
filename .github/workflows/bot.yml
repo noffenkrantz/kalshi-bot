@@ -1,8 +1,7 @@
-# Runs the bot automatically on GitHub's computers, about every 4 hours.
-#
-# Why hourly: GitHub often starts scheduled runs late or skips them when it's busy. So it
-# checks every hour, and the "gate" job lets a real run through only once 3.5+ hours have
-# passed since the last one. Skipped checks take a few seconds and cost nothing.
+# BACKUP runner. The bot normally runs on Render every 4 hours (python -m bot serve, see
+# SETUP.md). GitHub's own timer is unreliable (it often skips scheduled runs), so this workflow
+# only steps in if no run has happened for 5 hours, e.g. while the Render service is down or
+# before it's set up. It checks hourly; skipped checks take a few seconds and cost nothing.
 # Manual runs ("Run workflow") always go ahead.
 #
 # Brain, pick ONE secret:
@@ -36,7 +35,7 @@ jobs:
       - name: Is a run due?
         id: check
         env:
-          MIN_GAP_MINUTES: "210"    # 3.5 hours; with hourly checks this gives a run about every 4 hours
+          MIN_GAP_MINUTES: "300"    # 5 hours: Render runs every 4, so this only fires if Render missed one
         run: |
           last=$(head -1 data/last_run.log 2>/dev/null | sed -n 's/^# Last run: //p')
           last_s=$(date -u -d "$last" +%s 2>/dev/null || echo 0)

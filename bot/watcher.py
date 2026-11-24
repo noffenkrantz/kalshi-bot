@@ -9,32 +9,24 @@ price when the rain report came out, and the price 5, 30 and 60 minutes later, s
 whether it is actually ahead of the market. When the price still leaves an edge, it places a
 pretend bet in the bot's shared simulated account. No Claude, no tokens, no real money.
 
-    python -m bot watch                   run forever (on an always-on server)
-    python -m bot watch --once --dry-run  one pass, print only, change nothing
+    python -m bot serve                   the always-on server: research every 4 hours + this watcher
+    python -m bot watch --once --dry-run  one pass of the watcher alone, print only, change nothing
     python -m bot watch --inspect         print what the live data looks like
 
-On a server, set GITHUB_TOKEN (a fine-grained token with Contents read/write on this repo).
-The watcher clones the repo, writes only data/watch_*.jsonl and data/watch_status.json, and
-pushes them, so the results page and the 4-hourly bot runs pick its bets up.
+The server (bot/server.py) runs this watcher between research runs and pushes its files
+(data/watch_*.jsonl) to GitHub, so the results page picks its bets up.
 """
 from __future__ import annotations
 
-import base64
-import json
-import os
 import re
-import signal
-import subprocess
-import time
-import traceback
 from collections import Counter, deque
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
-from .config import effective_risk, load_config
+from .config import effective_risk
 from .journal import Journal
-from .kalshi import KalshiClient, KalshiError
+from .kalshi import KalshiClient
 from .nws import NWSClient, NWSError, Obs, Station, climate_day_bounds
 from .runner import paper_account_from
 from .strategy import decide, quotes
@@ -337,130 +329,6 @@ class RainWatcher:
                 "signals_today": sum(1 for s in self.signals.values() if (s.get("detected") or "").startswith(today)),
                 "bets_today": sum(1 for r in self.journal.rows["watch_decisions"] if r.get("ts", "").startswith(today)),
                 "station_checks_since_start": self.counts["station_checks"], "recent_errors": list(self.errors)}
-
-
-# ---- keeping the repo in sync (server only) ---------------------------------------------
-class RepoSync:
-    """A clone of the repo that the watcher reads settings and results from, and pushes its own
-    watch_* files to. The token goes in an HTTP header in the clone's git config, never in a URL,
-    so it can't show up in logs."""
-
-    FILES = ("data/watch_decisions.jsonl", "data/watch_signals.jsonl", "data/watch_status.json")
-
-    def __init__(self, repo_dir: Path, slug: str, token: str, say=print):
-        self.dir, self.slug, self.say = Path(repo_dir), slug, say
-        basic = base64.b64encode(f"x-access-token:{token}".encode()).decode()
-        self.header = f"AUTHORIZATION: basic {basic}"
-
-    def git(self, *args: str, timeout: int = 120) -> tuple[int, str]:
-        try:
-            r = subprocess.run(["git", "-C", str(self.dir), *args], capture_output=True, text=True, timeout=timeout)
-            return r.returncode, (r.stdout + r.stderr).strip()
-        except subprocess.TimeoutExpired:
-            return 1, f"git {args[0]} timed out"
-
-    def ensure_clone(self) -> None:
-        if (self.dir / ".git").exists():
-            return
-        self.dir.parent.mkdir(parents=True, exist_ok=True)
-        r = subprocess.run(["git", "-c", f"http.https://github.com/.extraheader={self.header}", "clone", "-q",
-                            f"https://github.com/{self.slug}.git", str(self.dir)],
-                           capture_output=True, text=True, timeout=300)
-        if r.returncode != 0:
-            raise RuntimeError(f"could not clone {self.slug}: {(r.stderr or r.stdout).strip()[:300]}")
-        self.git("config", "--local", "http.https://github.com/.extraheader", self.header)
-        self.git("config", "--local", "user.name", "kalshi-watcher")
-        self.git("config", "--local", "user.email", "kalshi-watcher@users.noreply.github.com")
-        self.say(f"cloned {self.slug}")
-
-    def pull(self) -> bool:
-        code, out = self.git("pull", "-q", "--rebase", "--autostash")
-        if code:
-            self.say(f"git pull failed: {out[:300]}")
-        return code == 0
-
-    def push(self, message: str) -> bool:
-        present = [f for f in self.FILES if (self.dir / f).exists()]
-        if not present:
-            return True
-        self.git("add", "--", *present)
-        if self.git("diff", "--cached", "--quiet")[0] == 0:
-            return True
-        code, out = self.git("commit", "-q", "-m", message)
-        if code:
-            self.say(f"git commit failed: {out[:300]}")
-            return False
-        for attempt in range(3):
-            self.pull()
-            code, out = self.git("push", "-q")
-            if code == 0:
-                return True
-            time.sleep(5 * (attempt + 1))
-        self.say(f"git push failed (will retry): {out[:300]}")
-        return False
-
-
-# ---- running it -------------------------------------------------------------------------
-def serve(once: bool = False, dry_run: bool = False, root: Path | None = None, say=print) -> int:
-    token = os.environ.get("GITHUB_TOKEN")
-    slug = os.environ.get("WATCH_REPO", "noffenkrantz/kalshi-bot")
-    sync = None
-    if token and not dry_run:
-        repo_dir = Path(os.environ.get("WATCH_DIR", "/tmp/kalshi-bot-repo"))
-        sync = RepoSync(repo_dir, slug, token, say)
-        sync.ensure_clone()
-        sync.pull()
-        root = repo_dir
-    else:
-        from .config import ROOT
-        root = root or ROOT
-        if not dry_run:
-            say("No GITHUB_TOKEN: results stay in this folder and are not pushed anywhere.")
-    cfg = load_config(root / "config.toml")
-    watcher = RainWatcher(cfg, KalshiClient("prod"), NWSClient(), root, dry_run=dry_run, say=say)
-    w = watcher.w
-    watcher.log(f"watcher started ({'dry run, ' if dry_run else ''}series {', '.join(w['series'])})")
-
-    stopping = {"now": False}
-
-    def _stop(*_):
-        stopping["now"] = True
-    signal.signal(signal.SIGTERM, _stop)
-
-    last_push = last_pull = last_beat = time.monotonic()
-    while True:
-        started = time.monotonic()
-        try:
-            watcher.tick()
-        except KalshiError as e:
-            watcher.note_error(f"Kalshi: {e}")
-        except Exception as e:   # keep running; the next pass will try again
-            watcher.note_error(f"{type(e).__name__}: {e}")
-            traceback.print_exc()
-        now_m = time.monotonic()
-        if sync:
-            beat = now_m - last_beat >= w["heartbeat_minutes"] * 60
-            if watcher.urgent or stopping["now"] or beat or (
-                    watcher.dirty and now_m - last_push >= w["push_every_minutes"] * 60):
-                status = watcher.status(watcher.clock())
-                (root / "data" / "watch_status.json").write_text(json.dumps(status, indent=1) + "\n")
-                what = f"{status['signals_today']} rain signals, {status['bets_today']} pretend bets today"
-                if sync.push(f"watcher: {what}"):
-                    watcher.dirty = watcher.urgent = False
-                    last_push = last_beat = now_m
-            if now_m - last_pull >= w["pull_every_minutes"] * 60 and not stopping["now"]:
-                if sync.pull():
-                    watcher.reload(load_config(root / "config.toml"))
-                last_pull = now_m
-        if once or stopping["now"]:
-            if once:
-                s = watcher.status(watcher.clock())
-                watcher.log(f"one pass done: {s['markets_open']} open rain markets, {s['markets_in_play']} in play "
-                            f"today, {s['stations_known']} stations found, {s['station_checks_since_start']} station "
-                            f"checks, {s['signals_today']} signals today")
-            return 0
-        while time.monotonic() - started < w["tick_seconds"] and not stopping["now"]:
-            time.sleep(1)   # short naps, so a shutdown request is handled within a second
 
 
 # ---- inspect ------------------------------------------------------------------------------

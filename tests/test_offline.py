@@ -553,9 +553,7 @@ def test_results_site_builds_and_is_injection_safe(tmp_path, cfg):
     assert html.count("</script>") == 2                         # only the page's own two script tags
     blob = script.split(";\nconst $ =", 1)[0]
     assert json.loads(blob)["forecasts"][-1]["q"].startswith("Evil </script>")  # round-trips intact
-    assert next_run(NOW).strftime("%H:%M") == "21:41"           # NOW is 18:00 UTC: 3.5h later, then the next :41 check
-    assert next_run(NOW.replace(minute=11)).strftime("%H:%M") == "21:41"   # 21:41 exactly is fine
-    assert next_run(NOW.replace(minute=12)).strftime("%H:%M") == "22:41"
+    assert next_run(NOW).strftime("%H:%M") == "22:00"           # NOW is 18:00 UTC; runs are 4 hours apart
 
 
 def test_real_balance_counts_only_settled_bets_and_projection_only_moved_ones(tmp_path):

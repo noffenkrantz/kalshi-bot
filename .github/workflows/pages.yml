@@ -1,6 +1,7 @@
-# Manual "publish now" button for the results page (site/index.html) on GitHub Pages.
-# The bot workflow (bot.yml) already publishes the page at the end of every real run;
-# use this only to republish without running the bot.
+# Publishes the results page (site/index.html) to GitHub Pages whenever it changes on main
+# (each run on Render pushes a new one), plus a manual "publish now" button.
+# Runs of the GitHub backup workflow (bot.yml) publish the page themselves, because pushes
+# made with GitHub's built-in token don't start other workflows.
 #
 # One-time setup: Settings → Pages → Build and deployment → Source: "GitHub Actions".
 # The page is then at https://<your-username>.github.io/<repo-name>/
@@ -8,6 +9,9 @@
 name: results-site
 
 on:
+  push:
+    branches: [main]
+    paths: ["site/**"]
   workflow_dispatch: {}       # adds a "Run workflow" button to publish right now
 
 permissions:

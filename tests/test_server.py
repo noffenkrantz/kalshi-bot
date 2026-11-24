@@ -1,0 +1,138 @@
+"""Offline tests for the always-on server: fake git, fake commands, fake clock."""
+from __future__ import annotations
+
+import shutil
+import subprocess
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+
+from bot.server import RESULT_PATHS, Supervisor, last_run_time
+from bot.watcher import DEFAULTS
+
+ROOT = Path(__file__).resolve().parent.parent
+NOW = datetime(2026, 11, 24, 1, 0, tzinfo=timezone.utc)
+
+
+class Clock:
+    def __init__(self, t):
+        self.t = t
+
+    def __call__(self):
+        return self.t
+
+
+class FakeSync:
+    slug = "someone/kalshi-bot"
+
+    def __init__(self):
+        self.pulls, self.pushes = 0, []
+
+    def pull(self):
+        self.pulls += 1
+        return True
+
+    def push(self, message, paths=("data/watch_status.json",)):
+        self.pushes.append((message, tuple(paths)))
+        return True
+
+
+class FakeWatcher:
+    def __init__(self):
+        self.w = dict(DEFAULTS)
+        self.ticks, self.reloads, self.dirty, self.urgent, self.errors = 0, 0, False, False, []
+
+    def tick(self):
+        self.ticks += 1
+
+    def reload(self, cfg):
+        self.reloads += 1
+
+    def note_error(self, msg):
+        self.errors.append(msg)
+
+    def status(self, now):
+        return {"markets_open": 3, "markets_in_play": 1, "stations_known": 1, "signals_today": 0, "bets_today": 0}
+
+
+class FakeRunner:
+    def __init__(self, fail=None):
+        self.calls, self.fail = [], fail
+
+    def __call__(self, cmd, cwd, env, capture_output, text, timeout):
+        self.calls.append((cmd[3:], cwd, env))
+        code = 1 if self.fail and self.fail in cmd else 0
+        return subprocess.CompletedProcess(cmd, code, stdout=f"did {' '.join(cmd[3:])}\n", stderr="")
+
+
+def make(tmp_path, last_run=None, clock=None, runner=None):
+    shutil.copy(ROOT / "config.toml", tmp_path / "config.toml")
+    (tmp_path / "data").mkdir()
+    if last_run:
+        (tmp_path / "data" / "last_run.log").write_text(f"# Last run: {last_run:%Y-%m-%d %H:%M} UTC\nbrain: API key\n")
+    lines = []
+    sup = Supervisor(tmp_path, FakeSync(), say=lines.append, clock=clock or Clock(NOW),
+                     runner=runner or FakeRunner(), watcher=FakeWatcher())
+    return sup, lines
+
+
+def test_last_run_time(tmp_path):
+    (tmp_path / "data").mkdir()
+    assert last_run_time(tmp_path) is None
+    (tmp_path / "data" / "last_run.log").write_text("# Last run: 2026-11-23 13:37 UTC\nbrain: API key\n")
+    assert last_run_time(tmp_path) == datetime(2026, 11, 23, 13, 37, tzinfo=timezone.utc)
+
+
+def test_research_runs_every_four_hours(tmp_path):
+    sup, _ = make(tmp_path, last_run=NOW - timedelta(hours=3, minutes=50))
+    assert not sup.research_due(NOW)
+    assert sup.research_due(NOW + timedelta(minutes=10))
+    fresh = tmp_path / "fresh"
+    fresh.mkdir()
+    assert make(fresh)[0].research_due(NOW)                  # never run: run now
+
+
+def test_research_cycle_runs_the_steps_logs_and_pushes(tmp_path, monkeypatch):
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "sk-test")
+    monkeypatch.setenv("GITHUB_TOKEN", "ghp-secret")
+    runner = FakeRunner()
+    sup, lines = make(tmp_path, last_run=NOW - timedelta(hours=5), runner=runner)
+    sup.step()
+    assert [c[0] for c in runner.calls] == [["run", "--mode", "shadow"], ["lags", "--scan"], ["report"]]
+    assert all(c[1] == str(tmp_path) for c in runner.calls)
+    env = runner.calls[0][2]
+    assert "GITHUB_TOKEN" not in env and env["GITHUB_REPOSITORY"] == "someone/kalshi-bot"
+    log = (tmp_path / "data" / "last_run.log").read_text()
+    assert log.startswith(f"# Last run: {NOW:%Y-%m-%d %H:%M} UTC") and "## lag scan\ndid lags --scan" in log
+    assert sup.sync.pushes[0] == (f"journal: run {NOW:%Y-%m-%dT%H:%MZ}", RESULT_PATHS)
+    assert sup.watcher.ticks == 1 and sup.watcher.reloads == 1
+    assert last_run_time(tmp_path) == NOW.replace(second=0) and not sup.research_due(NOW + timedelta(hours=1))
+
+
+def test_without_api_key_it_still_scans_and_reports(tmp_path, monkeypatch):
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    runner = FakeRunner()
+    sup, _ = make(tmp_path, runner=runner)
+    sup.research_cycle(NOW)
+    assert [c[0] for c in runner.calls] == [["lags", "--scan"], ["report"]]
+    assert "NOT SET UP" in (tmp_path / "data" / "last_run.log").read_text()
+
+
+def test_a_failing_step_is_reported_but_the_rest_still_runs(tmp_path, monkeypatch):
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "sk-test")
+    runner = FakeRunner(fail="lags")
+    sup, lines = make(tmp_path, runner=runner)
+    assert sup.research_cycle(NOW) is False
+    assert [c[0] for c in runner.calls][-1] == ["report"] and sup.sync.pushes
+    assert sup.last_research_error == "lag scan exited with 1"
+
+
+def test_watcher_heartbeat_and_status(tmp_path):
+    clock = Clock(NOW)
+    sup, _ = make(tmp_path, last_run=NOW - timedelta(hours=1), clock=clock)
+    sup.step()
+    assert sup.sync.pushes == []                              # nothing to save yet
+    clock.t = NOW + timedelta(minutes=61)
+    sup.step()
+    assert sup.sync.pushes and sup.sync.pushes[-1][0].startswith("watcher:")
+    status = (tmp_path / "data" / "watch_status.json").read_text()
+    assert '"next_research_run": "2026-11-24T04:00:00+00:00"' in status

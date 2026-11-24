@@ -1,4 +1,4 @@
-"""Command line: python -m bot check | run --mode shadow|demo|live | report | watch | resume --mode ..."""
+"""Command line: python -m bot check | run --mode shadow|demo|live | report | serve | watch | lags | resume --mode ..."""
 from __future__ import annotations
 
 import argparse
@@ -145,11 +145,12 @@ def cmd_report(cfg: dict) -> int:
 
 def cmd_watch(cfg: dict, args) -> int:
     from .nws import NWSClient
-    from .watcher import inspect, serve
+    from .server import main as serve
+    from .watcher import inspect
     if args.inspect:
         inspect(KalshiClient("prod"), NWSClient())
         return 0
-    return serve(once=args.once, dry_run=args.dry_run)
+    return serve(research=False, once=args.once, dry_run=args.dry_run)
 
 
 def cmd_lags(cfg: dict, args) -> int:
@@ -185,6 +186,9 @@ def main(argv=None) -> int:
     sub.add_parser("report", help="show how Claude's forecasts and trades are doing")
     sub.add_parser("prepare", help="subscription mode: queue markets for Claude Code to research")
     sub.add_parser("ingest", help="subscription mode: record Claude Code's forecasts")
+    sv = sub.add_parser("serve", help="always-on server: research every 4 hours + the rain watcher")
+    sv.add_argument("--once", action="store_true", help="one pass, then stop")
+    sv.add_argument("--dry-run", action="store_true", help="watcher only, print but save and push nothing")
     w = sub.add_parser("watch", help="data watcher: official weather readings vs live prices")
     w.add_argument("--inspect", action="store_true", help="print what the live data looks like, change nothing")
     w.add_argument("--once", action="store_true", help="one pass, then stop")
@@ -211,6 +215,9 @@ def main(argv=None) -> int:
         return cmd_ingest()
     if args.cmd == "watch":
         return cmd_watch(cfg, args)
+    if args.cmd == "serve":
+        from .server import main as serve
+        return serve(research=True, once=args.once, dry_run=args.dry_run)
     if args.cmd == "lags":
         return cmd_lags(cfg, args)
     return cmd_resume(args.mode)

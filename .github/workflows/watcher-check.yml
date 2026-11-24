@@ -34,3 +34,5 @@ jobs:
       - uses: actions/checkout@v4
       - run: docker build -t kalshi-watcher .
       - run: docker run --rm kalshi-watcher python -m bot watch --once --dry-run
+      - name: The server command starts and does one dry pass
+        run: docker run --rm kalshi-watcher python -m bot serve --once --dry-run

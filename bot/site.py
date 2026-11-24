@@ -15,19 +15,15 @@ from .journal import Journal
 from .kalshi import KalshiClient
 from .lags import summarize as lag_summary
 from .learning import focus_label, topic_for, topic_stats, topic_weights
-from .util import iso, parse_time
+from .util import iso
 
 TEMPLATE = Path(__file__).with_name("site_template.html")
-RUN_GAP = timedelta(minutes=210)   # matches MIN_GAP_MINUTES in .github/workflows/bot.yml
-CHECK_MINUTE = 41                   # the workflow checks hourly at :41 past (cron "41 * * * *")
+RUN_EVERY = timedelta(hours=4)     # matches bot/server.py (the Render service)
 
 
 def next_run(now: datetime) -> datetime:
-    """First hourly check at least RUN_GAP after this run, i.e. when the next run is due.
-    GitHub can still start it a little late."""
-    earliest = (now + RUN_GAP).astimezone(timezone.utc)
-    t = earliest.replace(minute=CHECK_MINUTE, second=0, microsecond=0)
-    return t if t >= earliest else t + timedelta(hours=1)
+    """The server starts the next run 4 hours after this one."""
+    return (now + RUN_EVERY).astimezone(timezone.utc).replace(second=0, microsecond=0)
 
 
 def build_site_data(journal: Journal, clients: dict[str, KalshiClient], now: datetime, cfg: dict) -> dict:
