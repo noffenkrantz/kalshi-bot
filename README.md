@@ -1,6 +1,6 @@
 # Kalshi bot
 
-**Updated Mon Nov 23, 8:40 AM EST** · runs every 4 hours · [▶ Run now](https://github.com/noffenkrantz/kalshi-bot/actions/workflows/bot.yml) · [Results site](https://noffenkrantz.github.io/kalshi-bot/) · [Full report](REPORT.md) · [Where prices lag](LAGS.md) · [Last run log](data/last_run.log) · [Setup & settings](SETUP.md)
+**Updated Mon Nov 23, 8:13 PM EST** · runs every 4 hours · [▶ Run now](https://github.com/noffenkrantz/kalshi-bot/actions/workflows/bot.yml) · [Results site](https://noffenkrantz.github.io/kalshi-bot/) · [Full report](REPORT.md) · [Where prices lag](LAGS.md) · [Last run log](data/last_run.log) · [Setup & settings](SETUP.md)
 
 ## 💵 Simulated account
 
@@ -24,7 +24,7 @@
 
 ## 🎯 Is Claude beating the market?
 
-**The market is ahead**: accuracy score 0.193 for Claude vs 0.190 for the market price (lower is better) on 9 resolved forecasts. Too early to trust: 9/100 resolved.
+**The market is ahead**: accuracy score 0.287 for Claude vs 0.202 for the market price (lower is better) on 18 resolved forecasts. Too early to trust: 18/100 resolved.
 
 ## 🧠 What Claude is learning
 
@@ -32,9 +32,9 @@
 
 | Topic | Claude beat the market | Research focus |
 |---|---|---|
-| Climate and Weather | 1 of 3 | ⬇ less |
+| Climate and Weather | 1 of 7 | ⬇ less |
 | Politics | 2 of 3 | normal |
-| Economics | 0 of 1 | ⬇ less |
+| Economics | 1 of 3 | ⬇ less |
 
 *20% of research is always spread at random, so every topic keeps getting chances.*
 
@@ -48,6 +48,7 @@
 
 | Market | Claude | Market | Sure? |
 |---|---|---|---|
+| S&P price on Nov 24, 2026 at 4pm EST? — 7… | 76% | 94% | medium-low |
 | Where will it rain on Nov 24, 2026? — Tam… | 20% | 40% | medium |
 | Michigan gas price tomorrow — Large decre… | 50% | 15% | medium-low |
 | Diesel prices tomorrow — Above $5.805 | 6% | 10% | medium |
@@ -57,7 +58,6 @@
 | Connecticut gas price tomorrow — Small de… | 42% | 72% | medium |
 | Vermont gas price tomorrow — Large decrea… | 45% | 42% | medium-low |
 | US gas prices tomorrow — Above 3.6350 | 12% | 26% | medium-high |
-| Highest temperature in Houston on Nov 23,… | 20% | 78% | medium |
 
 ---
 *Simulated trades only, no real money. Not financial advice.*

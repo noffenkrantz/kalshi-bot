@@ -6,3 +6,12 @@
 {"ts":"2026-11-23T13:37:36+00:00","env":"shadow","ticker":"KXLOWTEWR-26NOV22-B45.5","result":"no"}
 {"ts":"2026-11-23T13:37:36+00:00","env":"shadow","ticker":"KXTRUTHSOCIALD-26NOV22-T5","result":"no"}
 {"ts":"2026-11-23T13:37:36+00:00","env":"shadow","ticker":"KXAAAGASD-26NOV23-3.6350","result":"yes"}
+{"ts":"2026-11-24T01:12:11+00:00","env":"shadow","ticker":"KXRAIN-26NOV22-NYC","result":"no"}
+{"ts":"2026-11-24T01:12:11+00:00","env":"shadow","ticker":"KXRAIN-26NOV22-ATL","result":"yes"}
+{"ts":"2026-11-24T01:12:11+00:00","env":"shadow","ticker":"KXRAIN-26NOV22-BOS","result":"yes"}
+{"ts":"2026-11-24T01:12:11+00:00","env":"shadow","ticker":"KXRAIN-26NOV22-PHIL","result":"no"}
+{"ts":"2026-11-24T01:12:11+00:00","env":"shadow","ticker":"KXTSAD-26NOV21-T2600000","result":"no"}
+{"ts":"2026-11-24T01:12:11+00:00","env":"shadow","ticker":"KXRAIN-26NOV22-EWR","result":"yes"}
+{"ts":"2026-11-24T01:12:11+00:00","env":"shadow","ticker":"KXHIGHLAX-26NOV22-B67.5","result":"yes"}
+{"ts":"2026-11-24T01:12:11+00:00","env":"shadow","ticker":"KXDIESELD-26NOV23-T5.815","result":"yes"}
+{"ts":"2026-11-24T01:12:11+00:00","env":"shadow","ticker":"KXTRUMPAPPROVE-26NOV23-E37.9","result":"no"}
