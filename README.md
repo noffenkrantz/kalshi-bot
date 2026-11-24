@@ -1,6 +1,6 @@
 # Kalshi bot
 
-**Updated Mon Nov 23, 10:18 PM EST** · runs when you press Run · [▶ Run now](https://github.com/noffenkrantz/kalshi-bot/actions/workflows/bot.yml) · [Results site](https://noffenkrantz.github.io/kalshi-bot/) · [Full report](REPORT.md) · [Where prices lag](LAGS.md) · [Last run log](data/last_run.log) · [Setup & settings](SETUP.md)
+**Updated Tue Nov 24, 9:24 AM EST** · runs when you press Run · [▶ Run now](https://github.com/noffenkrantz/kalshi-bot/actions/workflows/bot.yml) · [Results site](https://noffenkrantz.github.io/kalshi-bot/) · [Full report](REPORT.md) · [Where prices lag](LAGS.md) · [Last run log](data/last_run.log) · [Setup & settings](SETUP.md)
 
 ## 💵 Simulated account
 
@@ -24,7 +24,7 @@
 
 ## 🎯 Is Claude beating the market?
 
-**The market is ahead**: accuracy score 0.287 for Claude vs 0.202 for the market price (lower is better) on 18 resolved forecasts. Too early to trust: 18/100 resolved.
+**The market is ahead**: accuracy score 0.277 for Claude vs 0.183 for the market price (lower is better) on 22 resolved forecasts. Too early to trust: 22/100 resolved.
 
 ## 🧠 What Claude is learning
 
@@ -32,9 +32,9 @@
 
 | Topic | Claude beat the market | Research focus |
 |---|---|---|
-| Climate and Weather | 1 of 7 | ⬇ less |
+| Climate and Weather | 2 of 9 | ⬇ less |
+| Economics | 1 of 4 | ⬇ less |
 | Politics | 2 of 3 | normal |
-| Economics | 1 of 3 | ⬇ less |
 
 *20% of research is always spread at random, so every topic keeps getting chances.*
 
@@ -48,16 +48,16 @@
 
 | Market | Claude | Market | Sure? |
 |---|---|---|---|
+| Diesel prices tomorrow — Above $5.765 | 47% | 30% | medium-low |
+| Where will it rain on Nov 25, 2026? — Was… | 10% | 21% | medium-high |
+| Copper price on Nov 25, 2026 at 5:00 PM E… | 23% | 24% | medium-low |
+| US gas prices tomorrow — Above 3.5900 | 88% | 64% | medium-high |
 | S&P price on Nov 24, 2026 at 4pm EST? — 7… | 50% | 57% | medium-low |
 | S&P price on Nov 24, 2026 at 4pm EST? — 7… | 76% | 94% | medium-low |
 | Where will it rain on Nov 24, 2026? — Tam… | 20% | 40% | medium |
 | Michigan gas price tomorrow — Large decre… | 50% | 15% | medium-low |
 | Diesel prices tomorrow — Above $5.805 | 6% | 10% | medium |
 | US gas prices tomorrow — Above 3.6150 | 52% | 15% | medium-low |
-| Highest temperature in Los Angeles on Nov… | 10% | 6% | medium-low |
-| Trump's RCP approval average on Nov 23, 2… | 40% | 40% | medium-low |
-| Connecticut gas price tomorrow — Small de… | 42% | 72% | medium |
-| Vermont gas price tomorrow — Large decrea… | 45% | 42% | medium-low |
 
 ---
 *Simulated trades only, no real money. Not financial advice.*

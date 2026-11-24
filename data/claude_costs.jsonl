@@ -28,3 +28,7 @@
 {"ts":"2026-11-23T13:37:36+00:00","env":"shadow","ticker":"KXRAIN-26NOV24-TPA","usd":0.1065}
 {"ts":"2026-11-24T01:12:11+00:00","env":"shadow","ticker":"KXINXU-26NOV24H1600-T7094.9999","usd":0.1792}
 {"ts":"2026-11-24T03:17:32+00:00","env":"shadow","ticker":"KXINXU-26NOV24H1600-T7234.9999","usd":0.1146}
+{"ts":"2026-11-24T14:22:35+00:00","env":"shadow","ticker":"KXAAAGASD-26NOV25-3.5900","usd":0.1018}
+{"ts":"2026-11-24T14:22:35+00:00","env":"shadow","ticker":"KXCOPPERD-26NOV2517-T5.60","usd":0.1715}
+{"ts":"2026-11-24T14:22:35+00:00","env":"shadow","ticker":"KXRAIN-26NOV25-DC","usd":0.171}
+{"ts":"2026-11-24T14:22:35+00:00","env":"shadow","ticker":"KXDIESELD-26NOV25-T5.765","usd":0.268}
