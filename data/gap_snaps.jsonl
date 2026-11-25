@@ -1364,3 +1364,18 @@
 {"ts":"2026-11-25T21:12:45+00:00","ticker":"KXNBAGAME-26NOV25MIAPHI-MIA","league":"NBA","fair":0.5105,"bid":0.5,"ask":0.51,"vol24":514988}
 {"ts":"2026-11-25T21:13:16+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.3963,"bid":0.37,"ask":0.41,"vol24":17}
 {"ts":"2026-11-25T21:13:23+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25SWEJON-JON","league":"ATP Challenger Playford - R16","fair":0.2149,"bid":0.16,"ask":0.17,"vol24":48}
+{"ts":"2026-11-25T21:13:45+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25SWEJON-JON","league":"ATP Challenger Playford - R16","fair":0.2219,"bid":0.19,"ask":0.2,"vol24":48}
+{"ts":"2026-11-25T21:13:47+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25SWEJON-JON","league":"ATP Challenger Playford - R16","fair":0.2219,"bid":0.18,"ask":0.2,"vol24":48}
+{"ts":"2026-11-25T21:14:19+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25SWEJON-JON","league":"ATP Challenger Playford - R16","fair":0.2199,"bid":0.19,"ask":0.2,"vol24":48}
+{"ts":"2026-11-25T21:14:52+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25SWEJON-JON","league":"ATP Challenger Playford - R16","fair":0.2269,"bid":0.19,"ask":0.2,"vol24":48}
+{"ts":"2026-11-25T21:15:20+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25SWEJON-JON","league":"ATP Challenger Playford - R16","fair":0.2299,"bid":0.19,"ask":0.2,"vol24":48}
+{"ts":"2026-11-25T21:17:25+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.3963,"bid":0.34,"ask":0.41,"vol24":17}
+{"ts":"2026-11-25T21:17:56+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25SWEJON-JON","league":"ATP Challenger Playford - R16","fair":0.2277,"bid":0.19,"ask":0.2,"vol24":48}
+{"ts":"2026-11-25T21:17:56+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.3963,"bid":0.37,"ask":0.4,"vol24":17}
+{"ts":"2026-11-25T21:18:27+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.3963,"bid":0.38,"ask":0.4,"vol24":17}
+{"ts":"2026-11-25T21:18:59+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25SWEJON-JON","league":"ATP Challenger Playford - R16","fair":0.2277,"bid":0.2,"ask":0.21,"vol24":48}
+{"ts":"2026-11-25T21:18:59+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.3963,"bid":0.38,"ask":0.41,"vol24":17}
+{"ts":"2026-11-25T21:19:10+00:00","ticker":"KXNBAGAME-26NOV25MIAPHI-PHI","league":"NBA","fair":0.4929,"bid":0.48,"ask":0.49,"vol24":375860}
+{"ts":"2026-11-25T21:19:10+00:00","ticker":"KXNBAGAME-26NOV25MIAPHI-MIA","league":"NBA","fair":0.5071,"bid":0.5,"ask":0.51,"vol24":514988}
+{"ts":"2026-11-25T21:20:04+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25SWEJON-JON","league":"ATP Challenger Playford - R16","fair":0.2409,"bid":0.2,"ask":0.21,"vol24":48}
+{"ts":"2026-11-25T21:20:29+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25SWEJON-JON","league":"ATP Challenger Playford - R16","fair":0.2409,"bid":0.22,"ask":0.23,"vol24":104}
