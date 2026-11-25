@@ -54,8 +54,9 @@ class RepoSync:
 
     WATCH_FILES = ("data/watch_decisions.jsonl", "data/watch_signals.jsonl", "data/watch_status.json")
 
-    def __init__(self, repo_dir: Path, slug: str, token: str, say=print):
-        self.dir, self.slug, self.say = Path(repo_dir), slug, say
+    def __init__(self, repo_dir: Path, slug: str, token: str, say=print, sleep=time.sleep, clock=time.monotonic):
+        self.dir, self.slug, self.say, self.sleep, self.clock = Path(repo_dir), slug, say, sleep, clock
+        self.blocked_until = 0.0        # after a permission error, don't hammer GitHub
         basic = base64.b64encode(f"x-access-token:{token}".encode()).decode()
         self.header = f"AUTHORIZATION: basic {basic}"
 
@@ -97,12 +98,27 @@ class RepoSync:
         if code:
             self.say(f"git commit failed: {out[:300]}")
             return False
+        return self.push_commits()
+
+    def push_commits(self) -> bool:
+        """Push what's committed locally. Commits made while pushing is blocked go out with the next push."""
+        if self.clock() < self.blocked_until:
+            return False
         for attempt in range(3):
             self.pull()
             code, out = self.git("push", "-q")
             if code == 0:
+                if self.blocked_until:
+                    self.say("git push works again: saved to GitHub")
+                    self.blocked_until = 0.0
                 return True
-            time.sleep(5 * (attempt + 1))
+            if "403" in out or "denied" in out.lower():          # a permission problem won't fix itself in seconds
+                self.blocked_until = self.clock() + 600
+                self.say("git push DENIED: the GITHUB_TOKEN can read the repo but not write to it. In GitHub, edit "
+                         "the token: Repository access must include kalshi-bot, and Contents must be 'Read and write'. "
+                         "Results are kept here and pushed once that's fixed (next try in 10 minutes).")
+                return False
+            self.sleep(5 * (attempt + 1))
         self.say(f"git push failed (will retry): {out[:300]}")
         return False
 

@@ -6,7 +6,7 @@ import subprocess
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from bot.server import GAP_PATHS, RESULT_PATHS, Supervisor, last_run_time
+from bot.server import GAP_PATHS, RESULT_PATHS, RepoSync, Supervisor, last_run_time
 from bot.watcher import DEFAULTS
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -191,3 +191,23 @@ def test_live_gap_mode_ticks_fast_and_pushes_new_bets_at_once(tmp_path, monkeypa
     sup.cfg["gaps"]["mode"] = "hourly"
     sup.sync_live_mode()
     assert sup.live is None
+
+
+def test_a_push_permission_error_backs_off_instead_of_retrying_every_tick(tmp_path):
+    lines, t = [], [1000.0]
+    sync = RepoSync(tmp_path, "someone/kalshi-bot", "ghp-x", say=lines.append, sleep=lambda s: None, clock=lambda: t[0])
+    calls = []
+
+    def fake_git(*args, timeout=120):
+        calls.append(args[0])
+        if args[0] == "push":
+            return (0, "") if t[0] > 2000 else (128, "remote: Permission to someone/kalshi-bot.git denied to someone.\n"
+                                                      "fatal: ... The requested URL returned error: 403")
+        return 0, ""
+    sync.git = fake_git
+    assert sync.push_commits() is False and calls.count("push") == 1            # no 3x retry for a 403
+    assert any("DENIED" in x for x in lines)
+    t[0] = 1300.0
+    assert sync.push_commits() is False and calls.count("push") == 1            # still backing off
+    t[0] = 2100.0
+    assert sync.push_commits() is True and any("works again" in x for x in lines)
