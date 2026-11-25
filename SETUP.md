@@ -28,7 +28,7 @@ There's no timer: the Claude research bot runs when you start it from **Actions*
 
 ## Results site
 
-The results page shows the Pinnacle vs Kalshi gap tracker as a simulated real-money account: it starts with `bankroll_usd` ($1,000), each bet buys up to `stake_usd` ($10) but only as many contracts as were actually for sale at that price, and Kalshi's fees are charged as Kalshi charges them. It shows the balance, open and settled bets with their closing value, where the gaps are by league, and (in live mode) how fast Kalshi follows Pinnacle. The Render server rebuilds `site/index.html` and `site/gaps.json` after each snapshot; the page also loads `site/gaps.json` from the repo when it opens, so it's current without waiting for a republish. It's published in two places:
+The results page shows the Pinnacle vs Kalshi gap tracker as a simulated real-money account: it starts with `bankroll_usd` ($1,000), each bet buys up to `stake_usd` ($100) but only as many contracts as were actually for sale at that price, and Kalshi's fees are charged as Kalshi charges them. It shows the balance, open and settled bets with their closing value, where the gaps are by league, and (in live mode) how fast Kalshi follows Pinnacle. The Render server rebuilds `site/index.html` and `site/gaps.json` after each snapshot; the page also loads `site/gaps.json` from the repo when it opens, so it's current without waiting for a republish. It's published in two places:
 
 - **Public, on GitHub Pages:** https://noffenkrantz.github.io/kalshi-bot/ (also linked as **Results site** at the top of the repo's front page). It's republished when the page changes (at most hourly). To republish by hand: **Actions → results-site → Run workflow**. Anyone with the link can open it; a `noindex` tag keeps it out of search engines.
   - One-time setup: **Settings → Pages → Build and deployment → Source: GitHub Actions**, then **Actions → results-site → Run workflow** (or just wait for the next bot run).
@@ -49,7 +49,7 @@ It runs on the always-on server below, together with the gap tracker.
 
 Pinnacle is the sportsbook whose odds are hardest to beat. The gap tracker reads its odds through pinnapi.com, removes its margin to get a fair price, and compares that with Kalshi's prices for the same games (about 500 matched games across ~70 leagues at a time):
 
-- **Simulated bets:** when Kalshi sells an outcome for 3¢ or more below the fair price after Kalshi's fee, it records a simulated $10 bet. Never a real order.
+- **Simulated bets:** when Kalshi sells an outcome for 3¢ or more below the fair price after Kalshi's fee, it records a simulated bet of up to $100. Never a real order.
 - **Scored by closing value:** each bet is compared with Pinnacle's last fair price before the game, which shows whether a gap was real within days, long before wins and losses can. Results also count once games settle.
 - **Report:** `GAPS.md`, by league. Data in `data/gap_*.jsonl`.
 - **Cost:** pinnapi's free trial allows 100 requests a day; one snapshot uses 4 (soccer, basketball, hockey, tennis), so it runs hourly. With a paid plan, lower `every_minutes` under `[gaps]` in `config.toml` and raise `daily_requests`.
