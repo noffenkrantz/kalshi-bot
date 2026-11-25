@@ -19,9 +19,9 @@ import math
 from datetime import datetime, timedelta
 from pathlib import Path
 
-from .gaps import (SPORTS, PinnAPI, PinnError, append_jsonl, budget, edges, game_series, is_side_event, is_tie,
-                   kalshi_games, match, outcome_name, pairs, parse_event, read_jsonl, save_budget, settings,
-                   settle, write_report)
+from .gaps import (SPORTS, PinnAPI, PinnError, append_jsonl, available_at, budget, edges, game_series, is_side_event,
+                   is_tie, kalshi_games, match, outcome_name, pairs, parse_event, read_jsonl, save_budget, settings,
+                   settle, size_bet, write_report)
 from .kalshi import KalshiClient, KalshiError
 from .util import iso, parse_time, to_float, utcnow
 
@@ -63,6 +63,7 @@ class LiveGaps:
                      "snapshot": now + timedelta(minutes=5), "settle": now + timedelta(minutes=10),
                      "report": now + timedelta(minutes=10)}
         self.calls_logged = 0
+        self.last_page: datetime | None = None
         self.dirty, self.new_bets = False, 0
 
     def reload(self, cfg: dict) -> None:
@@ -103,6 +104,11 @@ class LiveGaps:
             self.say(f"Kalshi: {str(e)[:200]}")
         if self.dirty and self._due("report", now, timedelta(minutes=10)):
             write_report(self.root)
+            from .gapsite import write_site
+            page = self.last_page is None or now - self.last_page >= timedelta(minutes=60)
+            write_site(self.root, {"gaps": self.g}, now, page=page)
+            if page:
+                self.last_page = now
             state, _ = budget(self.data, now, int(g["daily_requests"]))
             save_budget(self.data, state, self.pinn.calls - self.calls_logged, ran_at=now)
             self.calls_logged = self.pinn.calls
@@ -272,7 +278,8 @@ class LiveGaps:
         row = {"ts": iso(now), "ticker": t, "event": link["kev"]["event"], "series": link["kev"]["series"],
                "league": game["league"], "team": outcome_name(m), "side": side, "price": round(price, 4),
                "fair": round(fair if side == "yes" else 1 - fair, 4), "edge": round(edge, 4),
-               "contracts": math.floor(float(self.g["stake_usd"]) / price), "starts": iso(game["starts"]),
+               **size_bet(float(self.g["stake_usd"]), price, available_at(self.kalshi, t, side, price)),
+               "starts": iso(game["starts"]),
                "pin_id": game["id"], "pin_teams": f"{game['home']} vs {game['away']}", "live": True}
         append_jsonl(self.data / "gap_bets.jsonl", [row])
         bid, ask = self.quotes.get(t, (None, None))

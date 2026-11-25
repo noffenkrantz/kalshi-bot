@@ -175,7 +175,7 @@ def build_dashboard(journal: Journal, clients: dict[str, KalshiClient], now: dat
     links += ["[Full report](REPORT.md)", "[Where prices lag](LAGS.md)", "[Last run log](data/last_run.log)", "[Setup & settings](SETUP.md)"]
 
     out = ["# Kalshi bot", "",
-           f"**Updated {when(now, tz)}** · runs when you press Run · " + " · ".join(links), ""]
+           f"**Updated {when(now, tz)}** · research runs when started from Actions · " + " · ".join(links), ""]
     halted = journal.state.get("halted:shadow")
     if halted:
         out += [f"> ⚠️ **Paused by a safety check:** {halted.get('reason')}", ""]

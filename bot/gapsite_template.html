@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Kalshi Bot Results</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400..700&display=swap" rel="stylesheet">
+<style>
+/* VOICE an account statement for one strategy: buy on Kalshi when it's cheaper than Pinnacle's fair price
+   PICTURE the $1,000 account's settled balance (stepped), with the expected value of open bets dashed beside it
+   COLOUR black and white with splashes: one blue accent, green for gains, red for losses; inverted at night
+   TYPE Source Sans 3, tabular figures; 17px body
+   LAYOUT finding across the top, balance + chart + ruled figures, then open / settled bets, where the gaps are, follow speed */
+:root{color-scheme:light dark;
+  --bg:light-dark(#ffffff,#000000);--ink:light-dark(#111111,#f2f2f2);--ink2:light-dark(#3d3d3d,#c8c8c8);--muted:light-dark(#666666,#9d9d9d);--rule:light-dark(#e4e4e4,#2a2a2c);
+  --accent:light-dark(#2457e6,#7ea2ff);--on-accent:light-dark(#ffffff,#000000);
+  --up:light-dark(#0b7a41,#5ad58f);--down:light-dark(#c4342b,#ff8a7d)}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;overflow-x:clip;border-top:5px solid var(--accent);-webkit-font-smoothing:antialiased}
+button{font-family:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:max(16px,4vw)}
+.band{padding-block:clamp(24px,3.5vw,48px)}
+h1{font-size:clamp(32px,4.8vw,50px);line-height:1.08;font-weight:700;letter-spacing:-.01em;margin:0 0 12px;text-wrap:balance;max-width:24ch}
+h2{font-size:26px;line-height:1.2;font-weight:700;margin:0 0 6px}
+p{margin:0}
+.sub{color:var(--ink2);max-width:70ch}
+.status{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:0 18px;font-size:16px;font-weight:600;line-height:1;color:var(--on-accent);background:var(--accent);border:0;border-radius:999px;cursor:pointer}
+.btn:hover{background:color-mix(in srgb,var(--accent) 85%,var(--ink))}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.btn:disabled{cursor:default;opacity:.75}
+.btn svg{width:17px;height:17px;flex:none}
+.btn:disabled svg{animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.btn:disabled svg{animation:none}}
+.runstate{font-size:15px;color:var(--ink2);margin:10px 0 0;min-height:1.6em}
+.note{color:var(--muted);font-size:15px;margin-bottom:14px;max-width:80ch}
+.how{border-left:3px solid var(--accent);padding:2px 0 2px 14px;margin-top:18px;color:var(--ink2);font-size:15px;max-width:80ch}
+.hero{border-top:1px solid var(--rule)}
+.balance{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;margin-bottom:6px}
+.big{font-size:clamp(46px,7.2vw,76px);font-weight:700;line-height:1;letter-spacing:-.015em}
+.chg{font-size:19px;font-weight:600;white-space:nowrap}
+.up{color:var(--up)}
+.down{color:var(--down)}
+.fig{position:relative;height:clamp(220px,30vw,320px);margin-top:8px}
+.fig>svg{position:absolute;inset:0;width:100%;height:100%;touch-action:pan-y}
+svg text{font:13px "Source Sans 3",system-ui,sans-serif;fill:var(--muted);paint-order:stroke;stroke:var(--bg);stroke-width:4px}
+.grid{stroke:var(--rule);stroke-width:1}
+.base{stroke:var(--muted);stroke-width:1.25;opacity:.7}
+.tip{position:absolute;pointer-events:none;background:var(--bg);color:var(--ink);border:1px solid var(--rule);border-radius:8px;padding:6px 10px;font-size:14px;line-height:1.35;white-space:nowrap;box-shadow:0 2px 10px rgb(0 0 0/.08)}
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(11em,1fr));border-top:1px solid var(--ink);margin-top:18px}
+.figs>div{padding:12px 14px 4px 0;border-bottom:1px solid var(--rule)}
+.fv{font-size:28px;font-weight:700;line-height:1.1;white-space:nowrap}
+.fl{font-size:14px;color:var(--ink2)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 18px;font-size:14px;color:var(--ink2);margin-bottom:6px}
+.legend>span{white-space:nowrap}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:16px}
+th{font-weight:600;color:var(--muted);font-size:14px;text-align:left;padding:8px 10px 8px 0;border-bottom:1px solid var(--ink)}
+td{padding:10px 10px 10px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.q{font-weight:600}
+.meta{display:block;font-size:14px;font-weight:400;color:var(--muted)}
+.tag{display:inline-block;font-size:13px;font-weight:700;padding:0 8px;border-radius:99px;border:1px solid currentColor;white-space:nowrap}
+.tag.won{color:var(--up);background:color-mix(in srgb,var(--up) 10%,transparent)}
+.tag.lost{color:var(--down);background:color-mix(in srgb,var(--down) 10%,transparent)}
+.empty{color:var(--ink2);padding:14px 0;border-top:1px solid var(--rule)}
+.bar{display:inline-block;height:8px;border-radius:4px;background:var(--accent);vertical-align:1px;margin-right:6px;opacity:.8}
+.foot{border-top:1px solid var(--rule);color:var(--ink2);font-size:15px}
+.foot p+p{margin-top:6px}
+.foot a{color:var(--accent)}
+@media(max-width:600px){
+table{font-size:15px}
+.stack thead{display:none}
+.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--rule)}
+.stack td{display:flex;justify-content:space-between;gap:12px;border:0;padding:3px 0;text-align:right}
+.stack td::before{content:attr(data-l);color:var(--muted);font-size:14px;text-align:left}
+.stack td.q{display:block;text-align:left;font-size:16px}
+.stack td.q::before{content:none}
+}
+</style>
+<script>new MutationObserver(()=>{for(const c of document.querySelectorAll('.stack td:not([data-l])')){let i=0,p=c;while(p=p.previousElementSibling)i+=p.colSpan;c.dataset.l=c.closest('table').rows[0].cells[i]?.textContent||''}}).observe(document,{childList:true,subtree:true})</script>
+</head>
+<body>
+<header class="band"><div class="wrap">
+  <h1 id="finding">Loading results</h1>
+  <div class="status">
+    <p class="sub" id="subline"></p>
+    <button type="button" class="btn" id="reload" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36M21 4v5h-5"/></svg><span>Reload latest</span></button>
+  </div>
+  <p class="runstate" id="state" role="status" aria-live="polite"></p>
+</div></header>
+
+<section class="band hero" aria-labelledby="balh"><div class="wrap">
+  <h2 id="balh" class="fl" style="font-size:15px;font-weight:400;color:var(--ink2)">Pinnacle vs Kalshi · simulated real-money account · settled bets only</h2>
+  <div class="balance"><div class="big" id="bal"></div><div class="chg" id="chg"></div></div>
+  <p class="fl" id="projline" style="font-size:15px;margin:2px 0 10px"></p>
+  <div class="legend"><span><svg width="22" height="10" aria-hidden="true"><path d="M1 5H21" stroke="var(--accent)" stroke-width="3"/></svg> Balance (settled bets)</span><span id="projkey"><svg width="22" height="10" aria-hidden="true"><path d="M1 5H21" stroke="var(--muted)" stroke-width="2" stroke-dasharray="4 3"/></svg> Expected, with open bets valued at Pinnacle's latest price</span></div>
+  <div class="fig"><svg id="balsvg" role="img" aria-label="Account balance over time"></svg><div class="tip" id="tip" hidden></div></div>
+  <div class="figs" id="figs"></div>
+  <p class="how" id="how"></p>
+</div></section>
+
+<section class="band" aria-labelledby="openh"><div class="wrap">
+  <h2 id="openh">Open bets</h2>
+  <p class="note"><b>Expected</b> values each bet at Pinnacle's latest fair price for that side. It isn't counted in the balance until the game settles.</p>
+  <div id="open"></div>
+</div></section>
+
+<section class="band" aria-labelledby="seth"><div class="wrap">
+  <h2 id="seth">Settled bets</h2>
+  <p class="note">A winning contract pays $1. <b>Closing value</b> is Pinnacle's last fair price before the game minus what we paid, per contract: positive on average means the gaps were real, whatever the results.</p>
+  <div id="settled"></div>
+  <div id="missed"></div>
+</div></section>
+
+<section class="band" aria-labelledby="gaph"><div class="wrap">
+  <h2 id="gaph">Where the gaps are</h2>
+  <p class="note" id="gapnote"></p>
+  <div id="leagues"></div>
+</div></section>
+
+<section class="band" aria-labelledby="movh"><div class="wrap">
+  <h2 id="movh">How fast Kalshi follows Pinnacle</h2>
+  <p class="note">Each time Pinnacle's fair price on a paired game moves 2 points or more: how far Kalshi's midpoint was from the new price just before, when the tracker saw the move, and after. Small numbers right away mean Kalshi keeps up; numbers that stay big mean it lags.</p>
+  <div id="moves"></div>
+</div></section>
+
+<footer class="band foot"><div class="wrap">
+  <p id="tracker"></p>
+  <p id="links"></p>
+  <p>Simulated trades only: real Kalshi prices, order books and fees, no real orders or money. Not financial advice.</p>
+</div></footer>
+
+<script>
+{
+let D = /*__DATA__*/null;
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money = (v, sign) => (sign ? (v >= 0 ? '+' : '−') : (v < 0 ? '−' : '')) + '$' + Math.abs(v).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+const money0 = v => '$' + Math.round(v).toLocaleString('en-US');
+const pct = p => p == null ? '–' : (p * 100).toFixed(p < 0.1 && p > 0 ? 1 : 0) + '%';
+const cents = p => p == null ? '–' : Math.round(p * 100) + '¢';
+const sc = v => v == null ? '–' : (v >= 0 ? '+' : '−') + Math.abs(v * 100).toFixed(1) + '¢';
+const gapc = v => v == null ? '–' : (v * 100).toFixed(1) + '¢';
+const when = s => s ? new Date(s).toLocaleString('en-US', {weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'}) : '';
+const day = s => s ? new Date(s).toLocaleString('en-US', {month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'}) : '';
+const cls = v => v == null || Math.abs(v) < 0.005 ? '' : (v > 0 ? 'up' : 'down');
+const plural = (n, w) => `${n.toLocaleString('en-US')} ${w}${n === 1 ? '' : 's'}`;
+const betlabel = b => `${b.side === 'yes' ? esc(b.team) + ' to win' : esc(b.team) + ' not to win'}`;
+
+let real = [], proj = [], times = [], G = null;
+const s = $('balsvg'), tip = $('tip');
+
+function render() {
+  const A = D.account, R = D.rules, S = D.scan, change = A.balance - A.start;
+  // ---- headline
+  let finding;
+  if (A.settled_n) finding = `${change >= 0 ? 'Up' : 'Down'} ${money(Math.abs(change))} after ${plural(A.settled_n, 'settled bet')}`;
+  else if (A.open_n) finding = `${plural(A.open_n, 'bet')} placed, waiting for results`;
+  else if (S.rows) finding = `No bets yet: Kalshi has stayed within about ${Math.max(1, Math.round((S.gap || 0) * 100))}¢ of Pinnacle`;
+  else finding = 'Waiting for the first comparison';
+  $('finding').textContent = finding;
+  $('subline').textContent = `Updated ${when(D.updated)} · ${R.mode === 'live' ? 'watching Pinnacle every few seconds' : 'checked hourly'}`;
+
+  // ---- balance and figures
+  $('bal').textContent = money(A.balance);
+  $('chg').innerHTML = `<span class="${cls(change)}">${money(change, true)} (${(change / A.start * 100).toFixed(1)}%)</span> <span style="color:var(--ink2);font-weight:500">since the ${money0(A.start)} start</span>`;
+  const pg = A.projected - A.balance;
+  $('projline').innerHTML = A.open_n ? `Expected <b>${money(A.projected)}</b> <span class="${cls(pg)}">(${money(pg, true)})</span> if open bets are worth what Pinnacle's latest prices say.` : '';
+  $('projkey').hidden = !A.open_n;
+  const figs = [
+    [A.open_n, `open bet${A.open_n === 1 ? '' : 's'} · ${money(A.open_cost)} in play`],
+    [A.settled_n ? `${A.wins}–${A.losses}` : '0', 'won–lost'],
+    [A.settled_n ? money(A.realized, true) : '$0.00', 'profit on settled bets, after fees', A.settled_n ? cls(A.realized) : ''],
+    [A.clv_n ? sc(A.clv) : '–', A.clv_n ? `average closing value per contract (${plural(A.clv_n, 'bet')}, ${money(A.clv_usd, true)} in all)` : 'closing value: shows once bets have a final pre-game price', A.clv_n ? cls(A.clv) : ''],
+    [S.rows ? S.rows.toLocaleString('en-US') : '0', S.rows ? `prices compared · ${pct(S.edge)} could be bought ${Math.round(R.min_edge * 100)}¢+ below Pinnacle` : 'prices compared'],
+  ];
+  $('figs').innerHTML = figs.map(([v, l, c]) => `<div><div class="fv ${c || ''}">${esc(v)}</div><div class="fl">${esc(l)}</div></div>`).join('');
+  const left = [A.missed_n ? `${plural(A.missed_n, 'gap')} had nothing for sale at that price` : '', A.unknown_n ? `${A.unknown_n} couldn't be checked` : '', A.no_cash_n ? `${A.no_cash_n} came when the cash was all in play` : ''].filter(Boolean);
+  $('how').innerHTML = `<b>How it trades:</b> starts with ${money0(R.bankroll)}. When Kalshi sells a side for ${Math.round(R.min_edge * 100)}¢ or more below Pinnacle's fair price (Pinnacle's odds with its margin removed), after Kalshi's fee, it buys up to ${money0(R.stake)}, but only as many contracts as were actually for sale at that price. Kalshi's fee is charged the way Kalshi charges it, rounded up to the cent per order. Gaps over ${Math.round(R.max_edge * 100)}¢ are treated as a wrong match and skipped.` + (left.length ? ` Left out so far: ${esc(left.join('; '))}.` : '');
+
+  // ---- open bets
+  $('open').innerHTML = D.open.length ? `<div class="scroll"><table class="stack"><thead><tr><th>Game</th><th>Bet</th><th class="n">Contracts</th><th class="n">Paid</th><th class="n">Fair then → now</th><th class="n">Expected</th><th class="n">Starts</th></tr></thead><tbody>` +
+    D.open.map(b => `<tr><td class="q">${esc(b.game)}<span class="meta">${esc(b.league)} · placed ${day(b.placed)}${b.live ? ' · live' : ''}</span></td><td>${betlabel(b)}<span class="meta">${b.side.toUpperCase()} at ${cents(b.price)}</span></td><td class="n">${b.n}${b.n < b.wanted ? `<span class="meta">of ${b.wanted} wanted</span>` : ''}</td><td class="n">${money(b.cost)}</td><td class="n">${cents(b.fair_then)} → ${cents(b.fair_now)}</td><td class="n ${cls(b.ev)}">${money(b.ev, true)}</td><td class="n">${day(b.starts)}</td></tr>`).join('') + `</tbody></table></div>`
+    : `<p class="empty">None right now. A bet is placed only when Kalshi is at least ${Math.round(D.rules.min_edge * 100)}¢ cheaper than Pinnacle's fair price after fees and there are contracts for sale at that price.</p>`;
+
+  // ---- settled bets
+  $('settled').innerHTML = D.settled.length ? `<div class="scroll"><table class="stack"><thead><tr><th>Game</th><th>Bet</th><th>Result</th><th class="n">Paid</th><th class="n">Profit</th><th class="n">Closing value</th></tr></thead><tbody>` +
+    D.settled.map(b => `<tr><td class="q">${esc(b.game)}<span class="meta">${esc(b.league)} · ${day(b.placed)}</span></td><td>${betlabel(b)}<span class="meta">${b.n} ${b.side.toUpperCase()} at ${cents(b.price)}</span></td><td><span class="tag ${b.won ? 'won' : 'lost'}">${b.won ? 'Won' : 'Lost'}</span></td><td class="n">${money(b.cost)}</td><td class="n ${cls(b.profit)}">${money(b.profit, true)}</td><td class="n ${cls(b.clv)}">${sc(b.clv)}</td></tr>`).join('') + `</tbody></table></div>`
+    : `<p class="empty">Nothing settled yet. Kalshi settles a game within hours of the final whistle.</p>`;
+  $('missed').innerHTML = D.missed.length ? `<p class="fl" style="margin:22px 0 6px"><b>Gaps with nothing for sale.</b> Kalshi's price looked cheap, but no contracts were actually on offer at it, so a real account couldn't have bought.</p><ul style="margin:0;padding-left:20px">` +
+    D.missed.map(b => `<li>${esc(b.game)} <span class="meta" style="display:inline">· ${esc(b.league)} · ${betlabel(b)} at ${cents(b.price)} (${sc(b.edge)} edge) · ${day(b.placed)}</span></li>`).join('') + `</ul>` : '';
+
+  // ---- where the gaps are
+  $('gapnote').innerHTML = S.rows ? `${S.rows.toLocaleString('en-US')} Kalshi prices compared with Pinnacle's since ${day(S.since)}. ${pct(S.real)} had a real market (buy and sell prices within 10¢). In those, Kalshi's midpoint was <b>${gapc(S.gap)}</b> from Pinnacle's fair price on average, and <b>${pct(S.edge)}</b> could be bought ${Math.round(D.rules.min_edge * 100)}¢ or more below it after fees. <b>No real market</b>: nobody quoting tightly, so nothing to buy at a fair price.` : 'Fills in after the first comparison.';
+  const maxn = Math.max(1, ...S.leagues.map(l => l.n));
+  $('leagues').innerHTML = S.leagues.length ? `<div class="scroll"><table class="stack"><thead><tr><th>League</th><th class="n">Prices compared</th><th class="n">No real market</th><th class="n">Avg gap</th><th class="n">${Math.round(D.rules.min_edge * 100)}¢+ edge</th><th class="n">Bets</th><th class="n">Closing value</th><th class="n">Profit</th></tr></thead><tbody>` +
+    S.leagues.map(l => `<tr><td class="q">${esc(l.name)}</td><td class="n"><span class="bar" style="width:${Math.max(3, Math.round(l.n / maxn * 60))}px"></span>${l.n.toLocaleString('en-US')}</td><td class="n">${pct(1 - l.real)}</td><td class="n">${gapc(l.gap)}</td><td class="n">${pct(l.edge)}</td><td class="n">${l.bets}</td><td class="n ${cls(l.clv)}">${sc(l.clv)}</td><td class="n ${l.bets ? cls(l.profit) : ''}">${l.bets ? money(l.profit, true) : '–'}</td></tr>`).join('') + `</tbody></table></div>` : '';
+
+  // ---- follow speed
+  const M = D.moves || [];
+  $('moves').innerHTML = M.length ? `<div class="scroll"><table class="stack"><thead><tr><th></th><th class="n">Moves</th><th class="n">Avg move</th><th class="n">Gap before</th><th class="n">When seen</th><th class="n">15 s later</th><th class="n">1 min later</th><th class="n">5 min later</th><th class="n">Already there</th></tr></thead><tbody>` +
+    M.map(r => `<tr><td class="q">${esc(r.name === 'All' ? 'All leagues' : r.name)}</td><td class="n">${r.n}</td><td class="n">${r.move == null ? '–' : (r.move * 100).toFixed(1) + ' pts'}</td>${['before', 'at', '15', '60', '300'].map(w => `<td class="n">${gapc(r.gaps[w])}</td>`).join('')}<td class="n">${pct(r.already)}</td></tr>`).join('') + `</tbody></table></div>`
+    : `<p class="empty">${D.rules.mode === 'live' ? 'Waiting for the first big Pinnacle move.' : 'Fills in once live mode is on (it needs the paid pinnapi plan). Hourly checks can’t see how fast Kalshi reacts.'}</p>`;
+
+  // ---- footer
+  const st = D.status || {};
+  $('tracker').textContent = `Tracker: ${D.rules.mode === 'live' ? `live, checking Pinnacle every ${D.rules.poll} seconds` : `hourly snapshots (every ${D.rules.every} minutes)`}` + (st.last_run ? `; last check ${when(st.last_run)}` : '') + (st.calls_today != null ? `; ${st.calls_today} pinnapi requests on ${st.day}` : '') + '.';
+  $('links').innerHTML = D.repo ? `Details: <a href="https://github.com/${esc(D.repo)}/blob/main/GAPS.md">full gap report</a> · <a href="https://github.com/${esc(D.repo)}">code and data</a>` : '';
+
+  // ---- chart data
+  const series = a => (a || []).map(([t, v]) => [new Date(t).getTime(), v]).filter(p => !isNaN(p[0])).sort((a, b) => a[0] - b[0]);
+  real = series(D.real_line); proj = series(D.proj_line);
+  times = [...new Set(real.concat(proj).map(p => p[0]))].sort((a, b) => a - b);
+  drawChart();
+}
+
+// ---- balance chart: the balance steps when a bet settles; the expected line is dashed
+const at = (arr, t) => { let v = null; for (const p of arr) { if (p[0] <= t) v = p[1]; else break; } return v; };
+const nice = span => { const raw = Math.max(span, 1e-9) / 4, mag = 10 ** Math.floor(Math.log10(raw)); for (const m of [1, 2, 2.5, 5, 10]) if (m * mag >= raw) return m * mag; return 10 * mag; };
+function drawChart() {
+  const W = s.clientWidth, H = s.clientHeight, start = D.account.start;
+  if (!W || !H || !real.length) return;
+  const narrow = W < 520, m = {l: narrow ? 58 : 68, r: narrow ? 88 : 118, t: 14, b: 30};
+  let t1 = times[times.length - 1], t0 = times[0];
+  if (t1 <= t0) t0 = t1 - 4 * 3600e3;
+  const vals = real.concat(proj).map(p => p[1]).concat([start]);
+  let lo = Math.min(...vals), hi = Math.max(...vals);
+  const minSpan = Math.max(20, start * 0.04);
+  if (hi - lo < minSpan) { const mid = (hi + lo) / 2; lo = mid - minSpan / 2; hi = mid + minSpan / 2; }
+  const step = nice(hi - lo), yl = Math.floor(lo / step) * step, yh = Math.ceil(hi / step) * step;
+  const X = t => m.l + (t - t0) / (t1 - t0) * (W - m.l - m.r), Y = v => m.t + (yh - v) / (yh - yl) * (H - m.t - m.b);
+  let h = '';
+  for (let v = yl; v <= yh + 1e-9; v += step) { const y = Math.round(Y(v)) + .5; h += `<line class="grid" x1="${m.l}" x2="${W - m.r}" y1="${y}" y2="${y}"/><text x="${m.l - 8}" y="${y + 4}" text-anchor="end">${money0(v)}</text>`; }
+  const spanDays = (t1 - t0) / 864e5;
+  if (spanDays < 1.5) {
+    const f = t => new Date(t).toLocaleString('en-US', {hour: 'numeric'});
+    h += `<text x="${m.l}" y="${H - 8}">${f(t0)}</text><text x="${W - m.r}" y="${H - 8}" text-anchor="end">${f(t1)}</text>`;
+  } else {
+    const every = Math.max(1, Math.ceil(spanDays / (narrow ? 3 : 6))), d = new Date(t0); d.setHours(24, 0, 0, 0);
+    for (; d.getTime() <= t1; d.setDate(d.getDate() + every)) h += `<text x="${X(d.getTime())}" y="${H - 8}" text-anchor="middle">${d.toLocaleString('en-US', {month: 'short', day: 'numeric'})}</text>`;
+  }
+  const ys = Math.round(Y(start)) + .5;
+  h += `<line class="base" x1="${m.l}" x2="${W - m.r}" y1="${ys}" y2="${ys}"/><text x="${m.l + 6}" y="${Y(start) - m.t > 18 ? ys - 7 : ys + 16}" style="fill:var(--ink2)">Start ${money0(start)}</text>`;
+  if (proj.length > 1) {
+    const pl = proj.map((p, i) => `${i ? 'L' : 'M'}${X(p[0]).toFixed(1)},${Y(p[1]).toFixed(1)}`).join('');
+    h += `<path d="${pl}" fill="none" stroke="var(--muted)" stroke-width="2" stroke-dasharray="5 4" stroke-linejoin="round"/>`;
+  }
+  const rl = `M${X(real[0][0]).toFixed(1)},${Y(real[0][1]).toFixed(1)}` + real.slice(1).map(p => `H${X(p[0]).toFixed(1)}V${Y(p[1]).toFixed(1)}`).join('');
+  h += `<path d="${rl}V${ys}H${X(real[0][0]).toFixed(1)}Z" fill="var(--accent)" opacity=".10"/>`;
+  h += `<path d="${rl}" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`;
+  const last = real[real.length - 1], ex = X(last[0]), ey = Y(last[1]);
+  if (proj.length) {
+    const pv = proj[proj.length - 1], px = X(pv[0]), py = Y(pv[1]);
+    const ly = Math.abs(py - ey) >= 22 ? py + 4 : (py >= ey ? ey + 22 : ey - 14);
+    h += `<circle cx="${px}" cy="${py}" r="4" fill="var(--bg)" stroke="var(--muted)" stroke-width="2"/>`;
+    h += `<text x="${px + 10}" y="${ly}">${narrow ? '' : 'Expected '}${money0(pv[1])}</text>`;
+  }
+  h += `<circle cx="${ex}" cy="${ey}" r="5.5" fill="var(--accent)" stroke="var(--bg)" stroke-width="2"/>`;
+  h += `<text x="${ex + 10}" y="${ey + 4}" style="fill:var(--ink);font-weight:600;font-size:14px">${money0(last[1])}</text>`;
+  h += `<g id="cross" style="display:none"><line id="cx" class="grid" y1="${m.t}" y2="${H - m.b}" style="stroke:var(--ink2)"/><circle id="cp" r="4" fill="var(--bg)" stroke="var(--muted)" stroke-width="2"/><circle id="cd" r="5" fill="var(--accent)" stroke="var(--bg)" stroke-width="2"/></g>`;
+  if (real.length <= 2 && !D.account.settled_n) h += `<text x="${(m.l + W - m.r) / 2}" y="${ys + 34}" text-anchor="middle">The balance moves when a bet settles</text>`;
+  s.innerHTML = h;
+  G = {X, Y};
+}
+new ResizeObserver(drawChart).observe(s);
+s.addEventListener('pointermove', e => {
+  if (!G || !times.length) return;
+  const r = s.getBoundingClientRect(), x = e.clientX - r.left, start = D.account.start;
+  let best = times[0];
+  for (const t of times) if (Math.abs(G.X(t) - x) < Math.abs(G.X(best) - x)) best = t;
+  const rv = at(real, best) ?? start, pv = proj.length ? at(proj, best) : null, px = G.X(best);
+  document.getElementById('cross').style.display = '';
+  const cx = document.getElementById('cx'); cx.setAttribute('x1', px); cx.setAttribute('x2', px);
+  const cd = document.getElementById('cd'), cp = document.getElementById('cp');
+  cd.setAttribute('cx', px); cd.setAttribute('cy', G.Y(rv));
+  cp.style.display = pv == null ? 'none' : ''; if (pv != null) { cp.setAttribute('cx', px); cp.setAttribute('cy', G.Y(pv)); }
+  tip.hidden = false;
+  tip.innerHTML = `<b>Balance ${money(rv)}</b> <span class="${cls(rv - start)}">${money(rv - start, true)}</span>` +
+    (pv != null && pv !== rv ? `<br><span style="color:var(--ink2)">Expected ${money(pv)}</span>` : '') +
+    `<br><span style="color:var(--muted)">${esc(when(new Date(best).toISOString()))}</span>`;
+  const tw = tip.offsetWidth;
+  tip.style.left = Math.min(Math.max(px - tw / 2, 0), r.width - tw) + 'px';
+  tip.style.top = Math.max(G.Y(rv) - tip.offsetHeight - 14, 0) + 'px';
+});
+s.addEventListener('pointerleave', () => { const c = document.getElementById('cross'); if (c) c.style.display = 'none'; tip.hidden = true; });
+
+render();
+
+// ---- on GitHub Pages: pull the newest results straight from the repo (no redeploy needed)
+const onPages = /\.github\.io$/.test(location.hostname);
+if (onPages && D.repo) {
+  const btn = $('reload'), state = $('state');
+  const url = () => `https://raw.githubusercontent.com/${D.repo}/main/site/gaps.json?t=${Date.now()}`;
+  const fetchNew = async manual => {
+    btn.disabled = true;
+    try {
+      const r = await fetch(url(), {cache: 'no-store'});
+      if (!r.ok) throw new Error(String(r.status));
+      const nd = await r.json();
+      if (nd.updated > D.updated) { D = nd; render(); state.textContent = manual ? 'Loaded the latest results.' : ''; }
+      else if (manual) state.textContent = `Already up to date (results from ${when(D.updated)}).`;
+    } catch (e) { if (manual) state.textContent = 'Couldn’t reach GitHub just now. Try again in a minute.'; }
+    btn.disabled = false;
+  };
+  btn.hidden = false;
+  btn.addEventListener('click', () => fetchNew(true));
+  fetchNew(false);
+}
+}
+</script>
+</body>
+</html>

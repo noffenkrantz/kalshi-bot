@@ -11,7 +11,7 @@ name: results-site
 on:
   push:
     branches: [main]
-    paths: ["site/**"]
+    paths: ["site/**", "!site/gaps.json"]   # gaps.json alone needs no redeploy: the page fetches it from the repo
   workflow_dispatch: {}       # adds a "Run workflow" button to publish right now
 
 permissions:

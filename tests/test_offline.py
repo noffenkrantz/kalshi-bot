@@ -538,23 +538,6 @@ def test_balance_chart_svg():
     assert "grows with each run" in balance_svg(pts[:1], 10000)
 
 
-def test_results_site_builds_and_is_injection_safe(tmp_path, cfg):
-    import re
-    from bot.site import build_site_data, render_site
-    prod = FakeKalshi("prod", MARKETS, authed=False)
-    j = Journal(tmp_path / "data")
-    run_once(Bot(mode="shadow", cfg=cfg, data=prod, trade=None, claude=FakeClaude(PROBS), journal=j, now=NOW, root=tmp_path))
-    j.rows["estimates"][0]["question"] = "Evil </script><img src=x onerror=alert(1)> market & co"
-    data = build_site_data(j, {"shadow": prod}, NOW + timedelta(hours=1), cfg)
-    assert data["stats"]["open_n"] == 2 and data["balance"] > 0 and len(data["forecasts"]) == 3
-    html = render_site(data)
-    assert html.startswith("<!DOCTYPE html>") and "/*__DATA__*/" not in html
-    script = html.split("const D = ", 1)[1]
-    assert html.count("</script>") == 2                         # only the page's own two script tags
-    blob = script.split(";\nconst $ =", 1)[0]
-    assert json.loads(blob)["forecasts"][-1]["q"].startswith("Evil </script>")  # round-trips intact
-
-
 def test_real_balance_counts_only_settled_bets_and_projection_only_moved_ones(tmp_path):
     from bot.dashboard import _book, balance_lines
     j = Journal(tmp_path / "data")

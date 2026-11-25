@@ -35,7 +35,7 @@ from zoneinfo import ZoneInfo
 import requests
 
 from .kalshi import KalshiClient, KalshiError
-from .strategy import fee_per_contract
+from .strategy import fee_per_contract, order_fee
 from .util import iso, parse_time, to_float, utcnow
 
 PINNAPI = "https://pinnapi.com"
@@ -43,7 +43,7 @@ SPORTS = {"soccer": 1, "tennis": 2, "basketball": 3, "hockey": 4, "football": 5,
           "rugby": 7, "mma": 8, "boxing": 9, "esports": 11}
 DEFAULTS = {"enabled": True, "every_minutes": 60, "sports": ["soccer", "basketball", "hockey", "tennis"],
             "daily_requests": 95, "min_edge": 0.03,
-            "max_edge": 0.15,
+            "max_edge": 0.15, "bankroll_usd": 1000.0,
             "stake_usd": 10.0, "window_hours": 24, "min_minutes_before_start": 10, "match_score": 0.8,
             "skip_series": ["KXESOCCERGAME", "KXEBASKETBALLGAME", "KXEFOOTBALLGAME"]}
 ET = ZoneInfo("America/New_York")      # Kalshi's tickers carry US Eastern dates and times
@@ -293,6 +293,38 @@ def edges(fair: float, bid: float | None, ask: float | None) -> dict:
     return out
 
 
+def available_at(kalshi: KalshiClient, ticker: str, side: str, price: float) -> int | None:
+    """Contracts of `side` for sale at `price` or better right now (None if the order book can't be read).
+    Buying YES at p takes NO bids at 1 - p or higher, and buying NO takes YES bids the same way."""
+    try:
+        d = kalshi.request("GET", f"/markets/{ticker}/orderbook")
+    except KalshiError:
+        return None
+    ob = d.get("orderbook_fp") or d.get("orderbook") or {}
+    other = "no" if side == "yes" else "yes"
+    rows = ob.get(f"{other}_dollars") or ob.get(other) or []
+    total = 0.0
+    for level in rows:
+        try:
+            q_price, qty = to_float(level[0]), to_float(level[1], 0.0)
+        except (TypeError, IndexError):
+            continue
+        if q_price is None:
+            continue
+        if q_price > 1:                   # older format: cents
+            q_price /= 100
+        if q_price >= round(1 - price, 4) - 1e-9:
+            total += qty or 0.0
+    return int(total)
+
+
+def size_bet(stake: float, price: float, available: int | None) -> dict:
+    """How many contracts a $stake bet buys, capped at what was actually for sale."""
+    wanted = math.floor(stake / price)
+    filled = None if available is None else min(wanted, available)
+    return {"contracts": wanted, "available": available, "filled": filled}
+
+
 # ==== storage ===================================================================================
 def read_jsonl(path: Path) -> list[dict]:
     if not path.exists():
@@ -389,11 +421,11 @@ def snapshot(kalshi: KalshiClient, pinn: PinnAPI, root: Path, cfg: dict, now: da
                     suspicious.append(f"{k['event']} ~ {p['home']} vs {p['away']} ({p['league']}): "
                                       f"{outcome_name(m)} {side} at {price:.2f} vs fair {fair:.2f}")
                     continue
-                n = math.floor(float(g["stake_usd"]) / price)
+                size = size_bet(float(g["stake_usd"]), price, available_at(kalshi, m["ticker"], side, price))
                 bets.append({"ts": iso(now), "ticker": m["ticker"], "event": k["event"], "series": k["series"],
                              "league": p["league"], "team": outcome_name(m), "side": side, "price": round(price, 4),
                              "fair": round(fair if side == "yes" else 1 - fair, 4), "edge": round(edge, 4),
-                             "contracts": n, "starts": iso(p["starts"]), "pin_id": p["id"],
+                             **size, "starts": iso(p["starts"]), "pin_id": p["id"],
                              "pin_teams": f"{p['home']} vs {p['away']}"})
                 have.add((m["ticker"], side))
     append_jsonl(data / "gap_snaps.jsonl", snaps)
@@ -407,6 +439,8 @@ def snapshot(kalshi: KalshiClient, pinn: PinnAPI, root: Path, cfg: dict, now: da
     for x in suspicious:
         say(f"  skipped, edge too large to be real (check the match): {x}")
     write_report(root)
+    from .gapsite import write_site
+    write_site(root, cfg, now)
     return {"pinnacle_games": len(pin), "kalshi_games": len(kev), "matched": matched, "snaps": len(snaps),
             "bets": len(bets), "settled": settled, "suspicious": len(suspicious)}
 
@@ -451,13 +485,41 @@ def score_bets(data: Path) -> list[dict]:
                 move = mid(close) - mid(entry)
                 r["kalshi_move"] = round(move if b["side"] == "yes" else -move, 4)   # > 0: Kalshi came our way
                 r["pinnacle_move"] = round((close["fair"] - entry["fair"]) * (1 if b["side"] == "yes" else -1), 4)
+        n = contracts_of(b)
+        r["n"] = n
+        r["cost"] = round(n * b["price"] + order_fee(b["price"], n), 2) if n else 0.0
         res = results.get(b["ticker"])
         if res:
-            won = res == b["side"]
-            fee = fee_per_contract(b["price"])
             r["result"] = res
-            r["profit"] = round(b["contracts"] * ((1 - b["price"]) if won else -b["price"]) - b["contracts"] * fee, 2)
+            r["profit"] = round((n if res == b["side"] else 0) - r["cost"], 2)
         out.append(r)
+    return out
+
+
+def contracts_of(b: dict) -> int:
+    """Contracts that count: those actually for sale when the bet was placed (older bets without that
+    record count in full)."""
+    return int(b["filled"]) if b.get("filled") is not None else int(b.get("contracts") or 0)
+
+
+def move_stats(moves: list[dict], top: int = 12) -> list[dict]:
+    """How far Kalshi was from Pinnacle's new price before, when seen, and after each move, by league."""
+    def gap_at(r, when):
+        if when == "before":
+            return None if r.get("mid_before") is None else abs(r["mid_before"] - r["fair_after"])
+        if when == "at":
+            return None if r.get("mid_at") is None else abs(r["mid_at"] - r["fair_after"])
+        a = (r.get("after") or {}).get(when) or {}
+        return None if a.get("mid") is None or a.get("fair") is None else abs(a["mid"] - a["fair"])
+    groups = defaultdict(list)
+    for r in moves:
+        groups[r["league"]].append(r)
+    out = []
+    for name, rs in [("All", moves)] + sorted(groups.items(), key=lambda kv: -len(kv[1]))[:top]:
+        seen = [g for g in (gap_at(r, "at") for r in rs) if g is not None]
+        out.append({"name": name, "n": len(rs), "move": _mean(abs(r["fair_after"] - r["fair_before"]) for r in rs),
+                    "gaps": {w: _mean(gap_at(r, w) for r in rs) for w in ("before", "at", "5", "15", "60", "300")},
+                    "already": (sum(g <= 0.01 for g in seen) / len(seen)) if seen else None})
     return out
 
 
@@ -512,7 +574,7 @@ def write_report(root: Path) -> str:
                   f"{sum((b.get('kalshi_move') or 0) > 0 for b in scored)} of them and Pinnacle moved toward Kalshi's after "
                   f"{sum((b.get('pinnacle_move') or 0) < 0 for b in scored)}. "
                   + (f"{len(settled)} have settled: {sum(b['result'] == b['side'] for b in settled)} won, simulated profit "
-                     f"${sum(b['profit'] for b in settled):+,.2f} on ${sum(b['contracts'] * b['price'] for b in settled):,.0f} staked."
+                     f"${sum(b['profit'] for b in settled):+,.2f} on ${sum(b['cost'] for b in settled):,.0f} staked."
                      if settled else "None have settled yet."), ""]
     # by league
     per = defaultdict(lambda: {"snaps": [], "bets": []})
@@ -544,23 +606,11 @@ def write_report(root: Path) -> str:
                   "| | Moves | Avg move | Gap before | When seen | 15 s later | 1 min later | 5 min later | Already there |",
                   "|---|---|---|---|---|---|---|---|---|"]
 
-        def gap_at(r, when):
-            if when == "before":
-                return None if r.get("mid_before") is None else abs(r["mid_before"] - r["fair_after"])
-            if when == "at":
-                return None if r.get("mid_at") is None else abs(r["mid_at"] - r["fair_after"])
-            a = (r.get("after") or {}).get(when) or {}
-            return None if a.get("mid") is None or a.get("fair") is None else abs(a["mid"] - a["fair"])
-
-        groups = defaultdict(list)
-        for r in moves:
-            groups[r["league"]].append(r)
-        top = sorted(groups.items(), key=lambda kv: -len(kv[1]))[:12]
-        for name, rs in [("All", moves)] + top:
-            seen = [g for g in (gap_at(r, "at") for r in rs) if g is not None]
-            lines.append(f"| {name} | {len(rs)} | {_mean(abs(r['fair_after'] - r['fair_before']) for r in rs) * 100:.1f} pts | "
-                         + " | ".join(_c(_mean(gap_at(r, w) for r in rs)).lstrip("+") for w in ("before", "at", "15", "60", "300"))
-                         + f" | {100 * sum(g <= 0.01 for g in seen) / len(seen) if seen else 0:.0f}% |")
+        for row in move_stats(moves):
+            gp = row["gaps"]
+            already = "–" if row["already"] is None else f"{100 * row['already']:.0f}%"
+            lines.append(f"| {row['name']} | {row['n']} | {row['move'] * 100:.1f} pts | "
+                         + " | ".join(_c(gp[w]).lstrip("+") for w in ("before", "at", "15", "60", "300")) + f" | {already} |")
     if bets:
         lines += ["", "## Latest simulated bets", "",
                   "| Placed (UTC) | Game | Bet | Paid | Fair | Edge | Closing value | Result |", "|---|---|---|---|---|---|---|---|"]

@@ -2,7 +2,7 @@
 
     python -m bot watch [--once] [--dry-run]   the rain watcher + the gap tracker (what render.yaml runs)
     python -m bot serve                    also a research run every 4 hours (not used by default:
-                                           research runs on GitHub when you press Run)
+                                           research runs on GitHub when started from Actions)
 
 Every 4 hours it does what a GitHub run used to do, in a clone of the repo: simulated trading
 with Claude's research, the lag scan, and the report (README, REPORT.md, LAGS.md, the results
@@ -42,7 +42,7 @@ from .watcher import RainWatcher
 RUN_EVERY = timedelta(hours=4)
 RESULT_PATHS = ("data", "README.md", "REPORT.md", "LAGS.md", "site")
 GAP_PATHS = ("data/gap_snaps.jsonl", "data/gap_bets.jsonl", "data/gap_outcomes.jsonl", "data/gap_moves.jsonl",
-             "data/gap_state.json", "GAPS.md")
+             "data/gap_state.json", "GAPS.md", "site/index.html", "site/gaps.json")
 STEP_TIMEOUT = 40 * 60
 
 
@@ -237,7 +237,9 @@ class Supervisor:
         if (self.sync and not self.dry_run and self.live.dirty
                 and (self.live.new_bets or self.stopping or now - self.last_gaps_push >= timedelta(minutes=10))):
             from .gaps import write_report
+            from .gapsite import write_site
             write_report(self.root)
+            write_site(self.root, self.cfg, now, page=False)
             if self.sync.push(f"gaps: live {now:%Y-%m-%dT%H:%MZ}" + (f", {self.live.new_bets} new bets" if self.live.new_bets else ""),
                               GAP_PATHS):
                 self.live.dirty, self.live.new_bets = False, 0

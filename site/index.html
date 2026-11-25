@@ -9,12 +9,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400..700&display=swap" rel="stylesheet">
 <style>
-/* VOICE work: an account statement, set like a newspaper graphics desk
-   IDEA the monthly statement of a pretend brokerage account run by Claude
-   PICTURE the real balance (settled bets, stepped) from the $10,000 start, with the projection dashed beside it; crosshair shows both
-   COLOUR black and white with splashes: one blue accent (top bar, Run, balance line, Claude's dots), green for gains, red for losses; inverted at night
-   TYPE Source Sans 3 throughout: humanist, easy to read, tabular figures by default; 17px body
-   LAYOUT finding + Run (with live progress) across the top, balance + chart + ruled figure row, then bets, calls, learning; stacks under 600px */
+/* VOICE an account statement for one strategy: buy on Kalshi when it's cheaper than Pinnacle's fair price
+   PICTURE the $1,000 account's settled balance (stepped), with the expected value of open bets dashed beside it
+   COLOUR black and white with splashes: one blue accent, green for gains, red for losses; inverted at night
+   TYPE Source Sans 3, tabular figures; 17px body
+   LAYOUT finding across the top, balance + chart + ruled figures, then open / settled bets, where the gaps are, follow speed */
 :root{color-scheme:light dark;
   --bg:light-dark(#ffffff,#000000);--ink:light-dark(#111111,#f2f2f2);--ink2:light-dark(#3d3d3d,#c8c8c8);--muted:light-dark(#666666,#9d9d9d);--rule:light-dark(#e4e4e4,#2a2a2c);
   --accent:light-dark(#2457e6,#7ea2ff);--on-accent:light-dark(#ffffff,#000000);
@@ -27,47 +26,40 @@ body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "Source Sans 3
 button{font-family:inherit}
 .wrap{max-width:1240px;margin:0 auto;padding-inline:max(16px,4vw)}
 .band{padding-block:clamp(24px,3.5vw,48px)}
-h1{font-size:clamp(32px,4.8vw,50px);line-height:1.08;font-weight:700;letter-spacing:-.01em;margin:0 0 12px;text-wrap:balance;max-width:22ch}
+h1{font-size:clamp(32px,4.8vw,50px);line-height:1.08;font-weight:700;letter-spacing:-.01em;margin:0 0 12px;text-wrap:balance;max-width:24ch}
 h2{font-size:26px;line-height:1.2;font-weight:700;margin:0 0 6px}
 p{margin:0}
-.sub{color:var(--ink2);max-width:64ch}
+.sub{color:var(--ink2);max-width:70ch}
 .status{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
 .btn{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:0 18px;font-size:16px;font-weight:600;line-height:1;color:var(--on-accent);background:var(--accent);border:0;border-radius:999px;cursor:pointer}
 .btn:hover{background:color-mix(in srgb,var(--accent) 85%,var(--ink))}
 .btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 .btn:disabled{cursor:default;opacity:.75}
 .btn svg{width:17px;height:17px;flex:none}
-.btn .ico-spin{display:none}
-.btn:disabled .ico-play{display:none}
-.btn:disabled .ico-spin{display:block;animation:spin 1s linear infinite}
+.btn:disabled svg{animation:spin 1s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-@media(prefers-reduced-motion:reduce){.btn:disabled .ico-spin{animation:none}}
+@media(prefers-reduced-motion:reduce){.btn:disabled svg{animation:none}}
 .runstate{font-size:15px;color:var(--ink2);margin:10px 0 0;min-height:1.6em}
-.runstate a,.setup a,.linkbtn{color:var(--accent)}
-.setup{margin-top:14px;padding:16px 18px;border:1px solid var(--rule);border-radius:12px;max-width:640px;font-size:15px}
-.setup ol{padding-left:20px;margin:8px 0 12px}
-.setup li{margin-bottom:4px}
-.tokrow{display:flex;flex-wrap:wrap;gap:8px}
-.tokrow input{flex:1 1 220px;min-height:42px;padding:0 12px;border:1px solid var(--muted);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;font-size:16px}
-.tokrow input:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
-.linkbtn{background:none;border:0;padding:0;font:inherit;cursor:pointer;text-decoration:underline}
-.note{color:var(--muted);font-size:15px;margin-bottom:14px}
+.note{color:var(--muted);font-size:15px;margin-bottom:14px;max-width:80ch}
+.how{border-left:3px solid var(--accent);padding:2px 0 2px 14px;margin-top:18px;color:var(--ink2);font-size:15px;max-width:80ch}
 .hero{border-top:1px solid var(--rule)}
 .balance{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;margin-bottom:6px}
 .big{font-size:clamp(46px,7.2vw,76px);font-weight:700;line-height:1;letter-spacing:-.015em}
 .chg{font-size:19px;font-weight:600;white-space:nowrap}
 .up{color:var(--up)}
 .down{color:var(--down)}
-.fig{position:relative;height:clamp(230px,34vw,360px);margin-top:8px}
+.fig{position:relative;height:clamp(220px,30vw,320px);margin-top:8px}
 .fig>svg{position:absolute;inset:0;width:100%;height:100%;touch-action:pan-y}
 svg text{font:13px "Source Sans 3",system-ui,sans-serif;fill:var(--muted);paint-order:stroke;stroke:var(--bg);stroke-width:4px}
 .grid{stroke:var(--rule);stroke-width:1}
-.base{stroke:var(--muted);stroke-width:1.25;stroke-dasharray:none;opacity:.7}
+.base{stroke:var(--muted);stroke-width:1.25;opacity:.7}
 .tip{position:absolute;pointer-events:none;background:var(--bg);color:var(--ink);border:1px solid var(--rule);border-radius:8px;padding:6px 10px;font-size:14px;line-height:1.35;white-space:nowrap;box-shadow:0 2px 10px rgb(0 0 0/.08)}
-.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(10em,1fr));border-top:1px solid var(--ink);margin-top:18px}
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(11em,1fr));border-top:1px solid var(--ink);margin-top:18px}
 .figs>div{padding:12px 14px 4px 0;border-bottom:1px solid var(--rule)}
 .fv{font-size:28px;font-weight:700;line-height:1.1;white-space:nowrap}
 .fl{font-size:14px;color:var(--ink2)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 18px;font-size:14px;color:var(--ink2);margin-bottom:6px}
+.legend>span{white-space:nowrap}
 .scroll{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:16px}
 th{font-weight:600;color:var(--muted);font-size:14px;text-align:left;padding:8px 10px 8px 0;border-bottom:1px solid var(--ink)}
@@ -79,22 +71,10 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 .tag.won{color:var(--up);background:color-mix(in srgb,var(--up) 10%,transparent)}
 .tag.lost{color:var(--down);background:color-mix(in srgb,var(--down) 10%,transparent)}
 .empty{color:var(--ink2);padding:14px 0;border-top:1px solid var(--rule)}
-.legend{display:flex;flex-wrap:wrap;gap:4px 18px;font-size:14px;color:var(--ink2);margin-bottom:6px}
-.legend>span{white-space:nowrap}
-.key{display:inline-block;width:11px;height:11px;border-radius:50%;vertical-align:-1px;margin-right:6px}
-.call{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr) auto;gap:6px 18px;align-items:center;padding:11px 0;border-bottom:1px solid var(--rule)}
-.track{position:relative;height:22px}
-.track::before{content:"";position:absolute;left:0;right:0;top:10px;height:2px;background:var(--rule)}
-.span{position:absolute;top:8px;height:6px;border-radius:3px;background:color-mix(in srgb,var(--accent) 30%,transparent)}
-.dot{position:absolute;top:4px;width:14px;height:14px;margin-left:-7px;border-radius:50%;border:2px solid var(--bg)}
-.dc{background:var(--accent)}
-.dm{background:var(--bg);border:2.5px solid var(--ink)}
-.vals{font-size:15px;white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums}
-.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:32px 48px}
-.lessons{list-style:none;padding:0;margin:0}
-.lessons li{padding:10px 0;border-bottom:1px solid var(--rule)}
+.bar{display:inline-block;height:8px;border-radius:4px;background:var(--accent);vertical-align:1px;margin-right:6px;opacity:.8}
 .foot{border-top:1px solid var(--rule);color:var(--ink2);font-size:15px}
 .foot p+p{margin-top:6px}
+.foot a{color:var(--accent)}
 @media(max-width:600px){
 table{font-size:15px}
 .stack thead{display:none}
@@ -103,10 +83,6 @@ table{font-size:15px}
 .stack td::before{content:attr(data-l);color:var(--muted);font-size:14px;text-align:left}
 .stack td.q{display:block;text-align:left;font-size:16px}
 .stack td.q::before{content:none}
-.stack td.w{display:block;text-align:left}
-.stack td.w::before{display:block;margin-bottom:2px}
-.call{grid-template-columns:minmax(0,1fr) auto}
-.call .track{grid-column:1/-1;grid-row:2}
 }
 </style>
 <script>new MutationObserver(()=>{for(const c of document.querySelectorAll('.stack td:not([data-l])')){let i=0,p=c;while(p=p.previousElementSibling)i+=p.colSpan;c.dataset.l=c.closest('table').rows[0].cells[i]?.textContent||''}}).observe(document,{childList:true,subtree:true})</script>
@@ -116,263 +92,149 @@ table{font-size:15px}
   <h1 id="finding">Loading results</h1>
   <div class="status">
     <p class="sub" id="subline"></p>
-    <button type="button" class="btn" id="runbtn" hidden><svg class="ico-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg><svg class="ico-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-6.2-8.56"/></svg><span>Run</span></button>
+    <button type="button" class="btn" id="reload" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36M21 4v5h-5"/></svg><span>Reload latest</span></button>
   </div>
-  <p class="runstate" id="runstate" role="status" aria-live="polite"></p>
-  <div class="setup" id="setup" hidden>
-    <p><b>One-time setup on this device.</b> To start runs from this page, paste a GitHub token that can only run this bot. It's saved in this browser and nowhere else.</p>
-    <ol>
-      <li>On GitHub: profile picture → <b>Settings</b> → <b>Developer settings</b> → <b>Personal access tokens</b> → <b>Fine-grained tokens</b> → <b>Generate new token</b>.</li>
-      <li><b>Repository access:</b> Only select repositories → <b>kalshi-bot</b>.</li>
-      <li><b>Permissions</b> → Repository permissions → <b>Actions: Read and write</b>. Generate it and copy it.</li>
-    </ol>
-    <div class="tokrow"><input id="tok" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…" aria-label="GitHub token"><button type="button" class="btn" id="toksave">Save and run</button></div>
-    <p class="fl" style="margin-top:10px">Or <a id="ghlink" href="#" target="_blank" rel="noopener">run it on GitHub</a> instead: tap <b>Run workflow</b>, then <b>Run workflow</b> again.</p>
-  </div>
+  <p class="runstate" id="state" role="status" aria-live="polite"></p>
 </div></header>
 
 <section class="band hero" aria-labelledby="balh"><div class="wrap">
-  <h2 id="balh" class="fl" style="font-size:15px;font-weight:400;color:var(--ink2)">Real balance · settled bets only · pretend money on real Kalshi prices</h2>
+  <h2 id="balh" class="fl" style="font-size:15px;font-weight:400;color:var(--ink2)">Pinnacle vs Kalshi · simulated real-money account · settled bets only</h2>
   <div class="balance"><div class="big" id="bal"></div><div class="chg" id="chg"></div></div>
   <p class="fl" id="projline" style="font-size:15px;margin:2px 0 10px"></p>
-  <div class="legend" id="ballegend"><span><svg width="22" height="10" aria-hidden="true"><path d="M1 5H21" stroke="var(--accent)" stroke-width="3"/></svg> Real (settled bets)</span><span id="projkey"><svg width="22" height="10" aria-hidden="true"><path d="M1 5H21" stroke="var(--muted)" stroke-width="2" stroke-dasharray="4 3"/></svg> Projected (open bets at today's prices)</span></div>
-  <div class="fig" id="balfig"><svg id="balsvg" role="img" aria-label="Balance over time"></svg><div class="tip" id="tip" hidden></div></div>
+  <div class="legend"><span><svg width="22" height="10" aria-hidden="true"><path d="M1 5H21" stroke="var(--accent)" stroke-width="3"/></svg> Balance (settled bets)</span><span id="projkey"><svg width="22" height="10" aria-hidden="true"><path d="M1 5H21" stroke="var(--muted)" stroke-width="2" stroke-dasharray="4 3"/></svg> Expected, with open bets valued at Pinnacle's latest price</span></div>
+  <div class="fig"><svg id="balsvg" role="img" aria-label="Account balance over time"></svg><div class="tip" id="tip" hidden></div></div>
   <div class="figs" id="figs"></div>
+  <p class="how" id="how"></p>
 </div></section>
 
 <section class="band" aria-labelledby="openh"><div class="wrap">
   <h2 id="openh">Open bets</h2>
-  <p class="note">Each bet is about $100. <b>Projected</b> is what a bet would be worth if it ended at today's price, shown once the price has moved 2¢ or more since it was placed. It doesn't count toward the real balance until the bet settles.</p>
-  <div id="openbets"></div>
+  <p class="note"><b>Expected</b> values each bet at Pinnacle's latest fair price for that side. It isn't counted in the balance until the game settles.</p>
+  <div id="open"></div>
 </div></section>
 
 <section class="band" aria-labelledby="seth"><div class="wrap">
   <h2 id="seth">Settled bets</h2>
-  <p class="note">A winning contract pays $1; a losing one pays nothing. Claude reviews every settled bet.</p>
+  <p class="note">A winning contract pays $1. <b>Closing value</b> is Pinnacle's last fair price before the game minus what we paid, per contract: positive on average means the gaps were real, whatever the results.</p>
   <div id="settled"></div>
+  <div id="missed"></div>
 </div></section>
 
-<section class="band" aria-labelledby="callsh"><div class="wrap">
-  <h2 id="callsh">Claude's calls vs the market</h2>
-  <p class="note">The chance of YES. The gap between the dots is where a bet can come from.</p>
-  <div class="legend"><span><span class="key" style="background:var(--accent)"></span>Claude</span><span><span class="key" style="border:2.5px solid var(--ink)"></span>Market price</span></div>
-  <div id="calls"></div>
+<section class="band" aria-labelledby="gaph"><div class="wrap">
+  <h2 id="gaph">Where the gaps are</h2>
+  <p class="note" id="gapnote"></p>
+  <div id="leagues"></div>
 </div></section>
 
-<section class="band" aria-labelledby="learnh"><div class="wrap">
-  <h2 id="learnh" style="margin-bottom:16px">What Claude is learning</h2>
-  <div class="two">
-    <div><p class="fl" style="margin-bottom:6px">Where Claude beats the market (settled forecasts where they disagreed by 5+ points). Research leans toward the strong topics; 20% is always spread at random.</p><div id="topics"></div></div>
-    <div><p class="fl" style="margin-bottom:6px" id="revline">Only process mistakes become lessons, never bad luck.</p><ul class="lessons" id="lessons"></ul></div>
-  </div>
-</div></section>
-
-<section class="band" aria-labelledby="lagh"><div class="wrap">
-  <h2 id="lagh">Where prices lag</h2>
-  <p class="note" id="lagnote">Scans settled markets in every category. After a sudden price jump, does the price keep drifting the same way? Positive numbers mean the market was slow there.</p>
-  <div id="lags"></div>
+<section class="band" aria-labelledby="movh"><div class="wrap">
+  <h2 id="movh">How fast Kalshi follows Pinnacle</h2>
+  <p class="note">Each time Pinnacle's fair price on a paired game moves 2 points or more: how far Kalshi's midpoint was from the new price just before, when the tracker saw the move, and after. Small numbers right away mean Kalshi keeps up; numbers that stay big mean it lags.</p>
+  <div id="moves"></div>
 </div></section>
 
 <footer class="band foot"><div class="wrap">
-  <p id="rules"></p>
-  <p>Simulated trades only, no real money. Not financial advice.</p>
+  <p id="tracker"></p>
+  <p id="links"></p>
+  <p>Simulated trades only: real Kalshi prices, order books and fees, no real orders or money. Not financial advice.</p>
 </div></footer>
 
 <script>
 {
-const D = {"updated":"2026-11-24T14:24:39+00:00","repo":"noffenkrantz/kalshi-bot","start":10000.0,"balance":9900.03,"projected":9900.03,"real_line":[["2026-11-21T21:53:00+00:00",10000.0],["2026-11-23T13:37:36+00:00",9900.03],["2026-11-24T14:24:39+00:00",9900.03]],"proj_line":[["2026-11-21T21:53:00+00:00",10000.0],["2026-11-21T22:22:48+00:00",10000.0],["2026-11-22T04:27:10+00:00",10000.0],["2026-11-22T06:54:41+00:00",10000.0],["2026-11-22T15:56:12+00:00",9997.62],["2026-11-22T22:00:56+00:00",9956.36],["2026-11-23T01:31:45+00:00",9928.19],["2026-11-23T03:12:28+00:00",9928.19],["2026-11-23T13:40:06+00:00",9900.03],["2026-11-24T01:13:35+00:00",9900.03],["2026-11-24T03:18:20+00:00",9900.03],["2026-11-24T14:24:39+00:00",9900.03]],"open":[],"settled":[{"q":"US gas prices tomorrow \u2014 Above 3.6350","side":"no","contracts":131.0,"price":0.75,"cost":99.97,"claude":0.12,"market":0.255,"placed":"2026-11-22T15:54:44+00:00","closes":"2026-11-23T04:59:00Z","topic":"Economics","src":"research","won":false,"pnl":-99.97,"verdict":"bad_luck","note":"AAA's national average fell only about 0.82 cents on Nov 23, from $3.6448 to $3.6366. That stayed just above the $3.6350 threshold, so the market resolved YES."}],"stats":{"open_n":0,"open_cost":0,"settled_n":1,"wins":0,"losses":1,"settled_pnl":-99.97,"forecasts_n":33,"resolved_n":22,"claude_brier":0.277,"market_brier":0.1833},"forecasts":[{"q":"Diesel prices tomorrow \u2014 Above $5.765","claude":0.47,"market":0.295,"conf":"medium-low","ts":"2026-11-24T14:22:35+00:00","topic":"Economics","bet":false,"result":null},{"q":"Where will it rain on Nov 25, 2026? \u2014 Washington DC","claude":0.1,"market":0.21000000000000002,"conf":"medium-high","ts":"2026-11-24T14:22:35+00:00","topic":"Climate and Weather","bet":false,"result":null},{"q":"Copper price on Nov 25, 2026 at 5:00 PM EST? \u2014 Above $5.60","claude":0.23,"market":0.24,"conf":"medium-low","ts":"2026-11-24T14:22:35+00:00","topic":"Commodities","bet":false,"result":null},{"q":"US gas prices tomorrow \u2014 Above 3.5900","claude":0.88,"market":0.635,"conf":"medium-high","ts":"2026-11-24T14:22:35+00:00","topic":"Economics","bet":false,"result":null},{"q":"S\u0026P price on Nov 24, 2026 at 4pm EST? \u2014 7,235 or above","claude":0.5,"market":0.5700000000000001,"conf":"medium-low","ts":"2026-11-24T03:17:32+00:00","topic":"Financials","bet":false,"result":null},{"q":"S\u0026P price on Nov 24, 2026 at 4pm EST? \u2014 7,095 or above","claude":0.76,"market":0.935,"conf":"medium-low","ts":"2026-11-24T01:12:11+00:00","topic":"Financials","bet":false,"result":null},{"q":"Where will it rain on Nov 24, 2026? \u2014 Tampa","claude":0.2,"market":0.4,"conf":"medium","ts":"2026-11-23T13:37:36+00:00","topic":"Climate and Weather","bet":false,"result":null},{"q":"Michigan gas price tomorrow \u2014 Large decrease","claude":0.5,"market":0.14500000000000002,"conf":"medium-low","ts":"2026-11-23T13:37:36+00:00","topic":"Economics","bet":false,"result":null},{"q":"Diesel prices tomorrow \u2014 Above $5.805","claude":0.06,"market":0.095,"conf":"medium","ts":"2026-11-23T13:37:36+00:00","topic":"Economics","bet":false,"result":"no"},{"q":"US gas prices tomorrow \u2014 Above 3.6150","claude":0.52,"market":0.15000000000000002,"conf":"medium-low","ts":"2026-11-23T13:37:36+00:00","topic":"Economics","bet":false,"result":"no"},{"q":"Highest temperature in Los Angeles on Nov 23, 2026? \u2014 71\u00b0 to 72\u00b0","claude":0.1,"market":0.065,"conf":"medium-low","ts":"2026-11-22T21:59:22+00:00","topic":"Climate and Weather","bet":false,"result":null},{"q":"Trump's RCP approval average on Nov 23, 2026? \u2014 37.9%","claude":0.4,"market":0.395,"conf":"medium-low","ts":"2026-11-22T21:59:22+00:00","topic":"Politics","bet":false,"result":"no"}],"topics":[{"topic":"Climate and Weather","n":13,"dis":9,"wins":2,"focus":"\u2b07 less"},{"topic":"Economics","n":5,"dis":4,"wins":1,"focus":"\u2b07 less"},{"topic":"Politics","n":4,"dis":3,"wins":2,"focus":"normal"}],"reviews":{"bad_luck":1},"lessons":[],"rules":{"bet":100,"conf":"medium-high","edge":0.08,"budget":2.0},"spend_today":1.01,"lags":{"markets":625,"jumps":534,"url":"https://github.com/noffenkrantz/kalshi-bot/blob/main/LAGS.md","cats":[{"name":"Politics","markets":14,"jumps":17,"d30":0.0289,"follow":0.2684,"verdict":"early"},{"name":"Financials","markets":107,"jumps":20,"d30":0.0257,"follow":0.0455,"verdict":"early"},{"name":"Mentions","markets":2,"jumps":3,"d30":0.065,"follow":-0.0138,"verdict":"early"},{"name":"Economics","markets":26,"jumps":60,"d30":0.0018,"follow":-0.0321,"verdict":"keeps up"},{"name":"Sports","markets":120,"jumps":306,"d30":0.003,"follow":-0.0336,"verdict":"keeps up"},{"name":"Crypto","markets":120,"jumps":32,"d30":0.0319,"follow":-0.0722,"verdict":"keeps up"},{"name":"Climate and Weather","markets":75,"jumps":96,"d30":0.01,"follow":-0.1182,"verdict":"overreacts"},{"name":"Elections","markets":28,"jumps":0,"d30":null,"follow":null,"verdict":"early"},{"name":"Commodities","markets":120,"jumps":0,"d30":null,"follow":null,"verdict":"early"},{"name":"Science and Technology","markets":4,"jumps":0,"d30":null,"follow":null,"verdict":"early"},{"name":"Entertainment","markets":9,"jumps":0,"d30":null,"follow":null,"verdict":"early"}],"top":[{"name":"NFL Game","category":"Sports","jumps":17,"d30":0.0036,"follow":0.2028,"verdict":"early"},{"name":"ITF Women's Match","category":"Sports","jumps":30,"d30":0.0778,"follow":0.0707,"verdict":"keeps up"},{"name":"NBA Spread","category":"Sports","jumps":8,"d30":0.0717,"follow":0.0655,"verdict":"early"},{"name":"Challenger ATP ","category":"Sports","jumps":47,"d30":-0.0279,"follow":0.0415,"verdict":"keeps up"},{"name":"Pro Football Spread","category":"Sports","jumps":17,"d30":-0.0511,"follow":0.0226,"verdict":"early"}]}};
+let D = {"updated":"2026-11-25T19:37:59+00:00","repo":"noffenkrantz/kalshi-bot","rules":{"bankroll":1000.0,"stake":10.0,"min_edge":0.03,"max_edge":0.15,"mode":"hourly","every":60,"poll":5},"status":{"last_run":"2026-11-25T18:59:52+00:00","calls_today":12,"day":"2026-11-25"},"account":{"start":1000.0,"balance":1000.0,"realized":0.0,"cash":1000.0,"projected":1000.0,"open_n":0,"open_cost":0,"settled_n":0,"wins":0,"losses":0,"placed_n":0,"missed_n":0,"unknown_n":0,"no_cash_n":0,"clv":null,"clv_n":0,"clv_usd":0},"real_line":[["2026-11-25T16:44:21+00:00",1000.0],["2026-11-25T19:37:59+00:00",1000.0]],"proj_line":[],"open":[],"settled":[],"missed":[],"scan":{"rows":661,"since":"2026-11-25T16:44:21+00:00","real":0.9636913767019667,"gap":0.009914756671899526,"edge":0.0,"leagues":[{"name":"NCAA","n":92,"real":1.0,"gap":0.011939130434782601,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"NHL","n":56,"real":1.0,"gap":0.0061107142857142836,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"UEFA - Champions League","n":42,"real":1.0,"gap":0.007876190476190467,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"ITF Men Santa Cruz - R1","n":36,"real":1.0,"gap":0.012688888888888885,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"NBA","n":36,"real":1.0,"gap":0.007100000000000005,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"USA - American Hockey League","n":32,"real":1.0,"gap":0.009693750000000008,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"ITF Women Heraklion 2 - R16","n":28,"real":0.6785714285714286,"gap":0.015242105263157899,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"ITF Women Playford - R16","n":28,"real":1.0,"gap":0.011499999999999991,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"England - Championship","n":24,"real":1.0,"gap":0.008179166666666666,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"Russia - Kontinental Hockey League","n":24,"real":1.0,"gap":0.007316666666666666,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"AFC - Champions League 2","n":21,"real":1.0,"gap":0.012380952380952373,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"Italy - Serie B","n":21,"real":1.0,"gap":0.004223809523809517,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"England - National League","n":18,"real":1.0,"gap":0.007750000000000003,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"Colombia - Primera A","n":12,"real":1.0,"gap":0.006033333333333335,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"Europe - Euroleague","n":12,"real":1.0,"gap":0.00716666666666665,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"ITF Women Kolkata - R16","n":12,"real":1.0,"gap":0.020283333333333337,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"Mexico - Liga MX","n":12,"real":1.0,"gap":0.004474999999999993,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"Lithuania - National Basketball League","n":12,"real":1.0,"gap":0.01159999999999998,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"ATP Challenger San Salvador - R16","n":10,"real":1.0,"gap":0.008160000000000004,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"ATP Challenger Florianopolis - R1","n":10,"real":1.0,"gap":0.008699999999999996,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"Sweden - SHL","n":10,"real":1.0,"gap":0.009240000000000007,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"ATP Challenger Playford - R16","n":8,"real":1.0,"gap":0.011774999999999983,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"ATP Challenger Yokohama - R16","n":8,"real":1.0,"gap":0.00945,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"ITF Men Monastir 2 - R16","n":8,"real":1.0,"gap":0.012974999999999993,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"ITF Men Heraklion - R16","n":8,"real":1.0,"gap":0.01792499999999998,"edge":0.0,"bets":0,"clv":null,"profit":0}]},"moves":[]};
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const money = (v, sign) => (sign ? (v >= 0 ? '+' : '−') : (v < 0 ? '−' : '')) + '$' + Math.abs(v).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
 const money0 = v => '$' + Math.round(v).toLocaleString('en-US');
-const pct = p => p == null ? '–' : Math.round(p * 100) + '%';
+const pct = p => p == null ? '–' : (p * 100).toFixed(p < 0.1 && p > 0 ? 1 : 0) + '%';
 const cents = p => p == null ? '–' : Math.round(p * 100) + '¢';
-const when = s => s ? new Date(s).toLocaleString('en-US', {weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'}) : '';
-const day = s => s ? new Date(s).toLocaleString('en-US', {month: 'short', day: 'numeric', hour: 'numeric'}) : '';
-const cls = v => v == null ? '' : (v >= 0 ? 'up' : 'down');
-const S = D.stats, change = D.balance - D.start;
-
-// ---- headline: the finding
-let finding;
-if (!S.open_n && !S.settled_n) finding = 'No bets yet. Claude is waiting for a confident pick';
-else if (!S.settled_n) finding = `${S.open_n} bet${S.open_n === 1 ? '' : 's'} placed, waiting for results`;
-else finding = `${change >= 0 ? 'Up' : 'Down'} ${money0(Math.abs(change))} after ${S.settled_n} settled bet${S.settled_n === 1 ? '' : 's'}`;
-$('finding').textContent = finding;
-$('subline').textContent = `Updated ${when(D.updated)}`;
-
-// ---- Run button: starts a run on GitHub, shows progress, reloads when the new results are out.
-// The token (Actions: read and write on this repo only) lives in this browser's storage only.
-(() => {
-  const repo = D.repo, wf = 'bot.yml', api = `https://api.github.com/repos/${repo}`;
-  if (!repo) return;
-  const KEY = 'kalshi-bot-run-token', onPages = /\.github\.io$/.test(location.hostname);
-  const ghRun = `https://github.com/${repo}/actions/workflows/${wf}`;
-  const btn = $('runbtn'), state = $('runstate'), setup = $('setup');
-  btn.hidden = false;
-  $('ghlink').href = ghRun;
-  const get = () => { try { return localStorage.getItem(KEY) || ''; } catch (e) { return ''; } };
-  const put = v => { try { v ? localStorage.setItem(KEY, v) : localStorage.removeItem(KEY); } catch (e) {} };
-  const hdr = t => Object.assign({Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28'}, t ? {Authorization: `Bearer ${t}`} : {});
-  const say = html => { state.innerHTML = html; };
-  const busy = (on, label) => { btn.disabled = on; btn.querySelector('span').textContent = label || (on ? 'Running…' : 'Run'); };
-  const dur = ms => { const s = Math.max(0, Math.round(ms / 1000)); return s < 60 ? `${s}s` : `${Math.floor(s / 60)}m ${String(s % 60).padStart(2, '0')}s`; };
-  let timer = null;
-  const latest = async () => {
-    const r = await fetch(`${api}/actions/workflows/${wf}/runs?per_page=1`, {headers: hdr(get()), cache: 'no-store'});
-    if (!r.ok) throw new Error(String(r.status));
-    return ((await r.json()).workflow_runs || [])[0] || null;
-  };
-  const follow = since => {
-    clearInterval(timer);
-    busy(true);
-    const tick = async () => {
-      let run;
-      try { run = await latest(); } catch (e) { say('Started. Progress isn’t available right now; reload in a few minutes.'); clearInterval(timer); busy(false); return; }
-      if (!run || Date.parse(run.created_at) < since - 60e3) { say('Starting… waiting for GitHub to pick it up.'); return; }
-      if (run.status !== 'completed') {
-        const age = Date.now() - Date.parse(run.run_started_at || run.created_at);
-        say(`${run.status === 'in_progress' ? 'Running' : 'Queued on GitHub'}… ${dur(age)} <span style="color:var(--muted)">· usually 2–4 minutes</span>`);
-        return;
-      }
-      clearInterval(timer);
-      if (run.conclusion === 'success') {
-        say('Done. Loading the new results…');
-        setTimeout(() => location.replace(location.pathname + '?t=' + Date.now()), 15000);
-      } else {
-        busy(false);
-        say(`The run didn’t finish (${esc(run.conclusion || 'stopped')}). <a href="${esc(run.html_url)}" target="_blank" rel="noopener">See what happened</a>`);
-      }
-    };
-    tick();
-    timer = setInterval(tick, 10000);
-  };
-  const start = async token => {
-    busy(true, 'Starting…');
-    say('');
-    const t0 = Date.now();
-    let r;
-    try {
-      r = await fetch(`${api}/actions/workflows/${wf}/dispatches`, {method: 'POST', headers: hdr(token), body: JSON.stringify({ref: 'main'})});
-    } catch (e) { busy(false); say('Couldn’t reach GitHub. Check your connection and try again.'); return; }
-    if (r.status === 204) { follow(t0); return; }
-    busy(false);
-    if ([401, 403, 404].includes(r.status)) {
-      put('');
-      setup.hidden = false;
-      say('GitHub didn’t accept the saved token (it may have expired, or be missing the Actions permission). Paste a new one below.');
-    } else say(`GitHub couldn’t start it (error ${r.status}). <a href="${ghRun}" target="_blank" rel="noopener">Run it on GitHub instead</a>`);
-  };
-  btn.addEventListener('click', () => {
-    if (!onPages) { window.open(ghRun, '_blank', 'noopener'); return; }   // e.g. inside Claude: use GitHub's own Run button
-    const t = get();
-    if (t) start(t);
-    else { setup.hidden = !setup.hidden; if (!setup.hidden) $('tok').focus(); }
-  });
-  $('toksave').addEventListener('click', () => {
-    const v = $('tok').value.trim();
-    if (!v) { $('tok').focus(); return; }
-    put(v);
-    $('tok').value = '';
-    setup.hidden = true;
-    start(v);
-  });
-  $('tok').addEventListener('keydown', e => { if (e.key === 'Enter') $('toksave').click(); });
-  if (get()) {
-    const f = document.createElement('p');
-    f.innerHTML = '<button type="button" class="linkbtn">Forget the Run token on this device</button>';
-    f.querySelector('button').addEventListener('click', () => { put(''); f.remove(); say('Token removed from this device.'); });
-    document.querySelector('.foot .wrap').appendChild(f);
-  }
-  if (onPages) latest().then(run => {   // a run already going (e.g. started on another device)? show it
-    if (run && run.status !== 'completed' && Date.now() - Date.parse(run.created_at) < 30 * 60e3) follow(Date.parse(run.created_at));
-  }).catch(() => {});
-})();
-$('bal').textContent = money(D.balance);
-$('chg').innerHTML = `<span class="${cls(change)}">${money(change, true)} (${(change / D.start * 100).toFixed(1)}%)</span> <span style="color:var(--ink2);font-weight:500">since the $${D.start.toLocaleString('en-US')} start</span>`;
-const projGap = (D.projected ?? D.balance) - D.balance;
-const showProj = Math.abs(projGap) >= 0.01 || (D.proj_line || []).some(p => Math.abs(p[1] - D.start) >= 0.01);
-if (Math.abs(projGap) >= 0.01) $('projline').innerHTML = `Projected <b>${money(D.projected)}</b> <span class="${cls(projGap)}">(${money(projGap, true)})</span> if open bets whose prices have moved ended at today's prices. Not counted until they settle.`;
-else if (S.open_n) $('projline').textContent = `Open bets haven't moved enough since they were placed to change the projection.`;
-if (!showProj) $('projkey').hidden = true;
-
-// ---- ruled figure row
-const beat = S.resolved_n ? (S.claude_brier < S.market_brier ? 'Claude ahead' : 'Market ahead') : 'Too early';
-const figs = [
-  [S.open_n, `open bet${S.open_n === 1 ? '' : 's'} · ${money0(S.open_cost)} in play`],
-  [S.settled_n ? `${S.wins}–${S.losses}` : '0', 'won–lost'],
-  [S.settled_n ? money(S.settled_pnl, true) : '$0', 'profit on settled bets', cls(S.settled_n ? S.settled_pnl : null)],
-  [beat, S.resolved_n ? `accuracy ${S.claude_brier.toFixed(3)} vs ${S.market_brier.toFixed(3)} (lower wins), ${S.resolved_n} resolved` : `${S.forecasts_n} forecasts, none resolved yet`],
-  [money(D.spend_today), `Claude research today of $${D.rules.budget}`],
-];
-$('figs').innerHTML = figs.map(([v, l, c]) => `<div><div class="fv ${c || ''}">${esc(v)}</div><div class="fl">${esc(l)}</div></div>`).join('');
-
-// ---- tables
-const bet = b => `${esc(b.contracts)} ${b.side.toUpperCase()} @ ${cents(b.price)}`;
-if (D.open.length) {
-  $('openbets').innerHTML = `<div class="scroll"><table class="stack"><thead><tr><th>Market</th><th>Bet</th><th class="n">Cost</th><th class="n">Now</th><th class="n">Projected</th><th class="n">Forecast / market</th><th class="n">Closes</th></tr></thead><tbody>` +
-    D.open.map(b => `<tr><td class="q">${esc(b.q)}<span class="meta">${esc(b.topic)}${b.src === 'watcher' ? ' · Rain watcher: rain already reported' : ''}</span></td><td class="n">${bet(b)}</td><td class="n">${money(b.cost)}</td><td class="n">${cents(b.now)}</td><td class="n ${cls(b.proj)}">${b.proj == null ? '–' : money(b.proj, true)}</td><td class="n">${b.src === 'watcher' ? 'Watcher' : 'Claude'} ${pct(b.claude)} / ${pct(b.market)}</td><td class="n">${day(b.closes)}</td></tr>`).join('') + `</tbody></table></div>`;
-} else $('openbets').innerHTML = `<p class="empty">None right now. A bet is placed when Claude is ${esc(D.rules.conf)} or high confidence and at least ${Math.round(D.rules.edge * 100)}¢ per contract better than the price after fees.</p>`;
-
-const verdict = {good_call: 'Good call', bad_luck: 'Bad luck', process_mistake: 'Process mistake', unclear: 'Unclear'};
-if (D.settled.length) {
-  $('settled').innerHTML = `<div class="scroll"><table class="stack"><thead><tr><th>Market</th><th>Bet</th><th>Result</th><th class="n">P&amp;L</th><th>Review</th></tr></thead><tbody>` +
-    D.settled.map(b => `<tr><td class="q">${esc(b.q)}<span class="meta">${esc(b.topic)} · ${b.src === 'watcher' ? 'Rain watcher' : 'Claude'} ${pct(b.claude)} vs market ${pct(b.market)}</span></td><td class="n">${bet(b)}</td><td><span class="tag ${b.won ? 'won' : 'lost'}">${b.won ? 'Won' : 'Lost'}</span></td><td class="n ${cls(b.pnl)}">${money(b.pnl, true)}</td><td class="w">${b.verdict ? `<b>${esc(verdict[b.verdict] || b.verdict)}.</b> ${esc(b.note)}` : b.src === 'watcher' ? `<span class="meta">${esc(b.why)}</span>` : '<span class="meta">Review pending</span>'}</td></tr>`).join('') + `</tbody></table></div>`;
-} else $('settled').innerHTML = `<p class="empty">Nothing settled yet. Results appear after Kalshi settles a market, usually within a day of the event.</p>`;
-
-// ---- calls: dumbbells on a 0–100% track
-if (D.forecasts.length) {
-  $('calls').innerHTML = D.forecasts.map(f => {
-    const a = Math.min(f.claude, f.market) * 100, b = Math.max(f.claude, f.market) * 100;
-    const extra = [f.topic, f.conf ? `${f.conf} confidence` : '', f.bet ? 'bet placed' : '', f.result ? `resolved ${f.result.toUpperCase()}` : ''].filter(Boolean).join(' · ');
-    return `<div class="call"><div><div class="q">${esc(f.q)}</div><span class="meta">${esc(extra)}</span></div>` +
-      `<div class="track" aria-hidden="true"><div class="span" style="left:${a}%;width:${b - a}%"></div><div class="dot dm" style="left:${f.market * 100}%"></div><div class="dot dc" style="left:${f.claude * 100}%"></div></div>` +
-      `<div class="vals">Claude <b>${pct(f.claude)}</b><br><span class="meta">market ${pct(f.market)}</span></div></div>`;
-  }).join('');
-} else $('calls').innerHTML = `<p class="empty">No forecasts yet.</p>`;
-
-// ---- learning
-if (D.topics.length) {
-  $('topics').innerHTML = `<table><thead><tr><th>Topic</th><th class="n">Settled</th><th class="n">Beat market</th><th class="n">Research</th></tr></thead><tbody>` +
-    D.topics.map(t => `<tr><td>${esc(t.topic)}</td><td class="n">${t.n}</td><td class="n">${t.dis ? `${t.wins} of ${t.dis}` : '–'}</td><td class="n">${esc(t.focus)}</td></tr>`).join('') + `</tbody></table>`;
-} else $('topics').innerHTML = `<p class="empty">Fills in once forecasts settle.</p>`;
-const R = D.reviews, nrev = Object.values(R).reduce((a, b) => a + b, 0);
-if (nrev) $('revline').textContent = `${nrev} settled bet${nrev === 1 ? '' : 's'} reviewed: ${R.good_call || 0} good call${(R.good_call || 0) === 1 ? '' : 's'}, ${R.bad_luck || 0} bad luck, ${R.process_mistake || 0} process mistake${(R.process_mistake || 0) === 1 ? '' : 's'}. Only process mistakes become lessons.`;
-$('lessons').innerHTML = D.lessons.length ? D.lessons.slice(0, 8).map(l => `<li>${esc(l.text)}<span class="meta">${esc(l.topic)}${l.count > 1 ? ` · seen ${l.count} times` : ''}</span></li>`).join('')
-  : `<li class="empty" style="border:0">None yet. A lesson is added only when a review finds a real process mistake, like a misread rule or a stale source.</li>`;
-// ---- lag scanner
-const L = D.lags || {cats: [], top: []};
 const sc = v => v == null ? '–' : (v >= 0 ? '+' : '−') + Math.abs(v * 100).toFixed(1) + '¢';
-const read = {lags: 'Lags', drifts: 'Drifts', overreacts: 'Overreacts', 'keeps up': 'Keeps up', early: 'Too early'};
-const rtag = v => `<span class="tag ${v === 'lags' || v === 'drifts' ? 'won' : v === 'overreacts' ? 'lost' : ''}">${esc(read[v] || v)}</span>`;
-if (L.cats.length) {
-  $('lags').innerHTML = `<p class="fl" style="margin-bottom:6px">${L.markets.toLocaleString('en-US')} markets, ${L.jumps.toLocaleString('en-US')} price jumps so far. <b>Drift</b>: how much further the price moved the same way 30 minutes after a jump. <b>Follow</b>: profit per $1 bet from following the jump a minute later at the real price, after fees.</p>` +
-    `<div class="scroll"><table class="stack"><thead><tr><th>Category</th><th class="n">Jumps</th><th class="n">Drift 30 min</th><th class="n">Follow</th><th>Read</th></tr></thead><tbody>` +
-    L.cats.map(c => `<tr><td class="q">${esc(c.name)}<span class="meta">${c.markets} markets</span></td><td class="n">${c.jumps}</td><td class="n ${cls(c.d30)}">${sc(c.d30)}</td><td class="n ${cls(c.follow)}">${sc(c.follow)}</td><td>${rtag(c.verdict)}</td></tr>`).join('') +
-    `</tbody></table></div>` +
-    (L.top.length ? `<p class="fl" style="margin:18px 0 6px">Market types where following a jump paid best</p><ul class="lessons">` +
-      L.top.map(s => `<li><b>${esc(s.name)}</b> ${rtag(s.verdict)}<span class="meta">${esc(s.category)} · ${s.jumps} jumps · drift ${sc(s.d30)} · follow ${sc(s.follow)}</span></li>`).join('') + `</ul>` : '') +
-    (L.url ? `<p class="fl" style="margin-top:12px"><a href="${esc(L.url)}" style="color:var(--accent)">Full lag report</a></p>` : '');
-} else $('lags').innerHTML = `<p class="empty">The first scan runs with the next bot run.</p>`;
+const gapc = v => v == null ? '–' : (v * 100).toFixed(1) + '¢';
+const when = s => s ? new Date(s).toLocaleString('en-US', {weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'}) : '';
+const day = s => s ? new Date(s).toLocaleString('en-US', {month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'}) : '';
+const cls = v => v == null || Math.abs(v) < 0.005 ? '' : (v > 0 ? 'up' : 'down');
+const plural = (n, w) => `${n.toLocaleString('en-US')} ${w}${n === 1 ? '' : 's'}`;
+const betlabel = b => `${b.side === 'yes' ? esc(b.team) + ' to win' : esc(b.team) + ' not to win'}`;
 
-$('rules').textContent = `Rules: $${D.rules.bet} per bet, only at ${D.rules.conf} or high confidence with an edge of ${Math.round(D.rules.edge * 100)}¢+ per contract after fees, one bet per event. Runs when you press Run; up to $${D.rules.budget} a day of Claude research.`;
-
-// ---- balance chart: the real line steps when a bet settles; the projection is dashed
+let real = [], proj = [], times = [], G = null;
 const s = $('balsvg'), tip = $('tip');
-const series = a => (a || []).map(([t, v]) => [new Date(t).getTime(), v]).filter(p => !isNaN(p[0])).sort((a, b) => a[0] - b[0]);
-const real = series(D.real_line), proj = showProj ? series(D.proj_line) : [];
+
+function render() {
+  const A = D.account, R = D.rules, S = D.scan, change = A.balance - A.start;
+  // ---- headline
+  let finding;
+  if (A.settled_n) finding = `${change >= 0 ? 'Up' : 'Down'} ${money(Math.abs(change))} after ${plural(A.settled_n, 'settled bet')}`;
+  else if (A.open_n) finding = `${plural(A.open_n, 'bet')} placed, waiting for results`;
+  else if (S.rows) finding = `No bets yet: Kalshi has stayed within about ${Math.max(1, Math.round((S.gap || 0) * 100))}¢ of Pinnacle`;
+  else finding = 'Waiting for the first comparison';
+  $('finding').textContent = finding;
+  $('subline').textContent = `Updated ${when(D.updated)} · ${R.mode === 'live' ? 'watching Pinnacle every few seconds' : 'checked hourly'}`;
+
+  // ---- balance and figures
+  $('bal').textContent = money(A.balance);
+  $('chg').innerHTML = `<span class="${cls(change)}">${money(change, true)} (${(change / A.start * 100).toFixed(1)}%)</span> <span style="color:var(--ink2);font-weight:500">since the ${money0(A.start)} start</span>`;
+  const pg = A.projected - A.balance;
+  $('projline').innerHTML = A.open_n ? `Expected <b>${money(A.projected)}</b> <span class="${cls(pg)}">(${money(pg, true)})</span> if open bets are worth what Pinnacle's latest prices say.` : '';
+  $('projkey').hidden = !A.open_n;
+  const figs = [
+    [A.open_n, `open bet${A.open_n === 1 ? '' : 's'} · ${money(A.open_cost)} in play`],
+    [A.settled_n ? `${A.wins}–${A.losses}` : '0', 'won–lost'],
+    [A.settled_n ? money(A.realized, true) : '$0.00', 'profit on settled bets, after fees', A.settled_n ? cls(A.realized) : ''],
+    [A.clv_n ? sc(A.clv) : '–', A.clv_n ? `average closing value per contract (${plural(A.clv_n, 'bet')}, ${money(A.clv_usd, true)} in all)` : 'closing value: shows once bets have a final pre-game price', A.clv_n ? cls(A.clv) : ''],
+    [S.rows ? S.rows.toLocaleString('en-US') : '0', S.rows ? `prices compared · ${pct(S.edge)} could be bought ${Math.round(R.min_edge * 100)}¢+ below Pinnacle` : 'prices compared'],
+  ];
+  $('figs').innerHTML = figs.map(([v, l, c]) => `<div><div class="fv ${c || ''}">${esc(v)}</div><div class="fl">${esc(l)}</div></div>`).join('');
+  const left = [A.missed_n ? `${plural(A.missed_n, 'gap')} had nothing for sale at that price` : '', A.unknown_n ? `${A.unknown_n} couldn't be checked` : '', A.no_cash_n ? `${A.no_cash_n} came when the cash was all in play` : ''].filter(Boolean);
+  $('how').innerHTML = `<b>How it trades:</b> starts with ${money0(R.bankroll)}. When Kalshi sells a side for ${Math.round(R.min_edge * 100)}¢ or more below Pinnacle's fair price (Pinnacle's odds with its margin removed), after Kalshi's fee, it buys up to ${money0(R.stake)}, but only as many contracts as were actually for sale at that price. Kalshi's fee is charged the way Kalshi charges it, rounded up to the cent per order. Gaps over ${Math.round(R.max_edge * 100)}¢ are treated as a wrong match and skipped.` + (left.length ? ` Left out so far: ${esc(left.join('; '))}.` : '');
+
+  // ---- open bets
+  $('open').innerHTML = D.open.length ? `<div class="scroll"><table class="stack"><thead><tr><th>Game</th><th>Bet</th><th class="n">Contracts</th><th class="n">Paid</th><th class="n">Fair then → now</th><th class="n">Expected</th><th class="n">Starts</th></tr></thead><tbody>` +
+    D.open.map(b => `<tr><td class="q">${esc(b.game)}<span class="meta">${esc(b.league)} · placed ${day(b.placed)}${b.live ? ' · live' : ''}</span></td><td>${betlabel(b)}<span class="meta">${b.side.toUpperCase()} at ${cents(b.price)}</span></td><td class="n">${b.n}${b.n < b.wanted ? `<span class="meta">of ${b.wanted} wanted</span>` : ''}</td><td class="n">${money(b.cost)}</td><td class="n">${cents(b.fair_then)} → ${cents(b.fair_now)}</td><td class="n ${cls(b.ev)}">${money(b.ev, true)}</td><td class="n">${day(b.starts)}</td></tr>`).join('') + `</tbody></table></div>`
+    : `<p class="empty">None right now. A bet is placed only when Kalshi is at least ${Math.round(D.rules.min_edge * 100)}¢ cheaper than Pinnacle's fair price after fees and there are contracts for sale at that price.</p>`;
+
+  // ---- settled bets
+  $('settled').innerHTML = D.settled.length ? `<div class="scroll"><table class="stack"><thead><tr><th>Game</th><th>Bet</th><th>Result</th><th class="n">Paid</th><th class="n">Profit</th><th class="n">Closing value</th></tr></thead><tbody>` +
+    D.settled.map(b => `<tr><td class="q">${esc(b.game)}<span class="meta">${esc(b.league)} · ${day(b.placed)}</span></td><td>${betlabel(b)}<span class="meta">${b.n} ${b.side.toUpperCase()} at ${cents(b.price)}</span></td><td><span class="tag ${b.won ? 'won' : 'lost'}">${b.won ? 'Won' : 'Lost'}</span></td><td class="n">${money(b.cost)}</td><td class="n ${cls(b.profit)}">${money(b.profit, true)}</td><td class="n ${cls(b.clv)}">${sc(b.clv)}</td></tr>`).join('') + `</tbody></table></div>`
+    : `<p class="empty">Nothing settled yet. Kalshi settles a game within hours of the final whistle.</p>`;
+  $('missed').innerHTML = D.missed.length ? `<p class="fl" style="margin:22px 0 6px"><b>Gaps with nothing for sale.</b> Kalshi's price looked cheap, but no contracts were actually on offer at it, so a real account couldn't have bought.</p><ul style="margin:0;padding-left:20px">` +
+    D.missed.map(b => `<li>${esc(b.game)} <span class="meta" style="display:inline">· ${esc(b.league)} · ${betlabel(b)} at ${cents(b.price)} (${sc(b.edge)} edge) · ${day(b.placed)}</span></li>`).join('') + `</ul>` : '';
+
+  // ---- where the gaps are
+  $('gapnote').innerHTML = S.rows ? `${S.rows.toLocaleString('en-US')} Kalshi prices compared with Pinnacle's since ${day(S.since)}. ${pct(S.real)} had a real market (buy and sell prices within 10¢). In those, Kalshi's midpoint was <b>${gapc(S.gap)}</b> from Pinnacle's fair price on average, and <b>${pct(S.edge)}</b> could be bought ${Math.round(D.rules.min_edge * 100)}¢ or more below it after fees. <b>No real market</b>: nobody quoting tightly, so nothing to buy at a fair price.` : 'Fills in after the first comparison.';
+  const maxn = Math.max(1, ...S.leagues.map(l => l.n));
+  $('leagues').innerHTML = S.leagues.length ? `<div class="scroll"><table class="stack"><thead><tr><th>League</th><th class="n">Prices compared</th><th class="n">No real market</th><th class="n">Avg gap</th><th class="n">${Math.round(D.rules.min_edge * 100)}¢+ edge</th><th class="n">Bets</th><th class="n">Closing value</th><th class="n">Profit</th></tr></thead><tbody>` +
+    S.leagues.map(l => `<tr><td class="q">${esc(l.name)}</td><td class="n"><span class="bar" style="width:${Math.max(3, Math.round(l.n / maxn * 60))}px"></span>${l.n.toLocaleString('en-US')}</td><td class="n">${pct(1 - l.real)}</td><td class="n">${gapc(l.gap)}</td><td class="n">${pct(l.edge)}</td><td class="n">${l.bets}</td><td class="n ${cls(l.clv)}">${sc(l.clv)}</td><td class="n ${l.bets ? cls(l.profit) : ''}">${l.bets ? money(l.profit, true) : '–'}</td></tr>`).join('') + `</tbody></table></div>` : '';
+
+  // ---- follow speed
+  const M = D.moves || [];
+  $('moves').innerHTML = M.length ? `<div class="scroll"><table class="stack"><thead><tr><th></th><th class="n">Moves</th><th class="n">Avg move</th><th class="n">Gap before</th><th class="n">When seen</th><th class="n">15 s later</th><th class="n">1 min later</th><th class="n">5 min later</th><th class="n">Already there</th></tr></thead><tbody>` +
+    M.map(r => `<tr><td class="q">${esc(r.name === 'All' ? 'All leagues' : r.name)}</td><td class="n">${r.n}</td><td class="n">${r.move == null ? '–' : (r.move * 100).toFixed(1) + ' pts'}</td>${['before', 'at', '15', '60', '300'].map(w => `<td class="n">${gapc(r.gaps[w])}</td>`).join('')}<td class="n">${pct(r.already)}</td></tr>`).join('') + `</tbody></table></div>`
+    : `<p class="empty">${D.rules.mode === 'live' ? 'Waiting for the first big Pinnacle move.' : 'Fills in once live mode is on (it needs the paid pinnapi plan). Hourly checks can’t see how fast Kalshi reacts.'}</p>`;
+
+  // ---- footer
+  const st = D.status || {};
+  $('tracker').textContent = `Tracker: ${D.rules.mode === 'live' ? `live, checking Pinnacle every ${D.rules.poll} seconds` : `hourly snapshots (every ${D.rules.every} minutes)`}` + (st.last_run ? `; last check ${when(st.last_run)}` : '') + (st.calls_today != null ? `; ${st.calls_today} pinnapi requests on ${st.day}` : '') + '.';
+  $('links').innerHTML = D.repo ? `Details: <a href="https://github.com/${esc(D.repo)}/blob/main/GAPS.md">full gap report</a> · <a href="https://github.com/${esc(D.repo)}">code and data</a>` : '';
+
+  // ---- chart data
+  const series = a => (a || []).map(([t, v]) => [new Date(t).getTime(), v]).filter(p => !isNaN(p[0])).sort((a, b) => a[0] - b[0]);
+  real = series(D.real_line); proj = series(D.proj_line);
+  times = [...new Set(real.concat(proj).map(p => p[0]))].sort((a, b) => a - b);
+  drawChart();
+}
+
+// ---- balance chart: the balance steps when a bet settles; the expected line is dashed
 const at = (arr, t) => { let v = null; for (const p of arr) { if (p[0] <= t) v = p[1]; else break; } return v; };
-const times = [...new Set(real.concat(proj).map(p => p[0]))].sort((a, b) => a - b);
 const nice = span => { const raw = Math.max(span, 1e-9) / 4, mag = 10 ** Math.floor(Math.log10(raw)); for (const m of [1, 2, 2.5, 5, 10]) if (m * mag >= raw) return m * mag; return 10 * mag; };
-let G = null;
-const drawChart = () => {
-  const W = s.clientWidth, H = s.clientHeight;
+function drawChart() {
+  const W = s.clientWidth, H = s.clientHeight, start = D.account.start;
   if (!W || !H || !real.length) return;
-  const narrow = W < 520, m = {l: narrow ? 58 : 68, r: narrow ? 92 : 124, t: 14, b: 30};
+  const narrow = W < 520, m = {l: narrow ? 58 : 68, r: narrow ? 88 : 118, t: 14, b: 30};
   let t1 = times[times.length - 1], t0 = times[0];
   if (t1 <= t0) t0 = t1 - 4 * 3600e3;
-  const vals = real.concat(proj).map(p => p[1]).concat([D.start]);
+  const vals = real.concat(proj).map(p => p[1]).concat([start]);
   let lo = Math.min(...vals), hi = Math.max(...vals);
-  if (hi - lo < 400) { const mid = (hi + lo) / 2; lo = mid - 200; hi = mid + 200; }
+  const minSpan = Math.max(20, start * 0.04);
+  if (hi - lo < minSpan) { const mid = (hi + lo) / 2; lo = mid - minSpan / 2; hi = mid + minSpan / 2; }
   const step = nice(hi - lo), yl = Math.floor(lo / step) * step, yh = Math.ceil(hi / step) * step;
   const X = t => m.l + (t - t0) / (t1 - t0) * (W - m.l - m.r), Y = v => m.t + (yh - v) / (yh - yl) * (H - m.t - m.b);
   let h = '';
@@ -385,52 +247,73 @@ const drawChart = () => {
     const every = Math.max(1, Math.ceil(spanDays / (narrow ? 3 : 6))), d = new Date(t0); d.setHours(24, 0, 0, 0);
     for (; d.getTime() <= t1; d.setDate(d.getDate() + every)) h += `<text x="${X(d.getTime())}" y="${H - 8}" text-anchor="middle">${d.toLocaleString('en-US', {month: 'short', day: 'numeric'})}</text>`;
   }
-  const ys = Math.round(Y(D.start)) + .5;
-  h += `<line class="base" x1="${m.l}" x2="${W - m.r}" y1="${ys}" y2="${ys}"/><text x="${m.l + 6}" y="${Y(D.start) - m.t > 18 ? ys - 7 : ys + 16}" style="fill:var(--ink2)">Start ${money0(D.start)}</text>`;
+  const ys = Math.round(Y(start)) + .5;
+  h += `<line class="base" x1="${m.l}" x2="${W - m.r}" y1="${ys}" y2="${ys}"/><text x="${m.l + 6}" y="${Y(start) - m.t > 18 ? ys - 7 : ys + 16}" style="fill:var(--ink2)">Start ${money0(start)}</text>`;
   if (proj.length > 1) {
     const pl = proj.map((p, i) => `${i ? 'L' : 'M'}${X(p[0]).toFixed(1)},${Y(p[1]).toFixed(1)}`).join('');
-    h += `<path d="${pl}" fill="none" stroke="var(--muted)" stroke-width="1.75" stroke-dasharray="5 4" stroke-linejoin="round"/>`;
+    h += `<path d="${pl}" fill="none" stroke="var(--muted)" stroke-width="2" stroke-dasharray="5 4" stroke-linejoin="round"/>`;
   }
   const rl = `M${X(real[0][0]).toFixed(1)},${Y(real[0][1]).toFixed(1)}` + real.slice(1).map(p => `H${X(p[0]).toFixed(1)}V${Y(p[1]).toFixed(1)}`).join('');
   h += `<path d="${rl}V${ys}H${X(real[0][0]).toFixed(1)}Z" fill="var(--accent)" opacity=".10"/>`;
-  h += `<path d="${rl}" fill="none" stroke="var(--accent)" stroke-width="2.75" stroke-linejoin="round" stroke-linecap="round"/>`;
+  h += `<path d="${rl}" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>`;
   const last = real[real.length - 1], ex = X(last[0]), ey = Y(last[1]);
   if (proj.length) {
     const pv = proj[proj.length - 1], px = X(pv[0]), py = Y(pv[1]);
     const ly = Math.abs(py - ey) >= 22 ? py + 4 : (py >= ey ? ey + 22 : ey - 14);
-    h += `<circle cx="${px}" cy="${py}" r="4" fill="var(--bg)" stroke="var(--muted)" stroke-width="1.75"/>`;
-    h += `<text x="${px + 10}" y="${ly}">${narrow ? '' : 'Projected '}${money0(pv[1])}</text>`;   // the legend names it on phones
+    h += `<circle cx="${px}" cy="${py}" r="4" fill="var(--bg)" stroke="var(--muted)" stroke-width="2"/>`;
+    h += `<text x="${px + 10}" y="${ly}">${narrow ? '' : 'Expected '}${money0(pv[1])}</text>`;
   }
   h += `<circle cx="${ex}" cy="${ey}" r="5.5" fill="var(--accent)" stroke="var(--bg)" stroke-width="2"/>`;
   h += `<text x="${ex + 10}" y="${ey + 4}" style="fill:var(--ink);font-weight:600;font-size:14px">${money0(last[1])}</text>`;
-  h += `<g id="cross" style="display:none"><line id="cx" class="grid" y1="${m.t}" y2="${H - m.b}" style="stroke:var(--ink2)"/><circle id="cp" r="4" fill="var(--bg)" stroke="var(--muted)" stroke-width="1.75"/><circle id="cd" r="5" fill="var(--accent)" stroke="var(--bg)" stroke-width="2"/></g>`;
-  if (times.length === 1) h += `<text x="${(m.l + W - m.r) / 2}" y="${ys + 34}" text-anchor="middle">The real line moves when a bet settles</text>`;
+  h += `<g id="cross" style="display:none"><line id="cx" class="grid" y1="${m.t}" y2="${H - m.b}" style="stroke:var(--ink2)"/><circle id="cp" r="4" fill="var(--bg)" stroke="var(--muted)" stroke-width="2"/><circle id="cd" r="5" fill="var(--accent)" stroke="var(--bg)" stroke-width="2"/></g>`;
+  if (real.length <= 2 && !D.account.settled_n) h += `<text x="${(m.l + W - m.r) / 2}" y="${ys + 34}" text-anchor="middle">The balance moves when a bet settles</text>`;
   s.innerHTML = h;
-  G = {X, Y, W, m};
-};
-const ro = new ResizeObserver(drawChart);
-ro.observe(s);
-const hide = () => { const c = document.getElementById('cross'); if (c) c.style.display = 'none'; tip.hidden = true; };
+  G = {X, Y};
+}
+new ResizeObserver(drawChart).observe(s);
 s.addEventListener('pointermove', e => {
   if (!G || !times.length) return;
-  const r = s.getBoundingClientRect(), x = e.clientX - r.left;
+  const r = s.getBoundingClientRect(), x = e.clientX - r.left, start = D.account.start;
   let best = times[0];
   for (const t of times) if (Math.abs(G.X(t) - x) < Math.abs(G.X(best) - x)) best = t;
-  const rv = at(real, best), pv = proj.length ? at(proj, best) : null, px = G.X(best);
+  const rv = at(real, best) ?? start, pv = proj.length ? at(proj, best) : null, px = G.X(best);
   document.getElementById('cross').style.display = '';
-  document.getElementById('cx').setAttribute('x1', px); document.getElementById('cx').setAttribute('x2', px);
+  const cx = document.getElementById('cx'); cx.setAttribute('x1', px); cx.setAttribute('x2', px);
   const cd = document.getElementById('cd'), cp = document.getElementById('cp');
-  cd.setAttribute('cx', px); cd.setAttribute('cy', G.Y(rv ?? D.start));
+  cd.setAttribute('cx', px); cd.setAttribute('cy', G.Y(rv));
   cp.style.display = pv == null ? 'none' : ''; if (pv != null) { cp.setAttribute('cx', px); cp.setAttribute('cy', G.Y(pv)); }
   tip.hidden = false;
-  tip.innerHTML = `<b>Real ${money(rv ?? D.start)}</b> <span class="${cls((rv ?? D.start) - D.start)}">${money((rv ?? D.start) - D.start, true)}</span>` +
-    (pv != null ? `<br><span style="color:var(--ink2)">Projected ${money(pv)}</span>` : '') +
+  tip.innerHTML = `<b>Balance ${money(rv)}</b> <span class="${cls(rv - start)}">${money(rv - start, true)}</span>` +
+    (pv != null && pv !== rv ? `<br><span style="color:var(--ink2)">Expected ${money(pv)}</span>` : '') +
     `<br><span style="color:var(--muted)">${esc(when(new Date(best).toISOString()))}</span>`;
-  const tw = tip.offsetWidth, left = Math.min(Math.max(px - tw / 2, 0), r.width - tw);
-  tip.style.left = left + 'px';
-  tip.style.top = Math.max(G.Y(rv ?? D.start) - tip.offsetHeight - 14, 0) + 'px';
+  const tw = tip.offsetWidth;
+  tip.style.left = Math.min(Math.max(px - tw / 2, 0), r.width - tw) + 'px';
+  tip.style.top = Math.max(G.Y(rv) - tip.offsetHeight - 14, 0) + 'px';
 });
-s.addEventListener('pointerleave', hide);
+s.addEventListener('pointerleave', () => { const c = document.getElementById('cross'); if (c) c.style.display = 'none'; tip.hidden = true; });
+
+render();
+
+// ---- on GitHub Pages: pull the newest results straight from the repo (no redeploy needed)
+const onPages = /\.github\.io$/.test(location.hostname);
+if (onPages && D.repo) {
+  const btn = $('reload'), state = $('state');
+  const url = () => `https://raw.githubusercontent.com/${D.repo}/main/site/gaps.json?t=${Date.now()}`;
+  const fetchNew = async manual => {
+    btn.disabled = true;
+    try {
+      const r = await fetch(url(), {cache: 'no-store'});
+      if (!r.ok) throw new Error(String(r.status));
+      const nd = await r.json();
+      if (nd.updated > D.updated) { D = nd; render(); state.textContent = manual ? 'Loaded the latest results.' : ''; }
+      else if (manual) state.textContent = `Already up to date (results from ${when(D.updated)}).`;
+    } catch (e) { if (manual) state.textContent = 'Couldn’t reach GitHub just now. Try again in a minute.'; }
+    btn.disabled = false;
+  };
+  btn.hidden = false;
+  btn.addEventListener('click', () => fetchNew(true));
+  fetchNew(false);
+}
 }
 </script>
 </body>

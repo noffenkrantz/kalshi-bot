@@ -126,6 +126,8 @@ class FakeKalshi:
             raise AssertionError(f"unexpected series {s}")
 
     def request(self, method, path, params=None):
+        if path.endswith("/orderbook"):     # 12 YES contracts for sale at 40c or less (NO bids at 60c+)
+            return {"orderbook_fp": {"yes_dollars": [["0.3800", "500.00"]], "no_dollars": [["0.6000", "12.00"], ["0.5000", "100.00"]]}}
         t = path.split("/")[-1]
         return {"market": {"ticker": t, "result": self.results.get(t, "")}}
 
@@ -141,6 +143,7 @@ def test_snapshot_bets_scores_and_settles(tmp_path):
                  "suspicious": 0}
     (bet,) = [json.loads(l) for l in (tmp_path / "data" / "gap_bets.jsonl").read_text().splitlines()]
     assert bet["side"] == "yes" and bet["team"] == "Bromley" and bet["price"] == 0.40 and bet["contracts"] == 25
+    assert bet["available"] == 12 and bet["filled"] == 12          # only 12 were for sale at 40c
     assert 0.05 < bet["edge"] < 0.06
 
     # an hour before kick-off Pinnacle shortened Bromley and Kalshi followed: positive closing value
@@ -154,9 +157,9 @@ def test_snapshot_bets_scores_and_settles(tmp_path):
     assert r["settled"] == 1 and r["pinnacle_games"] == 0    # the game has started: nothing new to compare
     (s,) = score_bets(tmp_path / "data")
     assert s["clv"] > 0.05 and s["kalshi_move"] > 0 and s["pinnacle_move"] > 0
-    assert s["profit"] == round(25 * 0.6 - 25 * 0.07 * 0.4 * 0.6, 2)
+    assert s["n"] == 12 and s["cost"] == 5.01 and s["profit"] == 6.99   # 12 x $1 back, minus 12 x 40c and a 21c fee
     text = (tmp_path / "GAPS.md").read_text()
-    assert "1 simulated bets so far" in text and "England - League Two" in text and "won $+14.58" in text
+    assert "1 simulated bets so far" in text and "England - League Two" in text and "won $+6.99" in text
 
 
 def test_budget_stops_requests(tmp_path):
