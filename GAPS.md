@@ -1,10 +1,10 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 71 snapshots from 2026-11-25 16:44 to 2026-11-25 22:00 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 73 snapshots from 2026-11-25 16:44 to 2026-11-25 22:10 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-1,745 Kalshi prices compared with Pinnacle's. 98% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.1¢ from Pinnacle's fair price on average, and 0.6% could be bought at a 3¢+ edge after fees.
+1,747 Kalshi prices compared with Pinnacle's. 98% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.1¢ from Pinnacle's fair price on average, and 0.6% could be bought at a 3¢+ edge after fees.
 
 5 simulated bets so far; 5 have a closing price. Average edge when placed +4.4¢; average closing value +0.7¢ per contract. Kalshi moved toward Pinnacle's price after 3 of them and Pinnacle moved toward Kalshi's after 5. None have settled yet.
 
@@ -25,7 +25,7 @@
 | Russia - Kontinental Hockey League | 60 | 0% | +0.7¢ | 0% | 0 | 0 | – | – |
 | ITF Women Monastir - R16 | 56 | 7% | +1.6¢ | 0% | 0 | 0 | – | – |
 | ITF Men Monastir 2 - R16 | 56 | 0% | +1.4¢ | 0% | 56 | 0 | – | – |
-| ITF Men Heraklion - R16 | 51 | 0% | +2.3¢ | 4% | 17 | 1 | -4.6¢ | – |
+| ITF Men Heraklion - R16 | 53 | 0% | +2.3¢ | 4% | 17 | 1 | -4.6¢ | – |
 | AFC - Champions League 2 | 48 | 0% | +1.1¢ | 0% | 1 | 0 | – | – |
 | ATP Challenger Playford - R16 | 47 | 0% | +1.5¢ | 2% | 104 | 1 | +3.2¢ | – |
 | ITF Women Trnava - R16 | 44 | 2% | +1.5¢ | 0% | 0 | 0 | – | – |
@@ -64,7 +64,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 22 | 4.0 pts | 3.3¢ | 3.0¢ | 2.5¢ | 2.6¢ | 2.6¢ | 1.9¢ | 32% |
+| All | 24 | 3.9 pts | 3.1¢ | 2.9¢ | 2.3¢ | 2.5¢ | 2.4¢ | 1.8¢ | 33% |
 | ITF Men Heraklion - R16 | 7 | 5.5 pts | 5.5¢ | 5.3¢ | 3.8¢ | 4.3¢ | 4.0¢ | 1.9¢ | 29% |
 | AFC - Champions League 2 | 4 | 3.4 pts | 2.0¢ | 2.1¢ | 2.0¢ | 2.0¢ | 2.9¢ | 2.9¢ | 25% |
 | ATP Challenger Playford - R16 | 4 | 2.3 pts | 1.0¢ | 1.1¢ | 1.1¢ | 1.5¢ | 0.8¢ | 1.0¢ | 50% |
@@ -73,6 +73,8 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 | USA - American Hockey League | 1 | 2.1 pts | 1.8¢ | 1.8¢ | 0.6¢ | 0.1¢ | 0.1¢ | 0.6¢ | 0% |
 | ITF Women Heraklion 2 - R16 | 1 | 4.1 pts | 5.6¢ | 5.6¢ | 5.1¢ | 5.1¢ | 5.1¢ | 5.1¢ | 0% |
 | ITF Men Santa Cruz - R1 | 1 | 2.4 pts | 2.3¢ | 2.3¢ | 2.3¢ | 2.3¢ | 2.3¢ | 2.3¢ | 0% |
+| NCAA | 1 | 2.1 pts | 2.0¢ | 2.0¢ | 2.0¢ | 2.0¢ | 2.0¢ | 1.0¢ | 0% |
+| Brazil - Serie A | 1 | 2.0 pts | 1.9¢ | 0.4¢ | 0.2¢ | 0.7¢ | 0.5¢ | 0.4¢ | 100% |
 
 ## Latest simulated bets
 
