@@ -16,7 +16,6 @@ Writes NICHES.md (tables) and data/niche_survey.json (everything). Read-only: no
 from __future__ import annotations
 
 import hashlib
-import json
 import statistics
 from collections import defaultdict
 from datetime import datetime, timedelta
