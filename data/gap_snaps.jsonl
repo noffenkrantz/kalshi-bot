@@ -1350,3 +1350,17 @@
 {"ts":"2026-11-25T21:07:09+00:00","ticker":"KXNBAGAME-26NOV25MIAPHI-PHI","league":"NBA","fair":0.4906,"bid":0.48,"ask":0.49,"vol24":375860}
 {"ts":"2026-11-25T21:07:09+00:00","ticker":"KXNBAGAME-26NOV25MIAPHI-MIA","league":"NBA","fair":0.5094,"bid":0.51,"ask":0.52,"vol24":514988}
 {"ts":"2026-11-25T21:07:22+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.4836,"bid":0.38,"ask":0.39,"vol24":17}
+{"ts":"2026-11-25T21:07:28+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.4836,"bid":0.46,"ask":0.5,"vol24":17}
+{"ts":"2026-11-25T21:07:35+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.3848,"bid":0.46,"ask":0.5,"vol24":17}
+{"ts":"2026-11-25T21:07:39+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.3848,"bid":0.38,"ask":0.47,"vol24":17}
+{"ts":"2026-11-25T21:07:46+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.3741,"bid":0.38,"ask":0.47,"vol24":17}
+{"ts":"2026-11-25T21:07:49+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.3798,"bid":0.38,"ask":0.47,"vol24":17}
+{"ts":"2026-11-25T21:08:11+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.3754,"bid":0.38,"ask":0.45,"vol24":17}
+{"ts":"2026-11-25T21:08:15+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.3652,"bid":0.38,"ask":0.45,"vol24":17}
+{"ts":"2026-11-25T21:08:35+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.3652,"bid":0.38,"ask":0.43,"vol24":17}
+{"ts":"2026-11-25T21:09:35+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.3963,"bid":0.38,"ask":0.41,"vol24":17}
+{"ts":"2026-11-25T21:12:45+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.3963,"bid":0.36,"ask":0.41,"vol24":17}
+{"ts":"2026-11-25T21:12:45+00:00","ticker":"KXNBAGAME-26NOV25MIAPHI-PHI","league":"NBA","fair":0.4895,"bid":0.48,"ask":0.49,"vol24":375860}
+{"ts":"2026-11-25T21:12:45+00:00","ticker":"KXNBAGAME-26NOV25MIAPHI-MIA","league":"NBA","fair":0.5105,"bid":0.5,"ask":0.51,"vol24":514988}
+{"ts":"2026-11-25T21:13:16+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.3963,"bid":0.37,"ask":0.41,"vol24":17}
+{"ts":"2026-11-25T21:13:23+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25SWEJON-JON","league":"ATP Challenger Playford - R16","fair":0.2149,"bid":0.16,"ask":0.17,"vol24":48}
