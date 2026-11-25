@@ -1755,3 +1755,5 @@
 {"ts":"2026-11-25T22:19:34+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.3436,"bid":0.33,"ask":0.37,"vol24":130}
 {"ts":"2026-11-25T22:20:05+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.3436,"bid":0.34,"ask":0.37,"vol24":130}
 {"ts":"2026-11-25T22:20:30+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25SWEJON-JON","league":"ATP Challenger Playford - R16","fair":0.1873,"bid":0.19,"ask":0.2,"vol24":3118}
+{"ts":"2026-11-25T22:22:20+00:00","ticker":"KXNBAGAME-26NOV25CLENYK-NYK","league":"NBA","fair":0.6128,"bid":0.62,"ask":0.63,"vol24":380983}
+{"ts":"2026-11-25T22:22:24+00:00","ticker":"KXITFMATCH-26NOV26IANLOM-LOM","league":"ITF Men Bhopal - R16","fair":0.5416,"bid":0.47,"ask":0.48,"vol24":236}
