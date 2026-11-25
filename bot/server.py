@@ -42,7 +42,7 @@ from .watcher import RainWatcher
 RUN_EVERY = timedelta(hours=4)
 RESULT_PATHS = ("data", "README.md", "REPORT.md", "LAGS.md", "site")
 GAP_PATHS = ("data/gap_snaps.jsonl", "data/gap_bets.jsonl", "data/gap_outcomes.jsonl", "data/gap_moves.jsonl",
-             "data/gap_state.json", "GAPS.md", "site/index.html", "site/gaps.json")
+             "data/gap_state.json", "data/gap_live_status.json", "GAPS.md", "site/index.html", "site/gaps.json")
 STEP_TIMEOUT = 40 * 60
 
 

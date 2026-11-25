@@ -74,10 +74,10 @@ max_buy_price = 0.97               # never pay more than this for YES
 
 [gaps]   # Pinnacle vs Kalshi gap tracker (simulated). Runs on the Render server when PINNAPI_KEY is set; see GAPS.md
 enabled = true
-mode = "hourly"              # "live" = watch Pinnacle every few seconds and bet the moment a gap opens (needs a
+mode = "live"                # "live" = watch Pinnacle every few seconds and bet the moment a gap opens (needs a
                              # paid pinnapi plan; the free trial's 100 requests a day only allow "hourly")
 every_minutes = 60           # hourly mode: minutes between snapshots (4 sports x 24 a day fits the trial)
-poll_seconds = 5             # live mode: how often to ask pinnapi for changed odds (one request per sport)
+poll_seconds = 2             # live mode: how often to ask pinnapi for changed odds (one request per sport)
 kalshi_sweep_seconds = 30    # live mode: how often to re-read Kalshi's prices for all paired games
 rematch_minutes = 30         # live mode: how often to re-pair Kalshi and Pinnacle games
 move_points = 0.02           # live mode: Pinnacle moves this big are logged with Kalshi's price 15 s, 1 min and 5 min later

@@ -206,8 +206,8 @@ function render() {
 
   // ---- follow speed
   const M = D.moves || [];
-  $('moves').innerHTML = M.length ? `<div class="scroll"><table class="stack"><thead><tr><th></th><th class="n">Moves</th><th class="n">Avg move</th><th class="n">Gap before</th><th class="n">When seen</th><th class="n">15 s later</th><th class="n">1 min later</th><th class="n">5 min later</th><th class="n">Already there</th></tr></thead><tbody>` +
-    M.map(r => `<tr><td class="q">${esc(r.name === 'All' ? 'All leagues' : r.name)}</td><td class="n">${r.n}</td><td class="n">${r.move == null ? '–' : (r.move * 100).toFixed(1) + ' pts'}</td>${['before', 'at', '15', '60', '300'].map(w => `<td class="n">${gapc(r.gaps[w])}</td>`).join('')}<td class="n">${pct(r.already)}</td></tr>`).join('') + `</tbody></table></div>`
+  $('moves').innerHTML = M.length ? `<div class="scroll"><table class="stack"><thead><tr><th></th><th class="n">Moves</th><th class="n">Avg move</th><th class="n">Gap before</th><th class="n">When seen</th><th class="n">5 s later</th><th class="n">15 s later</th><th class="n">1 min later</th><th class="n">5 min later</th><th class="n">Already there</th></tr></thead><tbody>` +
+    M.map(r => `<tr><td class="q">${esc(r.name === 'All' ? 'All leagues' : r.name)}</td><td class="n">${r.n}</td><td class="n">${r.move == null ? '–' : (r.move * 100).toFixed(1) + ' pts'}</td>${['before', 'at', '5', '15', '60', '300'].map(w => `<td class="n">${gapc(r.gaps[w])}</td>`).join('')}<td class="n">${pct(r.already)}</td></tr>`).join('') + `</tbody></table></div>`
     : `<p class="empty">${D.rules.mode === 'live' ? 'Waiting for the first big Pinnacle move.' : 'Fills in once live mode is on (it needs the paid pinnapi plan). Hourly checks can’t see how fast Kalshi reacts.'}</p>`;
 
   // ---- footer

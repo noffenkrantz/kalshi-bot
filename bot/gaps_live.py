@@ -6,8 +6,10 @@ Runs inside the Render server (bot/server.py), which calls tick() about once a s
     request per sport). When a paired game's fair price moves, it reads that game's Kalshi prices at
     once (one Kalshi request) and records a simulated bet if Kalshi is now cheaper than the fair
     price by [gaps] min_edge or more after Kalshi's fee.
-  - moves of move_points or more are logged with Kalshi's price just before, right after, and 15 s,
-    1 min and 5 min later (data/gap_moves.jsonl): how fast Kalshi catches up with Pinnacle.
+  - moves of move_points or more are logged with Kalshi's price just before, right after, and 5 s,
+    15 s, 1 min and 5 min later (data/gap_moves.jsonl): how fast Kalshi catches up with Pinnacle.
+  - every 10 minutes it writes data/gap_live_status.json (is it polling, how many games are paired,
+    the last error), so the tracker can be checked from the repo.
   - every kalshi_sweep_seconds it re-reads Kalshi's prices for all paired games, because Kalshi can
     drift on its own too.
   - every rematch_minutes it re-pairs Kalshi and Pinnacle games (new games, finished ones).
@@ -27,7 +29,7 @@ from .util import iso, parse_time, to_float, utcnow
 
 LIVE_DEFAULTS = {"poll_seconds": 5, "kalshi_sweep_seconds": 30, "rematch_minutes": 30, "snapshot_minutes": 60,
                  "move_points": 0.02}
-FOLLOW_SECONDS = (15, 60, 300)
+FOLLOW_SECONDS = (5, 15, 60, 300)
 MOVED = 0.005            # a fair-price change smaller than half a point is noise
 
 
@@ -65,6 +67,21 @@ class LiveGaps:
         self.calls_logged = 0
         self.last_page: datetime | None = None
         self.dirty, self.new_bets = False, 0
+        self.started, self.polls_ok, self.changes_seen, self.moves_logged, self.bets_placed = now, 0, 0, 0, 0
+        self.last_poll_ok: datetime | None = None
+        self.last_error: str | None = None
+        self.next["status"] = now + timedelta(minutes=2)
+        self.status_pushed = now
+
+    def status(self, now: datetime) -> dict:
+        return {"ts": iso(now), "mode": "live", "running_since": iso(self.started), "paired_games": len(self.links),
+                "paired_prices": len(self.by_ticker), "polls_ok": self.polls_ok,
+                "last_poll_ok": iso(self.last_poll_ok) if self.last_poll_ok else None, "pinnacle_changes_seen": self.changes_seen,
+                "moves_logged": self.moves_logged, "moves_waiting": len(self.pending), "bets_placed": self.bets_placed,
+                "pinnapi_requests": self.pinn.calls, "slowed_sports": sorted(self.slow),
+                "kalshi_batch_reads": self.sweep_by_tickers, "last_error": self.last_error,
+                "settings": {k: self.g.get(k) for k in ("poll_seconds", "kalshi_sweep_seconds", "min_edge", "stake_usd",
+                                                       "bankroll_usd", "move_points", "sports")}}
 
     def reload(self, cfg: dict) -> None:
         self.g = {**LIVE_DEFAULTS, **settings(cfg)}
@@ -85,6 +102,7 @@ class LiveGaps:
             if self.links and self._due("poll", now, timedelta(seconds=float(g["poll_seconds"]))):
                 self.poll(now)
         except PinnError as e:
+            self.last_error = f"{iso(now)} pinnapi: {str(e)[:200]}"
             wait = 60 if "day" not in str(e) else 3600
             self.say(f"pinnapi: {e}; pausing {wait // 60} min" + (" (daily limit: live mode needs a paid plan)"
                                                                      if wait == 3600 else ""))
@@ -101,7 +119,13 @@ class LiveGaps:
                 if settle(self.kalshi, self.data, now):
                     self.dirty = True
         except KalshiError as e:
+            self.last_error = f"{iso(now)} Kalshi: {str(e)[:200]}"
             self.say(f"Kalshi: {str(e)[:200]}")
+        if self._due("status", now, timedelta(minutes=10)):
+            import json
+            (self.data / "gap_live_status.json").write_text(json.dumps(self.status(now), indent=1) + "\n")
+            if now - self.status_pushed >= timedelta(minutes=30):     # check in at least every half hour
+                self.dirty, self.status_pushed = True, now
         if self.dirty and self._due("report", now, timedelta(minutes=10)):
             write_report(self.root)
             from .gapsite import write_site
@@ -159,6 +183,9 @@ class LiveGaps:
             if payload.get("last") is not None:
                 self.since[sport] = payload["last"]
             events = payload.get("events") or []
+            self.polls_ok += 1
+            self.last_poll_ok = now
+            self.changes_seen += len(events)
             if len(events) > 300:                    # 'since' didn't narrow it: don't pull the whole list every few seconds
                 if sport not in self.slow:
                     self.say(f"pinnapi sent all {len(events)} {sport} events, not just changes: checking {sport} once a minute")
@@ -208,6 +235,7 @@ class LiveGaps:
             if not rec["due"]:
                 row = {k: v for k, v in rec.items() if k not in ("due", "pid", "event")}
                 append_jsonl(self.data / "gap_moves.jsonl", [row])
+                self.moves_logged += 1
                 self.pending.remove(rec)
                 self.dirty = True
 
@@ -288,6 +316,7 @@ class LiveGaps:
         self.have.add((t, side))
         self.open_bets[t] = row
         self.dirty, self.new_bets = True, self.new_bets + 1
+        self.bets_placed += 1
         self.say(f"  bet {side.upper()} {row['team']} ({game['league']}) at {price:.2f}, Pinnacle fair "
                  f"{row['fair']:.2f}, edge {edge * 100:+.1f}¢")
 

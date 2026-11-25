@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "probe or snapshot"
+        description: "probe, live-check or snapshot"
         default: "snapshot"
 
 permissions:
@@ -33,11 +33,14 @@ jobs:
       - name: Probe
         if: ${{ inputs.mode == 'probe' }}
         run: python -m bot gaps --probe
+      - name: Live check (3 minutes, nothing saved)
+        if: ${{ inputs.mode == 'live-check' }}
+        run: python -m bot gaps --live-check 180
       - name: Snapshot
-        if: ${{ inputs.mode != 'probe' }}
+        if: ${{ inputs.mode != 'probe' && inputs.mode != 'live-check' }}
         run: python -m bot gaps
       - name: Save
-        if: ${{ always() && inputs.mode != 'probe' }}
+        if: ${{ always() && inputs.mode != 'probe' && inputs.mode != 'live-check' }}
         run: |
           git config user.name "kalshi-bot"
           git config user.email "kalshi-bot@users.noreply.github.com"

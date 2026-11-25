@@ -603,14 +603,14 @@ def write_report(root: Path) -> str:
                   "Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = how far Kalshi's midpoint "
                   "was from Pinnacle's new fair price: just before the move, the moment the tracker saw it, and later. "
                   "*Already there* = Kalshi was within 1¢ of the new price when the tracker saw the move.", "",
-                  "| | Moves | Avg move | Gap before | When seen | 15 s later | 1 min later | 5 min later | Already there |",
-                  "|---|---|---|---|---|---|---|---|---|"]
+                  "| | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |",
+                  "|---|---|---|---|---|---|---|---|---|---|"]
 
         for row in move_stats(moves):
             gp = row["gaps"]
             already = "–" if row["already"] is None else f"{100 * row['already']:.0f}%"
             lines.append(f"| {row['name']} | {row['n']} | {row['move'] * 100:.1f} pts | "
-                         + " | ".join(_c(gp[w]).lstrip("+") for w in ("before", "at", "15", "60", "300")) + f" | {already} |")
+                         + " | ".join(_c(gp[w]).lstrip("+") for w in ("before", "at", "5", "15", "60", "300")) + f" | {already} |")
     if bets:
         lines += ["", "## Latest simulated bets", "",
                   "| Placed (UTC) | Game | Bet | Paid | Fair | Edge | Closing value | Result |", "|---|---|---|---|---|---|---|---|"]
@@ -684,11 +684,31 @@ def probe(kalshi: KalshiClient, pinn: PinnAPI, root: Path, cfg: dict, say=print)
     return 0
 
 
-def main(cfg: dict, root: Path, probe_only: bool = False, say=print) -> int:
+def live_check(cfg: dict, root: Path, seconds: float, say=print) -> int:
+    """Run live mode for a few minutes and print what it saw (nothing is saved by the GitHub check)."""
+    import time as _time
+    from .gaps_live import LiveGaps
+    live = LiveGaps(root, {**cfg, "gaps": {**settings(cfg), "mode": "live"}}, KalshiClient("prod"),
+                    PinnAPI(os.environ["PINNAPI_KEY"], sleep=lambda _s: None), say=say)
+    end = _time.monotonic() + seconds
+    while _time.monotonic() < end:
+        t0 = _time.monotonic()
+        live.tick()
+        _time.sleep(max(0.0, 1 - (_time.monotonic() - t0)))
+    st = live.status(utcnow())
+    say("\nlive check: " + json.dumps(st, indent=1))
+    ok = st["polls_ok"] > 0 and not st["last_error"]
+    say("\nRESULT: " + ("live mode works with this key" if ok else "live mode had problems (see last_error)"))
+    return 0
+
+
+def main(cfg: dict, root: Path, probe_only: bool = False, say=print, live_seconds: float = 0) -> int:
     key = os.environ.get("PINNAPI_KEY")
     if not key:
         say("PINNAPI_KEY is not set: add it to the Render service's environment (or as a GitHub secret for manual runs).")
         return 0
+    if live_seconds:
+        return live_check(cfg, root, live_seconds, say=say)
     kalshi, pinn = KalshiClient("prod"), PinnAPI(key)
     if probe_only:
         return probe(kalshi, pinn, root, cfg, say=say)

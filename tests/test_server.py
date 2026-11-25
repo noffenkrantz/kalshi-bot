@@ -143,6 +143,9 @@ def test_gap_tracker_runs_hourly_only_with_a_key(tmp_path, monkeypatch):
     monkeypatch.setenv("GITHUB_TOKEN", "ghp-secret")
     clock, runner = Clock(NOW), FakeRunner()
     sup, _ = make(tmp_path, last_run=NOW - timedelta(hours=1), clock=clock, runner=runner)
+    cfgfile = tmp_path / "config.toml"                       # stays hourly when the server re-reads its settings
+    cfgfile.write_text(cfgfile.read_text().replace('mode = "live"', 'mode = "hourly"'))
+    sup.cfg["gaps"]["mode"] = "hourly"
     sup.step()
     assert runner.calls == [] and not sup.status(NOW)["gap_tracker"]          # no key: off
     monkeypatch.setenv("PINNAPI_KEY", "pk-test")
@@ -180,7 +183,9 @@ def test_live_gap_mode_ticks_fast_and_pushes_new_bets_at_once(tmp_path, monkeypa
     monkeypatch.setenv("PINNAPI_KEY", "pk-test")
     runner = FakeRunner()
     sup, _ = make(tmp_path, last_run=NOW - timedelta(hours=1), runner=runner)
-    assert sup.live is None                                    # config.toml ships with mode = "hourly"
+    sup.cfg["gaps"]["mode"] = "hourly"
+    sup.sync_live_mode()
+    assert sup.live is None
     sup.cfg["gaps"]["mode"] = "live"
     sup.sync_live_mode()
     assert sup.live is not None and not sup.gaps_due(NOW)    # no hourly snapshots in live mode

@@ -228,6 +228,7 @@ def main(argv=None) -> int:
     gp = sub.add_parser("gaps", help="Pinnacle vs Kalshi gap tracker (simulated, needs PINNAPI_KEY)")
     gp.add_argument("--probe", action="store_true", help="check the key and which games match (about 5 requests)")
     gp.add_argument("--site", action="store_true", help="only rebuild the results page from the saved data")
+    gp.add_argument("--live-check", type=float, default=0, metavar="SECONDS", help="run live mode this long and print what it saw")
     res = sub.add_parser("resume", help="clear a safety halt")
     res.add_argument("--mode", choices=["shadow", "demo", "live"], required=True)
     args = ap.parse_args(argv)
@@ -261,7 +262,7 @@ def main(argv=None) -> int:
             print(f"wrote {ROOT / 'site' / 'index.html'}")
             return 0
         from .gaps import main as gaps
-        return gaps(cfg, ROOT, probe_only=args.probe)
+        return gaps(cfg, ROOT, probe_only=args.probe, live_seconds=args.live_check)
     return cmd_resume(args.mode)
 
 
