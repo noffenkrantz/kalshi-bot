@@ -1,12 +1,12 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 165 snapshots from 2026-11-25 16:44 to 2026-11-25 23:40 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 168 snapshots from 2026-11-25 16:44 to 2026-11-25 23:43 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-2,576 Kalshi prices compared with Pinnacle's. 98% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.2¢ from Pinnacle's fair price on average, and 0.6% could be bought at a 3¢+ edge after fees.
+2,579 Kalshi prices compared with Pinnacle's. 98% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.2¢ from Pinnacle's fair price on average, and 0.6% could be bought at a 3¢+ edge after fees.
 
-8 simulated bets so far; 8 have a closing price. Average edge when placed +4.1¢; average closing value +2.1¢ per contract. Kalshi moved toward Pinnacle's price after 6 of them and Pinnacle moved toward Kalshi's after 5. None have settled yet.
+9 simulated bets so far; 8 have a closing price. Average edge when placed +4.1¢; average closing value +2.1¢ per contract. Kalshi moved toward Pinnacle's price after 6 of them and Pinnacle moved toward Kalshi's after 5. None have settled yet.
 
 ## By league
 
@@ -19,14 +19,14 @@
 | NBA | 183 | 0% | +0.9¢ | 4% | 93,788 | 3 | +1.2¢ | – |
 | ITF Men Santa Cruz - R1 | 126 | 0% | +1.3¢ | 0% | 488 | 0 | – | – |
 | USA - American Hockey League | 119 | 0% | +1.0¢ | 1% | 36 | 1 | +4.7¢ | – |
-| ITF Men Hradec Kralove - R16 | 117 | 0% | +3.6¢ | 1% | 152 | 1 | +5.3¢ | – |
+| ITF Men Hradec Kralove - R16 | 119 | 0% | +3.7¢ | 1% | 152 | 1 | +5.3¢ | – |
 | ITF Women Heraklion 2 - R16 | 102 | 9% | +1.3¢ | 0% | 27 | 0 | – | – |
 | ITF Women Playford - R16 | 98 | 0% | +0.9¢ | 0% | 41 | 0 | – | – |
 | ITF Men Heraklion - R16 | 95 | 0% | +2.0¢ | 2% | 17 | 1 | -4.6¢ | – |
 | ITF Women Monastir - R16 | 88 | 5% | +1.6¢ | 0% | 0 | 0 | – | – |
 | ITF Men Monastir 2 - R16 | 88 | 0% | +1.5¢ | 0% | 65 | 0 | – | – |
 | Russia - Kontinental Hockey League | 84 | 0% | +0.7¢ | 0% | 0 | 0 | – | – |
-| ITF Women Trnava - R16 | 72 | 1% | +1.4¢ | 0% | 0 | 0 | – | – |
+| ITF Women Trnava - R16 | 73 | 1% | +1.5¢ | 1% | 0 | 1 | – | – |
 | ITF Women Lousada - R16 | 70 | 3% | +1.4¢ | 0% | 1 | 0 | – | – |
 | ATP Challenger Playford - R16 | 67 | 0% | +1.4¢ | 1% | 2,118 | 1 | +2.0¢ | – |
 | AFC - Champions League 2 | 66 | 0% | +1.2¢ | 0% | 2 | 0 | – | – |
@@ -85,6 +85,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | Placed (UTC) | Game | Bet | Paid | Fair | Edge | Closing value | Result |
 |---|---|---|---|---|---|---|---|
+| 11-25 23:43 | Aliona Falei vs Jana Kovackova (ITF Women Trnava - R16) | YES Jana Kovackova | 0.56 | 0.62 | +4.2¢ | – | – |
 | 11-25 22:41 | Petr Michnev vs Liam Hignett (ITF Men Hradec Kralove - R16) | YES Liam Hignett | 0.36 | 0.41 | +3.7¢ | +5.3¢ | – |
 | 11-25 22:35 | Lehigh Valley Phantoms vs Providence Bruins (USA - American Hockey League) | NO Providence Bruins | 0.39 | 0.44 | +3.1¢ | +4.7¢ | – |
 | 11-25 22:22 | Nikita Ianin vs Grigoriy Lomakin (ITF Men Bhopal - R16) | YES Grigoriy Lomakin | 0.48 | 0.54 | +4.4¢ | +6.2¢ | – |
