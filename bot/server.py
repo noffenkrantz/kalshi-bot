@@ -41,7 +41,8 @@ from .watcher import RainWatcher
 
 RUN_EVERY = timedelta(hours=4)
 RESULT_PATHS = ("data", "README.md", "REPORT.md", "LAGS.md", "site")
-GAP_PATHS = ("data/gap_snaps.jsonl", "data/gap_bets.jsonl", "data/gap_outcomes.jsonl", "data/gap_state.json", "GAPS.md")
+GAP_PATHS = ("data/gap_snaps.jsonl", "data/gap_bets.jsonl", "data/gap_outcomes.jsonl", "data/gap_moves.jsonl",
+             "data/gap_state.json", "GAPS.md")
 STEP_TIMEOUT = 40 * 60
 
 
@@ -131,7 +132,10 @@ class Supervisor:
         self.last_research_error: str | None = None
         self.last_gaps_error: str | None = None
         self.last_gaps_attempt: datetime | None = None
+        self.last_gaps_push = now
+        self.live = None                # LiveGaps, when [gaps] mode = "live"
         self.stopping = False
+        self.sync_live_mode()
 
     def log(self, msg: str) -> None:
         self.say(f"{self.clock():%Y-%m-%d %H:%M:%S}Z {msg}")
@@ -186,7 +190,44 @@ class Supervisor:
     def gaps_on(self) -> bool:
         return bool(os.environ.get("PINNAPI_KEY")) and bool(gap_settings(self.cfg)["enabled"])
 
+    def sync_live_mode(self) -> None:
+        """Start or stop live gap tracking to match [gaps] mode (config.toml is re-read every 10 minutes)."""
+        want = self.gaps_on() and gap_settings(self.cfg).get("mode") == "live"
+        if want and self.live is None:
+            from .gaps import PinnAPI
+            from .gaps_live import LiveGaps
+            self.live = LiveGaps(self.root, self.cfg, KalshiClient("prod"),
+                                 PinnAPI(os.environ["PINNAPI_KEY"], sleep=lambda _s: None), clock=self.clock, say=self.log)
+            self.log("gap tracker: live mode on")
+        elif not want and self.live is not None:
+            self.live = None
+            self.log("gap tracker: live mode off")
+        elif self.live is not None:
+            self.live.reload(self.cfg)
+
+    def fast_tick(self) -> None:
+        """Called about once a second: live gap tracking, and saving its results."""
+        if self.live is None:
+            return
+        try:
+            self.live.tick()
+        except Exception as e:          # never let the gap tracker stop the server
+            self.last_gaps_error = f"{type(e).__name__}: {e}"
+            self.log(f"live gap tracker error: {e}")
+            traceback.print_exc()
+        now = self.clock()
+        if (self.sync and not self.dry_run and self.live.dirty
+                and (self.live.new_bets or self.stopping or now - self.last_gaps_push >= timedelta(minutes=10))):
+            from .gaps import write_report
+            write_report(self.root)
+            if self.sync.push(f"gaps: live {now:%Y-%m-%dT%H:%MZ}" + (f", {self.live.new_bets} new bets" if self.live.new_bets else ""),
+                              GAP_PATHS):
+                self.live.dirty, self.live.new_bets = False, 0
+                self.last_gaps_push = now
+
     def gaps_due(self, now: datetime) -> bool:
+        if self.live is not None:
+            return False
         last = last_snapshot(self.root)
         every = timedelta(minutes=float(gap_settings(self.cfg)["every_minutes"]))
         tried = self.last_gaps_attempt      # also in memory, so a snapshot that fails early isn't retried every tick
@@ -229,6 +270,7 @@ class Supervisor:
                 self.last_gaps_error = f"{type(e).__name__}: {e}"
                 self.log(f"gap snapshot failed: {e}")
                 traceback.print_exc()
+        self.fast_tick()
         try:
             self.watcher.tick()
         except KalshiError as e:
@@ -245,6 +287,7 @@ class Supervisor:
                  last_research_run=iso(last) if last else None,
                  next_research_run=iso(last + RUN_EVERY) if last else None,
                  last_research_error=self.last_research_error, gap_tracker=self.gaps_on(),
+                 gap_mode="live" if self.live is not None else "hourly",
                  last_gap_snapshot=iso(last_snapshot(self.root)) if last_snapshot(self.root) else None,
                  last_gaps_error=self.last_gaps_error)
         return s
@@ -266,6 +309,7 @@ class Supervisor:
             if self.sync.pull():
                 self.cfg = load_config(self.root / "config.toml")
                 self.watcher.reload(self.cfg)
+                self.sync_live_mode()
             self.last_pull = now
 
 
@@ -283,7 +327,7 @@ def main(research: bool = True, once: bool = False, dry_run: bool = False, say=p
     sup = Supervisor(root, sync, research=research and not dry_run, dry_run=dry_run, say=say)
     last = last_run_time(root)
     sup.log(f"server started: {'research every 4 hours + ' if sup.research else ''}rain watcher"
-            f"{' + gap tracker every ' + str(gap_settings(sup.cfg)['every_minutes']) + ' min' if sup.gaps_on() else ' (gap tracker off: no PINNAPI_KEY)'}"
+            f"{(' + live gap tracker' if sup.live else ' + gap tracker every ' + str(gap_settings(sup.cfg)['every_minutes']) + ' min') if sup.gaps_on() else ' (gap tracker off: no PINNAPI_KEY)'}"
             f"{' (dry run)' if dry_run else ''}; last research run {iso(last) if last else 'never'}")
 
     def _stop(*_):
@@ -301,3 +345,4 @@ def main(research: bool = True, once: bool = False, dry_run: bool = False, say=p
             return 0
         while time.monotonic() - started < sup.watcher.w["tick_seconds"] and not sup.stopping:
             time.sleep(1)   # short naps, so a shutdown request is handled within a second
+            sup.fast_tick()  # live gap tracking runs on its own, faster clock

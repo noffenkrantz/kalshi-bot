@@ -69,6 +69,7 @@ class PinnAPI:
         self.calls = 0
 
     def get(self, path: str, params: dict | None = None) -> dict:
+        body = ""
         for attempt in range(2):
             self.calls += 1
             try:
@@ -76,9 +77,12 @@ class PinnAPI:
                                      headers={"x-portal-apikey": self.key, "Accept": "application/json"})
             except requests.RequestException as e:
                 raise PinnError(f"GET {path}: {type(e).__name__}") from None
-            if r.status_code == 429 and attempt == 0:
-                self.sleep(min(to_float(r.headers.get("Retry-After"), 30.0), 90.0))
-                continue
+            if r.status_code == 429:
+                body = r.text[:200]
+                if attempt == 0:
+                    self.sleep(min(to_float(r.headers.get("Retry-After"), 30.0), 90.0))
+                    continue
+                break
             if r.status_code in (401, 403):
                 raise PinnError(f"GET {path}: pinnapi rejected the key (HTTP {r.status_code}): {r.text[:200]}")
             if r.status_code >= 400:
@@ -87,7 +91,7 @@ class PinnAPI:
                 return r.json()
             except ValueError:
                 raise PinnError(f"GET {path}: not JSON: {r.text[:200]}") from None
-        raise PinnError(f"GET {path}: rate limited twice")
+        raise PinnError(f"GET {path}: rate limited twice: {body}")
 
     def health(self) -> dict:
         return self.get("/health")
@@ -104,27 +108,37 @@ def no_vig(odds: dict) -> dict:
     return {k: v / total for k, v in inv.items()} if total else {}
 
 
+def is_side_event(e: dict) -> bool:
+    return bool(e.get("parent_id") or _SIDE_EVENT.search(e.get("home") or "") or _SIDE_EVENT.search(e.get("away") or ""))
+
+
+def parse_event(e: dict) -> dict | None:
+    """Full-game match-winner odds for one main event, or None when it has none (e.g. off the board)."""
+    home, away = e.get("home") or "", e.get("away") or ""
+    periods = e.get("periods") or {}
+    game = periods.get("num_0") if isinstance(periods, dict) else None
+    ml = (game or {}).get("money_line") or {}
+    odds = {k: to_float(ml.get(k)) for k in ("home", "draw", "away")}
+    odds = {k: v for k, v in odds.items() if v is not None and v > 1}
+    if "home" not in odds or "away" not in odds:
+        return None
+    starts = parse_time(e.get("starts"))
+    if starts is None and e.get("start_ts"):
+        starts = datetime.fromtimestamp(int(e["start_ts"]), timezone.utc)
+    if starts is None:
+        return None
+    return {"id": e.get("event_id"), "league": e.get("league_name") or "", "home": home, "away": away,
+            "starts": starts, "odds": odds, "fair": no_vig(odds)}
+
+
 def pinnacle_games(payload: dict) -> list[dict]:
     """Full-game match-winner odds for each main event (skips corners, games and other side events)."""
     out = []
     for e in (payload or {}).get("events") or []:
-        home, away = e.get("home") or "", e.get("away") or ""
-        if e.get("parent_id") or _SIDE_EVENT.search(home) or _SIDE_EVENT.search(away):
-            continue
-        periods = e.get("periods") or {}
-        game = periods.get("num_0") if isinstance(periods, dict) else None
-        ml = (game or {}).get("money_line") or {}
-        odds = {k: to_float(ml.get(k)) for k in ("home", "draw", "away")}
-        odds = {k: v for k, v in odds.items() if v is not None and v > 1}
-        if "home" not in odds or "away" not in odds:
-            continue
-        starts = parse_time(e.get("starts"))
-        if starts is None and e.get("start_ts"):
-            starts = datetime.fromtimestamp(int(e["start_ts"]), timezone.utc)
-        if starts is None:
-            continue
-        out.append({"id": e.get("event_id"), "league": e.get("league_name") or "", "home": home, "away": away,
-                    "starts": starts, "odds": odds, "fair": no_vig(odds)})
+        if not is_side_event(e):
+            g = parse_event(e)
+            if g:
+                out.append(g)
     return out
 
 
@@ -521,6 +535,32 @@ def write_report(root: Path) -> str:
                      f"{vol:,.0f} | {len(d['bets'])} | {_c(_mean(b.get('clv') for b in d['bets']))} | "
                      + (f"${sum(prof):+,.2f}" if prof else "–") + " |"))
     lines += [r for _, r in sorted(rows, reverse=True)[:60]]
+    moves = read_jsonl(data / "gap_moves.jsonl")
+    if moves:
+        lines += ["", "## How fast Kalshi follows Pinnacle (live mode)", "",
+                  "Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = how far Kalshi's midpoint "
+                  "was from Pinnacle's new fair price: just before the move, the moment the tracker saw it, and later. "
+                  "*Already there* = Kalshi was within 1¢ of the new price when the tracker saw the move.", "",
+                  "| | Moves | Avg move | Gap before | When seen | 15 s later | 1 min later | 5 min later | Already there |",
+                  "|---|---|---|---|---|---|---|---|---|"]
+
+        def gap_at(r, when):
+            if when == "before":
+                return None if r.get("mid_before") is None else abs(r["mid_before"] - r["fair_after"])
+            if when == "at":
+                return None if r.get("mid_at") is None else abs(r["mid_at"] - r["fair_after"])
+            a = (r.get("after") or {}).get(when) or {}
+            return None if a.get("mid") is None or a.get("fair") is None else abs(a["mid"] - a["fair"])
+
+        groups = defaultdict(list)
+        for r in moves:
+            groups[r["league"]].append(r)
+        top = sorted(groups.items(), key=lambda kv: -len(kv[1]))[:12]
+        for name, rs in [("All", moves)] + top:
+            seen = [g for g in (gap_at(r, "at") for r in rs) if g is not None]
+            lines.append(f"| {name} | {len(rs)} | {_mean(abs(r['fair_after'] - r['fair_before']) for r in rs) * 100:.1f} pts | "
+                         + " | ".join(_c(_mean(gap_at(r, w) for r in rs)).lstrip("+") for w in ("before", "at", "15", "60", "300"))
+                         + f" | {100 * sum(g <= 0.01 for g in seen) / len(seen) if seen else 0:.0f}% |")
     if bets:
         lines += ["", "## Latest simulated bets", "",
                   "| Placed (UTC) | Game | Bet | Paid | Fair | Edge | Closing value | Result |", "|---|---|---|---|---|---|---|---|"]

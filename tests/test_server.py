@@ -162,3 +162,32 @@ def test_gap_tracker_runs_hourly_only_with_a_key(tmp_path, monkeypatch):
     clock.t = NOW + timedelta(minutes=111)
     sup.step()
     assert len(runner.calls) == 2 and sup.status(clock.t)["last_gap_snapshot"].startswith("2026-11-24T01:50")
+
+
+class FakeLive:
+    def __init__(self):
+        self.ticks, self.dirty, self.new_bets = 0, False, 0
+
+    def tick(self):
+        self.ticks += 1
+        self.dirty, self.new_bets = True, 1
+
+    def reload(self, cfg):
+        pass
+
+
+def test_live_gap_mode_ticks_fast_and_pushes_new_bets_at_once(tmp_path, monkeypatch):
+    monkeypatch.setenv("PINNAPI_KEY", "pk-test")
+    runner = FakeRunner()
+    sup, _ = make(tmp_path, last_run=NOW - timedelta(hours=1), runner=runner)
+    assert sup.live is None                                    # config.toml ships with mode = "hourly"
+    sup.cfg["gaps"]["mode"] = "live"
+    sup.sync_live_mode()
+    assert sup.live is not None and not sup.gaps_due(NOW)    # no hourly snapshots in live mode
+    sup.live = FakeLive()
+    sup.fast_tick()
+    assert sup.live.ticks == 1 and sup.sync.pushes[-1][1] == GAP_PATHS and "1 new bets" in sup.sync.pushes[-1][0]
+    assert not sup.live.dirty and runner.calls == []
+    sup.cfg["gaps"]["mode"] = "hourly"
+    sup.sync_live_mode()
+    assert sup.live is None
