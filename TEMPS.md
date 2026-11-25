@@ -2,6 +2,10 @@
 
 *670 city-days over the last 14 days (2026-11-25 03:34 UTC), 17,874,080 contracts traded. Station readings: NWS hourly and special reports via the Iowa Environmental Mesonet archive, the same reports a live watcher would see. Read-only research; not financial advice.*
 
+## Bottom line
+
+The station's own readings decided 1,094 brackets before the day was over. In 1 of them (0.1%) the right side was still for sale at 95¢ or less five minutes later. So there is no lag to trade on with these readings: the market has already moved by the time they come out. In 207 cases the price was still open 30 minutes before the reading and fully priced just after it, most likely because other traders got there first with faster data (5-minute or 1-minute station feeds). When the market disagreed with a reading, the market was right 3 of 4 times.
+
 ## Do station readings match the official numbers?
 
 Official = the winning bracket. Readings are hourly and special reports, so the official high can be a bit higher (and the low a bit lower) than any single reading.
@@ -81,7 +85,7 @@ Average squared gap between each bracket's price and its result, at local (stand
 
 | | 9:00 | 12:00 | 15:00 | 18:00 | 21:00 |
 |---|---|---|---|---|---|
-| Highs | 0.120 | 0.117 | 0.070 | 0.280 | 0.101 |
+| Highs | 0.120 | 0.117 | 0.070 | – | – |
 | Lows | 0.049 | 0.056 | 0.070 | 0.068 | 0.057 |
 
 ## After sudden 10¢ price jumps
@@ -91,9 +95,9 @@ Average squared gap between each bracket's price and its result, at local (stand
 | Highs | 1593 | +1.2¢ | +1.8¢ | +1.7¢ | -3.0¢ | -3.5¢ |
 | Lows | 923 | -0.3¢ | -2.4¢ | -3.2¢ | -8.0¢ | -0.2¢ |
 
-## Contracts on offer right now (within 3¢ of the best price, busiest open brackets)
+## Contracts on offer right now (within 3¢ of the best price, busiest undecided brackets)
 
 | | Brackets checked | Median YES contracts | Median NO contracts |
 |---|---|---|---|
-| Highs | 48 | 5,688 | 0 |
-| Lows | 48 | 301 | 0 |
+| Highs | 1 | 81 | 49 |
+| Lows | 13 | 19 | 27 |

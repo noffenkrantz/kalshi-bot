@@ -325,7 +325,8 @@ def run(kalshi: KalshiClient, journal: Journal, root: Path, days: float = 14, sa
                                     "market_volume": round(to_float(m.get("volume_fp"), 0.0))})
                       n_locks += margin == 1
           # how deep is the book right now on this city's busiest open markets?
-          open_ms = sorted(kalshi.iter_markets(max_markets=50, series_ticker=s, status="open"),
+          open_ms = sorted([m for m in kalshi.iter_markets(max_markets=50, series_ticker=s, status="open")
+                            if 0.10 <= (to_float(m.get("yes_ask_dollars")) or 0) <= 0.90],   # still undecided
                            key=lambda m: -to_float(m.get("volume_24h_fp"), 0.0))[:2]
           for m in open_ms:
               d = orderbook_depth(kalshi, m["ticker"])
@@ -371,6 +372,7 @@ def report_markdown(data: dict) -> str:
              f"{sum(e['volume'] for e in ev):,} contracts traded. Station readings: NWS hourly and special reports via the "
              "Iowa Environmental Mesonet archive, the same reports a live watcher would see. Read-only research; not "
              "financial advice.*", ""]
+    lines += bottom_line(data)
     # 1) station data vs how the markets settled
     lines += ["## Do station readings match the official numbers?", "",
               "Official = the winning bracket. Readings are hourly and special reports, so the official high can be a bit "
@@ -425,16 +427,17 @@ def report_markdown(data: dict) -> str:
               "being measured. 0 = perfect.", "", "| | " + " | ".join(f"{h}:00" for h in HOURS) + " |",
               "|---|" + "---|" * len(HOURS)]
     for kind in ("high", "low"):
-        cells = [_fmt(data["hour_error"].get(f"{kind}@{h}", {}).get("mean"), "{:.3f}") for h in HOURS]
+        cells = [_fmt(e.get("mean") if e.get("n", 0) >= 100 else None, "{:.3f}")      # too few quotes: –
+                 for e in (data["hour_error"].get(f"{kind}@{h}", {}) for h in HOURS)]
         lines.append(f"| {kind.title()}s | " + " | ".join(cells) + " |")
     lines += ["", "## After sudden 10¢ price jumps", "", "| | Jumps | Drift 5 min | Drift 30 min | Drift 60 min | Follow | Fade |",
               "|---|---|---|---|---|---|---|"]
     for kind, j in sorted(data["jumps"].items()):
         lines.append(f"| {kind.title()}s | {j['n']} | {_c(j['d5'].get('mean'))} | {_c(j['d30'].get('mean'))} | "
                      f"{_c(j['d60'].get('mean'))} | {_c(j['follow'].get('mean'))} | {_c(j['fade'].get('mean'))} |")
-    dep = data["depth"]
+    dep = [x for x in data["depth"] if any(a is not None and 0.05 <= a <= 0.95 for a in (x["yes_ask"], x["no_ask"]))]
     if dep:
-        lines += ["", "## Contracts on offer right now (within 3¢ of the best price, busiest open brackets)", "",
+        lines += ["", "## Contracts on offer right now (within 3¢ of the best price, busiest undecided brackets)", "",
                   "| | Brackets checked | Median YES contracts | Median NO contracts |", "|---|---|---|---|"]
         for kind in ("high", "low"):
             d = [x for x in dep if x["kind"] == kind]
@@ -443,6 +446,29 @@ def report_markdown(data: dict) -> str:
                              f"{statistics.median(x['no_qty'] for x in d):,.0f} |")
     lines.append("")
     return "\n".join(lines)
+
+
+def bottom_line(data: dict) -> list[str]:
+    """Plain-English answer at the top: is there a lag between station readings and prices?"""
+    locks = [r for r in data["locks"] if r["margin"] == 0]
+    if not locks:
+        return []
+    ok = [r for r in locks if r["correct"]]
+    cheap = [r for r in ok if r["cost"] <= 0.95]
+    moved_before = [r for r in ok if r["cost_30min_before"] is not None and r["cost_30min_before"] < CAUGHT_UP]
+    disagreed = [r for r in locks if r["cost"] <= 0.95]
+    market_right = sum(not r["correct"] for r in disagreed)
+    out = ["## Bottom line", "",
+           f"The station's own readings decided {len(locks):,} brackets before the day was over. In {len(cheap)} of them "
+           f"({100 * len(cheap) / len(locks):.1f}%) the right side was still for sale at 95¢ or less five minutes later. "
+           + ("So there is no lag to trade on with these readings: the market has already moved by the time they come out. "
+              if len(cheap) < 0.05 * len(locks) else "So the market often lags these readings, which is a tradable edge. ")
+           + (f"In {len(moved_before)} cases the price was still open 30 minutes before the reading and fully priced just "
+              "after it, most likely because other traders got there first with faster data (5-minute or 1-minute station feeds). "
+              if moved_before else "")
+           + (f"When the market disagreed with a reading, the market was right {market_right} of {len(disagreed)} times."
+              if disagreed else ""), ""]
+    return out
 
 
 def _fmt(x, f="{:.1f}"):

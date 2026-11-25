@@ -35,7 +35,7 @@ class FakeKalshi:
 
     def iter_markets(self, max_markets=1000, **p):
         assert p["series_ticker"] == "KXHIGHNY"
-        yield from (self.settled if p["status"] == "settled" else [dict(self.settled[0], ticker="KXHIGHNY-26NOV26-T60")])
+        yield from (self.settled if p["status"] == "settled" else [dict(self.settled[0], ticker="KXHIGHNY-26NOV26-T60", yes_ask_dollars="0.4200")])
 
     def request(self, method, path, params=None):
         if path.endswith("/orderbook"):
@@ -92,3 +92,11 @@ def test_survey_finds_brackets_still_cheap_after_the_station_decided_them(tmp_pa
     assert data["depth"][0]["yes_ask"] == 0.42 and data["depth"][0]["yes_qty"] == 150
     text = (tmp_path / "TEMPS.md").read_text()
     assert "| Highs | strict | 3 | 100.0% |" in text and "KXHIGHNY" in text
+
+
+def test_bottom_line_says_whether_there_is_a_lag():
+    from bot.tempsurvey import bottom_line
+    priced = {"margin": 0, "correct": True, "cost": 1.0, "cost_30min_before": 0.6}
+    cheap = {"margin": 0, "correct": True, "cost": 0.6, "cost_30min_before": 0.6}
+    assert "no lag" in " ".join(bottom_line({"locks": [priced] * 50}))
+    assert "tradable edge" in " ".join(bottom_line({"locks": [cheap] * 10 + [priced] * 10}))
