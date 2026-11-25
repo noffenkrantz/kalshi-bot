@@ -64,9 +64,10 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 4 | 3.5 pts | 3.1¢ | 3.0¢ | 2.5¢ | 1.8¢ | 3.2¢ | 3.2¢ | 25% |
+| All | 5 | 3.2 pts | 2.9¢ | 2.8¢ | 2.4¢ | 1.8¢ | 2.9¢ | 3.2¢ | 20% |
 | ITF Men Heraklion - R16 | 2 | 3.2 pts | 4.5¢ | 4.2¢ | 2.7¢ | 1.2¢ | 2.3¢ | 2.3¢ | 0% |
 | AFC - Champions League 2 | 2 | 3.7 pts | 1.8¢ | 1.8¢ | 2.3¢ | 2.4¢ | 4.2¢ | 4.2¢ | 50% |
+| ATP Challenger Playford - R16 | 1 | 2.1 pts | 2.0¢ | 2.0¢ | 2.0¢ | 2.0¢ | 1.8¢ | 3.0¢ | 0% |
 
 ## Latest simulated bets
 
