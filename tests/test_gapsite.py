@@ -31,6 +31,7 @@ def setup(tmp_path):
         bet("C-BRO", -28, 0.30, 0.35, 0),                        # nothing for sale: left out
         bet("D-BRO", -27, 0.30, 0.35, None),                     # order book unreadable: left out
         bet("E-BRO", -2, 0.20, 0.26, 500, starts=6),             # still open
+        {**bet("E-GIL", -2, 0.70, 0.76, 500, side="no", starts=6, team="Gillingham"), "event": "E"},  # same game again
     ])
     write(tmp_path, "gap_outcomes.jsonl", [{"ts": T(-10), "ticker": "A-BRO", "result": "yes"},
                                            {"ts": T(-8), "ticker": "B-BRO", "result": "no"}])
@@ -51,7 +52,7 @@ def test_account_counts_only_fillable_contracts_with_kalshis_fee(tmp_path):
     # B: 20 x 50c = 10.00 + fee ceil(0.07*20*.25)=0.35 -> cost 10.35, lost -> -10.35
     assert A["settled_n"] == 2 and A["wins"] == 1 and A["losses"] == 1
     assert A["realized"] == round(6.99 - 10.35, 2) and A["balance"] == round(100 + 6.99 - 10.35, 2)
-    assert A["missed_n"] == 1 and A["unknown_n"] == 1 and A["placed_n"] == 3
+    assert A["missed_n"] == 1 and A["unknown_n"] == 1 and A["placed_n"] == 3 and A["same_game_n"] == 1
     (o,) = d["open"]
     assert o["n"] == 50 and o["fair_now"] == 0.30 and o["ev"] == round(50 * 0.30 - o["cost"], 2)
     assert A["projected"] == round(A["balance"] + o["ev"], 2) and d["proj_line"] == [[T(-8), 96.64], [NOW.isoformat(), A["projected"]]]

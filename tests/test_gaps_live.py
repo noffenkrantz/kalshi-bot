@@ -134,3 +134,16 @@ def test_daily_limit_pauses_for_an_hour(tmp_path):
     clock.t += timedelta(seconds=5)
     live.tick()
     assert live.next["poll"] == clock.t + timedelta(hours=1) and any("paid plan" in x for x in lines)
+
+
+def test_one_bet_per_game_the_best_side(tmp_path):
+    live, clock, kalshi, pinn, _ = setup(tmp_path)
+    kalshi.q[f"{EV}-BRO"] = (0.38, 0.40)                   # YES Bromley: fair 0.47, ~5.3c edge
+    kalshi.q[f"{EV}-GIL"] = (0.33, 0.35)                   # NO Gillingham at 0.67 vs fair 0.73: ~4.5c edge
+    live.tick()
+    (bet,) = rows(tmp_path, "gap_bets.jsonl")
+    assert bet["team"] == "Bromley" and bet["side"] == "yes"
+    kalshi.q[f"{EV}-TIE"] = (0.15, 0.17)                   # a new edge on the same game later: still no second bet
+    clock.t += timedelta(seconds=31)
+    live.tick()
+    assert len(rows(tmp_path, "gap_bets.jsonl")) == 1

@@ -177,3 +177,18 @@ def test_implausible_edges_are_skipped(tmp_path):
     kalshi.bro = (0.10, 0.12)          # 35 points below Pinnacle: not a real gap
     r = snapshot(kalshi, FakePinn(), tmp_path, CFG, now=NOW, say=lambda *_: None)
     assert r["bets"] == 0 and r["suspicious"] == 1
+
+
+def test_pairing_shortlist_finds_the_same_games():
+    from bot.gaps import match, name_index
+    start = NOW + timedelta(hours=5)
+    pin = [{"id": i, "league": "x", "home": h, "away": a, "starts": start, "odds": {}, "fair": {"home": .5, "away": .5}}
+           for i, (h, a) in enumerate([("Bnei Herzliya", "Maccabi Ramat Gan"), ("New York Giants", "Dallas Cowboys"),
+                                       ("Saint Louis", "Stanford"), ("Teodor Davidov", "Jan Novak")])]
+    idx = name_index(pin)
+    for teams in (["Maccabi Ramat Gan", "Bnei Herzliya"], ["New York G", "Dallas"], ["Davidov T.", "Novak J."],
+                  ["St. John's", "Louisville"]):
+        kev = {"teams": teams, "time": None, "day": NOW.date()}
+        a, b = match(kev, pin, 0.8), match(kev, pin, 0.8, idx)
+        assert (a and a[0]["id"]) == (b and b[0]["id"])
+    assert match({"teams": ["St. John's", "Louisville"], "time": None, "day": NOW.date()}, pin, 0.8, idx) is None

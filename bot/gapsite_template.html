@@ -183,7 +183,7 @@ function render() {
     [S.rows ? S.rows.toLocaleString('en-US') : '0', S.rows ? `prices compared · ${pct(S.edge)} could be bought ${Math.round(R.min_edge * 100)}¢+ below Pinnacle` : 'prices compared'],
   ];
   $('figs').innerHTML = figs.map(([v, l, c]) => `<div><div class="fv ${c || ''}">${esc(v)}</div><div class="fl">${esc(l)}</div></div>`).join('');
-  const left = [A.missed_n ? `${plural(A.missed_n, 'gap')} had nothing for sale at that price` : '', A.unknown_n ? `${A.unknown_n} couldn't be checked` : '', A.no_cash_n ? `${A.no_cash_n} came when the cash was all in play` : ''].filter(Boolean);
+  const left = [A.missed_n ? `${plural(A.missed_n, 'gap')} had nothing for sale at that price` : '', A.unknown_n ? `${A.unknown_n} couldn't be checked` : '', A.no_cash_n ? `${A.no_cash_n} came when the cash was all in play` : '', A.same_game_n ? `${A.same_game_n} doubled a bet already held on the same game` : ''].filter(Boolean);
   $('how').innerHTML = `<b>How it trades:</b> starts with ${money0(R.bankroll)}. When Kalshi sells a side for ${Math.round(R.min_edge * 100)}¢ or more below Pinnacle's fair price (Pinnacle's odds with its margin removed), after Kalshi's fee, it buys up to ${money0(R.stake)}, but only as many contracts as were actually for sale at that price. Kalshi's fee is charged the way Kalshi charges it, rounded up to the cent per order. Gaps over ${Math.round(R.max_edge * 100)}¢ are treated as a wrong match and skipped.` + (left.length ? ` Left out so far: ${esc(left.join('; '))}.` : '');
 
   // ---- open bets

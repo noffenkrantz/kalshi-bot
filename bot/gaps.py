@@ -244,14 +244,36 @@ def name_score(a: str, b: str) -> float:
     return round(max(overlap * 0.98, ratio if ratio >= 0.92 else 0.0), 3)
 
 
-def match(kev: dict, pin: list[dict], min_score: float) -> tuple[dict, dict, float] | None:
+def name_index(pin: list[dict]) -> dict:
+    """Pinnacle games by the first 3 letters of each word of their team names, so pairing doesn't
+    have to compare every Kalshi game with every Pinnacle game."""
+    idx: dict = {}
+    for p in pin:
+        for w in tokens(p["home"]) + tokens(p["away"]):
+            if len(w) >= 3:
+                idx.setdefault(w[:3], []).append(p)
+    return idx
+
+
+def shortlist(kev: dict, idx: dict) -> list[dict]:
+    seen, out = set(), []
+    for team in kev["teams"]:
+        for w in tokens(team):
+            for p in idx.get(w[:3], []) if len(w) >= 3 else []:
+                if id(p) not in seen:
+                    seen.add(id(p))
+                    out.append(p)
+    return out
+
+
+def match(kev: dict, pin: list[dict], min_score: float, idx: dict | None = None) -> tuple[dict, dict, float] | None:
     """Best Pinnacle event for one Kalshi event: both teams must match and the start time fit.
     Returns (pinnacle event, {kalshi team name: 'home'|'away'}, score)."""
     if len(kev["teams"]) != 2:
         return None
     a, b = kev["teams"]
     best = None
-    for p in pin:
+    for p in (shortlist(kev, idx) if idx is not None else pin):
         if kev["time"] is not None:
             gap_h = abs((p["starts"] - kev["time"]).total_seconds()) / 3600
             if gap_h > 3:
@@ -396,9 +418,12 @@ def snapshot(kalshi: KalshiClient, pinn: PinnAPI, root: Path, cfg: dict, now: da
     kev = kalshi_games(kalshi, game_series(root, g["skip_series"]), say=say)
     bets_so_far = read_jsonl(data / "gap_bets.jsonl")
     have = {(b["ticker"], b["side"]) for b in bets_so_far}
+    games_bet = {b.get("event") for b in bets_so_far}            # one bet per game: YES on one team and NO on
+                                                                  # the other are the same bet twice
     snaps, bets, matched, rules_differ, suspicious = [], [], 0, 0, []
+    idx = name_index(pin)
     for k in kev:
-        hit = match(k, pin, float(g["match_score"]))
+        hit = match(k, pin, float(g["match_score"]), idx)
         if not hit:
             continue
         p, sides, score = hit
@@ -408,11 +433,12 @@ def snapshot(kalshi: KalshiClient, pinn: PinnAPI, root: Path, cfg: dict, now: da
             continue
         matched += 1
         mins = (p["starts"] - now).total_seconds() / 60
+        best = None
         for m, fair in prs:
             bid, ask = to_float(m.get("yes_bid_dollars")), to_float(m.get("yes_ask_dollars"))
             snaps.append({"ts": iso(now), "ticker": m["ticker"], "league": p["league"], "fair": round(fair, 4),
                           "bid": bid, "ask": ask, "vol24": round(to_float(m.get("volume_24h_fp"), 0.0))})
-            if mins < float(g["min_minutes_before_start"]):
+            if mins < float(g["min_minutes_before_start"]) or k["event"] in games_bet:
                 continue
             for side, (price, edge) in edges(fair, bid, ask).items():
                 if edge < float(g["min_edge"]) or not 0.05 <= price <= 0.95 or (m["ticker"], side) in have:
@@ -421,13 +447,17 @@ def snapshot(kalshi: KalshiClient, pinn: PinnAPI, root: Path, cfg: dict, now: da
                     suspicious.append(f"{k['event']} ~ {p['home']} vs {p['away']} ({p['league']}): "
                                       f"{outcome_name(m)} {side} at {price:.2f} vs fair {fair:.2f}")
                     continue
-                size = size_bet(float(g["stake_usd"]), price, available_at(kalshi, m["ticker"], side, price))
-                bets.append({"ts": iso(now), "ticker": m["ticker"], "event": k["event"], "series": k["series"],
-                             "league": p["league"], "team": outcome_name(m), "side": side, "price": round(price, 4),
-                             "fair": round(fair if side == "yes" else 1 - fair, 4), "edge": round(edge, 4),
-                             **size, "starts": iso(p["starts"]), "pin_id": p["id"],
-                             "pin_teams": f"{p['home']} vs {p['away']}"})
-                have.add((m["ticker"], side))
+                if best is None or edge > best[3]:
+                    best = (m, side, price, edge, fair)
+        if best:
+            m, side, price, edge, fair = best
+            size = size_bet(float(g["stake_usd"]), price, available_at(kalshi, m["ticker"], side, price))
+            bets.append({"ts": iso(now), "ticker": m["ticker"], "event": k["event"], "series": k["series"],
+                         "league": p["league"], "team": outcome_name(m), "side": side, "price": round(price, 4),
+                         "fair": round(fair if side == "yes" else 1 - fair, 4), "edge": round(edge, 4),
+                         **size, "starts": iso(p["starts"]), "pin_id": p["id"],
+                         "pin_teams": f"{p['home']} vs {p['away']}"})
+            games_bet.add(k["event"])
     append_jsonl(data / "gap_snaps.jsonl", snaps)
     append_jsonl(data / "gap_bets.jsonl", bets)
     settled = settle(kalshi, data, now)

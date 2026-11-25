@@ -64,12 +64,14 @@ def build_data(root: Path, cfg: dict, now: datetime | None = None) -> dict:
     events.sort(key=lambda e: (e[0], e[1]))
     first = snaps[0]["ts"] if snaps else (events[0][0] if events else iso(now))
     cash, realized = start, 0.0
-    held, placed, missed, unknown, no_cash = {}, [], [], [], []
+    held, placed, missed, unknown, no_cash, same_game = {}, [], [], [], [], []
     real_line = [[first, start]]
     for ts, kind, b in events:
         key = (b["ticker"], b["side"])
         if kind == 0:
-            if b.get("available") is None:                 # couldn't see what was for sale: left out
+            if any(h.get("event") == b.get("event") for h in held.values()):   # same game, same bet twice
+                same_game.append(b)
+            elif b.get("available") is None:               # couldn't see what was for sale: left out
                 unknown.append(b)
             elif b["n"] == 0:
                 missed.append(b)
@@ -138,6 +140,7 @@ def build_data(root: Path, cfg: dict, now: datetime | None = None) -> dict:
                     "settled_n": len(done), "wins": sum(b["result"] == b["side"] for b in done),
                     "losses": sum(b["result"] != b["side"] for b in done), "placed_n": len(placed),
                     "missed_n": len(missed), "unknown_n": len(unknown), "no_cash_n": len(no_cash),
+                    "same_game_n": len(same_game),
                     "clv": _mean(b["clv"] for b in scored), "clv_n": len(scored),
                     "clv_usd": round(sum(b["clv"] * b["n"] for b in scored), 2)},
         "real_line": real_line, "proj_line": proj_line,

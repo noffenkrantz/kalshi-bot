@@ -22,8 +22,8 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 from .gaps import (SPORTS, PinnAPI, PinnError, append_jsonl, available_at, budget, edges, game_series, is_side_event,
-                   is_tie, kalshi_games, match, outcome_name, pairs, parse_event, read_jsonl, save_budget, settings,
-                   settle, size_bet, write_report)
+                   is_tie, kalshi_games, match, name_index, outcome_name, pairs, parse_event, read_jsonl, save_budget,
+                   settings, settle, size_bet, write_report)
 from .kalshi import KalshiClient, KalshiError
 from .util import iso, parse_time, to_float, utcnow
 
@@ -56,6 +56,7 @@ class LiveGaps:
         self.pending: list[dict] = []  # Pinnacle moves waiting for their follow-up Kalshi prices
         bets = read_jsonl(self.data / "gap_bets.jsonl")
         self.have = {(b["ticker"], b["side"]) for b in bets}
+        self.games_bet = {b.get("event") for b in bets}      # one bet per game
         self.open_bets = {b["ticker"]: b for b in bets if (parse_time(b["starts"]) or now) > now}
         self.written: dict = {}        # ticker -> last (fair, bid, ask) written for an open bet
         self.flagged: set = set()
@@ -78,7 +79,7 @@ class LiveGaps:
                 "paired_prices": len(self.by_ticker), "polls_ok": self.polls_ok,
                 "last_poll_ok": iso(self.last_poll_ok) if self.last_poll_ok else None, "pinnacle_changes_seen": self.changes_seen,
                 "moves_logged": self.moves_logged, "moves_waiting": len(self.pending), "bets_placed": self.bets_placed,
-                "pinnapi_requests": self.pinn.calls, "slowed_sports": sorted(self.slow),
+                "pinnapi_requests": self.pinn.calls, "slowed_sports": sorted(s for s, t in self.slow.items() if t > now),
                 "kalshi_batch_reads": self.sweep_by_tickers, "last_error": self.last_error,
                 "settings": {k: self.g.get(k) for k in ("poll_seconds", "kalshi_sweep_seconds", "min_edge", "stake_usd",
                                                        "bankroll_usd", "move_points", "sports")}}
@@ -153,8 +154,9 @@ class LiveGaps:
         horizon = now + timedelta(hours=float(self.g["window_hours"]))
         games = [x for x in pin.values() if now < x["starts"] <= horizon]
         links, by_ticker = {}, {}
+        idx = name_index(games)
         for k in kalshi_games(self.kalshi, game_series(self.root, self.g["skip_series"]), say=self.say):
-            hit = match(k, games, float(self.g["match_score"]))
+            hit = match(k, games, float(self.g["match_score"]), idx)
             if not hit:
                 continue
             p, sides, _ = hit
@@ -277,7 +279,9 @@ class LiveGaps:
         game, link = self.pin.get(pid), self.links.get(pid)
         if not game or not link:
             return
-        early = (game["starts"] - now).total_seconds() / 60 >= float(self.g["min_minutes_before_start"])
+        early = ((game["starts"] - now).total_seconds() / 60 >= float(self.g["min_minutes_before_start"])
+                 and link["kev"]["event"] not in self.games_bet)
+        best = None
         for t, (p, key) in self.by_ticker.items():
             if p != pid or key not in game["fair"]:
                 continue
@@ -293,13 +297,17 @@ class LiveGaps:
                             self.say(f"  skipped, edge too large to be real (check the match): {t} {side} at "
                                      f"{price:.2f} vs fair {fair:.2f} ({game['home']} vs {game['away']})")
                         continue
-                    self.bet(t, side, price, fair, edge, game, link, now)
+                    if best is None or edge > best[3]:
+                        best = (t, side, price, edge, fair)
             if t in self.open_bets and now < game["starts"]:
                 last = (round(fair, 4), bid, ask)
                 if self.written.get(t) != last:          # keeps the closing price of every open bet
                     self.written[t] = last
                     append_jsonl(self.data / "gap_snaps.jsonl", [self.snap(t, fair, bid, ask, game, now)])
                     self.dirty = True
+        if best:                                     # the single best side of this game
+            t, side, price, edge, fair = best
+            self.bet(t, side, price, fair, edge, game, link, now)
 
     def bet(self, t, side, price, fair, edge, game, link, now) -> None:
         m = next((x for x in link["kev"]["markets"] if x["ticker"] == t), {"ticker": t})
@@ -314,6 +322,7 @@ class LiveGaps:
         append_jsonl(self.data / "gap_snaps.jsonl", [self.snap(t, fair, bid, ask, game, now)])   # the entry price
         self.written[t] = (round(fair, 4), bid, ask)
         self.have.add((t, side))
+        self.games_bet.add(link["kev"]["event"])
         self.open_bets[t] = row
         self.dirty, self.new_bets = True, self.new_bets + 1
         self.bets_placed += 1
