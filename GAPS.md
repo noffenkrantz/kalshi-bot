@@ -1,12 +1,12 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 11 snapshots from 2026-11-25 16:44 to 2026-11-25 20:28 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 13 snapshots from 2026-11-25 16:44 to 2026-11-25 20:38 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-1,345 Kalshi prices compared with Pinnacle's. 97% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.0¢ from Pinnacle's fair price on average, and 0.2% could be bought at a 3¢+ edge after fees.
+1,349 Kalshi prices compared with Pinnacle's. 97% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.0¢ from Pinnacle's fair price on average, and 0.2% could be bought at a 3¢+ edge after fees.
 
-2 simulated bets so far; 2 have a closing price. Average edge when placed +3.6¢; average closing value +0.9¢ per contract. Kalshi moved toward Pinnacle's price after 2 of them and Pinnacle moved toward Kalshi's after 2. None have settled yet.
+2 simulated bets so far; 2 have a closing price. Average edge when placed +3.6¢; average closing value +1.6¢ per contract. Kalshi moved toward Pinnacle's price after 2 of them and Pinnacle moved toward Kalshi's after 2. None have settled yet.
 
 ## By league
 
@@ -16,7 +16,7 @@
 |---|---|---|---|---|---|---|---|---|
 | NCAA | 168 | 0% | +1.2¢ | 0% | 1,371 | 0 | – | – |
 | NHL | 112 | 0% | +0.6¢ | 0% | 7,337 | 0 | – | – |
-| NBA | 84 | 0% | +0.7¢ | 2% | 62,162 | 2 | +0.9¢ | – |
+| NBA | 88 | 0% | +0.7¢ | 2% | 69,972 | 2 | +1.6¢ | – |
 | ITF Men Santa Cruz - R1 | 72 | 0% | +1.3¢ | 0% | 218 | 0 | – | – |
 | USA - American Hockey League | 64 | 0% | +0.9¢ | 0% | 30 | 0 | – | – |
 | UEFA - Champions League | 60 | 0% | +0.8¢ | 0% | 40,148 | 0 | – | – |
@@ -58,9 +58,19 @@
 | England - League 1 | 3 | 0% | +0.4¢ | 0% | 9 | 0 | – | – |
 | Davis Cup - QF | 2 | 0% | +6.0¢ | 0% | 24,648 | 0 | – | – |
 
+## How fast Kalshi follows Pinnacle (live mode)
+
+Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = how far Kalshi's midpoint was from Pinnacle's new fair price: just before the move, the moment the tracker saw it, and later. *Already there* = Kalshi was within 1¢ of the new price when the tracker saw the move.
+
+| | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
+|---|---|---|---|---|---|---|---|---|---|
+| All | 4 | 3.5 pts | 3.1¢ | 3.0¢ | 2.5¢ | 1.8¢ | 3.2¢ | 3.2¢ | 25% |
+| ITF Men Heraklion - R16 | 2 | 3.2 pts | 4.5¢ | 4.2¢ | 2.7¢ | 1.2¢ | 2.3¢ | 2.3¢ | 0% |
+| AFC - Champions League 2 | 2 | 3.7 pts | 1.8¢ | 1.8¢ | 2.3¢ | 2.4¢ | 4.2¢ | 4.2¢ | 50% |
+
 ## Latest simulated bets
 
 | Placed (UTC) | Game | Bet | Paid | Fair | Edge | Closing value | Result |
 |---|---|---|---|---|---|---|---|
-| 11-25 20:16 | Philadelphia 76ers vs Miami Heat (NBA) | YES Philadelphia | 0.47 | 0.52 | +3.6¢ | +0.9¢ | – |
-| 11-25 20:16 | Philadelphia 76ers vs Miami Heat (NBA) | NO Miami | 0.47 | 0.52 | +3.6¢ | +0.9¢ | – |
+| 11-25 20:16 | Philadelphia 76ers vs Miami Heat (NBA) | YES Philadelphia | 0.47 | 0.52 | +3.6¢ | +1.6¢ | – |
+| 11-25 20:16 | Philadelphia 76ers vs Miami Heat (NBA) | NO Miami | 0.47 | 0.52 | +3.6¢ | +1.6¢ | – |
