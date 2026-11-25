@@ -250,7 +250,10 @@ class Supervisor:
             self.log(f"  gaps: {line[:200]}")
         self.last_gaps_error = f"gap snapshot exited with {code}" if code else None
         if self.sync and not self.dry_run:
-            self.sync.push(f"gaps: snapshot {now:%Y-%m-%dT%H:%MZ}", GAP_PATHS)
+            saved = self.sync.push(f"gaps: snapshot {now:%Y-%m-%dT%H:%MZ}", GAP_PATHS)
+            self.log("  gaps: saved to GitHub" if saved else "  gaps: could NOT save to GitHub (see the git error above)")
+        elif not self.dry_run:
+            self.log("  gaps: not saved to GitHub (no GITHUB_TOKEN)")
         return code == 0
 
     # -- one loop pass -------------------------------------------------------------------------
@@ -322,8 +325,10 @@ def main(research: bool = True, once: bool = False, dry_run: bool = False, say=p
         sync.ensure_clone()
         sync.pull()
         root = sync.dir
-    elif research and not dry_run:
-        say("GITHUB_TOKEN is not set: add it to the service's environment (see SETUP.md). Nothing will be saved.")
+        say(f"saving results to github.com/{slug}")
+    elif not dry_run:
+        say("GITHUB_TOKEN is not set: add it to the service's environment (Render > kalshi-watcher > Environment; "
+            "see SETUP.md). Results stay on this server and are NOT saved to GitHub.")
     sup = Supervisor(root, sync, research=research and not dry_run, dry_run=dry_run, say=say)
     last = last_run_time(root)
     sup.log(f"server started: {'research every 4 hours + ' if sup.research else ''}rain watcher"
