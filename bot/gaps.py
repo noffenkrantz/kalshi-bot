@@ -192,15 +192,19 @@ _SIDE_EVENT = re.compile(r"\((corners|bookings|cards|games|sets|points|hits|kill
 
 def tokens(name: str) -> list[str]:
     s = unicodedata.normalize("NFKD", name or "").encode("ascii", "ignore").decode().lower()
-    s = s.replace("&", " and ").replace("st.", "saint ").replace("utd", "united")
+    s = s.replace("&", "").replace("st.", "saint ").replace("utd", "united")     # 'A&M' -> 'am'
+    s = re.sub(r"^reg time:\s*", "", s)
     return [t for t in re.split(r"[^a-z0-9]+", s) if t and t not in _STOP]
 
 
 def _same_token(t: str, u: str) -> bool:
+    """t is a word of the shorter name, u of the longer."""
     if t == u:
         return True
-    if len(t) == 1 or len(u) == 1:                       # an initial: 'T.' = 'Teodor'
-        return t[0] == u[0]
+    if len(t) == 1:                                      # an initial in the shorter name: 'T.' = 'Teodor'
+        return u[0] == t
+    if len(u) == 1:                                      # a stray letter in the longer name proves nothing
+        return False
     if min(len(t), len(u)) >= 3 and (t.startswith(u) or u.startswith(t)):     # 'Giants' / 'G...' prefixes
         return True
     return min(len(t), len(u)) >= 5 and SequenceMatcher(None, t, u).ratio() >= 0.85   # spelling variants
@@ -216,7 +220,10 @@ def name_score(a: str, b: str) -> float:
     short, long_ = (ta, tb) if len(ta) <= len(tb) else (tb, ta)
     if len(short) == 1 and len(short[0]) <= 2:      # a lone initial or code proves nothing
         return 0.0
-    overlap = sum(any(_same_token(t, u) for u in long_) for t in short) / len(short)
+    if len(short) == len(long_):                         # same length: let initials go either way
+        overlap = max(sum(any(_same_token(t, u) for u in y) for t in x) / len(x) for x, y in ((ta, tb), (tb, ta)))
+    else:
+        overlap = sum(any(_same_token(t, u) for u in long_) for t in short) / len(short)
     ratio = SequenceMatcher(None, " ".join(ta), " ".join(tb)).ratio()
     return round(max(overlap * 0.98, ratio if ratio >= 0.92 else 0.0), 3)
 
@@ -346,9 +353,8 @@ def snapshot(kalshi: KalshiClient, pinn: PinnAPI, root: Path, cfg: dict, now: da
         mins = (p["starts"] - now).total_seconds() / 60
         for m, fair in prs:
             bid, ask = to_float(m.get("yes_bid_dollars")), to_float(m.get("yes_ask_dollars"))
-            snaps.append({"ts": iso(now), "ticker": m["ticker"], "event": k["event"], "series": k["series"],
-                          "league": p["league"], "pin_id": p["id"], "starts": iso(p["starts"]), "fair": round(fair, 4),
-                          "bid": bid, "ask": ask, "vol24": to_float(m.get("volume_24h_fp"), 0.0), "match": score})
+            snaps.append({"ts": iso(now), "ticker": m["ticker"], "league": p["league"], "fair": round(fair, 4),
+                          "bid": bid, "ask": ask, "vol24": round(to_float(m.get("volume_24h_fp"), 0.0))})
             if mins < float(g["min_minutes_before_start"]):
                 continue
             for side, (price, edge) in edges(fair, bid, ask).items():
@@ -433,6 +439,20 @@ def _c(x):
     return "–" if x is None else f"{x * 100:+.1f}¢"
 
 
+def _tight(s: dict) -> bool:
+    return s.get("bid") is not None and s.get("ask") is not None and 0 < s["bid"] < s["ask"] < 1 and s["ask"] - s["bid"] <= 0.10
+
+
+def _mid(s: dict) -> float:
+    return (s["bid"] + s["ask"]) / 2
+
+
+def _share_edge(snaps: list[dict], at: float = 0.03) -> float:
+    if not snaps:
+        return 0.0
+    return sum(max((e for _, e in edges(s["fair"], s["bid"], s["ask"]).values()), default=-1) >= at for s in snaps) / len(snaps)
+
+
 def write_report(root: Path) -> str:
     data = root / "data"
     snaps = read_jsonl(data / "gap_snaps.jsonl")
@@ -446,8 +466,15 @@ def write_report(root: Path) -> str:
              "before the game minus what we paid: positive on average means the gaps were real.*", ""]
     scored = [b for b in bets if b.get("clv") is not None]
     settled = [b for b in bets if b.get("profit") is not None]
-    if bets:
+    quoted = [s for s in snaps if _tight(s)]
+    if snaps:
         lines += ["## Bottom line", "",
+                  f"{len(snaps):,} Kalshi prices compared with Pinnacle's. {100 * len(quoted) / len(snaps):.0f}% had a real "
+                  f"market (buy and sell prices within 10¢); in those, Kalshi's midpoint was {_c(_mean(abs(_mid(s) - s['fair']) for s in quoted))} "
+                  f"from Pinnacle's fair price on average, and {100 * _share_edge(quoted):.1f}% could be bought at a 3¢+ edge "
+                  "after fees.", ""]
+    if bets:
+        lines += [
                   f"{len(bets)} simulated bets so far; {len(scored)} have a closing price. Average edge when placed "
                   f"{_c(_mean(b['edge'] for b in bets))}; average closing value {_c(_mean(b.get('clv') for b in scored))}"
                   f" per contract. Kalshi moved toward Pinnacle's price after "
@@ -463,16 +490,17 @@ def write_report(root: Path) -> str:
     for b in bets:
         per[b["league"]]["bets"].append(b)
     lines += ["## By league", "",
-              "| League | Prices compared | Avg gap (Kalshi mid vs fair) | With a 3¢+ edge | Kalshi volume (24h, median) | Bets | Avg closing value | Profit |",
-              "|---|---|---|---|---|---|---|---|"]
+              "*No real market* = buy and sell prices more than 10¢ apart (nobody quoting tightly: room to post orders). "
+              "The gap and edge columns use only the prices with a real market.", "",
+              "| League | Prices compared | No real market | Avg gap (Kalshi mid vs fair) | With a 3¢+ edge | Kalshi volume (24h, median) | Bets | Avg closing value | Profit |",
+              "|---|---|---|---|---|---|---|---|---|"]
     rows = []
     for lg, d in per.items():
-        ss = [s for s in d["snaps"] if s.get("bid") is not None and s.get("ask") is not None]
-        gap = _mean(abs((s["bid"] + s["ask"]) / 2 - s["fair"]) for s in ss)
-        big = sum(max((e for _, e in edges(s["fair"], s["bid"], s["ask"]).values()), default=-1) >= 0.03 for s in ss)
+        ss = [s for s in d["snaps"] if _tight(s)]
         vol = statistics.median(s.get("vol24") or 0 for s in d["snaps"]) if d["snaps"] else 0
         prof = [b["profit"] for b in d["bets"] if b.get("profit") is not None]
-        rows.append((len(d["snaps"]), f"| {lg} | {len(d['snaps'])} | {_c(gap)} | {100 * big / len(ss) if ss else 0:.0f}% | "
+        rows.append((len(d["snaps"]), f"| {lg} | {len(d['snaps'])} | {100 * (1 - len(ss) / len(d['snaps'])):.0f}% | "
+                     f"{_c(_mean(abs(_mid(s) - s['fair']) for s in ss))} | {100 * _share_edge(ss):.0f}% | "
                      f"{vol:,.0f} | {len(d['bets'])} | {_c(_mean(b.get('clv') for b in d['bets']))} | "
                      + (f"${sum(prof):+,.2f}" if prof else "–") + " |"))
     lines += [r for _, r in sorted(rows, reverse=True)[:60]]

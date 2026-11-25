@@ -30,6 +30,8 @@ def test_name_matching():
     assert name_score("A. Smith", "John Smith") < 0.8 and name_score("Sporting CP", "Sporting Gijon") < 0.8
     assert name_score("Manchester United", "Manchester City") < 0.8
     assert name_score("Bromley", "Gillingham") < 0.5
+    assert name_score("Angers", "Alabama A&M") < 0.8 and name_score("Prairie View A&M", "Monaco") < 0.5
+    assert name_score("Reg Time: Atletico Morelia", "Atletico Morelia") == 1.0
 
 
 def test_event_when():
