@@ -1,0 +1,47 @@
+# Pinnacle vs Kalshi gap tracker. Simulated only: it never places an order.
+# "probe" checks the PINNAPI_KEY secret and which games match; "snapshot" compares prices,
+# records simulated bets and updates GAPS.md. Emergency stop: repository variable GAPS_ENABLED = false.
+name: gap-tracker
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "probe or snapshot"
+        default: "snapshot"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gaps
+  cancel-in-progress: false
+
+jobs:
+  gaps:
+    if: ${{ vars.GAPS_ENABLED != 'false' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PINNAPI_KEY: ${{ secrets.PINNAPI_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Probe
+        if: ${{ inputs.mode == 'probe' }}
+        run: python -m bot gaps --probe
+      - name: Snapshot
+        if: ${{ inputs.mode != 'probe' }}
+        run: python -m bot gaps
+      - name: Save
+        if: ${{ always() && inputs.mode != 'probe' }}
+        run: |
+          git config user.name "kalshi-bot"
+          git config user.email "kalshi-bot@users.noreply.github.com"
+          git add -A GAPS.md data/
+          git commit -m "gaps: snapshot $(date -u +%Y-%m-%dT%H:%MZ)" || echo "nothing new"
+          git pull --rebase --autostash || true
+          git push || echo "push failed"

@@ -225,6 +225,8 @@ def main(argv=None) -> int:
     ts = sub.add_parser("tempsurvey", help="deep survey of daily high/low temperature markets (read-only)")
     ts.add_argument("--probe", action="store_true", help="print rules, brackets and times only")
     ts.add_argument("--days", type=float, default=14, help="settled markets from this many days back")
+    gp = sub.add_parser("gaps", help="Pinnacle vs Kalshi gap tracker (simulated, needs PINNAPI_KEY)")
+    gp.add_argument("--probe", action="store_true", help="check the key and which games match (about 5 requests)")
     res = sub.add_parser("resume", help="clear a safety halt")
     res.add_argument("--mode", choices=["shadow", "demo", "live"], required=True)
     args = ap.parse_args(argv)
@@ -251,6 +253,9 @@ def main(argv=None) -> int:
         return cmd_survey(args)
     if args.cmd == "tempsurvey":
         return cmd_tempsurvey(args)
+    if args.cmd == "gaps":
+        from .gaps import main as gaps
+        return gaps(cfg, ROOT, probe_only=args.probe)
     return cmd_resume(args.mode)
 
 
