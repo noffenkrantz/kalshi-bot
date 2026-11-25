@@ -2124,3 +2124,9 @@
 {"ts":"2026-11-25T22:31:02+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.3436,"bid":0.34,"ask":0.37,"vol24":130}
 {"ts":"2026-11-25T22:34:09+00:00","ticker":"KXNBAGAME-26NOV25CLENYK-NYK","league":"NBA","fair":0.6128,"bid":0.61,"ask":0.62,"vol24":380983}
 {"ts":"2026-11-25T22:35:22+00:00","ticker":"KXAHLGAME-26NOV251905PROLEH-PRO","league":"USA - American Hockey League","fair":0.5627,"bid":0.61,"ask":0.62,"vol24":16}
+{"ts":"2026-11-25T22:36:13+00:00","ticker":"KXAHLGAME-26NOV251905PROLEH-PRO","league":"USA - American Hockey League","fair":0.5627,"bid":0.57,"ask":0.59,"vol24":16}
+{"ts":"2026-11-25T22:36:43+00:00","ticker":"KXITFMATCH-26NOV26IANLOM-LOM","league":"ITF Men Bhopal - R16","fair":0.5416,"bid":0.51,"ask":0.53,"vol24":236}
+{"ts":"2026-11-25T22:37:13+00:00","ticker":"KXITFMATCH-26NOV26IANLOM-LOM","league":"ITF Men Bhopal - R16","fair":0.5416,"bid":0.52,"ask":0.53,"vol24":236}
+{"ts":"2026-11-25T22:39:46+00:00","ticker":"KXITFMATCH-26NOV26IANLOM-LOM","league":"ITF Men Bhopal - R16","fair":0.5416,"bid":0.51,"ask":0.53,"vol24":236}
+{"ts":"2026-11-25T22:39:46+00:00","ticker":"KXAHLGAME-26NOV251905PROLEH-PRO","league":"USA - American Hockey League","fair":0.5627,"bid":0.55,"ask":0.59,"vol24":16}
+{"ts":"2026-11-25T22:41:47+00:00","ticker":"KXITFMATCH-26NOV26MICHIG-HIG","league":"ITF Men Hradec Kralove - R16","fair":0.4133,"bid":0.32,"ask":0.36,"vol24":152}
