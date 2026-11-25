@@ -1,12 +1,12 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 45 snapshots from 2026-11-25 16:44 to 2026-11-25 21:30 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 59 snapshots from 2026-11-25 16:44 to 2026-11-25 21:39 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-1,717 Kalshi prices compared with Pinnacle's. 98% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.1¢ from Pinnacle's fair price on average, and 0.4% could be bought at a 3¢+ edge after fees.
+1,731 Kalshi prices compared with Pinnacle's. 98% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.1¢ from Pinnacle's fair price on average, and 0.7% could be bought at a 3¢+ edge after fees.
 
-5 simulated bets so far; 4 have a closing price. Average edge when placed +4.4¢; average closing value +2.1¢ per contract. Kalshi moved toward Pinnacle's price after 4 of them and Pinnacle moved toward Kalshi's after 4. None have settled yet.
+5 simulated bets so far; 5 have a closing price. Average edge when placed +4.4¢; average closing value +1.2¢ per contract. Kalshi moved toward Pinnacle's price after 4 of them and Pinnacle moved toward Kalshi's after 5. None have settled yet.
 
 ## By league
 
@@ -16,7 +16,7 @@
 |---|---|---|---|---|---|---|---|---|
 | NCAA | 198 | 0% | +1.2¢ | 0% | 1,447 | 0 | – | – |
 | NHL | 140 | 0% | +0.6¢ | 0% | 7,409 | 0 | – | – |
-| NBA | 115 | 0% | +0.7¢ | 3% | 78,688 | 3 | +1.8¢ | – |
+| NBA | 129 | 0% | +1.0¢ | 6% | 90,647 | 3 | +0.5¢ | – |
 | ITF Men Santa Cruz - R1 | 90 | 0% | +1.2¢ | 0% | 284 | 0 | – | – |
 | USA - American Hockey League | 80 | 0% | +0.9¢ | 0% | 36 | 0 | – | – |
 | ITF Women Playford - R16 | 70 | 0% | +1.0¢ | 0% | 12 | 0 | – | – |
@@ -64,18 +64,20 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 17 | 3.9 pts | 3.1¢ | 2.8¢ | 2.2¢ | 2.5¢ | 2.3¢ | 1.6¢ | 35% |
+| All | 19 | 4.1 pts | 3.1¢ | 2.9¢ | 2.3¢ | 2.5¢ | 2.4¢ | 1.8¢ | 37% |
 | ITF Men Heraklion - R16 | 6 | 5.5 pts | 5.1¢ | 4.9¢ | 3.4¢ | 4.0¢ | 3.6¢ | 1.3¢ | 33% |
 | AFC - Champions League 2 | 4 | 3.4 pts | 2.0¢ | 2.1¢ | 2.0¢ | 2.0¢ | 2.9¢ | 2.9¢ | 25% |
 | ATP Challenger Playford - R16 | 4 | 2.3 pts | 1.0¢ | 1.1¢ | 1.1¢ | 1.5¢ | 0.8¢ | 1.0¢ | 50% |
 | ITF Women Trnava - R16 | 2 | 4.2 pts | 3.7¢ | 2.2¢ | 2.2¢ | 2.0¢ | 1.2¢ | 1.7¢ | 50% |
 | USA - American Hockey League | 1 | 2.1 pts | 1.8¢ | 1.8¢ | 0.6¢ | 0.1¢ | 0.1¢ | 0.6¢ | 0% |
+| ITF Women Heraklion 2 - R16 | 1 | 4.1 pts | 5.6¢ | 5.6¢ | 5.1¢ | 5.1¢ | 5.1¢ | 5.1¢ | 0% |
+| NBA | 1 | 8.4 pts | 1.9¢ | 0.9¢ | 0.9¢ | 0.3¢ | 1.6¢ | 1.0¢ | 100% |
 
 ## Latest simulated bets
 
 | Placed (UTC) | Game | Bet | Paid | Fair | Edge | Closing value | Result |
 |---|---|---|---|---|---|---|---|
-| 11-25 21:30 | New York Knicks vs Cleveland Cavaliers (NBA) | NO New York | 0.41 | 0.46 | +3.3¢ | – | – |
+| 11-25 21:30 | New York Knicks vs Cleveland Cavaliers (NBA) | NO New York | 0.41 | 0.46 | +3.3¢ | -2.1¢ | – |
 | 11-25 21:13 | Dane Sweeny vs Hayden Jones (ATP Challenger Playford - R16) | YES Hayden Jones | 0.17 | 0.21 | +3.5¢ | +4.0¢ | – |
 | 11-25 21:07 | Jordan Hasson vs Odysseas Geladaris (ITF Men Heraklion - R16) | YES Odysseas Geladaris | 0.39 | 0.48 | +7.7¢ | +0.6¢ | – |
 | 11-25 20:16 | Philadelphia 76ers vs Miami Heat (NBA) | YES Philadelphia | 0.47 | 0.52 | +3.6¢ | +1.8¢ | – |
