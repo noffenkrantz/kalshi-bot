@@ -181,6 +181,15 @@ def cmd_survey(args) -> int:
     return 0
 
 
+def cmd_tempsurvey(args) -> int:
+    if args.probe:
+        from .tempsurvey import probe
+        probe(KalshiClient("prod"))
+        return 0
+    from .tempsurvey import run
+    return run(KalshiClient("prod"), Journal(DATA_DIR), ROOT, days=args.days)
+
+
 def cmd_resume(mode: str) -> int:
     journal = Journal(DATA_DIR)
     journal.set_state(f"halted:{mode}", None)
@@ -213,6 +222,9 @@ def main(argv=None) -> int:
     sv2 = sub.add_parser("survey", help="which market types are slow, tradable and mispriced (read-only)")
     sv2.add_argument("--days", type=float, default=3, help="settled markets from this many days back")
     sv2.add_argument("--per-series", type=int, default=4, help="settled markets sampled per market type")
+    ts = sub.add_parser("tempsurvey", help="deep survey of daily high/low temperature markets (read-only)")
+    ts.add_argument("--probe", action="store_true", help="print rules, brackets and times only")
+    ts.add_argument("--days", type=float, default=14, help="settled markets from this many days back")
     res = sub.add_parser("resume", help="clear a safety halt")
     res.add_argument("--mode", choices=["shadow", "demo", "live"], required=True)
     args = ap.parse_args(argv)
@@ -237,6 +249,8 @@ def main(argv=None) -> int:
         return cmd_lags(cfg, args)
     if args.cmd == "survey":
         return cmd_survey(args)
+    if args.cmd == "tempsurvey":
+        return cmd_tempsurvey(args)
     return cmd_resume(args.mode)
 
 
