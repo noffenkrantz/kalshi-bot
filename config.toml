@@ -76,6 +76,7 @@ max_buy_price = 0.97               # never pay more than this for YES
 sports = ["soccer", "basketball", "hockey", "tennis"]   # one pinnapi request each per snapshot
 daily_requests = 95          # pinnapi's free trial allows 100 a day
 min_edge = 0.03              # simulated bet when Kalshi is this much cheaper than Pinnacle's fair price, after fees
+max_edge = 0.15              # bigger "edges" are almost always a wrong match or stale odds: skipped
 stake_usd = 10.0             # per simulated bet
 window_hours = 24            # only games starting within this many hours
 min_minutes_before_start = 10

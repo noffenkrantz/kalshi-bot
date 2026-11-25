@@ -32,6 +32,8 @@ def test_name_matching():
     assert name_score("Bromley", "Gillingham") < 0.5
     assert name_score("Angers", "Alabama A&M") < 0.8 and name_score("Prairie View A&M", "Monaco") < 0.5
     assert name_score("Reg Time: Atletico Morelia", "Atletico Morelia") == 1.0
+    assert name_score("Louisville", "Saint Louis") < 0.8 and name_score("St. John's", "Stanford") < 0.5
+    assert name_score("St. John's", "Saint Johns") >= 0.8 and name_score("Man Utd", "Manchester United") >= 0.8
 
 
 def test_event_when():
@@ -135,7 +137,8 @@ def test_snapshot_bets_scores_and_settles(tmp_path):
         + [{"series": "KXEFLL2TOTAL", "category": "Sports"}, {"series": "KXHIGHNY", "category": "Climate and Weather"}]}))
     kalshi, pinn, quiet = FakeKalshi(), FakePinn(), (lambda *_: None)
     r = snapshot(kalshi, pinn, tmp_path, CFG, now=NOW, say=quiet)
-    assert r == {"pinnacle_games": 3, "kalshi_games": 3, "matched": 2, "snaps": 5, "bets": 1, "settled": 0}
+    assert r == {"pinnacle_games": 3, "kalshi_games": 3, "matched": 2, "snaps": 5, "bets": 1, "settled": 0,
+                 "suspicious": 0}
     (bet,) = [json.loads(l) for l in (tmp_path / "data" / "gap_bets.jsonl").read_text().splitlines()]
     assert bet["side"] == "yes" and bet["team"] == "Bromley" and bet["price"] == 0.40 and bet["contracts"] == 25
     assert 0.05 < bet["edge"] < 0.06
@@ -162,3 +165,12 @@ def test_budget_stops_requests(tmp_path):
     pinn = FakePinn()
     snapshot(FakeKalshi(), pinn, tmp_path, CFG, now=NOW, say=lambda *_: None)
     assert pinn.calls == 1                                   # only one request left of 95
+
+
+def test_implausible_edges_are_skipped(tmp_path):
+    (tmp_path / "data").mkdir()
+    (tmp_path / "data" / "niche_survey.json").write_text(json.dumps({"series": [{"series": "KXEFLL2GAME", "category": "Sports"}]}))
+    kalshi = FakeKalshi()
+    kalshi.bro = (0.10, 0.12)          # 35 points below Pinnacle: not a real gap
+    r = snapshot(kalshi, FakePinn(), tmp_path, CFG, now=NOW, say=lambda *_: None)
+    assert r["bets"] == 0 and r["suspicious"] == 1

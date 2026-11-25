@@ -42,6 +42,7 @@ PINNAPI = "https://pinnapi.com"
 SPORTS = {"soccer": 1, "tennis": 2, "basketball": 3, "hockey": 4, "football": 5, "baseball": 6,
           "rugby": 7, "mma": 8, "boxing": 9, "esports": 11}
 DEFAULTS = {"sports": ["soccer", "basketball", "hockey", "tennis"], "daily_requests": 95, "min_edge": 0.03,
+            "max_edge": 0.15,
             "stake_usd": 10.0, "window_hours": 24, "min_minutes_before_start": 10, "match_score": 0.8,
             "skip_series": ["KXESOCCERGAME", "KXEBASKETBALLGAME", "KXEFOOTBALLGAME"]}
 ET = ZoneInfo("America/New_York")      # Kalshi's tickers carry US Eastern dates and times
@@ -192,7 +193,7 @@ _SIDE_EVENT = re.compile(r"\((corners|bookings|cards|games|sets|points|hits|kill
 
 def tokens(name: str) -> list[str]:
     s = unicodedata.normalize("NFKD", name or "").encode("ascii", "ignore").decode().lower()
-    s = s.replace("&", "").replace("st.", "saint ").replace("utd", "united")     # 'A&M' -> 'am'
+    s = s.replace("&", "").replace("'", "").replace("st.", "saint ").replace("utd", "united")   # 'A&M' -> 'am'
     s = re.sub(r"^reg time:\s*", "", s)
     return [t for t in re.split(r"[^a-z0-9]+", s) if t and t not in _STOP]
 
@@ -205,8 +206,8 @@ def _same_token(t: str, u: str) -> bool:
         return u[0] == t
     if len(u) == 1:                                      # a stray letter in the longer name proves nothing
         return False
-    if min(len(t), len(u)) >= 3 and (t.startswith(u) or u.startswith(t)):     # 'Giants' / 'G...' prefixes
-        return True
+    if len(t) >= 3 and len(t) < len(u) and u.startswith(t):      # shortened in the shorter name: 'Man' = 'Manchester'
+        return True                                             # (but 'Louisville' is not 'Louis')
     return min(len(t), len(u)) >= 5 and SequenceMatcher(None, t, u).ratio() >= 0.85   # spelling variants
 
 
@@ -339,7 +340,7 @@ def snapshot(kalshi: KalshiClient, pinn: PinnAPI, root: Path, cfg: dict, now: da
     kev = kalshi_games(kalshi, game_series(root, g["skip_series"]), say=say)
     bets_so_far = read_jsonl(data / "gap_bets.jsonl")
     have = {(b["ticker"], b["side"]) for b in bets_so_far}
-    snaps, bets, matched, rules_differ = [], [], 0, 0
+    snaps, bets, matched, rules_differ, suspicious = [], [], 0, 0, []
     for k in kev:
         hit = match(k, pin, float(g["match_score"]))
         if not hit:
@@ -360,6 +361,10 @@ def snapshot(kalshi: KalshiClient, pinn: PinnAPI, root: Path, cfg: dict, now: da
             for side, (price, edge) in edges(fair, bid, ask).items():
                 if edge < float(g["min_edge"]) or not 0.05 <= price <= 0.95 or (m["ticker"], side) in have:
                     continue
+                if edge > float(g["max_edge"]):         # too good to be true: a wrong match or stale odds
+                    suspicious.append(f"{k['event']} ~ {p['home']} vs {p['away']} ({p['league']}): "
+                                      f"{outcome_name(m)} {side} at {price:.2f} vs fair {fair:.2f}")
+                    continue
                 n = math.floor(float(g["stake_usd"]) / price)
                 bets.append({"ts": iso(now), "ticker": m["ticker"], "event": k["event"], "series": k["series"],
                              "league": p["league"], "team": outcome_name(m), "side": side, "price": round(price, 4),
@@ -375,9 +380,11 @@ def snapshot(kalshi: KalshiClient, pinn: PinnAPI, root: Path, cfg: dict, now: da
     for b in bets:
         say(f"  bet {b['side'].upper()} {b['team']} ({b['league']}) at {b['price']:.2f}, Pinnacle fair "
             f"{b['fair']:.2f}, edge {b['edge'] * 100:+.1f}¢")
+    for x in suspicious:
+        say(f"  skipped, edge too large to be real (check the match): {x}")
     write_report(root)
     return {"pinnacle_games": len(pin), "kalshi_games": len(kev), "matched": matched, "snaps": len(snaps),
-            "bets": len(bets), "settled": settled}
+            "bets": len(bets), "settled": settled, "suspicious": len(suspicious)}
 
 
 def settle(kalshi: KalshiClient, data: Path, now: datetime) -> int:
