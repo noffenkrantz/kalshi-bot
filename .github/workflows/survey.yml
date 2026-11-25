@@ -1,0 +1,38 @@
+# Manual research run: which kinds of Kalshi markets are slow, tradable and mispriced?
+# Writes NICHES.md and data/niche_survey.json. Read-only on Kalshi: nothing is traded.
+name: market-survey
+
+on:
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "Settled markets from this many days back"
+        default: "3"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kalshi-bot          # never at the same time as a bot run (both save to the repo)
+  cancel-in-progress: false
+
+jobs:
+  survey:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Survey
+        run: python -m bot survey --days "${{ inputs.days }}"
+      - name: Save the report
+        run: |
+          git config user.name "kalshi-bot"
+          git config user.email "kalshi-bot@users.noreply.github.com"
+          git add NICHES.md data/niche_survey.json data/state.json
+          git commit -m "survey: slow niche markets" || echo "nothing new"
+          git pull --rebase --autostash || true
+          git push || echo "push failed"

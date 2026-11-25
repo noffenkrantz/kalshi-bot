@@ -169,6 +169,18 @@ def cmd_lags(cfg: dict, args) -> int:
     return 0
 
 
+def cmd_survey(args) -> int:
+    import json
+    from .survey import report_markdown, survey
+    data = survey(KalshiClient("prod"), Journal(DATA_DIR), days=args.days, per_series=args.per_series)
+    (DATA_DIR / "niche_survey.json").write_text(json.dumps(data, indent=1) + "\n")
+    text = report_markdown(data)
+    (ROOT / "NICHES.md").write_text(text)
+    write_step_summary(text)
+    print(text[:3000])
+    return 0
+
+
 def cmd_resume(mode: str) -> int:
     journal = Journal(DATA_DIR)
     journal.set_state(f"halted:{mode}", None)
@@ -198,6 +210,9 @@ def main(argv=None) -> int:
     lg.add_argument("--scan", action="store_true", help="scan markets settled since the last scan")
     lg.add_argument("--hours", type=float, default=None, help="scan this many hours back instead")
     lg.add_argument("--per-category", type=int, default=20, help="markets per category per scan")
+    sv2 = sub.add_parser("survey", help="which market types are slow, tradable and mispriced (read-only)")
+    sv2.add_argument("--days", type=float, default=3, help="settled markets from this many days back")
+    sv2.add_argument("--per-series", type=int, default=4, help="settled markets sampled per market type")
     res = sub.add_parser("resume", help="clear a safety halt")
     res.add_argument("--mode", choices=["shadow", "demo", "live"], required=True)
     args = ap.parse_args(argv)
@@ -220,6 +235,8 @@ def main(argv=None) -> int:
         return serve(research=True, once=args.once, dry_run=args.dry_run)
     if args.cmd == "lags":
         return cmd_lags(cfg, args)
+    if args.cmd == "survey":
+        return cmd_survey(args)
     return cmd_resume(args.mode)
 
 
