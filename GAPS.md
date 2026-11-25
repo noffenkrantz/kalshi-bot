@@ -1,12 +1,12 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 13 snapshots from 2026-11-25 16:44 to 2026-11-25 20:38 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 15 snapshots from 2026-11-25 16:44 to 2026-11-25 21:07 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-1,349 Kalshi prices compared with Pinnacle's. 97% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.0¢ from Pinnacle's fair price on average, and 0.2% could be bought at a 3¢+ edge after fees.
+1,352 Kalshi prices compared with Pinnacle's. 97% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.0¢ from Pinnacle's fair price on average, and 0.2% could be bought at a 3¢+ edge after fees.
 
-2 simulated bets so far; 2 have a closing price. Average edge when placed +3.6¢; average closing value +1.6¢ per contract. Kalshi moved toward Pinnacle's price after 2 of them and Pinnacle moved toward Kalshi's after 2. None have settled yet.
+3 simulated bets so far; 2 have a closing price. Average edge when placed +5.0¢; average closing value +2.1¢ per contract. Kalshi moved toward Pinnacle's price after 2 of them and Pinnacle moved toward Kalshi's after 2. None have settled yet.
 
 ## By league
 
@@ -16,7 +16,7 @@
 |---|---|---|---|---|---|---|---|---|
 | NCAA | 168 | 0% | +1.2¢ | 0% | 1,371 | 0 | – | – |
 | NHL | 112 | 0% | +0.6¢ | 0% | 7,337 | 0 | – | – |
-| NBA | 88 | 0% | +0.7¢ | 2% | 69,972 | 2 | +1.6¢ | – |
+| NBA | 90 | 0% | +0.7¢ | 2% | 73,506 | 2 | +2.1¢ | – |
 | ITF Men Santa Cruz - R1 | 72 | 0% | +1.3¢ | 0% | 218 | 0 | – | – |
 | USA - American Hockey League | 64 | 0% | +0.9¢ | 0% | 30 | 0 | – | – |
 | UEFA - Champions League | 60 | 0% | +0.8¢ | 0% | 40,148 | 0 | – | – |
@@ -30,10 +30,10 @@
 | ITF Women Trnava - R16 | 30 | 3% | +1.6¢ | 0% | 0 | 0 | – | – |
 | ITF Women Kolkata - R16 | 28 | 0% | +2.0¢ | 0% | 57 | 0 | – | – |
 | England - Championship | 27 | 0% | +0.8¢ | 0% | 1,056 | 0 | – | – |
+| ITF Men Heraklion - R16 | 25 | 0% | +2.0¢ | 4% | 17 | 1 | – | – |
 | Mexico - Liga MX | 24 | 0% | +0.5¢ | 0% | 11,405 | 0 | – | – |
 | Lithuania - National Basketball League | 24 | 0% | +1.1¢ | 0% | 0 | 0 | – | – |
 | ITF Men Hradec Kralove - R16 | 24 | 0% | +1.7¢ | 0% | 0 | 0 | – | – |
-| ITF Men Heraklion - R16 | 24 | 0% | +1.6¢ | 0% | 8 | 0 | – | – |
 | Colombia - Primera A | 24 | 0% | +0.5¢ | 0% | 866 | 0 | – | – |
 | ATP Challenger Yokohama - R16 | 24 | 0% | +0.8¢ | 0% | 138 | 0 | – | – |
 | ATP Challenger Playford - R16 | 24 | 0% | +1.2¢ | 0% | 1,571 | 0 | – | – |
@@ -64,9 +64,10 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 6 | 3.0 pts | 2.7¢ | 2.6¢ | 2.1¢ | 1.6¢ | 2.5¢ | 2.8¢ | 17% |
+| All | 8 | 3.3 pts | 3.0¢ | 2.5¢ | 2.1¢ | 1.7¢ | 2.2¢ | 2.5¢ | 25% |
 | ITF Men Heraklion - R16 | 2 | 3.2 pts | 4.5¢ | 4.2¢ | 2.7¢ | 1.2¢ | 2.3¢ | 2.3¢ | 0% |
 | AFC - Champions League 2 | 2 | 3.7 pts | 1.8¢ | 1.8¢ | 2.3¢ | 2.4¢ | 4.2¢ | 4.2¢ | 50% |
+| ITF Women Trnava - R16 | 2 | 4.2 pts | 3.7¢ | 2.2¢ | 2.2¢ | 2.0¢ | 1.2¢ | 1.7¢ | 50% |
 | ATP Challenger Playford - R16 | 1 | 2.1 pts | 2.0¢ | 2.0¢ | 2.0¢ | 2.0¢ | 1.8¢ | 3.0¢ | 0% |
 | USA - American Hockey League | 1 | 2.1 pts | 1.8¢ | 1.8¢ | 0.6¢ | 0.1¢ | 0.1¢ | 0.6¢ | 0% |
 
@@ -74,5 +75,6 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | Placed (UTC) | Game | Bet | Paid | Fair | Edge | Closing value | Result |
 |---|---|---|---|---|---|---|---|
-| 11-25 20:16 | Philadelphia 76ers vs Miami Heat (NBA) | YES Philadelphia | 0.47 | 0.52 | +3.6¢ | +1.6¢ | – |
-| 11-25 20:16 | Philadelphia 76ers vs Miami Heat (NBA) | NO Miami | 0.47 | 0.52 | +3.6¢ | +1.6¢ | – |
+| 11-25 21:07 | Jordan Hasson vs Odysseas Geladaris (ITF Men Heraklion - R16) | YES Odysseas Geladaris | 0.39 | 0.48 | +7.7¢ | – | – |
+| 11-25 20:16 | Philadelphia 76ers vs Miami Heat (NBA) | YES Philadelphia | 0.47 | 0.52 | +3.6¢ | +2.1¢ | – |
+| 11-25 20:16 | Philadelphia 76ers vs Miami Heat (NBA) | NO Miami | 0.47 | 0.52 | +3.6¢ | +2.1¢ | – |
