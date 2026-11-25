@@ -1,0 +1,33 @@
+{
+ "ts": "2026-11-25T20:16:13+00:00",
+ "mode": "live",
+ "running_since": "2026-11-25T20:12:54+00:00",
+ "paired_games": 159,
+ "paired_prices": 330,
+ "polls_ok": 8,
+ "last_poll_ok": "2026-11-25T20:16:13+00:00",
+ "pinnacle_changes_seen": 1523,
+ "moves_logged": 0,
+ "moves_waiting": 1,
+ "bets_placed": 2,
+ "pinnapi_requests": 12,
+ "slowed_sports": [
+  "soccer"
+ ],
+ "kalshi_batch_reads": true,
+ "last_error": null,
+ "settings": {
+  "poll_seconds": 2,
+  "kalshi_sweep_seconds": 30,
+  "min_edge": 0.03,
+  "stake_usd": 100.0,
+  "bankroll_usd": 10000.0,
+  "move_points": 0.02,
+  "sports": [
+   "soccer",
+   "basketball",
+   "hockey",
+   "tennis"
+  ]
+ }
+}

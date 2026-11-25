@@ -1,10 +1,12 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 3 snapshots from 2026-11-25 16:44 to 2026-11-25 19:59 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 4 snapshots from 2026-11-25 16:44 to 2026-11-25 20:16 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-1,003 Kalshi prices compared with Pinnacle's. 97% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.0¢ from Pinnacle's fair price on average, and 0.0% could be bought at a 3¢+ edge after fees.
+1,005 Kalshi prices compared with Pinnacle's. 97% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.0¢ from Pinnacle's fair price on average, and 0.2% could be bought at a 3¢+ edge after fees.
+
+2 simulated bets so far; 0 have a closing price. Average edge when placed +3.6¢; average closing value – per contract. Kalshi moved toward Pinnacle's price after 0 of them and Pinnacle moved toward Kalshi's after 0. None have settled yet.
 
 ## By league
 
@@ -15,7 +17,7 @@
 | NCAA | 130 | 0% | +1.2¢ | 0% | 1,230 | 0 | – | – |
 | NHL | 84 | 0% | +0.6¢ | 0% | 7,076 | 0 | – | – |
 | UEFA - Champions League | 60 | 0% | +0.8¢ | 0% | 40,148 | 0 | – | – |
-| NBA | 54 | 0% | +0.6¢ | 0% | 48,268 | 0 | – | – |
+| NBA | 56 | 0% | +0.8¢ | 4% | 48,927 | 2 | – | – |
 | ITF Men Santa Cruz - R1 | 54 | 0% | +1.2¢ | 0% | 218 | 0 | – | – |
 | USA - American Hockey League | 48 | 0% | +1.0¢ | 0% | 20 | 0 | – | – |
 | ITF Women Playford - R16 | 42 | 0% | +1.1¢ | 0% | 0 | 0 | – | – |
@@ -54,3 +56,10 @@
 | Germany - DEL | 4 | 50% | +1.3¢ | 0% | 0 | 0 | – | – |
 | Italy - Serie C Group B | 3 | 0% | +1.3¢ | 0% | 866 | 0 | – | – |
 | Davis Cup - QF | 2 | 0% | +6.0¢ | 0% | 24,648 | 0 | – | – |
+
+## Latest simulated bets
+
+| Placed (UTC) | Game | Bet | Paid | Fair | Edge | Closing value | Result |
+|---|---|---|---|---|---|---|---|
+| 11-25 20:16 | Philadelphia 76ers vs Miami Heat (NBA) | YES Philadelphia | 0.47 | 0.52 | +3.6¢ | – | – |
+| 11-25 20:16 | Philadelphia 76ers vs Miami Heat (NBA) | NO Miami | 0.47 | 0.52 | +3.6¢ | – | – |
