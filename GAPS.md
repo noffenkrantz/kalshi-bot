@@ -1,12 +1,12 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 142 snapshots from 2026-11-25 16:44 to 2026-11-25 23:20 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 157 snapshots from 2026-11-25 16:44 to 2026-11-25 23:31 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-2,182 Kalshi prices compared with Pinnacle's. 98% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.2¢ from Pinnacle's fair price on average, and 0.7% could be bought at a 3¢+ edge after fees.
+2,568 Kalshi prices compared with Pinnacle's. 98% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.2¢ from Pinnacle's fair price on average, and 0.6% could be bought at a 3¢+ edge after fees.
 
-8 simulated bets so far; 8 have a closing price. Average edge when placed +4.1¢; average closing value +2.2¢ per contract. Kalshi moved toward Pinnacle's price after 6 of them and Pinnacle moved toward Kalshi's after 5. None have settled yet.
+8 simulated bets so far; 8 have a closing price. Average edge when placed +4.1¢; average closing value +2.1¢ per contract. Kalshi moved toward Pinnacle's price after 6 of them and Pinnacle moved toward Kalshi's after 5. None have settled yet.
 
 ## By league
 
@@ -14,50 +14,51 @@
 
 | League | Prices compared | No real market | Avg gap (Kalshi mid vs fair) | With a 3¢+ edge | Kalshi volume (24h, median) | Bets | Avg closing value | Profit |
 |---|---|---|---|---|---|---|---|---|
-| NCAA | 224 | 0% | +1.2¢ | 0% | 1,481 | 0 | – | – |
-| NHL | 168 | 0% | +0.6¢ | 0% | 8,210 | 0 | – | – |
-| NBA | 167 | 0% | +0.9¢ | 5% | 93,788 | 3 | +1.2¢ | – |
-| ITF Men Santa Cruz - R1 | 108 | 0% | +1.2¢ | 0% | 444 | 0 | – | – |
-| USA - American Hockey League | 103 | 0% | +1.0¢ | 1% | 24 | 1 | +4.7¢ | – |
-| ITF Women Heraklion 2 - R16 | 86 | 10% | +1.3¢ | 0% | 4 | 0 | – | – |
-| ITF Women Playford - R16 | 84 | 0% | +1.0¢ | 0% | 24 | 0 | – | – |
-| ITF Men Hradec Kralove - R16 | 79 | 0% | +3.4¢ | 1% | 100 | 1 | +5.3¢ | – |
-| ITF Men Heraklion - R16 | 78 | 0% | +2.1¢ | 3% | 17 | 1 | -4.6¢ | – |
-| Russia - Kontinental Hockey League | 72 | 0% | +0.7¢ | 0% | 0 | 0 | – | – |
-| ITF Women Monastir - R16 | 72 | 6% | +1.6¢ | 0% | 0 | 0 | – | – |
-| ITF Men Monastir 2 - R16 | 72 | 0% | +1.4¢ | 0% | 60 | 0 | – | – |
+| NCAA | 248 | 0% | +1.2¢ | 0% | 1,515 | 0 | – | – |
+| NHL | 196 | 0% | +0.6¢ | 0% | 8,876 | 0 | – | – |
+| NBA | 183 | 0% | +0.9¢ | 4% | 93,788 | 3 | +1.2¢ | – |
+| ITF Men Santa Cruz - R1 | 126 | 0% | +1.3¢ | 0% | 488 | 0 | – | – |
+| USA - American Hockey League | 119 | 0% | +1.0¢ | 1% | 36 | 1 | +4.7¢ | – |
+| ITF Men Hradec Kralove - R16 | 109 | 0% | +3.5¢ | 1% | 152 | 1 | +5.3¢ | – |
+| ITF Women Heraklion 2 - R16 | 102 | 9% | +1.3¢ | 0% | 27 | 0 | – | – |
+| ITF Women Playford - R16 | 98 | 0% | +0.9¢ | 0% | 41 | 0 | – | – |
+| ITF Men Heraklion - R16 | 95 | 0% | +2.0¢ | 2% | 17 | 1 | -4.6¢ | – |
+| ITF Women Monastir - R16 | 88 | 5% | +1.6¢ | 0% | 0 | 0 | – | – |
+| ITF Men Monastir 2 - R16 | 88 | 0% | +1.5¢ | 0% | 65 | 0 | – | – |
+| Russia - Kontinental Hockey League | 84 | 0% | +0.7¢ | 0% | 0 | 0 | – | – |
+| ITF Women Trnava - R16 | 72 | 1% | +1.4¢ | 0% | 0 | 0 | – | – |
+| ITF Women Lousada - R16 | 70 | 3% | +1.4¢ | 0% | 1 | 0 | – | – |
+| ATP Challenger Playford - R16 | 67 | 0% | +1.4¢ | 1% | 2,118 | 1 | +2.0¢ | – |
+| AFC - Champions League 2 | 66 | 0% | +1.2¢ | 0% | 2 | 0 | – | – |
 | UEFA - Champions League | 60 | 0% | +0.8¢ | 0% | 40,148 | 0 | – | – |
-| ATP Challenger Playford - R16 | 59 | 0% | +1.4¢ | 2% | 118 | 1 | +2.0¢ | – |
-| ITF Women Trnava - R16 | 58 | 2% | +1.4¢ | 0% | 0 | 0 | – | – |
-| AFC - Champions League 2 | 57 | 0% | +1.1¢ | 0% | 2 | 0 | – | – |
-| ITF Women Lousada - R16 | 54 | 4% | +1.4¢ | 0% | 0 | 0 | – | – |
-| Sweden - SHL | 50 | 0% | +0.9¢ | 0% | 0 | 0 | – | – |
-| ITF Women Kolkata - R16 | 46 | 0% | +1.8¢ | 0% | 97 | 0 | – | – |
-| ITF Men Madrid - R16 | 42 | 0% | +1.7¢ | 0% | 0 | 0 | – | – |
-| ATP Challenger Yokohama - R16 | 40 | 0% | +0.7¢ | 0% | 156 | 0 | – | – |
-| Lithuania - National Basketball League | 38 | 0% | +1.1¢ | 0% | 0 | 0 | – | – |
-| Mexico - Liga MX | 36 | 0% | +0.5¢ | 0% | 16,371 | 0 | – | – |
-| Colombia - Primera A | 36 | 0% | +0.6¢ | 0% | 1,230 | 0 | – | – |
-| ITF Men Bhopal - R16 | 27 | 0% | +2.3¢ | 4% | 236 | 1 | +6.2¢ | – |
+| Sweden - SHL | 60 | 0% | +0.9¢ | 0% | 0 | 0 | – | – |
+| ITF Women Kolkata - R16 | 58 | 0% | +1.8¢ | 0% | 100 | 0 | – | – |
+| ITF Men Madrid - R16 | 52 | 0% | +1.6¢ | 0% | 0 | 0 | – | – |
+| ATP Challenger Yokohama - R16 | 48 | 0% | +0.7¢ | 0% | 264 | 0 | – | – |
+| Lithuania - National Basketball League | 46 | 0% | +1.1¢ | 0% | 0 | 0 | – | – |
+| ITF Men Bhopal - R16 | 43 | 0% | +1.9¢ | 2% | 185 | 1 | +6.2¢ | – |
+| Mexico - Liga MX | 42 | 0% | +0.5¢ | 0% | 18,170 | 0 | – | – |
+| Colombia - Primera A | 39 | 0% | +0.6¢ | 0% | 1,239 | 0 | – | – |
+| ATP Challenger San Salvador - R16 | 28 | 0% | +0.9¢ | 0% | 718 | 0 | – | – |
 | England - Championship | 27 | 0% | +0.8¢ | 0% | 1,056 | 0 | – | – |
-| ATP Challenger San Salvador - R16 | 26 | 0% | +0.9¢ | 0% | 718 | 0 | – | – |
 | Italy - Serie B | 21 | 0% | +0.4¢ | 0% | 262 | 0 | – | – |
-| Indonesia - Super League | 18 | 0% | +0.4¢ | 0% | 2 | 0 | – | – |
+| Indonesia - Super League | 21 | 0% | +0.4¢ | 0% | 50 | 0 | – | – |
+| Ecuador - Serie A | 21 | 0% | +0.3¢ | 0% | 2,122 | 0 | – | – |
+| Brazil - Serie A | 21 | 0% | +0.4¢ | 0% | 1,395 | 0 | – | – |
+| Argentina - Liga Pro | 21 | 0% | +0.5¢ | 0% | 578 | 0 | – | – |
 | England - National League | 18 | 0% | +0.8¢ | 0% | 65 | 0 | – | – |
-| Ecuador - Serie A | 18 | 0% | +0.3¢ | 0% | 1,928 | 0 | – | – |
-| Brazil - Serie A | 18 | 0% | +0.3¢ | 0% | 1,745 | 0 | – | – |
-| Argentina - Liga Pro | 18 | 0% | +0.4¢ | 0% | 578 | 0 | – | – |
-| Puerto Rico - Superior Nacional Women | 12 | 8% | +1.7¢ | 0% | 202 | 0 | – | – |
-| Finland - SM Liiga | 12 | 0% | +1.0¢ | 0% | 0 | 0 | – | – |
+| Puerto Rico - Superior Nacional Women | 14 | 7% | +1.6¢ | 0% | 202 | 0 | – | – |
+| Finland - SM Liiga | 14 | 0% | +1.1¢ | 0% | 0 | 0 | – | – |
+| Bosnia and Herzegovina - Prvenstvo BIH | 14 | 100% | – | 0% | 0 | 0 | – | – |
+| Australia - WNBL | 14 | 100% | – | 0% | 0 | 0 | – | – |
+| Germany - DEL | 12 | 25% | +0.9¢ | 0% | 0 | 0 | – | – |
 | Europe - Euroleague | 12 | 0% | +0.7¢ | 0% | 658 | 0 | – | – |
-| Bosnia and Herzegovina - Prvenstvo BIH | 12 | 100% | – | 0% | 0 | 0 | – | – |
-| Australia - WNBL | 12 | 100% | – | 0% | 0 | 0 | – | – |
-| Germany - DEL | 10 | 30% | +0.9¢ | 0% | 0 | 0 | – | – |
+| England - League 1 | 12 | 0% | +0.4¢ | 0% | 8 | 0 | – | – |
+| ITF Women Ortisei - QF | 10 | 0% | +1.5¢ | 0% | 44 | 0 | – | – |
 | ATP Challenger Florianopolis - R1 | 10 | 0% | +0.9¢ | 0% | 9,022 | 0 | – | – |
-| England - League 1 | 9 | 0% | +0.4¢ | 0% | 8 | 0 | – | – |
+| ITF Women Florianopolis - R16 | 8 | 0% | +0.7¢ | 0% | 2 | 0 | – | – |
 | Egypt - Premier League | 6 | 0% | +0.1¢ | 0% | 404 | 0 | – | – |
 | Italy - Serie C Group B | 3 | 0% | +1.3¢ | 0% | 866 | 0 | – | – |
-| ITF Women Ortisei - QF | 2 | 0% | +2.0¢ | 0% | 0 | 0 | – | – |
 | Davis Cup - QF | 2 | 0% | +6.0¢ | 0% | 24,648 | 0 | – | – |
 
 ## How fast Kalshi follows Pinnacle (live mode)
