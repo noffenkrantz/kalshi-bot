@@ -1,10 +1,11 @@
-# OPTIONAL Render Blueprint for the always-on rain watcher (python -m bot watch). See SETUP.md >
-# Rain watcher. Research runs don't need it: they run on GitHub when you press Run.
-# Render dashboard: New > Blueprint > pick this repo. It asks for GITHUB_TOKEN once.
+# OPTIONAL Render Blueprint for the always-on server (python -m bot watch): the rain watcher and the
+# Pinnacle vs Kalshi gap tracker. See SETUP.md > Always-on server. Research runs don't need it:
+# they run on GitHub when you press Run.
+# Render dashboard: New > Blueprint > pick this repo. It asks for GITHUB_TOKEN and PINNAPI_KEY once.
 # Uses Render's default worker size (the smallest paid instance); background workers have no free tier.
 services:
   - type: worker
-    name: kalshi-rain-watcher
+    name: kalshi-watcher
     runtime: docker
     dockerfilePath: ./Dockerfile
     maxShutdownDelaySeconds: 60    # time to save and push results when Render restarts it
@@ -15,4 +16,6 @@ services:
         - requirements.txt
     envVars:
       - key: GITHUB_TOKEN          # fine-grained token: Contents read/write on this repo only
+        sync: false
+      - key: PINNAPI_KEY           # pinnapi.com key: turns on the gap tracker (leave empty for rain only)
         sync: false

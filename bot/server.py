@@ -1,6 +1,6 @@
 """The bot's always-on home (Render): one process that runs everything on its own clock.
 
-    python -m bot watch [--once] [--dry-run]   the rain watcher alone (what render.yaml runs)
+    python -m bot watch [--once] [--dry-run]   the rain watcher + the gap tracker (what render.yaml runs)
     python -m bot serve                    also a research run every 4 hours (not used by default:
                                            research runs on GitHub when you press Run)
 
@@ -13,7 +13,11 @@ Research runs use the clone's code (python -m bot ... inside the clone), so chan
 the repo take effect at the next run without redeploying. GitHub Actions stays as a backup:
 its workflow only runs if no run has happened for 5 hours.
 
-Needs GITHUB_TOKEN (fine-grained, Contents read/write on this repo) and ANTHROPIC_API_KEY.
+The gap tracker (bot/gaps.py, Pinnacle vs Kalshi sports prices) runs every [gaps] every_minutes
+when PINNAPI_KEY is set, also in the clone, and pushes only its own gap files.
+
+Needs GITHUB_TOKEN (fine-grained, Contents read/write on this repo); ANTHROPIC_API_KEY for
+research; PINNAPI_KEY for the gap tracker.
 """
 from __future__ import annotations
 
@@ -29,6 +33,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 from .config import ROOT, load_config
+from .gaps import last_snapshot, settings as gap_settings
 from .kalshi import KalshiClient, KalshiError
 from .nws import NWSClient
 from .util import iso, parse_time, utcnow
@@ -36,6 +41,7 @@ from .watcher import RainWatcher
 
 RUN_EVERY = timedelta(hours=4)
 RESULT_PATHS = ("data", "README.md", "REPORT.md", "LAGS.md", "site")
+GAP_PATHS = ("data/gap_snaps.jsonl", "data/gap_bets.jsonl", "data/gap_outcomes.jsonl", "data/gap_state.json", "GAPS.md")
 STEP_TIMEOUT = 40 * 60
 
 
@@ -123,6 +129,8 @@ class Supervisor:
         now = clock()
         self.last_push = self.last_pull = self.last_beat = now
         self.last_research_error: str | None = None
+        self.last_gaps_error: str | None = None
+        self.last_gaps_attempt: datetime | None = None
         self.stopping = False
 
     def log(self, msg: str) -> None:
@@ -169,9 +177,40 @@ class Supervisor:
         if self.sync and not self.dry_run:
             if not self.sync.push(f"journal: run {now:%Y-%m-%dT%H:%MZ}", RESULT_PATHS):
                 ok = False
-        self.watcher.reload(load_config(self.root / "config.toml"))
+        self.cfg = load_config(self.root / "config.toml")
+        self.watcher.reload(self.cfg)
         self.log(f"research run {'done' if ok else 'finished with problems'}")
         return ok
+
+    # -- gap tracker (Pinnacle vs Kalshi), on its own clock ------------------------------
+    def gaps_on(self) -> bool:
+        return bool(os.environ.get("PINNAPI_KEY")) and bool(gap_settings(self.cfg)["enabled"])
+
+    def gaps_due(self, now: datetime) -> bool:
+        last = last_snapshot(self.root)
+        every = timedelta(minutes=float(gap_settings(self.cfg)["every_minutes"]))
+        tried = self.last_gaps_attempt      # also in memory, so a snapshot that fails early isn't retried every tick
+        return (self.gaps_on() and (last is None or now - last >= every - timedelta(minutes=1))
+                and (tried is None or now - tried >= every - timedelta(minutes=1)))
+
+    def gaps_cycle(self, now: datetime) -> bool:
+        self.last_gaps_attempt = now
+        if self.sync:
+            self.sync.pull()
+        env = {**os.environ, "PYTHONUNBUFFERED": "1"}
+        env.pop("GITHUB_TOKEN", None)
+        try:
+            r = self.runner([sys.executable, "-m", "bot", "gaps"], cwd=str(self.root), env=env,
+                            capture_output=True, text=True, timeout=15 * 60)
+            out, code = (r.stdout or "") + (r.stderr or ""), r.returncode
+        except subprocess.TimeoutExpired:
+            out, code = "gap snapshot timed out after 15 minutes\n", 1
+        for line in out.strip().splitlines()[-8:]:
+            self.log(f"  gaps: {line[:200]}")
+        self.last_gaps_error = f"gap snapshot exited with {code}" if code else None
+        if self.sync and not self.dry_run:
+            self.sync.push(f"gaps: snapshot {now:%Y-%m-%dT%H:%MZ}", GAP_PATHS)
+        return code == 0
 
     # -- one loop pass -------------------------------------------------------------------------
     def step(self) -> None:
@@ -182,6 +221,13 @@ class Supervisor:
             except Exception as e:      # never let a bad run stop the server
                 self.last_research_error = f"{type(e).__name__}: {e}"
                 self.log(f"research run failed: {e}")
+                traceback.print_exc()
+        if self.gaps_due(now):
+            try:
+                self.gaps_cycle(now)
+            except Exception as e:      # never let the gap tracker stop the server
+                self.last_gaps_error = f"{type(e).__name__}: {e}"
+                self.log(f"gap snapshot failed: {e}")
                 traceback.print_exc()
         try:
             self.watcher.tick()
@@ -198,7 +244,9 @@ class Supervisor:
         s.update(host="render" if os.environ.get("RENDER") else "server", research=self.research,
                  last_research_run=iso(last) if last else None,
                  next_research_run=iso(last + RUN_EVERY) if last else None,
-                 last_research_error=self.last_research_error)
+                 last_research_error=self.last_research_error, gap_tracker=self.gaps_on(),
+                 last_gap_snapshot=iso(last_snapshot(self.root)) if last_snapshot(self.root) else None,
+                 last_gaps_error=self.last_gaps_error)
         return s
 
     def save_watcher(self, now: datetime) -> None:
@@ -216,7 +264,8 @@ class Supervisor:
                 self.last_push = self.last_beat = now
         if now - self.last_pull >= timedelta(minutes=w["pull_every_minutes"]) and not self.stopping:
             if self.sync.pull():
-                self.watcher.reload(load_config(self.root / "config.toml"))
+                self.cfg = load_config(self.root / "config.toml")
+                self.watcher.reload(self.cfg)
             self.last_pull = now
 
 
@@ -234,6 +283,7 @@ def main(research: bool = True, once: bool = False, dry_run: bool = False, say=p
     sup = Supervisor(root, sync, research=research and not dry_run, dry_run=dry_run, say=say)
     last = last_run_time(root)
     sup.log(f"server started: {'research every 4 hours + ' if sup.research else ''}rain watcher"
+            f"{' + gap tracker every ' + str(gap_settings(sup.cfg)['every_minutes']) + ' min' if sup.gaps_on() else ' (gap tracker off: no PINNAPI_KEY)'}"
             f"{' (dry run)' if dry_run else ''}; last research run {iso(last) if last else 'never'}")
 
     def _stop(*_):

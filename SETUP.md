@@ -50,12 +50,25 @@ Kalshi's daily "Will it rain in <city>?" markets resolve YES if the city's weath
 - **Pretend bets:** if YES is still cheap enough to leave an edge (settings under `[watcher]` in `config.toml`), it places a pretend $100 bet in the same simulated account. These show on the results page as "Rain watcher".
 - **No Claude, no tokens, no real money.** `data/watch_status.json` shows when the service last checked in (about hourly).
 
-**Setup (optional, $7 a month on Render):**
-1. Make a GitHub token: as above, but name it `kalshi-watcher` and give it **Contents: Read and write** (instead of Actions).
-2. In Render: **New** → **Blueprint** → pick `kalshi-bot`, branch `main`. It shows one service, `kalshi-rain-watcher`. Paste the token when it asks for `GITHUB_TOKEN`, then **Deploy Blueprint**.
-3. Its **Logs** should show `cloned noffenkrantz/kalshi-bot` and `server started`. Suspend or delete it in Render to stop it.
+It runs on the always-on server below, together with the gap tracker.
 
-**Controls:** to stop rain bets but keep watching, set `enabled = false` under `[watcher]` in `config.toml` (picked up within about 10 minutes). To test on live data without saving anything: **Actions** → **watcher-check** → **Run workflow**.
+## Gap tracker (Pinnacle vs Kalshi sports prices)
+
+Pinnacle is the sportsbook whose odds are hardest to beat. The gap tracker reads its odds through pinnapi.com, removes its margin to get a fair price, and compares that with Kalshi's prices for the same games (about 500 matched games across ~70 leagues at a time):
+
+- **Simulated bets:** when Kalshi sells an outcome for 3¢ or more below the fair price after Kalshi's fee, it records a simulated $10 bet. Never a real order.
+- **Scored by closing value:** each bet is compared with Pinnacle's last fair price before the game, which shows whether a gap was real within days, long before wins and losses can. Results also count once games settle.
+- **Report:** `GAPS.md`, by league. Data in `data/gap_*.jsonl`.
+- **Cost:** pinnapi's free trial allows 100 requests a day; one snapshot uses 4 (soccer, basketball, hockey, tennis), so it runs hourly. With a paid plan, lower `every_minutes` under `[gaps]` in `config.toml` and raise `daily_requests`.
+
+## Always-on server (Render)
+
+**Setup ($7 a month on Render):**
+1. Make a GitHub token: as above, but name it `kalshi-watcher` and give it **Contents: Read and write** (instead of Actions).
+2. In Render: **New** → **Blueprint** → pick `kalshi-bot`, branch `main`. It shows one service, `kalshi-watcher`. Paste the GitHub token for `GITHUB_TOKEN` and your pinnapi key for `PINNAPI_KEY`, then **Deploy Blueprint**.
+3. Its **Logs** should show `cloned noffenkrantz/kalshi-bot`, then `server started: rain watcher + gap tracker every 60 min`, then the first gap snapshot. Suspend or delete it in Render to stop it.
+
+**Controls:** to stop rain bets but keep watching, set `enabled = false` under `[watcher]` in `config.toml`; to stop the gap tracker, set `enabled = false` under `[gaps]` (both picked up within about 10 minutes). To test on live data without saving anything: **Actions** → **watcher-check** → **Run workflow**.
 
 ## Controls from your phone
 
@@ -96,7 +109,8 @@ Post-mortems count toward the daily research budget, at about $0.03–0.06 each.
 
 - **Claude:** roughly $0.10–0.15 per forecast. It stops starting new research after about $2 a day (`daily_budget_usd`), so about $60 a month at most, roughly 15 forecasts a day. Forecasts are reused for 8 hours, so most runs cost little.
 - **GitHub:** free. Private repos include 2,000 Actions minutes a month; each run uses about 3.
-- **Render (optional, rain watcher only):** $7 a month for the smallest always-on instance, on top of your Render plan.
+- **Render (optional, rain watcher and gap tracker):** $7 a month for the smallest always-on instance, on top of your Render plan.
+- **pinnapi (gap tracker):** free trial, 100 requests a day; paid plans from about $99 a month.
 
 ## Settings worth knowing (`config.toml`)
 
@@ -149,12 +163,13 @@ This needs a computer once. Install Claude Code (`curl -fsSL https://claude.ai/i
 | `bot/learning.py` | Topic scorecard and research-budget allocation |
 | `bot/postmortem.py`, `bot/lessons.py` | Post-mortems and the lessons file |
 | `bot/runner.py` | One full run: review settled bets → scan → research → decide → record simulated trades |
-| `bot/server.py` | The optional always-on Render service: runs the rain watcher and saves its results to GitHub |
+| `bot/server.py` | The optional always-on Render service: runs the rain watcher and the gap tracker and saves their results to GitHub |
+| `bot/gaps.py` | The gap tracker: Pinnacle (via pinnapi) vs Kalshi sports prices (`GAPS.md`) |
 | `bot/watcher.py`, `bot/nws.py` | The rain watcher and the National Weather Service reader |
 | `bot/lags.py` | The lag scanner (`LAGS.md`) |
 | `bot/journal.py` | Logs everything to `data/*.jsonl` |
 | `bot/report.py`, `bot/dashboard.py` | The scorecard (`REPORT.md`) and dashboard (`README.md`) |
-| `render.yaml`, `Dockerfile` | The optional Render service (rain watcher) |
+| `render.yaml`, `Dockerfile` | The optional Render service (rain watcher + gap tracker) |
 | `.github/workflows/bot.yml` | A run, started by the Run button or **Run workflow** |
 | `tests/` | Offline tests: `python -m pytest -q` |
 

@@ -72,7 +72,9 @@ heavy_rain_inches = 0.05
 min_edge = 0.04                    # lower than research bets: the outcome is already (almost) known
 max_buy_price = 0.97               # never pay more than this for YES
 
-[gaps]   # Pinnacle vs Kalshi gap tracker (simulated). Needs the PINNAPI_KEY secret; see GAPS.md
+[gaps]   # Pinnacle vs Kalshi gap tracker (simulated). Runs on the Render server when PINNAPI_KEY is set; see GAPS.md
+enabled = true
+every_minutes = 60           # minutes between snapshots on the Render server (4 sports x 24 a day fits the trial)
 sports = ["soccer", "basketball", "hockey", "tennis"]   # one pinnapi request each per snapshot
 daily_requests = 95          # pinnapi's free trial allows 100 a day
 min_edge = 0.03              # simulated bet when Kalshi is this much cheaper than Pinnacle's fair price, after fees

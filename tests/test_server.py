@@ -6,7 +6,7 @@ import subprocess
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from bot.server import RESULT_PATHS, Supervisor, last_run_time
+from bot.server import GAP_PATHS, RESULT_PATHS, Supervisor, last_run_time
 from bot.watcher import DEFAULTS
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -136,3 +136,29 @@ def test_watcher_heartbeat_and_status(tmp_path):
     assert sup.sync.pushes and sup.sync.pushes[-1][0].startswith("watcher:")
     status = (tmp_path / "data" / "watch_status.json").read_text()
     assert '"next_research_run": "2026-11-24T04:00:00+00:00"' in status
+
+
+def test_gap_tracker_runs_hourly_only_with_a_key(tmp_path, monkeypatch):
+    monkeypatch.delenv("PINNAPI_KEY", raising=False)
+    monkeypatch.setenv("GITHUB_TOKEN", "ghp-secret")
+    clock, runner = Clock(NOW), FakeRunner()
+    sup, _ = make(tmp_path, last_run=NOW - timedelta(hours=1), clock=clock, runner=runner)
+    sup.step()
+    assert runner.calls == [] and not sup.status(NOW)["gap_tracker"]          # no key: off
+    monkeypatch.setenv("PINNAPI_KEY", "pk-test")
+    sup.step()
+    assert [c[0] for c in runner.calls] == [["gaps"]]
+    env = runner.calls[0][2]
+    assert env["PINNAPI_KEY"] == "pk-test" and "GITHUB_TOKEN" not in env
+    assert sup.sync.pushes[-1] == (f"gaps: snapshot {NOW:%Y-%m-%dT%H:%MZ}", GAP_PATHS)
+    clock.t = NOW + timedelta(minutes=30)
+    sup.step()
+    assert len(runner.calls) == 1                                           # not again for an hour,
+    (tmp_path / "data" / "gap_state.json").write_text('{"day": "2026-11-24", "calls": 4, "last_run": "%s"}'
+                                                      % (NOW + timedelta(minutes=50)).isoformat())
+    clock.t = NOW + timedelta(minutes=61)
+    sup.step()
+    assert len(runner.calls) == 1                                           # counting from the last snapshot
+    clock.t = NOW + timedelta(minutes=111)
+    sup.step()
+    assert len(runner.calls) == 2 and sup.status(clock.t)["last_gap_snapshot"].startswith("2026-11-24T01:50")

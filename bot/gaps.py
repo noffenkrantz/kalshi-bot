@@ -41,7 +41,8 @@ from .util import iso, parse_time, to_float, utcnow
 PINNAPI = "https://pinnapi.com"
 SPORTS = {"soccer": 1, "tennis": 2, "basketball": 3, "hockey": 4, "football": 5, "baseball": 6,
           "rugby": 7, "mma": 8, "boxing": 9, "esports": 11}
-DEFAULTS = {"sports": ["soccer", "basketball", "hockey", "tennis"], "daily_requests": 95, "min_edge": 0.03,
+DEFAULTS = {"enabled": True, "every_minutes": 60, "sports": ["soccer", "basketball", "hockey", "tennis"],
+            "daily_requests": 95, "min_edge": 0.03,
             "max_edge": 0.15,
             "stake_usd": 10.0, "window_hours": 24, "min_minutes_before_start": 10, "match_score": 0.8,
             "skip_series": ["KXESOCCERGAME", "KXEBASKETBALLGAME", "KXEFOOTBALLGAME"]}
@@ -310,9 +311,18 @@ def budget(data: Path, now: datetime, limit: int) -> tuple[dict, int]:
     return state, max(0, limit - state["calls"])
 
 
-def save_budget(data: Path, state: dict, used: int) -> None:
+def save_budget(data: Path, state: dict, used: int, ran_at: datetime | None = None) -> None:
     state["calls"] = state.get("calls", 0) + used
+    if ran_at:
+        state["last_run"] = iso(ran_at)
     (data / "gap_state.json").write_text(json.dumps(state) + "\n")
+
+
+def last_snapshot(root: Path) -> datetime | None:
+    try:
+        return parse_time(json.loads((root / "data" / "gap_state.json").read_text()).get("last_run"))
+    except (OSError, ValueError):
+        return None
 
 
 # ==== one snapshot ==============================================================================
@@ -332,7 +342,7 @@ def snapshot(kalshi: KalshiClient, pinn: PinnAPI, root: Path, cfg: dict, now: da
             pin += pinnacle_games(pinn.prematch(SPORTS[s]))
         except PinnError as e:
             say(f"pinnapi {s}: {e}")
-    save_budget(data, state, pinn.calls - calls_before)
+    save_budget(data, state, pinn.calls - calls_before, ran_at=now)
     horizon = now + timedelta(hours=float(g["window_hours"]))
     pin = [p for p in pin if now < p["starts"] <= horizon]
     say(f"Pinnacle: {len(pin)} games starting in the next {g['window_hours']}h ({', '.join(sports)})")
