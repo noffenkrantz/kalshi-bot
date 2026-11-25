@@ -40,7 +40,7 @@ jobs:
         run: |
           git config user.name "kalshi-bot"
           git config user.email "kalshi-bot@users.noreply.github.com"
-          git add TEMPS.md data/temp_survey.json data/temp_markets.jsonl.gz 2>/dev/null || true
+          git add TEMPS.md data/temp_survey.json
           git commit -m "survey: daily temperature markets" || echo "nothing new"
           git pull --rebase --autostash || true
           git push || echo "push failed"
