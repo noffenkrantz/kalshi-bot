@@ -597,7 +597,7 @@ def probe(kalshi: KalshiClient, pinn: PinnAPI, root: Path, cfg: dict, say=print)
 def main(cfg: dict, root: Path, probe_only: bool = False, say=print) -> int:
     key = os.environ.get("PINNAPI_KEY")
     if not key:
-        say("PINNAPI_KEY is not set: add it as a repository secret (Settings > Secrets and variables > Actions).")
+        say("PINNAPI_KEY is not set: add it to the Render service's environment (or as a GitHub secret for manual runs).")
         return 0
     kalshi, pinn = KalshiClient("prod"), PinnAPI(key)
     if probe_only:
