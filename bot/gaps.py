@@ -553,6 +553,9 @@ def probe(kalshi: KalshiClient, pinn: PinnAPI, root: Path, cfg: dict, say=print)
             leagues[x["league"]] += 1
         say("   leagues: " + "; ".join(f"{k} ({v})" for k, v in sorted(leagues.items(), key=lambda kv: -kv[1])[:40]))
     say(f"\npinnapi requests used: {pinn.calls}")
+    (root / "data").mkdir(parents=True, exist_ok=True)
+    state, _ = budget(root / "data", utcnow(), int(g["daily_requests"]))
+    save_budget(root / "data", state, pinn.calls)       # (saved only if the run commits; GitHub probes don't)
     kev = kalshi_games(kalshi, game_series(root, g["skip_series"]), say=say)
     by_series = defaultdict(lambda: [0, 0, 0, []])
     for k in kev:
