@@ -1,10 +1,10 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 827 snapshots from 2026-11-25 16:44 to 2026-11-26 22:55 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 835 snapshots from 2026-11-25 16:44 to 2026-11-26 23:07 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-9,194 Kalshi prices compared with Pinnacle's. 96% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 1.0% could be bought at a 3¢+ edge after fees.
+9,203 Kalshi prices compared with Pinnacle's. 96% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 1.0% could be bought at a 3¢+ edge after fees.
 
 24 simulated bets so far; 24 have a closing price. Average edge when placed +3.8¢; average closing value +2.1¢ per contract. Kalshi moved toward Pinnacle's price after 17 of them and Pinnacle moved toward Kalshi's after 18. 16 have settled: 7 won, simulated profit $+55.59 on $519 staked.
 
@@ -46,10 +46,10 @@
 | Germany - DEL | 86 | 7% | +1.0¢ | 0% | 0 | 0 | – | – |
 | ITF Women Playford - QF | 80 | 0% | +0.9¢ | 0% | 73 | 0 | – | – |
 | ATP Challenger Yokohama - R16 | 78 | 0% | +0.8¢ | 3% | 380 | 0 | – | – |
+| ITF Men Hradec Kralove - QF | 77 | 0% | +1.4¢ | 1% | 5 | 1 | -4.3¢ | – |
 | England - League 1 | 75 | 0% | +0.5¢ | 0% | 281 | 0 | – | – |
 | Netherlands - Eerste Divisie | 72 | 0% | +0.8¢ | 0% | 0 | 0 | – | – |
 | ATP Challenger Hersonissos - R16 | 70 | 0% | +0.6¢ | 0% | 519 | 0 | – | – |
-| ITF Men Hradec Kralove - QF | 69 | 0% | +1.5¢ | 1% | 4 | 1 | -4.3¢ | – |
 | Czech Republic - Extraliga | 66 | 9% | +1.8¢ | 0% | 0 | 0 | – | – |
 | ATP Challenger Monastir - R16 | 64 | 6% | +1.5¢ | 0% | 76 | 0 | – | – |
 | ITF Men Heraklion - QF | 62 | 0% | +1.2¢ | 0% | 64 | 0 | – | – |
