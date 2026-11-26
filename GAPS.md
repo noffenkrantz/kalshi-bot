@@ -1,10 +1,10 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 563 snapshots from 2026-11-25 16:44 to 2026-11-26 15:52 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 564 snapshots from 2026-11-25 16:44 to 2026-11-26 16:01 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-6,996 Kalshi prices compared with Pinnacle's. 97% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 0.8% could be bought at a 3¢+ edge after fees.
+6,997 Kalshi prices compared with Pinnacle's. 97% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 0.8% could be bought at a 3¢+ edge after fees.
 
 16 simulated bets so far; 16 have a closing price. Average edge when placed +3.9¢; average closing value +2.6¢ per contract. Kalshi moved toward Pinnacle's price after 11 of them and Pinnacle moved toward Kalshi's after 14. 12 have settled: 4 won, simulated profit $+8.37 on $416 staked.
 
@@ -25,7 +25,7 @@
 | ITF Women Florianopolis - R16 | 248 | 4% | +1.4¢ | 2% | 98 | 1 | +3.1¢ | – |
 | ITF Women Lousada - R16 | 244 | 3% | +1.4¢ | 0% | 65 | 0 | – | – |
 | ITF Women Monastir - R16 | 241 | 8% | +1.7¢ | 0% | 0 | 1 | +1.3¢ | $-11.82 |
-| Sweden - SHL | 226 | 0% | +1.0¢ | 0% | 0 | 1 | +4.0¢ | – |
+| Sweden - SHL | 227 | 0% | +1.0¢ | 0% | 0 | 1 | +4.0¢ | – |
 | NHL | 222 | 0% | +0.5¢ | 0% | 9,713 | 0 | – | – |
 | NBA | 215 | 0% | +0.8¢ | 4% | 93,788 | 3 | +1.0¢ | $+153.28 |
 | AFC - Champions League 2 | 206 | 1% | +2.2¢ | 6% | 1,278 | 1 | +11.3¢ | $-0.28 |
@@ -81,7 +81,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 119 | 3.3 pts | 3.1¢ | 2.9¢ | 2.9¢ | 2.8¢ | 2.5¢ | 2.8¢ | 18% |
+| All | 120 | 3.3 pts | 3.1¢ | 2.9¢ | 2.8¢ | 2.8¢ | 2.5¢ | 2.8¢ | 18% |
 | AFC - Champions League 2 | 13 | 3.4 pts | 3.1¢ | 3.2¢ | 6.1¢ | 6.3¢ | 6.5¢ | 6.3¢ | 15% |
 | Lithuania - National Basketball League | 12 | 3.2 pts | 2.7¢ | 2.7¢ | 2.1¢ | 2.1¢ | 1.7¢ | 6.5¢ | 17% |
 | ITF Women Heraklion 2 - R16 | 10 | 3.7 pts | 4.0¢ | 3.8¢ | 3.5¢ | 3.3¢ | 2.5¢ | 2.5¢ | 0% |
