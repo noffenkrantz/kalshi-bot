@@ -53,3 +53,6 @@
 {"ts":"2026-11-26T08:47:26+00:00","kind":"followup","ticker":"KXRAIN-26NOV26-SDF","signal_detected":"2026-11-26T08:40:09+00:00","after_min":5,"yes_bid":0.99,"yes_ask":1.0,"market_open":true}
 {"ts":"2026-11-26T08:47:26+00:00","kind":"followup","ticker":"KXRAIN-26NOV26-ATL","signal_detected":"2026-11-26T08:40:09+00:00","after_min":5,"yes_bid":0.99,"yes_ask":1.0,"market_open":true}
 {"ts":"2026-11-26T09:04:42+00:00","kind":"followup","ticker":"KXRAIN-26NOV26-STL","signal_detected":"2026-11-26T08:04:34+00:00","after_min":60,"yes_bid":0.99,"yes_ask":1.0,"market_open":true}
+{"ts":"2026-11-26T09:07:15+00:00","kind":"followup","ticker":"KXRAIN-26NOV26-LEX","signal_detected":"2026-11-26T08:07:14+00:00","after_min":60,"yes_bid":0.99,"yes_ask":1.0,"market_open":true}
+{"ts":"2026-11-26T09:10:24+00:00","kind":"followup","ticker":"KXRAIN-26NOV26-SDF","signal_detected":"2026-11-26T08:40:09+00:00","after_min":30,"yes_bid":0.99,"yes_ask":1.0,"market_open":true}
+{"ts":"2026-11-26T09:10:24+00:00","kind":"followup","ticker":"KXRAIN-26NOV26-ATL","signal_detected":"2026-11-26T08:40:09+00:00","after_min":30,"yes_bid":0.99,"yes_ask":1.0,"market_open":true}
