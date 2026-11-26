@@ -1,10 +1,10 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 372 snapshots from 2026-11-25 16:44 to 2026-11-26 06:20 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 382 snapshots from 2026-11-25 16:44 to 2026-11-26 06:31 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-4,892 Kalshi prices compared with Pinnacle's. 99% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 0.4% could be bought at a 3¢+ edge after fees.
+4,903 Kalshi prices compared with Pinnacle's. 99% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 0.4% could be bought at a 3¢+ edge after fees.
 
 10 simulated bets so far; 10 have a closing price. Average edge when placed +4.1¢; average closing value +2.7¢ per contract. Kalshi moved toward Pinnacle's price after 8 of them and Pinnacle moved toward Kalshi's after 9. 5 have settled: 2 won, simulated profit $+152.46 on $272 staked.
 
@@ -14,9 +14,9 @@
 
 | League | Prices compared | No real market | Avg gap (Kalshi mid vs fair) | With a 3¢+ edge | Kalshi volume (24h, median) | Bets | Avg closing value | Profit |
 |---|---|---|---|---|---|---|---|---|
+| ITF Men Hradec Kralove - R16 | 343 | 0% | +3.5¢ | 0% | 1,180 | 1 | +5.3¢ | – |
 | NCAA | 342 | 0% | +1.2¢ | 0% | 1,500 | 0 | – | – |
-| ITF Men Hradec Kralove - R16 | 333 | 0% | +3.5¢ | 0% | 1,180 | 1 | +5.3¢ | – |
-| ITF Men Heraklion - R16 | 268 | 0% | +1.5¢ | 1% | 130 | 1 | -2.4¢ | – |
+| ITF Men Heraklion - R16 | 269 | 0% | +1.5¢ | 1% | 130 | 1 | -2.4¢ | – |
 | ITF Men Santa Cruz - R1 | 252 | 0% | +1.4¢ | 0% | 658 | 0 | – | – |
 | NHL | 222 | 0% | +0.5¢ | 0% | 9,713 | 0 | – | – |
 | NBA | 215 | 0% | +0.8¢ | 4% | 93,788 | 3 | +1.0¢ | $+153.28 |
