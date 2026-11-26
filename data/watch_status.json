@@ -1,11 +1,11 @@
 {
- "updated": "2026-11-26T08:04:35+00:00",
+ "updated": "2026-11-26T08:07:23+00:00",
  "markets_open": 42,
  "markets_in_play": 42,
  "stations_known": 37,
- "signals_today": 3,
+ "signals_today": 4,
  "bets_today": 0,
- "station_checks_since_start": 2710,
+ "station_checks_since_start": 2762,
  "recent_errors": [
   "2026-11-26T05:08:44+00:00 Kalshi: GET /markets -> HTTP 429: {\"error\":{\"code\":\"too_many_requests\",\"message\":\"too many requests\"}}",
   "2026-11-26T05:09:15+00:00 Kalshi: GET /markets -> HTTP 429: {\"error\":{\"code\":\"too_many_requests\",\"message\":\"too many requests\"}}",
