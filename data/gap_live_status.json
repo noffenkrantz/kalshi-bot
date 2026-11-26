@@ -1,19 +1,17 @@
 {
- "ts": "2026-11-26T19:23:10+00:00",
+ "ts": "2026-11-26T19:33:11+00:00",
  "mode": "live",
  "running_since": "2026-11-26T03:45:07+00:00",
  "paired_games": 99,
  "paired_prices": 230,
- "polls_ok": 67748,
- "last_poll_ok": "2026-11-26T19:23:10+00:00",
- "pinnacle_changes_seen": 260395,
- "moves_logged": 71,
- "moves_waiting": 2,
+ "polls_ok": 68546,
+ "last_poll_ok": "2026-11-26T19:33:09+00:00",
+ "pinnacle_changes_seen": 264083,
+ "moves_logged": 73,
+ "moves_waiting": 0,
  "bets_placed": 9,
- "pinnapi_requests": 67878,
- "slowed_sports": [
-  "soccer"
- ],
+ "pinnapi_requests": 68676,
+ "slowed_sports": [],
  "kalshi_batch_reads": true,
  "last_error": "2026-11-26T18:34:30+00:00 Kalshi: GET /markets -> HTTP 429: {\"error\":{\"code\":\"too_many_requests\",\"message\":\"too many requests\"}}",
  "settings": {
