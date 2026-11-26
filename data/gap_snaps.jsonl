@@ -5236,3 +5236,22 @@
 {"ts":"2026-11-26T07:07:05+00:00","ticker":"KXAFCCL2GAME-26NOV26TAMSHS-SHS","league":"AFC - Champions League 2","fair":0.6919,"bid":0.73,"ask":0.74,"vol24":10658}
 {"ts":"2026-11-26T07:09:06+00:00","ticker":"KXITFMATCH-26NOV26IANLOM-LOM","league":"ITF Men Bhopal - R16","fair":0.5383,"bid":0.5,"ask":0.51,"vol24":822}
 {"ts":"2026-11-26T07:09:06+00:00","ticker":"KXITFWMATCH-26NOV26SHAPAN-SHA","league":"ITF Women Heraklion 2 - R16","fair":0.5935,"bid":0.51,"ask":0.53,"vol24":748}
+{"ts":"2026-11-26T07:09:37+00:00","ticker":"KXITFMATCH-26NOV26IANLOM-LOM","league":"ITF Men Bhopal - R16","fair":0.5383,"bid":0.5,"ask":0.53,"vol24":822}
+{"ts":"2026-11-26T07:09:37+00:00","ticker":"KXITFWMATCH-26NOV26SHAPAN-SHA","league":"ITF Women Heraklion 2 - R16","fair":0.5935,"bid":0.51,"ask":0.52,"vol24":748}
+{"ts":"2026-11-26T07:10:08+00:00","ticker":"KXITFMATCH-26NOV26IANLOM-LOM","league":"ITF Men Bhopal - R16","fair":0.5383,"bid":0.5,"ask":0.52,"vol24":822}
+{"ts":"2026-11-26T07:10:08+00:00","ticker":"KXITFWMATCH-26NOV26SHAPAN-SHA","league":"ITF Women Heraklion 2 - R16","fair":0.5935,"bid":0.51,"ask":0.53,"vol24":748}
+{"ts":"2026-11-26T07:12:42+00:00","ticker":"KXITFMATCH-26NOV26IANLOM-LOM","league":"ITF Men Bhopal - R16","fair":0.5383,"bid":0.5,"ask":0.53,"vol24":822}
+{"ts":"2026-11-26T07:12:42+00:00","ticker":"KXITFWMATCH-26NOV26SHAPAN-SHA","league":"ITF Women Heraklion 2 - R16","fair":0.5935,"bid":0.52,"ask":0.53,"vol24":748}
+{"ts":"2026-11-26T07:12:58+00:00","ticker":"KXITFWMATCH-26NOV26SHAPAN-SHA","league":"ITF Women Heraklion 2 - R16","fair":0.5227,"bid":0.53,"ask":0.54,"vol24":748}
+{"ts":"2026-11-26T07:13:20+00:00","ticker":"KXITFMATCH-26NOV26MICHIG-HIG","league":"ITF Men Hradec Kralove - R16","fair":0.3713,"bid":0.35,"ask":0.37,"vol24":1526}
+{"ts":"2026-11-26T07:13:42+00:00","ticker":"KXITFMATCH-26NOV26IANLOM-LOM","league":"ITF Men Bhopal - R16","fair":0.5383,"bid":0.51,"ask":0.52,"vol24":822}
+{"ts":"2026-11-26T07:13:42+00:00","ticker":"KXITFMATCH-26NOV26MICHIG-HIG","league":"ITF Men Hradec Kralove - R16","fair":0.3713,"bid":0.35,"ask":0.36,"vol24":1526}
+{"ts":"2026-11-26T07:14:16+00:00","ticker":"KXITFMATCH-26NOV26IANLOM-LOM","league":"ITF Men Bhopal - R16","fair":0.5383,"bid":0.5,"ask":0.53,"vol24":822}
+{"ts":"2026-11-26T07:14:16+00:00","ticker":"KXITFMATCH-26NOV26MICHIG-HIG","league":"ITF Men Hradec Kralove - R16","fair":0.3713,"bid":0.35,"ask":0.37,"vol24":1526}
+{"ts":"2026-11-26T07:15:14+00:00","ticker":"KXITFMATCH-26NOV26MICHIG-HIG","league":"ITF Men Hradec Kralove - R16","fair":0.3713,"bid":0.35,"ask":0.36,"vol24":1526}
+{"ts":"2026-11-26T07:15:14+00:00","ticker":"KXITFMATCH-26NOV26IANLOM-LOM","league":"ITF Men Bhopal - R16","fair":0.5383,"bid":0.51,"ask":0.53,"vol24":1243}
+{"ts":"2026-11-26T07:15:14+00:00","ticker":"KXITFWMATCH-26NOV26SHAPAN-SHA","league":"ITF Women Heraklion 2 - R16","fair":0.5205,"bid":0.53,"ask":0.54,"vol24":1643}
+{"ts":"2026-11-26T07:16:33+00:00","ticker":"KXITFMATCH-26NOV26MICHIG-HIG","league":"ITF Men Hradec Kralove - R16","fair":0.3713,"bid":0.35,"ask":0.37,"vol24":1526}
+{"ts":"2026-11-26T07:17:04+00:00","ticker":"KXITFMATCH-26NOV26MICHIG-HIG","league":"ITF Men Hradec Kralove - R16","fair":0.3713,"bid":0.35,"ask":0.36,"vol24":1526}
+{"ts":"2026-11-26T07:17:58+00:00","ticker":"KXITFWMATCH-26NOV26SHAPAN-SHA","league":"ITF Women Heraklion 2 - R16","fair":0.5248,"bid":0.53,"ask":0.54,"vol24":1643}
+{"ts":"2026-11-26T07:19:06+00:00","ticker":"KXITFMATCH-26NOV26MICHIG-HIG","league":"ITF Men Hradec Kralove - R16","fair":0.3713,"bid":0.35,"ask":0.37,"vol24":1526}
