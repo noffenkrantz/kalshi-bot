@@ -73,8 +73,8 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 92 | 3.3 pts | 3.2¢ | 3.1¢ | 2.7¢ | 2.7¢ | 2.4¢ | 2.8¢ | 17% |
-| AFC - Champions League 2 | 11 | 3.5 pts | 3.2¢ | 3.4¢ | 2.7¢ | 3.3¢ | 3.5¢ | 3.4¢ | 18% |
+| All | 94 | 3.3 pts | 3.2¢ | 3.1¢ | 2.7¢ | 2.7¢ | 2.4¢ | 2.8¢ | 17% |
+| AFC - Champions League 2 | 12 | 3.4 pts | 3.1¢ | 3.3¢ | 2.7¢ | 3.2¢ | 3.4¢ | 3.2¢ | 17% |
 | ITF Women Heraklion 2 - R16 | 10 | 3.7 pts | 4.0¢ | 3.8¢ | 3.5¢ | 3.3¢ | 2.5¢ | 2.5¢ | 0% |
 | ITF Men Heraklion - R16 | 7 | 5.5 pts | 5.5¢ | 5.3¢ | 3.8¢ | 4.3¢ | 4.0¢ | 1.9¢ | 29% |
 | ITF Women Trnava - R16 | 7 | 3.4 pts | 3.2¢ | 2.8¢ | 2.1¢ | 1.9¢ | 1.6¢ | 1.2¢ | 14% |
@@ -84,8 +84,8 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 | ITF Women Ortisei - QF | 4 | 3.3 pts | 3.1¢ | 3.0¢ | 2.9¢ | 2.5¢ | 2.4¢ | 2.6¢ | 0% |
 | ITF Women Monastir - R16 | 4 | 4.1 pts | 6.5¢ | 6.1¢ | 5.9¢ | 5.7¢ | 5.2¢ | 5.9¢ | 0% |
 | ITF Women Florianopolis - R16 | 4 | 2.5 pts | 1.3¢ | 1.3¢ | 1.1¢ | 1.7¢ | 1.4¢ | 1.5¢ | 50% |
+| Sweden - SHL | 4 | 3.5 pts | 3.7¢ | 3.7¢ | 3.6¢ | 2.5¢ | 2.4¢ | 2.0¢ | 0% |
 | USA - American Hockey League | 3 | 2.6 pts | 3.4¢ | 3.4¢ | 3.0¢ | 2.7¢ | 1.4¢ | 1.4¢ | 0% |
-| NBA | 3 | 4.4 pts | 1.4¢ | 1.1¢ | 1.1¢ | 1.0¢ | 1.2¢ | 0.7¢ | 67% |
 
 ## Latest simulated bets
 
