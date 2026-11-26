@@ -79,16 +79,16 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 98 | 3.3 pts | 3.2¢ | 3.1¢ | 3.1¢ | 3.0¢ | 2.8¢ | 3.1¢ | 16% |
+| All | 99 | 3.3 pts | 3.2¢ | 3.1¢ | 3.1¢ | 3.1¢ | 2.8¢ | 3.1¢ | 16% |
 | AFC - Champions League 2 | 13 | 3.4 pts | 3.1¢ | 3.2¢ | 6.1¢ | 6.3¢ | 6.5¢ | 6.3¢ | 15% |
 | ITF Women Heraklion 2 - R16 | 10 | 3.7 pts | 4.0¢ | 3.8¢ | 3.5¢ | 3.3¢ | 2.5¢ | 2.5¢ | 0% |
 | ITF Men Heraklion - R16 | 7 | 5.5 pts | 5.5¢ | 5.3¢ | 3.8¢ | 4.3¢ | 4.0¢ | 1.9¢ | 29% |
 | ITF Women Trnava - R16 | 7 | 3.4 pts | 3.2¢ | 2.8¢ | 2.1¢ | 1.9¢ | 1.6¢ | 1.2¢ | 14% |
 | NCAA | 6 | 2.3 pts | 2.2¢ | 2.2¢ | 2.0¢ | 1.9¢ | 1.9¢ | 1.5¢ | 17% |
 | ATP Challenger Playford - R16 | 5 | 2.3 pts | 1.4¢ | 1.5¢ | 1.3¢ | 1.6¢ | 1.0¢ | 1.0¢ | 40% |
+| Lithuania - National Basketball League | 5 | 2.9 pts | 2.6¢ | 2.7¢ | 2.0¢ | 2.3¢ | 2.1¢ | 13.6¢ | 0% |
 | ITF Men Bhopal - R16 | 4 | 2.7 pts | 3.8¢ | 3.9¢ | 3.2¢ | 2.9¢ | 2.3¢ | 2.1¢ | 0% |
 | ITF Women Ortisei - QF | 4 | 3.3 pts | 3.1¢ | 3.0¢ | 2.9¢ | 2.5¢ | 2.4¢ | 2.6¢ | 0% |
-| Lithuania - National Basketball League | 4 | 2.9 pts | 2.9¢ | 3.0¢ | 2.0¢ | 2.0¢ | 1.8¢ | 16.1¢ | 0% |
 | ITF Women Monastir - R16 | 4 | 4.1 pts | 6.5¢ | 6.1¢ | 5.9¢ | 5.7¢ | 5.2¢ | 5.9¢ | 0% |
 | ITF Women Florianopolis - R16 | 4 | 2.5 pts | 1.3¢ | 1.3¢ | 1.1¢ | 1.7¢ | 1.4¢ | 1.5¢ | 50% |
 | Sweden - SHL | 4 | 3.5 pts | 3.7¢ | 3.7¢ | 3.6¢ | 2.5¢ | 2.4¢ | 2.0¢ | 0% |
