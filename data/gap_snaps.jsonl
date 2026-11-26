@@ -7182,3 +7182,6 @@
 {"ts":"2026-11-26T16:51:41+00:00","ticker":"KXWKBLGAME-26NOV270500SHIBLU-SHI","league":"Korea - WKBL","fair":0.5809,"bid":0.08,"ask":0.9,"vol24":0}
 {"ts":"2026-11-26T16:51:41+00:00","ticker":"KXWKBLGAME-26NOV270500SHIBLU-BLU","league":"Korea - WKBL","fair":0.4191,"bid":0.08,"ask":0.9,"vol24":0}
 {"ts":"2026-11-26T16:53:54+00:00","ticker":"KXBLEAGUEONEGAME-26NOV270505GIFYOK-GIF","league":"Japan - B.League One","fair":0.1119,"bid":0.05,"ask":0.09,"vol24":28}
+{"ts":"2026-11-26T17:06:56+00:00","ticker":"KXITFMATCH-26NOV25SVEMON-SVE","league":"ITF Men Santa Cruz - R1","fair":0.0809,"bid":0.07,"ask":0.1,"vol24":2947}
+{"ts":"2026-11-26T17:07:57+00:00","ticker":"KXBLEAGUEONEGAME-26NOV270505GIFYOK-GIF","league":"Japan - B.League One","fair":0.1119,"bid":0.05,"ask":0.11,"vol24":28}
+{"ts":"2026-11-26T17:10:34+00:00","ticker":"KXBLEAGUEONEGAME-26NOV270505GIFYOK-GIF","league":"Japan - B.League One","fair":0.1126,"bid":0.05,"ask":0.09,"vol24":28}
