@@ -5823,3 +5823,6 @@
 {"ts":"2026-11-26T08:51:35+00:00","ticker":"KXSHLGAME-26NOV261300ROGSKE-ROG","league":"Sweden - SHL","fair":0.2833,"bid":0.25,"ask":0.29,"vol24":33}
 {"ts":"2026-11-26T08:53:08+00:00","ticker":"KXAFCCL2GAME-26NOV26TAMSHS-SHS","league":"AFC - Champions League 2","fair":0.7043,"bid":0.68,"ask":0.76,"vol24":10973}
 {"ts":"2026-11-26T08:55:17+00:00","ticker":"KXITFWMATCH-26NOV26FALKOV-KOV","league":"ITF Women Trnava - R16","fair":0.5924,"bid":0.44,"ask":0.62,"vol24":931}
+{"ts":"2026-11-26T09:00:24+00:00","ticker":"KXITFWMATCH-26NOV26FALKOV-KOV","league":"ITF Women Trnava - R16","fair":0.5924,"bid":0.26,"ask":0.62,"vol24":931}
+{"ts":"2026-11-26T09:02:59+00:00","ticker":"KXAFCCL2GAME-26NOV26TAMSHS-SHS","league":"AFC - Champions League 2","fair":0.6689,"bid":0.68,"ask":0.76,"vol24":10973}
+{"ts":"2026-11-26T09:03:04+00:00","ticker":"KXAFCCL2GAME-26NOV26TAMSHS-SHS","league":"AFC - Champions League 2","fair":0.6697,"bid":0.68,"ask":0.76,"vol24":10973}
