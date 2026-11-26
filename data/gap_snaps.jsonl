@@ -7198,3 +7198,6 @@
 {"ts":"2026-11-26T17:29:19+00:00","ticker":"KXITFWMATCH-26NOV27MATALL-ALL","league":"ITF Women Heraklion 2 - QF","fair":0.1897,"bid":0.15,"ask":0.17,"vol24":115}
 {"ts":"2026-11-26T17:33:26+00:00","ticker":"KXITFMATCH-26NOV25SVEMON-SVE","league":"ITF Men Santa Cruz - R1","fair":0.0809,"bid":0.07,"ask":0.1,"vol24":4923}
 {"ts":"2026-11-26T17:33:33+00:00","ticker":"KXITFWMATCH-26NOV27MATALL-ALL","league":"ITF Women Heraklion 2 - QF","fair":0.1795,"bid":0.15,"ask":0.17,"vol24":115}
+{"ts":"2026-11-26T17:38:00+00:00","ticker":"KXITFMATCH-26NOV25SVEMON-SVE","league":"ITF Men Santa Cruz - R1","fair":0.0809,"bid":0.08,"ask":0.1,"vol24":4923}
+{"ts":"2026-11-26T17:38:31+00:00","ticker":"KXITFMATCH-26NOV25SVEMON-SVE","league":"ITF Men Santa Cruz - R1","fair":0.0809,"bid":0.07,"ask":0.1,"vol24":4923}
+{"ts":"2026-11-26T17:45:41+00:00","ticker":"KXSHLGAME-26NOV261300ROGSKE-ROG","league":"Sweden - SHL","fair":0.338,"bid":0.3,"ask":0.33,"vol24":393}
