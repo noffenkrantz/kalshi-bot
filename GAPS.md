@@ -1,10 +1,10 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 745 snapshots from 2026-11-25 16:44 to 2026-11-26 20:59 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 747 snapshots from 2026-11-25 16:44 to 2026-11-26 21:21 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-8,389 Kalshi prices compared with Pinnacle's. 96% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.4¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
+8,391 Kalshi prices compared with Pinnacle's. 96% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.4¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
 
 23 simulated bets so far; 23 have a closing price. Average edge when placed +3.9¢; average closing value +2.4¢ per contract. Kalshi moved toward Pinnacle's price after 17 of them and Pinnacle moved toward Kalshi's after 18. 14 have settled: 6 won, simulated profit $+59.38 on $516 staked.
 
@@ -39,8 +39,8 @@
 | USA - American Hockey League | 135 | 0% | +1.0¢ | 1% | 39 | 1 | +4.7¢ | $-0.82 |
 | ITF Women Playford - R16 | 120 | 0% | +0.8¢ | 0% | 64 | 0 | – | – |
 | ITF Women Ortisei - QF | 108 | 4% | +1.1¢ | 0% | 216 | 0 | – | – |
+| Japan - B.League One | 100 | 0% | +3.0¢ | 13% | 28 | 2 | -1.7¢ | – |
 | ATP Challenger Playford - R16 | 100 | 0% | +1.3¢ | 1% | 3,098 | 1 | +2.6¢ | $+0.00 |
-| Japan - B.League One | 99 | 0% | +3.0¢ | 13% | 28 | 2 | -1.7¢ | – |
 | Finland - SM Liiga | 98 | 0% | +1.0¢ | 0% | 0 | 0 | – | – |
 | Brazil - Serie A | 84 | 0% | +0.8¢ | 0% | 990 | 0 | – | – |
 | ATP Challenger Yokohama - R16 | 78 | 0% | +0.8¢ | 3% | 380 | 0 | – | – |
@@ -64,9 +64,9 @@
 | Singapore - Premier League | 30 | 0% | +1.1¢ | 0% | 2 | 0 | – | – |
 | England - Championship | 30 | 0% | +0.7¢ | 0% | 914 | 0 | – | – |
 | Australia - WNBL | 30 | 60% | +1.2¢ | 0% | 0 | 0 | – | – |
+| ITF Men Hradec Kralove - QF | 29 | 0% | +1.4¢ | 3% | 3 | 1 | +4.9¢ | – |
 | Israel - National League | 28 | 100% | – | 0% | 0 | 0 | – | – |
 | ITF Men Monastir 2 - QF | 28 | 0% | +1.3¢ | 0% | 0 | 0 | – | – |
-| ITF Men Hradec Kralove - QF | 28 | 0% | +1.4¢ | 4% | 3 | 1 | +4.9¢ | – |
 | ATP Challenger Yokohama - QF | 28 | 0% | +0.8¢ | 0% | 98 | 0 | – | – |
 | Thailand - League 1 | 27 | 0% | +1.0¢ | 0% | 0 | 0 | – | – |
 | Ecuador - Serie A | 27 | 0% | +0.3¢ | 0% | 1,752 | 0 | – | – |
