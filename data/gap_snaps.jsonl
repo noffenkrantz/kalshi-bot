@@ -5583,3 +5583,6 @@
 {"ts":"2026-11-26T08:13:15+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.3409,"bid":0.28,"ask":0.38,"vol24":2169}
 {"ts":"2026-11-26T08:13:47+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.3424,"bid":0.28,"ask":0.44,"vol24":2169}
 {"ts":"2026-11-26T08:15:15+00:00","ticker":"KXAFCCL2GAME-26NOV26TAMSHS-SHS","league":"AFC - Champions League 2","fair":0.7074,"bid":0.74,"ask":0.76,"vol24":10973}
+{"ts":"2026-11-26T08:32:50+00:00","ticker":"KXAFCCL2GAME-26NOV26TAMSHS-SHS","league":"AFC - Champions League 2","fair":0.6862,"bid":0.68,"ask":0.76,"vol24":10973}
+{"ts":"2026-11-26T08:32:50+00:00","ticker":"KXITFWMATCH-26NOV26FALKOV-KOV","league":"ITF Women Trnava - R16","fair":0.5924,"bid":0.49,"ask":0.62,"vol24":931}
+{"ts":"2026-11-26T08:38:31+00:00","ticker":"KXITFMATCH-26NOV26MICHIG-HIG","league":"ITF Men Hradec Kralove - R16","fair":0.3683,"bid":0.11,"ask":0.44,"vol24":1526}
