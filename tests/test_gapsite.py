@@ -114,3 +114,12 @@ def test_verdict_reads():
     assert verdict(old_bad, [])["state"] == "promising"          # reads the latest 50 bets
     done = [{"profit": 1.0, "result": "yes", "side": "yes"}] * 400
     assert verdict(good, done)["profit_state"] == "ahead"
+
+
+def test_page_carries_its_design_version(tmp_path):
+    from bot.gapsite import page_version
+    setup(tmp_path)
+    d = write_site(tmp_path, CFG, NOW)
+    assert d["page"] == page_version() and len(d["page"]) == 10
+    assert json.loads((tmp_path / "site" / "gaps.json").read_text())["page"] == d["page"]
+    assert f'"page":"{d["page"]}"' in (tmp_path / "site" / "index.html").read_text()

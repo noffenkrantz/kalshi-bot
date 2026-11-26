@@ -295,6 +295,10 @@ if (onPages && D.repo) {
       const r = await fetch(url(), {cache: 'no-store'});
       if (!r.ok) throw new Error(String(r.status));
       const nd = await r.json();
+      if (nd.page && D.page && nd.page !== D.page && !location.search.includes('v=' + nd.page)) {   // a new page design is out
+        location.replace(location.pathname + '?v=' + nd.page);
+        return;
+      }
       if (nd.updated > D.updated) { D = nd; render(); state.textContent = manual ? 'Loaded the latest results.' : ''; }
       else if (manual) state.textContent = `Already up to date (results from ${when(D.updated)}).`;
     } catch (e) { if (manual) state.textContent = 'Couldn’t reach GitHub just now. Try again in a minute.'; }

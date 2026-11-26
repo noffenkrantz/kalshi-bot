@@ -175,9 +175,16 @@ def render(data: dict) -> str:
     return TEMPLATE.read_text().replace("/*__DATA__*/null", payload, 1)
 
 
+def page_version() -> str:
+    """A short fingerprint of the page design. A page that finds newer data with a different
+    fingerprint reloads itself, so a phone's saved copy of an old design doesn't linger."""
+    import hashlib
+    return hashlib.sha1(TEMPLATE.read_bytes()).hexdigest()[:10]
+
+
 def write_site(root: Path, cfg: dict, now: datetime | None = None, page: bool = True) -> dict:
     """site/gaps.json always; site/index.html too unless page=False (a new page means a Pages deploy)."""
-    data = build_data(root, cfg, now)
+    data = {**build_data(root, cfg, now), "page": page_version()}
     out = Path(root) / "site"
     out.mkdir(parents=True, exist_ok=True)
     (out / "gaps.json").write_text(json.dumps(data, separators=(",", ":"), default=str) + "\n")
