@@ -3040,3 +3040,341 @@
 {"ts":"2026-11-26T00:57:37+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.3436,"bid":0.32,"ask":0.37,"vol24":810}
 {"ts":"2026-11-26T00:58:11+00:00","ticker":"KXITFMATCH-26NOV26IANLOM-LOM","league":"ITF Men Bhopal - R16","fair":0.5384,"bid":0.52,"ask":0.53,"vol24":378}
 {"ts":"2026-11-26T00:58:39+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.3436,"bid":0.33,"ask":0.37,"vol24":810}
+{"ts":"2026-11-26T01:08:53+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25SWEJON-JON","league":"ATP Challenger Playford - R16","fair":0.1965,"bid":0.18,"ask":0.19,"vol24":3498}
+{"ts":"2026-11-26T01:08:53+00:00","ticker":"KXITFMATCH-26NOV26MICHIG-HIG","league":"ITF Men Hradec Kralove - R16","fair":0.4133,"bid":0.35,"ask":0.38,"vol24":1281}
+{"ts":"2026-11-26T01:08:53+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.3436,"bid":0.34,"ask":0.37,"vol24":810}
+{"ts":"2026-11-26T01:08:53+00:00","ticker":"KXITFMATCH-26NOV26IANLOM-LOM","league":"ITF Men Bhopal - R16","fair":0.5384,"bid":0.52,"ask":0.53,"vol24":378}
+{"ts":"2026-11-26T01:08:53+00:00","ticker":"KXITFWMATCH-26NOV26FALKOV-KOV","league":"ITF Women Trnava - R16","fair":0.5915,"bid":0.57,"ask":0.6,"vol24":926}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXAFCCL2GAME-26NOV26TAMSHS-TIE","league":"AFC - Champions League 2","fair":0.1819,"bid":0.15,"ask":0.17,"vol24":738}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXAFCCL2GAME-26NOV26TAMSHS-TAM","league":"AFC - Champions League 2","fair":0.1088,"bid":0.1,"ask":0.11,"vol24":1273}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXAFCCL2GAME-26NOV26TAMSHS-SHS","league":"AFC - Champions League 2","fair":0.7093,"bid":0.74,"ask":0.75,"vol24":8270}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXAFCCL2GAME-26NOV26KUCCRO3E4A-TIE","league":"AFC - Champions League 2","fair":0.2276,"bid":0.21,"ask":0.22,"vol24":443}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXAFCCL2GAME-26NOV26KUCCRO3E4A-KUC","league":"AFC - Champions League 2","fair":0.6059,"bid":0.61,"ask":0.63,"vol24":1153}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXAFCCL2GAME-26NOV26KUCCRO3E4A-CRO3E4A","league":"AFC - Champions League 2","fair":0.1664,"bid":0.14,"ask":0.16,"vol24":55}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXAFCCL2GAME-26NOV26PAULIO-TIE","league":"AFC - Champions League 2","fair":0.2704,"bid":0.25,"ask":0.26,"vol24":27}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXAFCCL2GAME-26NOV26PAULIO-PAU","league":"AFC - Champions League 2","fair":0.3845,"bid":0.36,"ask":0.38,"vol24":145}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXAFCCL2GAME-26NOV26PAULIO-LIO","league":"AFC - Champions League 2","fair":0.3451,"bid":0.34,"ask":0.35,"vol24":58}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXAHLGAME-26NOV252200ABBHEN-HEN","league":"USA - American Hockey League","fair":0.6033,"bid":0.6,"ask":0.61,"vol24":115}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXAHLGAME-26NOV252200ABBHEN-ABB","league":"USA - American Hockey League","fair":0.3967,"bid":0.38,"ask":0.4,"vol24":5}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXAHLGAME-26NOV252200COASJB-SJB","league":"USA - American Hockey League","fair":0.514,"bid":0.51,"ask":0.53,"vol24":729}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXAHLGAME-26NOV252200COASJB-COA","league":"USA - American Hockey League","fair":0.486,"bid":0.47,"ask":0.49,"vol24":50}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26KELROM-ROM","league":"ATP Challenger Monastir - R16","fair":0.6372,"bid":0.64,"ask":0.65,"vol24":4}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26KELROM-KEL","league":"ATP Challenger Monastir - R16","fair":0.3628,"bid":0.35,"ask":0.36,"vol24":35}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26PENXIL-XIL","league":"ATP Challenger Hersonissos - R16","fair":0.5798,"bid":0.57,"ask":0.58,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26PENXIL-PEN","league":"ATP Challenger Hersonissos - R16","fair":0.4202,"bid":0.42,"ask":0.43,"vol24":518}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26PANBAR-PAN","league":"ATP Challenger Monastir - R16","fair":0.3893,"bid":0.37,"ask":0.38,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26PANBAR-BAR","league":"ATP Challenger Monastir - R16","fair":0.6107,"bid":0.61,"ask":0.63,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26BONSCA-SCA","league":"ATP Challenger Monastir - R16","fair":0.2045,"bid":0.17,"ask":0.18,"vol24":80}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26BONSCA-BON","league":"ATP Challenger Monastir - R16","fair":0.7955,"bid":0.81,"ask":0.82,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26GUNWIS-WIS","league":"ATP Challenger Ankara - R16","fair":0.6673,"bid":0.66,"ask":0.67,"vol24":301}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26GUNWIS-GUN","league":"ATP Challenger Ankara - R16","fair":0.3327,"bid":0.32,"ask":0.33,"vol24":108}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26MAUKIR-MAU","league":"ATP Challenger Ankara - R16","fair":0.2479,"bid":0.22,"ask":0.23,"vol24":108}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26MAUKIR-KIR","league":"ATP Challenger Ankara - R16","fair":0.7521,"bid":0.78,"ask":0.79,"vol24":354}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26BOBRIN-RIN","league":"ATP Challenger Ankara - R16","fair":0.7288,"bid":0.74,"ask":0.75,"vol24":81}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26BOBRIN-BOB","league":"ATP Challenger Ankara - R16","fair":0.2712,"bid":0.25,"ask":0.26,"vol24":20}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26DEMPIE-PIE","league":"ATP Challenger Hersonissos - R16","fair":0.2892,"bid":0.29,"ask":0.3,"vol24":3119}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26DEMPIE-DEM","league":"ATP Challenger Hersonissos - R16","fair":0.7108,"bid":0.71,"ask":0.72,"vol24":472}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26ARNJON-JON","league":"ATP Challenger Hersonissos - R16","fair":0.2058,"bid":0.19,"ask":0.2,"vol24":152}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26ARNJON-ARN","league":"ATP Challenger Hersonissos - R16","fair":0.7942,"bid":0.79,"ask":0.8,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26KRAOVC-OVC","league":"ATP Challenger Hersonissos - R16","fair":0.3523,"bid":0.35,"ask":0.36,"vol24":146}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26KRAOVC-KRA","league":"ATP Challenger Hersonissos - R16","fair":0.6477,"bid":0.65,"ask":0.66,"vol24":36}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25PHABOL-PHA","league":"ATP Challenger Playford - R16","fair":0.1858,"bid":0.16,"ask":0.17,"vol24":3019}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25PHABOL-BOL","league":"ATP Challenger Playford - R16","fair":0.8142,"bid":0.83,"ask":0.84,"vol24":559}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25NOGHAS-NOG","league":"ATP Challenger Yokohama - R16","fair":0.5986,"bid":0.59,"ask":0.6,"vol24":237}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25NOGHAS-HAS","league":"ATP Challenger Yokohama - R16","fair":0.4014,"bid":0.41,"ask":0.42,"vol24":9629}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25HONTAK-TAK","league":"ATP Challenger Yokohama - R16","fair":0.579,"bid":0.57,"ask":0.58,"vol24":3777}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25HONTAK-HON","league":"ATP Challenger Yokohama - R16","fair":0.421,"bid":0.42,"ask":0.43,"vol24":3492}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25ISOMAT-MAT","league":"ATP Challenger Yokohama - R16","fair":0.7968,"bid":0.79,"ask":0.8,"vol24":3346}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25ISOMAT-ISO","league":"ATP Challenger Yokohama - R16","fair":0.2032,"bid":0.2,"ask":0.21,"vol24":633}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25SHISTA-STA","league":"ATP Challenger Yokohama - R16","fair":0.2625,"bid":0.25,"ask":0.26,"vol24":660}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25SHISTA-SHI","league":"ATP Challenger Yokohama - R16","fair":0.7375,"bid":0.74,"ask":0.75,"vol24":210}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25SWEJON-SWE","league":"ATP Challenger Playford - R16","fair":0.8035,"bid":0.81,"ask":0.82,"vol24":13068}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25SWEJON-JON","league":"ATP Challenger Playford - R16","fair":0.1965,"bid":0.18,"ask":0.19,"vol24":3498}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25ANDDUR-DUR","league":"ATP Challenger San Salvador - R16","fair":0.1238,"bid":0.1,"ask":0.11,"vol24":35591}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25ANDDUR-AND","league":"ATP Challenger San Salvador - R16","fair":0.8762,"bid":0.88,"ask":0.89,"vol24":4272}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXBIHD1GAME-26NOV261130ZRISIR-ZRI","league":"Bosnia and Herzegovina - Prvenstvo BIH","fair":0.1815,"bid":0.08,"ask":0.84,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXBIHD1GAME-26NOV261130ZRISIR-SIR","league":"Bosnia and Herzegovina - Prvenstvo BIH","fair":0.8185,"bid":0.1,"ask":0.91,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXBRASILEIROGAME-26NOV26SPACR-TIE","league":"Brazil - Serie A","fair":0.182,"bid":0.175,"ask":0.18,"vol24":1}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXBRASILEIROGAME-26NOV26SPACR-SPA","league":"Brazil - Serie A","fair":0.7126,"bid":0.72,"ask":0.73,"vol24":643}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXBRASILEIROGAME-26NOV26SPACR-CR","league":"Brazil - Serie A","fair":0.1054,"bid":0.095,"ask":0.1,"vol24":288}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXDELGAME-26NOV261330ADLLOW-LOW","league":"Germany - DEL","fair":0.2921,"bid":0.26,"ask":0.33,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXDELGAME-26NOV261330ADLLOW-ADL","league":"Germany - DEL","fair":0.7079,"bid":0.67,"ask":0.76,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXDIMAYORGAME-26NOV25CANDIM-TIE","league":"Colombia - Primera A","fair":0.2476,"bid":0.24,"ask":0.25,"vol24":1339}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXDIMAYORGAME-26NOV25CANDIM-DIM","league":"Colombia - Primera A","fair":0.1914,"bid":0.18,"ask":0.19,"vol24":12362}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXDIMAYORGAME-26NOV25CANDIM-CAN","league":"Colombia - Primera A","fair":0.561,"bid":0.56,"ask":0.57,"vol24":19776}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXEFLL1GAME-26NOV26DRHUD-TIE","league":"England - League 1","fair":0.2114,"bid":0.21,"ask":0.22,"vol24":284}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXEFLL1GAME-26NOV26DRHUD-HUD","league":"England - League 1","fair":0.5703,"bid":0.57,"ask":0.58,"vol24":354}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXEFLL1GAME-26NOV26DRHUD-DR","league":"England - League 1","fair":0.2182,"bid":0.21,"ask":0.22,"vol24":6}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXIDNSLGAME-26NOV26SAMPER-TIE","league":"Indonesia - Super League","fair":0.2768,"bid":0.26,"ask":0.28,"vol24":70}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXIDNSLGAME-26NOV26SAMPER-SAM","league":"Indonesia - Super League","fair":0.4636,"bid":0.46,"ask":0.47,"vol24":166}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXIDNSLGAME-26NOV26SAMPER-PER","league":"Indonesia - Super League","fair":0.2595,"bid":0.26,"ask":0.27,"vol24":425}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26PARBRA-PAR","league":"ITF Men Hradec Kralove - R16","fair":0.5463,"bid":0.52,"ask":0.53,"vol24":790}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26PARBRA-BRA","league":"ITF Men Hradec Kralove - R16","fair":0.4537,"bid":0.45,"ask":0.47,"vol24":1247}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26PIEPIE2-PIE2","league":"ITF Men Hradec Kralove - R16","fair":0.0884,"bid":0.08,"ask":0.09,"vol24":161}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26PIEPIE2-PIE","league":"ITF Men Hradec Kralove - R16","fair":0.9116,"bid":0.89,"ask":0.93,"vol24":23}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26DUDGEN-GEN","league":"ITF Men Hradec Kralove - R16","fair":0.9109,"bid":0.9,"ask":0.93,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26DUDGEN-DUD","league":"ITF Men Hradec Kralove - R16","fair":0.0891,"bid":0.08,"ask":0.09,"vol24":115}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26SESBEA-SES","league":"ITF Men Hradec Kralove - R16","fair":0.7977,"bid":0.79,"ask":0.84,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26SESBEA-BEA","league":"ITF Men Hradec Kralove - R16","fair":0.2023,"bid":0.16,"ask":0.2,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26DESPER-PER","league":"ITF Men Madrid - R16","fair":0.5597,"bid":0.55,"ask":0.57,"vol24":99}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26DESPER-DES","league":"ITF Men Madrid - R16","fair":0.4403,"bid":0.43,"ask":0.44,"vol24":5}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26GONTKE-TKE","league":"ITF Men Madrid - R16","fair":0.4785,"bid":0.47,"ask":0.5,"vol24":680}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26GONTKE-GON","league":"ITF Men Madrid - R16","fair":0.5215,"bid":0.5,"ask":0.51,"vol24":266}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26PERARC-PER","league":"ITF Men Madrid - R16","fair":0.848,"bid":0.84,"ask":0.85,"vol24":1350}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26PERARC-ARC","league":"ITF Men Madrid - R16","fair":0.152,"bid":0.13,"ask":0.15,"vol24":977}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26DOMGAR-GAR","league":"ITF Men Madrid - R16","fair":0.8577,"bid":0.83,"ask":0.89,"vol24":2}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26DOMGAR-DOM","league":"ITF Men Madrid - R16","fair":0.1423,"bid":0.12,"ask":0.15,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26HABHAL-HAL","league":"ITF Men Madrid - R16","fair":0.7718,"bid":0.75,"ask":0.77,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26HABHAL-HAB","league":"ITF Men Madrid - R16","fair":0.2282,"bid":0.2,"ask":0.22,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26RODPER-ROD","league":"ITF Men Madrid - R16","fair":0.9079,"bid":0.89,"ask":0.92,"vol24":1}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26RODPER-PER","league":"ITF Men Madrid - R16","fair":0.0921,"bid":0.08,"ask":0.1,"vol24":61}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26HOMFRI-HOM","league":"ITF Men Hradec Kralove - R16","fair":0.1916,"bid":0.14,"ask":0.16,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26HOMFRI-FRI","league":"ITF Men Hradec Kralove - R16","fair":0.8084,"bid":0.81,"ask":0.84,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26GUNSIN-SIN","league":"ITF Men Hradec Kralove - R16","fair":0.8437,"bid":0.82,"ask":0.87,"vol24":765}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26GUNSIN-GUN","league":"ITF Men Hradec Kralove - R16","fair":0.1563,"bid":0.12,"ask":0.15,"vol24":100}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26SHATHI-THI","league":"ITF Men Monastir 2 - R16","fair":0.6319,"bid":0.63,"ask":0.66,"vol24":1919}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26SHATHI-SHA","league":"ITF Men Monastir 2 - R16","fair":0.3681,"bid":0.33,"ask":0.35,"vol24":202}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26SALMAR-SAL","league":"ITF Men Monastir 2 - R16","fair":0.6417,"bid":0.61,"ask":0.62,"vol24":220}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26SALMAR-MAR","league":"ITF Men Monastir 2 - R16","fair":0.3583,"bid":0.36,"ask":0.39,"vol24":925}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26BARKUP-KUP","league":"ITF Men Monastir 2 - R16","fair":0.4694,"bid":0.48,"ask":0.5,"vol24":340}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26BARKUP-BAR","league":"ITF Men Monastir 2 - R16","fair":0.5306,"bid":0.5,"ask":0.53,"vol24":80}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26CASNEI-NEI","league":"ITF Men Monastir 2 - R16","fair":0.4266,"bid":0.41,"ask":0.47,"vol24":932}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26CASNEI-CAS","league":"ITF Men Monastir 2 - R16","fair":0.5734,"bid":0.53,"ask":0.56,"vol24":195}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26FONVAN-VAN","league":"ITF Men Monastir 2 - R16","fair":0.7762,"bid":0.79,"ask":0.8,"vol24":1002}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26FONVAN-FON","league":"ITF Men Monastir 2 - R16","fair":0.2238,"bid":0.18,"ask":0.19,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26DIMNOR-NOR","league":"ITF Men Monastir 2 - R16","fair":0.4209,"bid":0.39,"ask":0.43,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26DIMNOR-DIM","league":"ITF Men Monastir 2 - R16","fair":0.5791,"bid":0.55,"ask":0.59,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26GUSJER-JER","league":"ITF Men Monastir 2 - R16","fair":0.4596,"bid":0.44,"ask":0.45,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26GUSJER-GUS","league":"ITF Men Monastir 2 - R16","fair":0.5404,"bid":0.51,"ask":0.55,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26COCHER-HER","league":"ITF Men Monastir 2 - R16","fair":0.4325,"bid":0.41,"ask":0.44,"vol24":65}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26COCHER-COC","league":"ITF Men Monastir 2 - R16","fair":0.5675,"bid":0.56,"ask":0.58,"vol24":346}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26MICHIG-MIC","league":"ITF Men Hradec Kralove - R16","fair":0.5867,"bid":0.62,"ask":0.67,"vol24":1480}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26MICHIG-HIG","league":"ITF Men Hradec Kralove - R16","fair":0.4133,"bid":0.35,"ask":0.38,"vol24":1281}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26SORBOZ-SOR","league":"ITF Men Hradec Kralove - R16","fair":0.8115,"bid":0.82,"ask":0.83,"vol24":809}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26SORBOZ-BOZ","league":"ITF Men Hradec Kralove - R16","fair":0.1885,"bid":0.15,"ask":0.16,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26BORVEL-VEL","league":"ITF Men Heraklion - R16","fair":0.8745,"bid":0.85,"ask":0.9,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26BORVEL-BOR","league":"ITF Men Heraklion - R16","fair":0.1255,"bid":0.08,"ask":0.12,"vol24":8}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-HAS","league":"ITF Men Heraklion - R16","fair":0.6564,"bid":0.61,"ask":0.65,"vol24":739}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.3436,"bid":0.34,"ask":0.37,"vol24":810}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26KAOLON-LON","league":"ITF Men Heraklion - R16","fair":0.234,"bid":0.2,"ask":0.24,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26KAOLON-KAO","league":"ITF Men Heraklion - R16","fair":0.766,"bid":0.74,"ask":0.77,"vol24":78}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26JONGAN-JON","league":"ITF Men Heraklion - R16","fair":0.2049,"bid":0.15,"ask":0.19,"vol24":5}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26JONGAN-GAN","league":"ITF Men Heraklion - R16","fair":0.7951,"bid":0.81,"ask":0.84,"vol24":74}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26GARDEL-GAR","league":"ITF Men Heraklion - R16","fair":0.2351,"bid":0.19,"ask":0.2,"vol24":123}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26GARDEL-DEL","league":"ITF Men Heraklion - R16","fair":0.7649,"bid":0.79,"ask":0.81,"vol24":492}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26CIZROL-ROL","league":"ITF Men Heraklion - R16","fair":0.5244,"bid":0.51,"ask":0.52,"vol24":978}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26CIZROL-CIZ","league":"ITF Men Heraklion - R16","fair":0.4756,"bid":0.45,"ask":0.48,"vol24":85}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26DELCUR-DEL","league":"ITF Men Heraklion - R16","fair":0.0544,"bid":0.05,"ask":0.06,"vol24":85}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26DELCUR-CUR","league":"ITF Men Heraklion - R16","fair":0.9456,"bid":0.94,"ask":0.95,"vol24":3}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26BASKON-KON","league":"ITF Men Heraklion - R16","fair":0.0836,"bid":0.07,"ask":0.08,"vol24":373}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26BASKON-BAS","league":"ITF Men Heraklion - R16","fair":0.9164,"bid":0.9,"ask":0.93,"vol24":1}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26IANLOM-LOM","league":"ITF Men Bhopal - R16","fair":0.5384,"bid":0.52,"ask":0.53,"vol24":378}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26IANLOM-IAN","league":"ITF Men Bhopal - R16","fair":0.4616,"bid":0.46,"ask":0.47,"vol24":97}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26LAKJAV-LAK","league":"ITF Men Bhopal - R16","fair":0.1163,"bid":0.09,"ask":0.11,"vol24":8}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26LAKJAV-JAV","league":"ITF Men Bhopal - R16","fair":0.8837,"bid":0.88,"ask":0.9,"vol24":4}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26DUHKAL-KAL","league":"ITF Men Bhopal - R16","fair":0.2911,"bid":0.27,"ask":0.29,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26DUHKAL-DUH","league":"ITF Men Bhopal - R16","fair":0.7089,"bid":0.72,"ask":0.73,"vol24":89}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26REJHAN-REJ","league":"ITF Men Bhopal - R16","fair":0.8091,"bid":0.8,"ask":0.82,"vol24":2}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26REJHAN-HAN","league":"ITF Men Bhopal - R16","fair":0.1909,"bid":0.16,"ask":0.18,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26CHADJO-DJO","league":"ITF Men Bhopal - R16","fair":0.6706,"bid":0.67,"ask":0.68,"vol24":44}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV26CHADJO-CHA","league":"ITF Men Bhopal - R16","fair":0.3294,"bid":0.31,"ask":0.32,"vol24":185}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV25KAMMUK-MUK","league":"ITF Men Bhopal - R16","fair":0.7874,"bid":0.77,"ask":0.78,"vol24":53}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV25KAMMUK-KAM","league":"ITF Men Bhopal - R16","fair":0.2126,"bid":0.2,"ask":0.23,"vol24":664}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV25SURKSH-SUR","league":"ITF Men Bhopal - R16","fair":0.7029,"bid":0.7,"ask":0.72,"vol24":468}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV25SURKSH-KSH","league":"ITF Men Bhopal - R16","fair":0.2971,"bid":0.27,"ask":0.28,"vol24":80}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV25SINKRI-SIN","league":"ITF Men Bhopal - R16","fair":0.9335,"bid":0.92,"ask":0.94,"vol24":23}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV25SINKRI-KRI","league":"ITF Men Bhopal - R16","fair":0.0665,"bid":0.07,"ask":0.08,"vol24":542}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV25SVEMON-SVE","league":"ITF Men Santa Cruz - R1","fair":0.0883,"bid":0.06,"ask":0.08,"vol24":1994}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV25SVEMON-MON","league":"ITF Men Santa Cruz - R1","fair":0.9117,"bid":0.92,"ask":0.94,"vol24":660}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV25MALDED-MAL","league":"ITF Men Santa Cruz - R1","fair":0.7583,"bid":0.74,"ask":0.76,"vol24":2892}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV25MALDED-DED","league":"ITF Men Santa Cruz - R1","fair":0.2417,"bid":0.24,"ask":0.25,"vol24":4522}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV25SCRGAG-SCR","league":"ITF Men Santa Cruz - R1","fair":0.0756,"bid":0.05,"ask":0.06,"vol24":15756}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV25SCRGAG-GAG","league":"ITF Men Santa Cruz - R1","fair":0.9244,"bid":0.93,"ask":0.94,"vol24":4410}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV25ELDCUN-ELD","league":"ITF Men Santa Cruz - R1","fair":0.2085,"bid":0.16,"ask":0.19,"vol24":124}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV25ELDCUN-CUN","league":"ITF Men Santa Cruz - R1","fair":0.7915,"bid":0.79,"ask":0.83,"vol24":131}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV25DELBRA-DEL","league":"ITF Men Santa Cruz - R1","fair":0.7281,"bid":0.74,"ask":0.76,"vol24":418}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV25DELBRA-BRA","league":"ITF Men Santa Cruz - R1","fair":0.2719,"bid":0.23,"ask":0.26,"vol24":350}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV25VALORT-VAL","league":"ITF Men Santa Cruz - R1","fair":0.856,"bid":0.86,"ask":0.87,"vol24":930}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV25VALORT-ORT","league":"ITF Men Santa Cruz - R1","fair":0.144,"bid":0.12,"ask":0.14,"vol24":4986}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV25LORPRI-PRI","league":"ITF Men Santa Cruz - R1","fair":0.6306,"bid":0.64,"ask":0.66,"vol24":3823}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV25LORPRI-LOR","league":"ITF Men Santa Cruz - R1","fair":0.3694,"bid":0.33,"ask":0.36,"vol24":1082}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV25TENDEK-TEN","league":"ITF Men Santa Cruz - R1","fair":0.2374,"bid":0.22,"ask":0.24,"vol24":4031}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV25TENDEK-DEK","league":"ITF Men Santa Cruz - R1","fair":0.7626,"bid":0.75,"ask":0.77,"vol24":441}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV25GUABIL-GUA","league":"ITF Men Santa Cruz - R1","fair":0.1984,"bid":0.17,"ask":0.2,"vol24":478}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFMATCH-26NOV25GUABIL-BIL","league":"ITF Men Santa Cruz - R1","fair":0.8016,"bid":0.8,"ask":0.83,"vol24":70}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26TRAPIG-TRA","league":"ITF Women Florianopolis - R16","fair":0.0823,"bid":0.05,"ask":0.08,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26TRAPIG-PIG","league":"ITF Women Florianopolis - R16","fair":0.9177,"bid":0.9,"ask":0.94,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26EGOLAB-LAB","league":"ITF Women Florianopolis - R16","fair":0.1202,"bid":0.08,"ask":0.11,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26EGOLAB-EGO","league":"ITF Women Florianopolis - R16","fair":0.8798,"bid":0.87,"ask":0.92,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26MAZEWA-MAZ","league":"ITF Women Ortisei - QF","fair":0.2071,"bid":0.19,"ask":0.21,"vol24":1121}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26MAZEWA-EWA","league":"ITF Women Ortisei - QF","fair":0.7929,"bid":0.78,"ask":0.8,"vol24":225}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26STRCEX-STR","league":"ITF Women Florianopolis - R16","fair":0.4232,"bid":0.39,"ask":0.44,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26STRCEX-CEX","league":"ITF Women Florianopolis - R16","fair":0.5768,"bid":0.55,"ask":0.6,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26PERGAT-PER","league":"ITF Women Florianopolis - R16","fair":0.6882,"bid":0.67,"ask":0.71,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26PERGAT-GAT","league":"ITF Women Florianopolis - R16","fair":0.3118,"bid":0.28,"ask":0.33,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26SEMKON-SEM","league":"ITF Women Florianopolis - R16","fair":0.9444,"bid":0.92,"ask":0.95,"vol24":1043}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26SEMKON-KON","league":"ITF Women Florianopolis - R16","fair":0.0556,"bid":0.04,"ask":0.06,"vol24":119}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26RODSAN-SAN","league":"ITF Women Florianopolis - R16","fair":0.6561,"bid":0.65,"ask":0.67,"vol24":7}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26RODSAN-ROD","league":"ITF Women Florianopolis - R16","fair":0.3439,"bid":0.33,"ask":0.35,"vol24":4}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26ILISHK-SHK","league":"ITF Women Lousada - R16","fair":0.3349,"bid":0.29,"ask":0.32,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26ILISHK-ILI","league":"ITF Women Lousada - R16","fair":0.6651,"bid":0.66,"ask":0.7,"vol24":5}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26BLAHON-HON","league":"ITF Women Lousada - R16","fair":0.894,"bid":0.89,"ask":0.92,"vol24":360}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26BLAHON-BLA","league":"ITF Women Lousada - R16","fair":0.106,"bid":0.07,"ask":0.1,"vol24":229}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26VLASTO-VLA","league":"ITF Women Ortisei - QF","fair":0.1398,"bid":0.1,"ask":0.13,"vol24":7}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26VLASTO-STO","league":"ITF Women Ortisei - QF","fair":0.8602,"bid":0.84,"ask":0.87,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26YANZEL-ZEL","league":"ITF Women Trnava - R16","fair":0.1676,"bid":0.13,"ask":0.15,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26YANZEL-YAN","league":"ITF Women Trnava - R16","fair":0.8324,"bid":0.82,"ask":0.86,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26ZAVMIN-ZAV","league":"ITF Women Trnava - R16","fair":0.1756,"bid":0.15,"ask":0.18,"vol24":291}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26ZAVMIN-MIN","league":"ITF Women Trnava - R16","fair":0.8244,"bid":0.79,"ask":0.83,"vol24":5}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26DESBRO-DES","league":"ITF Women Ortisei - QF","fair":0.5327,"bid":0.52,"ask":0.54,"vol24":208}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26DESBRO-BRO","league":"ITF Women Ortisei - QF","fair":0.4673,"bid":0.43,"ask":0.46,"vol24":169}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26KUZPER-PER","league":"ITF Women Ortisei - QF","fair":0.5306,"bid":0.51,"ask":0.53,"vol24":241}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26KUZPER-KUZ","league":"ITF Women Ortisei - QF","fair":0.4694,"bid":0.46,"ask":0.47,"vol24":93}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26ADEAND-AND","league":"ITF Women Lousada - R16","fair":0.4226,"bid":0.39,"ask":0.42,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26ADEAND-ADE","league":"ITF Women Lousada - R16","fair":0.5774,"bid":0.57,"ask":0.58,"vol24":39}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26TIATOM-TOM","league":"ITF Women Lousada - R16","fair":0.5347,"bid":0.53,"ask":0.56,"vol24":383}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26TIATOM-TIA","league":"ITF Women Lousada - R16","fair":0.4653,"bid":0.44,"ask":0.46,"vol24":237}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26VORREV-VOR","league":"ITF Women Lousada - R16","fair":0.904,"bid":0.89,"ask":0.92,"vol24":146}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26VORREV-REV","league":"ITF Women Lousada - R16","fair":0.096,"bid":0.06,"ask":0.11,"vol24":231}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26NGOPAL-PAL","league":"ITF Women Trnava - R16","fair":0.5972,"bid":0.58,"ask":0.62,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26NGOPAL-NGO","league":"ITF Women Trnava - R16","fair":0.4028,"bid":0.38,"ask":0.41,"vol24":4}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26LABPON-PON","league":"ITF Women Trnava - R16","fair":0.8028,"bid":0.79,"ask":0.82,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26LABPON-LAB","league":"ITF Women Trnava - R16","fair":0.1972,"bid":0.16,"ask":0.2,"vol24":19}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26VLAMAL-VLA","league":"ITF Women Trnava - R16","fair":0.2197,"bid":0.18,"ask":0.22,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26VLAMAL-MAL","league":"ITF Women Trnava - R16","fair":0.7803,"bid":0.75,"ask":0.8,"vol24":5}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26ALMFIR-FIR","league":"ITF Women Lousada - R16","fair":0.882,"bid":0.9,"ask":0.92,"vol24":151}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26ALMFIR-ALM","league":"ITF Women Lousada - R16","fair":0.118,"bid":0.06,"ask":0.09,"vol24":7}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26LOSWOB-WOB","league":"ITF Women Lousada - R16","fair":0.7818,"bid":0.78,"ask":0.81,"vol24":55}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26LOSWOB-LOS","league":"ITF Women Lousada - R16","fair":0.2182,"bid":0.18,"ask":0.21,"vol24":6}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26MAKFON-MAK","league":"ITF Women Lousada - R16","fair":0.8096,"bid":0.79,"ask":0.82,"vol24":883}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26MAKFON-FON","league":"ITF Women Lousada - R16","fair":0.1904,"bid":0.18,"ask":0.19,"vol24":1066}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26DALLIM-LIM","league":"ITF Women Monastir - R16","fair":0.3138,"bid":0.27,"ask":0.28,"vol24":422}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26DALLIM-DAL","league":"ITF Women Monastir - R16","fair":0.6862,"bid":0.7,"ask":0.72,"vol24":2438}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26BENHAG-HAG","league":"ITF Women Monastir - R16","fair":0.8165,"bid":0.8,"ask":0.84,"vol24":1}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26BENHAG-BEN","league":"ITF Women Monastir - R16","fair":0.1835,"bid":0.14,"ask":0.18,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26TARPAW-TAR","league":"ITF Women Monastir - R16","fair":0.7538,"bid":0.76,"ask":0.79,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26TARPAW-PAW","league":"ITF Women Monastir - R16","fair":0.2462,"bid":0.2,"ask":0.22,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26HORBON-HOR","league":"ITF Women Monastir - R16","fair":0.6471,"bid":0.63,"ask":0.65,"vol24":115}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26HORBON-BON","league":"ITF Women Monastir - R16","fair":0.3529,"bid":0.32,"ask":0.36,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26LUCBRU-LUC","league":"ITF Women Monastir - R16","fair":0.4847,"bid":0.47,"ask":0.51,"vol24":754}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26LUCBRU-BRU","league":"ITF Women Monastir - R16","fair":0.5153,"bid":0.5,"ask":0.51,"vol24":235}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26CHOPAS-PAS","league":"ITF Women Monastir - R16","fair":0.2949,"bid":0.25,"ask":0.28,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26CHOPAS-CHO","league":"ITF Women Monastir - R16","fair":0.7051,"bid":0.71,"ask":0.73,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26MARTAR-TAR","league":"ITF Women Monastir - R16","fair":0.3876,"bid":0.35,"ask":0.39,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26MARTAR-MAR","league":"ITF Women Monastir - R16","fair":0.6124,"bid":0.61,"ask":0.64,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26INIMAN-MAN","league":"ITF Women Monastir - R16","fair":0.4938,"bid":0.5,"ask":0.53,"vol24":1024}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26INIMAN-INI","league":"ITF Women Monastir - R16","fair":0.5062,"bid":0.48,"ask":0.49,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26KHOFRI-KHO","league":"ITF Women Trnava - R16","fair":0.4101,"bid":0.42,"ask":0.43,"vol24":883}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26KHOFRI-FRI","league":"ITF Women Trnava - R16","fair":0.5899,"bid":0.56,"ask":0.57,"vol24":329}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26LAMKOV-LAM","league":"ITF Women Trnava - R16","fair":0.7157,"bid":0.7,"ask":0.73,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26LAMKOV-KOV","league":"ITF Women Trnava - R16","fair":0.2843,"bid":0.26,"ask":0.29,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26FALKOV-KOV","league":"ITF Women Trnava - R16","fair":0.5915,"bid":0.57,"ask":0.6,"vol24":926}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26FALKOV-FAL","league":"ITF Women Trnava - R16","fair":0.4085,"bid":0.4,"ask":0.42,"vol24":309}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26STOPED-STO","league":"ITF Women Heraklion 2 - R16","fair":0.6072,"bid":0.59,"ask":0.63,"vol24":420}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26STOPED-PED","league":"ITF Women Heraklion 2 - R16","fair":0.3928,"bid":0.37,"ask":0.38,"vol24":27}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26CVESTA-STA","league":"ITF Women Heraklion 2 - R16","fair":0.3328,"bid":0.34,"ask":0.36,"vol24":647}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26CVESTA-CVE","league":"ITF Women Heraklion 2 - R16","fair":0.6672,"bid":0.64,"ask":0.66,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26MATBAR-MAT","league":"ITF Women Heraklion 2 - R16","fair":0.8788,"bid":0.87,"ask":0.89,"vol24":601}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26MATBAR-BAR","league":"ITF Women Heraklion 2 - R16","fair":0.1212,"bid":0.09,"ask":0.11,"vol24":1717}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26CORGLU-GLU","league":"ITF Women Heraklion 2 - R16","fair":0.2133,"bid":0.18,"ask":0.2,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26CORGLU-COR","league":"ITF Women Heraklion 2 - R16","fair":0.7867,"bid":0.78,"ask":0.81,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26ZHEPOP-ZHE","league":"ITF Women Heraklion 2 - R16","fair":0.264,"bid":0.23,"ask":0.25,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26ZHEPOP-POP","league":"ITF Women Heraklion 2 - R16","fair":0.736,"bid":0.72,"ask":0.76,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26DORSTR-STR","league":"ITF Women Heraklion 2 - R16","fair":0.4249,"bid":0.42,"ask":0.45,"vol24":1060}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26DORSTR-DOR","league":"ITF Women Heraklion 2 - R16","fair":0.5751,"bid":0.55,"ask":0.56,"vol24":213}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26SHAPAN-SHA","league":"ITF Women Heraklion 2 - R16","fair":0.6456,"bid":0.63,"ask":0.65,"vol24":745}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26SHAPAN-PAN","league":"ITF Women Heraklion 2 - R16","fair":0.3544,"bid":0.34,"ask":0.36,"vol24":1064}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26ALLSHA-SHA","league":"ITF Women Heraklion 2 - R16","fair":0.4836,"bid":0.48,"ask":0.51,"vol24":1159}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26ALLSHA-ALL","league":"ITF Women Heraklion 2 - R16","fair":0.5164,"bid":0.49,"ask":0.5,"vol24":406}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26YODFER-YOD","league":"ITF Women Kolkata - R16","fair":0.9093,"bid":0.92,"ask":0.93,"vol24":368}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26YODFER-FER","league":"ITF Women Kolkata - R16","fair":0.0907,"bid":0.06,"ask":0.07,"vol24":1435}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26LAKLAR-LAR","league":"ITF Women Kolkata - R16","fair":0.8622,"bid":0.86,"ask":0.89,"vol24":17}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26LAKLAR-LAK","league":"ITF Women Kolkata - R16","fair":0.1378,"bid":0.11,"ask":0.12,"vol24":14}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26NUGMIK-NUG","league":"ITF Women Kolkata - R16","fair":0.9532,"bid":0.95,"ask":0.97,"vol24":499}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26NUGMIK-MIK","league":"ITF Women Kolkata - R16","fair":0.0468,"bid":0.04,"ask":0.05,"vol24":2827}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26OIGRAO-RAO","league":"ITF Women Kolkata - R16","fair":0.5678,"bid":0.57,"ask":0.59,"vol24":445}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26OIGRAO-OIG","league":"ITF Women Kolkata - R16","fair":0.4322,"bid":0.4,"ask":0.41,"vol24":104}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26LINYAS-YAS","league":"ITF Women Kolkata - R16","fair":0.262,"bid":0.26,"ask":0.28,"vol24":356}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV26LINYAS-LIN","league":"ITF Women Kolkata - R16","fair":0.738,"bid":0.71,"ask":0.72,"vol24":1644}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV25SANPAN-SAN","league":"ITF Women Kolkata - R16","fair":0.1177,"bid":0.09,"ask":0.12,"vol24":53}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV25SANPAN-PAN","league":"ITF Women Kolkata - R16","fair":0.8823,"bid":0.88,"ask":0.89,"vol24":5}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV25BHADEK-DEK","league":"ITF Women Kolkata - R16","fair":0.6008,"bid":0.6,"ask":0.62,"vol24":1425}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV25BHADEK-BHA","league":"ITF Women Kolkata - R16","fair":0.3992,"bid":0.38,"ask":0.39,"vol24":501}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV25JAMDIP-JAM","league":"ITF Women Kolkata - R16","fair":0.2322,"bid":0.2,"ask":0.22,"vol24":168}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV25JAMDIP-DIP","league":"ITF Women Kolkata - R16","fair":0.7678,"bid":0.77,"ask":0.79,"vol24":636}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV25KINKOI-KOI","league":"ITF Women Playford - R16","fair":0.4913,"bid":0.49,"ask":0.5,"vol24":10}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV25KINKOI-KIN","league":"ITF Women Playford - R16","fair":0.5087,"bid":0.5,"ask":0.51,"vol24":286}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV25KOKMIC-MIC","league":"ITF Women Playford - R16","fair":0.47,"bid":0.46,"ask":0.48,"vol24":587}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV25KOKMIC-KOK","league":"ITF Women Playford - R16","fair":0.53,"bid":0.52,"ask":0.54,"vol24":232}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV25ITOHOS-ITO","league":"ITF Women Playford - R16","fair":0.7856,"bid":0.78,"ask":0.8,"vol24":271}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXITFWMATCH-26NOV25ITOHOS-HOS","league":"ITF Women Playford - R16","fair":0.2144,"bid":0.19,"ask":0.21,"vol24":285}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXKHLGAME-26NOV261130CSKSPA-SPA","league":"Russia - Kontinental Hockey League","fair":0.3795,"bid":0.35,"ask":0.38,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXKHLGAME-26NOV261130CSKSPA-CSK","league":"Russia - Kontinental Hockey League","fair":0.6205,"bid":0.61,"ask":0.66,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXKHLGAME-26NOV261130NEFHCS-NEF","league":"Russia - Kontinental Hockey League","fair":0.6018,"bid":0.59,"ask":0.62,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXKHLGAME-26NOV261130NEFHCS-HCS","league":"Russia - Kontinental Hockey League","fair":0.3982,"bid":0.37,"ask":0.4,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXKHLGAME-26NOV260900AVTTRA-TRA","league":"Russia - Kontinental Hockey League","fair":0.4935,"bid":0.48,"ask":0.51,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXKHLGAME-26NOV260900AVTTRA-AVT","league":"Russia - Kontinental Hockey League","fair":0.5065,"bid":0.48,"ask":0.52,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXKHLGAME-26NOV260900DINSAL-SAL","league":"Russia - Kontinental Hockey League","fair":0.5564,"bid":0.54,"ask":0.57,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXKHLGAME-26NOV260900DINSAL-DIN","league":"Russia - Kontinental Hockey League","fair":0.4436,"bid":0.43,"ask":0.46,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXKHLGAME-26NOV260430HKAADM-HKA","league":"Russia - Kontinental Hockey League","fair":0.6943,"bid":0.69,"ask":0.72,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXKHLGAME-26NOV260430HKAADM-ADM","league":"Russia - Kontinental Hockey League","fair":0.3057,"bid":0.28,"ask":0.3,"vol24":64}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXKHLGAME-26NOV260400AKBAMU-AMU","league":"Russia - Kontinental Hockey League","fair":0.5022,"bid":0.49,"ask":0.52,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXKHLGAME-26NOV260400AKBAMU-AKB","league":"Russia - Kontinental Hockey League","fair":0.4978,"bid":0.48,"ask":0.51,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXLIGAMXGAME-26NOV25MONAME-TIE","league":"Mexico - Liga MX","fair":0.283,"bid":0.28,"ask":0.29,"vol24":23594}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXLIGAMXGAME-26NOV25MONAME-MON","league":"Mexico - Liga MX","fair":0.422,"bid":0.42,"ask":0.43,"vol24":84658}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXLIGAMXGAME-26NOV25MONAME-AME","league":"Mexico - Liga MX","fair":0.295,"bid":0.29,"ask":0.3,"vol24":258643}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXLIGAMXGAME-26NOV26PACCDG-TIE","league":"Mexico - Liga MX","fair":0.2901,"bid":0.27,"ask":0.28,"vol24":5406}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXLIGAMXGAME-26NOV26PACCDG-PAC","league":"Mexico - Liga MX","fair":0.3413,"bid":0.34,"ask":0.35,"vol24":9223}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXLIGAMXGAME-26NOV26PACCDG-CDG","league":"Mexico - Liga MX","fair":0.3687,"bid":0.37,"ask":0.38,"vol24":23782}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXLIIGAGAME-26NOV261130TAMVAA-VAA","league":"Finland - SM Liiga","fair":0.3482,"bid":0.31,"ask":0.37,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXLIIGAGAME-26NOV261130TAMVAA-TAM","league":"Finland - SM Liiga","fair":0.6518,"bid":0.62,"ask":0.67,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNBAGAME-26NOV25PHXHOU-PHX","league":"NBA","fair":0.2383,"bid":0.23,"ask":0.24,"vol24":159102}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNBAGAME-26NOV25PHXHOU-HOU","league":"NBA","fair":0.7617,"bid":0.76,"ask":0.77,"vol24":103763}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNBAGAME-26NOV25SASPOR-SAS","league":"NBA","fair":0.5855,"bid":0.59,"ask":0.6,"vol24":122200}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNBAGAME-26NOV25SASPOR-POR","league":"NBA","fair":0.4145,"bid":0.4,"ask":0.41,"vol24":63310}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNBAGAME-26NOV25SACGSW-SAC","league":"NBA","fair":0.2719,"bid":0.26,"ask":0.27,"vol24":369108}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNBAGAME-26NOV25SACGSW-GSW","league":"NBA","fair":0.7281,"bid":0.72,"ask":0.73,"vol24":167634}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNCAAMBGAME-26NOV27SLUSTAN-STAN","league":"NCAA","fair":0.3826,"bid":0.39,"ask":0.4,"vol24":1683}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNCAAMBGAME-26NOV27SLUSTAN-SLU","league":"NCAA","fair":0.6174,"bid":0.6,"ask":0.61,"vol24":2238}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNCAAMBGAME-26NOV26GCCOLO-GC","league":"NCAA","fair":0.801,"bid":0.81,"ask":0.82,"vol24":1679}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNCAAMBGAME-26NOV26GCCOLO-COLO","league":"NCAA","fair":0.199,"bid":0.18,"ask":0.19,"vol24":8484}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNCAAMBGAME-26NOV25WASHVCU-WASH","league":"NCAA","fair":0.3734,"bid":0.36,"ask":0.37,"vol24":13958}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNCAAMBGAME-26NOV25WASHVCU-VCU","league":"NCAA","fair":0.6266,"bid":0.63,"ask":0.64,"vol24":1058}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNCAAMBGAME-26NOV25EMUUTEP-UTEP","league":"NCAA","fair":0.5188,"bid":0.52,"ask":0.53,"vol24":5589}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNCAAMBGAME-26NOV25EMUUTEP-EMU","league":"NCAA","fair":0.4812,"bid":0.47,"ask":0.48,"vol24":16686}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNCAAMBGAME-26NOV26IWHAW-IW","league":"NCAA","fair":0.0838,"bid":0.06,"ask":0.07,"vol24":3663}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNCAAMBGAME-26NOV26IWHAW-HAW","league":"NCAA","fair":0.9162,"bid":0.93,"ask":0.94,"vol24":3106}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNCAAMBGAME-26NOV25EWULMU-LMU","league":"NCAA","fair":0.7248,"bid":0.73,"ask":0.74,"vol24":1741}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNCAAMBGAME-26NOV25EWULMU-EWU","league":"NCAA","fair":0.2752,"bid":0.26,"ask":0.27,"vol24":2192}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNHLGAME-26NOV25CHISEA-SEA","league":"NHL","fair":0.5851,"bid":0.58,"ask":0.59,"vol24":14838}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNHLGAME-26NOV25CHISEA-CHI","league":"NHL","fair":0.4149,"bid":0.41,"ask":0.42,"vol24":2428}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNHLGAME-26NOV25MTLCOL-MTL","league":"NHL","fair":0.4782,"bid":0.47,"ask":0.48,"vol24":33441}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNHLGAME-26NOV25MTLCOL-COL","league":"NHL","fair":0.5218,"bid":0.52,"ask":0.53,"vol24":22335}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNHLGAME-26NOV25SJANA-SJ","league":"NHL","fair":0.4491,"bid":0.45,"ask":0.46,"vol24":37971}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNHLGAME-26NOV25SJANA-ANA","league":"NHL","fair":0.5509,"bid":0.54,"ask":0.55,"vol24":10348}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNKLGAME-26NOV261105KREKED-KRE","league":"Lithuania - National Basketball League","fair":0.378,"bid":0.32,"ask":0.41,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNKLGAME-26NOV261105KREKED-KED","league":"Lithuania - National Basketball League","fair":0.622,"bid":0.59,"ask":0.68,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNKLGAME-26NOV261100ALYVIL-VIL","league":"Lithuania - National Basketball League","fair":0.5707,"bid":0.53,"ask":0.62,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNKLGAME-26NOV261100ALYVIL-ALY","league":"Lithuania - National Basketball League","fair":0.4293,"bid":0.38,"ask":0.47,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNKLGAME-26NOV261100OMEMAZ-OME","league":"Lithuania - National Basketball League","fair":0.6588,"bid":0.63,"ask":0.71,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNKLGAME-26NOV261100OMEMAZ-MAZ","league":"Lithuania - National Basketball League","fair":0.3412,"bid":0.28,"ask":0.37,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNKLGAME-26NOV261100STEKAU-STE","league":"Lithuania - National Basketball League","fair":0.5729,"bid":0.54,"ask":0.63,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXNKLGAME-26NOV261100STEKAU-KAU","league":"Lithuania - National Basketball League","fair":0.4271,"bid":0.37,"ask":0.46,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXSHLGAME-26NOV261300IFBFRO-IFB","league":"Sweden - SHL","fair":0.2093,"bid":0.18,"ask":0.22,"vol24":82}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXSHLGAME-26NOV261300IFBFRO-FRO","league":"Sweden - SHL","fair":0.7907,"bid":0.76,"ask":0.82,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXSHLGAME-26NOV261300BRYLIN-LIN","league":"Sweden - SHL","fair":0.3417,"bid":0.32,"ask":0.37,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXSHLGAME-26NOV261300BRYLIN-BRY","league":"Sweden - SHL","fair":0.6583,"bid":0.62,"ask":0.66,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXSHLGAME-26NOV261300FARTIM-TIM","league":"Sweden - SHL","fair":0.359,"bid":0.34,"ask":0.38,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXSHLGAME-26NOV261300FARTIM-FAR","league":"Sweden - SHL","fair":0.641,"bid":0.61,"ask":0.64,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXSHLGAME-26NOV261300DJUVAX-VAX","league":"Sweden - SHL","fair":0.6488,"bid":0.62,"ask":0.67,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXSHLGAME-26NOV261300DJUVAX-DJU","league":"Sweden - SHL","fair":0.3512,"bid":0.32,"ask":0.37,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXSHLGAME-26NOV261300ROGSKE-SKE","league":"Sweden - SHL","fair":0.7201,"bid":0.7,"ask":0.72,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXSHLGAME-26NOV261300ROGSKE-ROG","league":"Sweden - SHL","fair":0.2799,"bid":0.26,"ask":0.29,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXWNBLGAME-26NOV260300TASBEN-TAS","league":"Australia - WNBL","fair":0.3008,"bid":0.25,"ask":0.36,"vol24":0}
+{"ts":"2026-11-26T01:13:55+00:00","ticker":"KXWNBLGAME-26NOV260300TASBEN-BEN","league":"Australia - WNBL","fair":0.6992,"bid":0.64,"ask":0.75,"vol24":0}
+{"ts":"2026-11-26T01:16:27+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.3436,"bid":0.33,"ask":0.37,"vol24":810}
+{"ts":"2026-11-26T01:16:57+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.3436,"bid":0.34,"ask":0.37,"vol24":810}
+{"ts":"2026-11-26T01:17:28+00:00","ticker":"KXITFWMATCH-26NOV26FALKOV-KOV","league":"ITF Women Trnava - R16","fair":0.5915,"bid":0.55,"ask":0.6,"vol24":926}
+{"ts":"2026-11-26T01:18:00+00:00","ticker":"KXITFWMATCH-26NOV26FALKOV-KOV","league":"ITF Women Trnava - R16","fair":0.5915,"bid":0.57,"ask":0.59,"vol24":926}
+{"ts":"2026-11-26T01:18:31+00:00","ticker":"KXITFWMATCH-26NOV26FALKOV-KOV","league":"ITF Women Trnava - R16","fair":0.5915,"bid":0.57,"ask":0.6,"vol24":926}
+{"ts":"2026-11-26T01:18:31+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.3436,"bid":0.35,"ask":0.37,"vol24":810}
