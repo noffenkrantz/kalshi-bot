@@ -1,10 +1,10 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 271 snapshots from 2026-11-25 16:44 to 2026-11-26 01:18 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 278 snapshots from 2026-11-25 16:44 to 2026-11-26 01:28 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-3,380 Kalshi prices compared with Pinnacle's. 98% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 0.5% could be bought at a 3¢+ edge after fees.
+3,387 Kalshi prices compared with Pinnacle's. 98% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 0.5% could be bought at a 3¢+ edge after fees.
 
 9 simulated bets so far; 9 have a closing price. Average edge when placed +4.1¢; average closing value +2.2¢ per contract. Kalshi moved toward Pinnacle's price after 7 of them and Pinnacle moved toward Kalshi's after 7. 2 have settled: 2 won, simulated profit $+217.32 on $207 staked.
 
@@ -15,12 +15,12 @@
 | League | Prices compared | No real market | Avg gap (Kalshi mid vs fair) | With a 3¢+ edge | Kalshi volume (24h, median) | Bets | Avg closing value | Profit |
 |---|---|---|---|---|---|---|---|---|
 | NCAA | 276 | 0% | +1.2¢ | 0% | 1,672 | 0 | – | – |
-| ITF Men Hradec Kralove - R16 | 215 | 0% | +3.9¢ | 0% | 1,180 | 1 | +5.3¢ | – |
+| ITF Men Hradec Kralove - R16 | 216 | 0% | +3.9¢ | 0% | 1,180 | 1 | +5.3¢ | – |
 | NHL | 214 | 0% | +0.5¢ | 0% | 9,184 | 0 | – | – |
 | NBA | 207 | 0% | +0.8¢ | 4% | 93,788 | 3 | +1.0¢ | $+217.32 |
 | ITF Men Santa Cruz - R1 | 162 | 0% | +1.3¢ | 0% | 540 | 0 | – | – |
-| ITF Men Heraklion - R16 | 151 | 0% | +1.8¢ | 1% | 78 | 1 | -4.6¢ | – |
-| ITF Women Trnava - R16 | 135 | 1% | +1.3¢ | 1% | 5 | 1 | +3.1¢ | – |
+| ITF Men Heraklion - R16 | 156 | 0% | +1.8¢ | 1% | 78 | 1 | -4.6¢ | – |
+| ITF Women Trnava - R16 | 136 | 1% | +1.3¢ | 1% | 5 | 1 | +3.1¢ | – |
 | ITF Women Heraklion 2 - R16 | 134 | 7% | +1.3¢ | 0% | 36 | 0 | – | – |
 | USA - American Hockey League | 131 | 0% | +1.0¢ | 1% | 39 | 1 | +4.7¢ | – |
 | ITF Women Monastir - R16 | 120 | 3% | +1.7¢ | 0% | 0 | 0 | – | – |
@@ -70,17 +70,17 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 46 | 3.3 pts | 3.0¢ | 2.8¢ | 2.4¢ | 2.4¢ | 2.2¢ | 1.8¢ | 28% |
+| All | 47 | 3.3 pts | 3.0¢ | 2.8¢ | 2.3¢ | 2.4¢ | 2.2¢ | 1.8¢ | 28% |
 | ITF Men Heraklion - R16 | 7 | 5.5 pts | 5.5¢ | 5.3¢ | 3.8¢ | 4.3¢ | 4.0¢ | 1.9¢ | 29% |
 | AFC - Champions League 2 | 7 | 3.1 pts | 1.5¢ | 1.9¢ | 1.9¢ | 2.0¢ | 2.3¢ | 2.3¢ | 29% |
 | ATP Challenger Playford - R16 | 5 | 2.3 pts | 1.4¢ | 1.5¢ | 1.3¢ | 1.6¢ | 1.0¢ | 1.0¢ | 40% |
 | NCAA | 4 | 2.3 pts | 2.4¢ | 2.4¢ | 2.2¢ | 2.0¢ | 2.4¢ | 1.8¢ | 25% |
 | USA - American Hockey League | 3 | 2.6 pts | 3.4¢ | 3.4¢ | 3.0¢ | 2.7¢ | 1.4¢ | 1.4¢ | 0% |
 | ITF Women Trnava - R16 | 3 | 4.5 pts | 4.3¢ | 3.3¢ | 2.3¢ | 2.0¢ | 1.4¢ | 1.5¢ | 33% |
+| ATP Challenger Yokohama - R16 | 3 | 2.2 pts | 2.0¢ | 2.0¢ | 2.0¢ | 1.7¢ | 1.3¢ | 1.7¢ | 0% |
 | ITF Men Bhopal - R16 | 3 | 2.6 pts | 3.8¢ | 4.0¢ | 3.0¢ | 3.2¢ | 2.5¢ | 2.2¢ | 0% |
 | ITF Women Heraklion 2 - R16 | 2 | 4.4 pts | 5.6¢ | 5.6¢ | 5.1¢ | 5.1¢ | 5.1¢ | 5.1¢ | 0% |
 | NBA | 2 | 5.2 pts | 2.0¢ | 1.5¢ | 1.4¢ | 1.1¢ | 1.8¢ | 0.8¢ | 50% |
-| ATP Challenger Yokohama - R16 | 2 | 2.2 pts | 2.2¢ | 2.2¢ | 2.2¢ | 1.7¢ | 1.1¢ | 1.2¢ | 0% |
 | ATP Challenger Ankara - R16 | 2 | 2.4 pts | 2.6¢ | 1.4¢ | 1.1¢ | 1.1¢ | 1.3¢ | 1.0¢ | 50% |
 | ITF Men Santa Cruz - R1 | 1 | 2.4 pts | 2.3¢ | 2.3¢ | 2.3¢ | 2.3¢ | 2.3¢ | 2.3¢ | 0% |
 
