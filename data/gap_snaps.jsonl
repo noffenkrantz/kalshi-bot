@@ -6514,3 +6514,4 @@
 {"ts":"2026-11-26T12:51:38+00:00","ticker":"KXTHAIL1GAME-26NOV27UTHSIS-TIE","league":"Thailand - League 1","fair":0.2368,"bid":0.23,"ask":0.24,"vol24":0}
 {"ts":"2026-11-26T12:51:38+00:00","ticker":"KXTHAIL1GAME-26NOV27UTHSIS-SIS","league":"Thailand - League 1","fair":0.2271,"bid":0.21,"ask":0.23,"vol24":0}
 {"ts":"2026-11-26T13:48:58+00:00","ticker":"KXITFMATCH-26NOV25SVEMON-SVE","league":"ITF Men Santa Cruz - R1","fair":0.0845,"bid":0.04,"ask":0.05,"vol24":2419}
+{"ts":"2026-11-26T13:51:05+00:00","ticker":"KXITFWMATCH-26NOV26STRCEX-STR","league":"ITF Women Florianopolis - R16","fair":0.4679,"bid":0.41,"ask":0.42,"vol24":344}
