@@ -15,13 +15,14 @@ waiting for a redeploy.
 from __future__ import annotations
 
 import json
+import math
 import os
 import re
-from collections import defaultdict
+import statistics
 from datetime import datetime
 from pathlib import Path
 
-from .gaps import _mean, _mid, _share_edge, _tight, move_stats, read_jsonl, score_bets, settings
+from .gaps import _mean, _share_edge, _tight, read_jsonl, score_bets, settings
 from .util import iso, parse_time, utcnow
 
 TEMPLATE = Path(__file__).with_name("gapsite_template.html")
@@ -37,6 +38,41 @@ def repo_slug(root: Path) -> str | None:
         return None
     m = re.search(r"github\.com[/:]([\w.-]+/[\w.-]+?)(?:\.git)?\s", cfg)
     return m.group(1) if m else None
+
+
+RECENT = 50            # the quick check reads the latest 50 bets that have a final Pinnacle price
+QUICK_TARGET, PROOF_TARGET = 50, 1000
+
+
+def verdict(scored: list[dict], done: list[dict]) -> dict:
+    """The plain read at the top of the page.
+    Quick check (closing value): did the bot buy below Pinnacle's last price before each game? It
+    settles in about 50 bets. Proof (profit): each bet is close to a coin flip, so a few cents of edge
+    only shows in profit after hundreds to about 1,000 settled bets."""
+    recent = sorted(scored, key=lambda b: b["ts"])[-RECENT:]
+    xs = [b["clv"] for b in recent]
+    n = len(xs)
+    mean = statistics.fmean(xs) if xs else None
+    low = (mean - 2 * statistics.stdev(xs) / math.sqrt(n)) if n > 1 else None
+    if n < 10:
+        state = "early"
+    elif mean > 0 and low > 0:
+        state = "promising"
+    elif mean > 0:
+        state = "leaning"
+    else:
+        state = "not_working"
+    m, profit = len(done), round(sum(b["profit"] for b in done), 2)
+    if m < 300:
+        pstate = "early"
+    elif m < PROOF_TARGET:
+        pstate = "ahead" if profit > 0 else "behind"
+    else:
+        pstate = "proven" if profit > 0 else "not_proven"
+    return {"state": state, "n": n, "scored_total": len(scored), "mean": mean, "low": low,
+            "beat": sum(x > 0 for x in xs), "quick_target": QUICK_TARGET,
+            "profit": profit, "settled": m, "wins": sum(b["result"] == b["side"] for b in done),
+            "profit_state": pstate, "proof_target": PROOF_TARGET}
 
 
 def build_data(root: Path, cfg: dict, now: datetime | None = None) -> dict:
@@ -100,36 +136,16 @@ def build_data(root: Path, cfg: dict, now: datetime | None = None) -> dict:
         open_rows.append({"placed": b["ts"], "game": b["pin_teams"], "league": b["league"], "team": b["team"],
                           "side": b["side"], "price": b["price"], "n": b["n"], "wanted": b["contracts"],
                           "available": b["available"], "cost": b["cost"], "fair_then": b["fair"], "fair_now": fn,
-                          "ev": ev, "starts": b["starts"], "live": bool(b.get("live")),
-                          "exit_price": b.get("exit_price"), "exit_profit": b.get("exit_profit"), "exit_ts": b.get("exit_ts")})
+                          "ev": ev, "starts": b["starts"], "live": bool(b.get("live"))})
     projected = round(balance + sum(r["ev"] for r in open_rows), 2)
     proj_line = [real_line[-2], [iso(now), projected]] if open_rows else []   # dashed: from the last settlement to now
     done = [b for b in placed if b.get("profit") is not None and (b["ticker"], b["side"]) not in held]
     scored = [b for b in placed if b.get("clv") is not None]
     settled_rows = [{"placed": b["ts"], "settled": settled_at.get(b["ticker"]), "game": b["pin_teams"],
                      "league": b["league"], "team": b["team"], "side": b["side"], "price": b["price"], "n": b["n"],
-                     "cost": b["cost"], "won": b["result"] == b["side"], "profit": b["profit"], "clv": b.get("clv"),
-                     "exit_price": b.get("exit_price"), "exit_profit": b.get("exit_profit")}
+                     "cost": b["cost"], "won": b["result"] == b["side"], "profit": b["profit"], "clv": b.get("clv")}
                     for b in sorted(done, key=lambda b: settled_at.get(b["ticker"], ""), reverse=True)[:40]]
-    missed_rows = [{"placed": b["ts"], "game": b["pin_teams"], "league": b["league"], "team": b["team"],
-                    "side": b["side"], "price": b["price"], "edge": b["edge"]}
-                   for b in sorted(missed, key=lambda b: b["ts"], reverse=True)[:10]]
-
-    # ---- where the gaps are ------------------------------------------------------------------
     tight = [s for s in snaps if _tight(s)]
-    per = defaultdict(list)
-    for s in snaps:
-        per[s["league"]].append(s)
-    bets_by_league = defaultdict(list)
-    for b in placed:
-        bets_by_league[b["league"]].append(b)
-    leagues = []
-    for lg, rows in sorted(per.items(), key=lambda kv: -len(kv[1]))[:25]:
-        t = [s for s in rows if _tight(s)]
-        lb = bets_by_league.get(lg, [])
-        leagues.append({"name": lg, "n": len(rows), "real": len(t) / len(rows), "gap": _mean(abs(_mid(s) - s["fair"]) for s in t),
-                        "edge": _share_edge(t), "bets": len(lb), "clv": _mean(b.get("clv") for b in lb),
-                        "profit": round(sum(b["profit"] for b in lb if b.get("profit") is not None), 2)})
 
     return {
         "updated": iso(now), "repo": repo_slug(root),
@@ -143,19 +159,12 @@ def build_data(root: Path, cfg: dict, now: datetime | None = None) -> dict:
                     "losses": sum(b["result"] != b["side"] for b in done), "placed_n": len(placed),
                     "missed_n": len(missed), "unknown_n": len(unknown), "no_cash_n": len(no_cash),
                     "same_game_n": len(same_game),
-                    "compare": {"n": len(done), "hold": round(sum(b["profit"] for b in done), 2),
-                                "early": round(sum(b["exit_profit"] if b.get("exit_profit") is not None else b["profit"]
-                                                   for b in done), 2),
-                                "sold": sum(b.get("exit_profit") is not None for b in done),
-                                "sold_open": sum(r["exit_profit"] is not None for r in open_rows)},
                     "clv": _mean(b["clv"] for b in scored), "clv_n": len(scored),
                     "clv_usd": round(sum(b["clv"] * b["n"] for b in scored), 2)},
         "real_line": real_line, "proj_line": proj_line,
-        "open": open_rows, "settled": settled_rows, "missed": missed_rows,
-        "scan": {"rows": len(snaps), "since": first if snaps else None, "real": (len(tight) / len(snaps)) if snaps else None,
-                 "gap": _mean(abs(_mid(s) - s["fair"]) for s in tight), "edge": _share_edge(tight) if tight else None,
-                 "leagues": leagues},
-        "moves": move_stats(read_jsonl(data / "gap_moves.jsonl")) if (data / "gap_moves.jsonl").exists() else [],
+        "verdict": verdict(scored, done),
+        "open": open_rows, "settled": settled_rows,
+        "scan": {"rows": len(snaps), "since": first if snaps else None, "edge": _share_edge(tight) if tight else None},
     }
 
 

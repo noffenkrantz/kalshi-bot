@@ -518,28 +518,12 @@ def score_bets(data: Path) -> list[dict]:
         n = contracts_of(b)
         r["n"] = n
         r["cost"] = round(n * b["price"] + order_fee(b["price"], n), 2) if n else 0.0
-        exit_ = sell_early(b, before)
-        if exit_ and n:
-            ts, price = exit_
-            r["exit_ts"], r["exit_price"] = ts, price
-            r["exit_profit"] = round(n * price - order_fee(price, n) - r["cost"], 2)   # Kalshi's fee again on the sale
         res = results.get(b["ticker"])
         if res:
             r["result"] = res
             r["profit"] = round((n if res == b["side"] else 0) - r["cost"], 2)
         out.append(r)
     return out
-
-
-def sell_early(b: dict, later: list[dict]) -> tuple[str, float] | None:
-    """The "sell early" alternative to holding: take the profit the first time before the game that
-    Kalshi will buy our contracts back for at least the price Pinnacle gave when we bet (b["fair"],
-    already for our side). If that never happens, it holds like the other. Returns (time, sale price)."""
-    for s in later:
-        sell = s.get("bid") if b["side"] == "yes" else (None if s.get("ask") is None else round(1 - s["ask"], 4))
-        if sell is not None and 0 < sell < 1 and sell >= b["fair"] - 1e-9:
-            return s["ts"], round(sell, 4)
-    return None
 
 
 def contracts_of(b: dict) -> int:

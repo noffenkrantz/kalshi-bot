@@ -57,10 +57,10 @@ def test_account_counts_only_fillable_contracts_with_kalshis_fee(tmp_path):
     assert o["n"] == 50 and o["fair_now"] == 0.30 and o["ev"] == round(50 * 0.30 - o["cost"], 2)
     assert A["projected"] == round(A["balance"] + o["ev"], 2) and d["proj_line"] == [[T(-8), 96.64], [NOW.isoformat(), A["projected"]]]
     assert [p[1] for p in d["real_line"]] == [100.0, 106.99, 96.64, 96.64]
-    assert d["settled"][0]["won"] is False and d["missed"][0]["price"] == 0.30
-    S = d["scan"]
-    assert S["rows"] == 5 and abs(S["real"] - 0.8) < 1e-9
-    assert {l["name"] for l in S["leagues"]} == {"England - League 2", "ITF Men"}
+    assert d["settled"][0]["won"] is False
+    assert d["scan"]["rows"] == 5
+    V = d["verdict"]
+    assert V["state"] == "early" and V["n"] == 2 and V["settled"] == 2 and V["profit"] == -3.36
 
 
 def test_cash_runs_out(tmp_path):
@@ -100,38 +100,17 @@ def test_available_at_reads_both_order_book_formats():
     assert size_bet(10, 0.40, None)["filled"] is None
 
 
-def test_sell_early_takes_profit_at_pinnacles_original_price(tmp_path):
-    from bot.gaps import sell_early
-    b = {"side": "yes", "ts": T(-5), "fair": 0.52}                        # bought at 47c when Pinnacle said 52c
-    later = [{"ts": T(-4), "fair": 0.50, "bid": 0.49, "ask": 0.50},       # Pinnacle came down; Kalshi short of 52c: hold
-             {"ts": T(-3), "fair": 0.53, "bid": 0.52, "ask": 0.53},       # Kalshi pays 52c: sell
-             {"ts": T(-2), "fair": 0.55, "bid": 0.55, "ask": 0.56}]
-    assert sell_early(b, later) == (T(-3), 0.52)
-    assert sell_early(b, later[:1]) is None
-    no = {"side": "no", "ts": T(-5), "fair": 0.60}                         # NO sells at 1 - YES ask
-    assert sell_early(no, [{"ts": T(-4), "fair": 0.40, "bid": 0.38, "ask": 0.40}]) == (T(-4), 0.6)
-    assert sell_early(no, [{"ts": T(-4), "fair": 0.40, "bid": 0.38, "ask": 0.42}]) is None
-
-
-def test_hold_vs_sell_early_on_the_page(tmp_path):
-    setup(tmp_path)
-    d = build_data(tmp_path, CFG, NOW)
-    C = d["account"]["compare"]
-    # A: 12 YES bought at 40c when Pinnacle said 45c; at -21h Kalshi bids 46c: sold early for 5.52 - 0.21 fee
-    #    = +0.30 instead of the +6.99 it won by holding. B: never reached its price: held, -10.35 either way.
-    #    E (open): Pinnacle said 26c at the bet; Kalshi now bids 27c: already sold.
-    assert C == {"n": 2, "hold": -3.36, "early": -10.05, "sold": 1, "sold_open": 1}
-
-
-def test_sell_early_can_beat_holding(tmp_path):
-    (tmp_path / "data").mkdir()
-    write(tmp_path, "gap_bets.jsonl", [bet("A-BRO", -30, 0.40, 0.46, 500)])        # 25 YES at 40c, cost 10.42
-    write(tmp_path, "gap_snaps.jsonl", [
-        {"ts": T(-30), "ticker": "A-BRO", "league": "L", "fair": 0.46, "bid": 0.38, "ask": 0.40},
-        {"ts": T(-25), "ticker": "A-BRO", "league": "L", "fair": 0.47, "bid": 0.47, "ask": 0.48}])   # Kalshi reached 46c+
-    write(tmp_path, "gap_outcomes.jsonl", [{"ts": T(-10), "ticker": "A-BRO", "result": "no"}])   # and the bet lost
-    d = build_data(tmp_path, CFG, NOW)
-    C = d["account"]["compare"]
-    sale = 25 * 0.47 - 0.44                                  # 11.75 back, minus a 44c fee on the sale
-    assert C["hold"] == -10.42 and C["early"] == round(sale - 10.42, 2) and C["sold"] == 1
-    assert d["settled"][0]["exit_price"] == 0.47
+def test_verdict_reads():
+    from bot.gapsite import verdict
+    mk = lambda clv, i: {"ts": f"2026-11-{10 + i // 24:02d}T{i % 24:02d}:00", "clv": clv}
+    assert verdict([mk(0.03, i) for i in range(5)], [])["state"] == "early"                  # fewer than 10 bets
+    good = [mk(0.03 + (0.01 if i % 2 else -0.01), i) for i in range(30)]                  # steady +3c
+    v = verdict(good, [])
+    assert v["state"] == "promising" and v["beat"] == 30 and v["profit_state"] == "early"
+    noisy = [mk(0.10 if i % 2 else -0.09, i) for i in range(20)]                           # +0.5c but all over the place
+    assert verdict(noisy, [])["state"] == "leaning"
+    assert verdict([mk(-0.02, i) for i in range(20)], [])["state"] == "not_working"
+    old_bad = [mk(-0.05, i) for i in range(60)] + [mk(0.03 + (0.01 if i % 2 else -0.01), 60 + i) for i in range(50)]
+    assert verdict(old_bad, [])["state"] == "promising"          # reads the latest 50 bets
+    done = [{"profit": 1.0, "result": "yes", "side": "yes"}] * 400
+    assert verdict(good, done)["profit_state"] == "ahead"

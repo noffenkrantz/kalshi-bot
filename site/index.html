@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400..700&display=swap" rel="stylesheet">
 <style>
-/* VOICE an account statement for one strategy: buy on Kalshi when it's cheaper than Pinnacle's fair price
+/* VOICE a plain experiment readout: is buying on Kalshi below Pinnacle's price working?
    PICTURE the $1,000 account's settled balance (stepped), with the expected value of open bets dashed beside it
    COLOUR black and white with splashes: one blue accent, green for gains, red for losses; inverted at night
    TYPE Source Sans 3, tabular figures; 17px body
@@ -75,6 +75,16 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 .vs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:10px 28px;margin-top:22px;max-width:760px}
 .vs>div{border:1px solid var(--rule);border-radius:12px;padding:12px 16px}
 .vs .fv{font-size:24px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:16px 24px;margin-top:26px}
+.card{border:1px solid var(--rule);border-radius:14px;padding:18px 20px}
+.card h3{font-size:15px;font-weight:600;color:var(--ink2);margin:0 0 6px}
+.card .fv{font-size:34px}
+.prog{height:8px;border-radius:4px;background:var(--rule);margin:14px 0 6px;overflow:hidden}
+.prog>i{display:block;height:100%;border-radius:4px;background:var(--accent)}
+.state{display:inline-block;font-size:13px;font-weight:700;padding:1px 10px;border-radius:99px;border:1px solid currentColor;margin-top:8px}
+.state.good{color:var(--up);background:color-mix(in srgb,var(--up) 10%,transparent)}
+.state.bad{color:var(--down);background:color-mix(in srgb,var(--down) 10%,transparent)}
+.state.wait{color:var(--ink2)}
 .foot{border-top:1px solid var(--rule);color:var(--ink2);font-size:15px}
 .foot p+p{margin-top:6px}
 .foot a{color:var(--accent)}
@@ -92,150 +102,116 @@ table{font-size:15px}
 </head>
 <body>
 <header class="band"><div class="wrap">
+  <p class="fl" style="font-size:15px;margin-bottom:8px">Experiment: buy on Kalshi when it's cheaper than Pinnacle's price</p>
   <h1 id="finding">Loading results</h1>
-  <div class="status">
-    <p class="sub" id="subline"></p>
+  <p class="sub" id="why" style="font-size:19px"></p>
+  <div class="cards">
+    <div class="card"><h3>Quick check: are the gaps real?</h3><div class="fv" id="q-v"></div><div class="fl" id="q-l"></div>
+      <div class="prog" aria-hidden="true"><i id="q-bar"></i></div><div class="fl" id="q-p"></div><span class="state" id="q-s"></span></div>
+    <div class="card"><h3>Proof: does it make money?</h3><div class="fv" id="p-v"></div><div class="fl" id="p-l"></div>
+      <div class="prog" aria-hidden="true"><i id="p-bar"></i></div><div class="fl" id="p-p"></div><span class="state" id="p-s"></span></div>
+  </div>
+  <div class="status" style="margin-top:18px">
+    <p class="fl" id="subline"></p>
     <button type="button" class="btn" id="reload" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36M21 4v5h-5"/></svg><span>Reload latest</span></button>
   </div>
   <p class="runstate" id="state" role="status" aria-live="polite"></p>
 </div></header>
 
 <section class="band hero" aria-labelledby="balh"><div class="wrap">
-  <h2 id="balh" class="fl" style="font-size:15px;font-weight:400;color:var(--ink2)">Pinnacle vs Kalshi · simulated real-money account · settled bets only</h2>
+  <h2 id="balh" class="fl" style="font-size:15px;font-weight:400;color:var(--ink2)">Simulated account · settled bets only</h2>
   <div class="balance"><div class="big" id="bal"></div><div class="chg" id="chg"></div></div>
   <p class="fl" id="projline" style="font-size:15px;margin:2px 0 10px"></p>
-  <div class="legend"><span><svg width="22" height="10" aria-hidden="true"><path d="M1 5H21" stroke="var(--accent)" stroke-width="3"/></svg> Balance (settled bets)</span><span id="projkey"><svg width="22" height="10" aria-hidden="true"><path d="M1 5H21" stroke="var(--muted)" stroke-width="2" stroke-dasharray="4 3"/></svg> Expected, with open bets valued at Pinnacle's latest price</span></div>
+  <div class="legend"><span><svg width="22" height="10" aria-hidden="true"><path d="M1 5H21" stroke="var(--accent)" stroke-width="3"/></svg> Balance</span><span id="projkey"><svg width="22" height="10" aria-hidden="true"><path d="M1 5H21" stroke="var(--muted)" stroke-width="2" stroke-dasharray="4 3"/></svg> With open bets at Pinnacle's latest price</span></div>
   <div class="fig"><svg id="balsvg" role="img" aria-label="Account balance over time"></svg><div class="tip" id="tip" hidden></div></div>
-  <div class="figs" id="figs"></div>
-  <h3 class="fl" style="font-size:15px;font-weight:600;color:var(--ink);margin:26px 0 0">Hold until the game ends, or sell early?</h3>
-  <div class="vs" id="vs"></div>
-  <p class="fl" id="vsnote" style="margin-top:8px;max-width:760px"></p>
   <p class="how" id="how"></p>
 </div></section>
 
 <section class="band" aria-labelledby="openh"><div class="wrap">
   <h2 id="openh">Open bets</h2>
-  <p class="note"><b>Expected</b> values each bet at Pinnacle's latest fair price for that side. It isn't counted in the balance until the game settles.</p>
   <div id="open"></div>
 </div></section>
 
 <section class="band" aria-labelledby="seth"><div class="wrap">
   <h2 id="seth">Settled bets</h2>
-  <p class="note">A winning contract pays $1. <b>Closing value</b> is Pinnacle's last fair price before the game minus what we paid, per contract: positive on average means the gaps were real, whatever the results.</p>
   <div id="settled"></div>
-  <div id="missed"></div>
-</div></section>
-
-<section class="band" aria-labelledby="gaph"><div class="wrap">
-  <h2 id="gaph">Where the gaps are</h2>
-  <p class="note" id="gapnote"></p>
-  <div id="leagues"></div>
-</div></section>
-
-<section class="band" aria-labelledby="movh"><div class="wrap">
-  <h2 id="movh">How fast Kalshi follows Pinnacle</h2>
-  <p class="note">Each time Pinnacle's fair price on a paired game moves 2 points or more: how far Kalshi's midpoint was from the new price just before, when the tracker saw the move, and after. Small numbers right away mean Kalshi keeps up; numbers that stay big mean it lags.</p>
-  <div id="moves"></div>
 </div></section>
 
 <footer class="band foot"><div class="wrap">
-  <p id="tracker"></p>
   <p id="links"></p>
   <p>Simulated trades only: real Kalshi prices, order books and fees, no real orders or money. Not financial advice.</p>
 </div></footer>
 
 <script>
 {
-let D = {"updated":"2026-11-26T03:06:25+00:00","repo":"noffenkrantz/kalshi-bot","rules":{"bankroll":10000.0,"stake":100.0,"min_edge":0.03,"max_edge":0.15,"mode":"live","every":60,"poll":2},"status":{"last_run":"2026-11-26T02:50:12+00:00","calls_today":12388,"day":"2026-11-26"},"account":{"start":10000.0,"balance":10107.84,"realized":107.84,"cash":9940.0,"projected":10101.91,"open_n":4,"open_cost":167.84,"settled_n":2,"wins":1,"losses":1,"placed_n":6,"missed_n":3,"unknown_n":0,"no_cash_n":0,"same_game_n":1,"compare":{"n":2,"hold":107.84,"early":107.84,"sold":0,"sold_open":0},"clv":0.02936666666666667,"clv_n":6,"clv_usd":7.2},"real_line":[["2026-11-25T16:44:21+00:00",10000.0],["2026-11-26T01:18:53+00:00",10108.66],["2026-11-26T03:06:25+00:00",10107.84],["2026-11-26T03:06:25+00:00",10107.84]],"proj_line":[["2026-11-26T03:06:25+00:00",10107.84],["2026-11-26T03:06:25+00:00",10101.91]],"open":[{"placed":"2026-11-25T21:30:30+00:00","game":"New York Knicks vs Cleveland Cavaliers","league":"NBA","team":"New York","side":"no","price":0.41,"n":150,"wanted":243,"available":150,"cost":64.04,"fair_then":0.4604,"fair_now":0.3699,"ev":-8.56,"starts":"2026-11-26T00:40:00+00:00","live":true,"exit_price":null,"exit_profit":null,"exit_ts":null},{"placed":"2026-11-25T23:43:22+00:00","game":"Aliona Falei vs Jana Kovackova","league":"ITF Women Trnava - R16","team":"Jana Kovackova","side":"yes","price":0.56,"n":178,"wanted":178,"available":250,"cost":102.76,"fair_then":0.6197,"fair_now":0.5915,"ev":2.53,"starts":"2026-11-26T09:00:00+00:00","live":true,"exit_price":null,"exit_profit":null,"exit_ts":null},{"placed":"2026-11-26T02:34:24+00:00","game":"Tampines Rovers vs Shanghai Shenhua","league":"AFC - Champions League 2","team":"Shanghai Shenhua","side":"no","price":0.26,"n":1,"wanted":384,"available":1,"cost":0.28,"fair_then":0.31,"fair_now":0.31,"ev":0.03,"starts":"2026-11-26T10:00:00+00:00","live":true,"exit_price":null,"exit_profit":null,"exit_ts":null},{"placed":"2026-11-25T22:41:47+00:00","game":"Petr Michnev vs Liam Hignett","league":"ITF Men Hradec Kralove - R16","team":"Liam Hignett","side":"yes","price":0.36,"n":2,"wanted":277,"available":2,"cost":0.76,"fair_then":0.4133,"fair_now":0.4128,"ev":0.07,"starts":"2026-11-26T11:00:00+00:00","live":true,"exit_price":null,"exit_profit":null,"exit_ts":null}],"settled":[{"placed":"2026-11-25T22:35:22+00:00","settled":"2026-11-26T03:06:25+00:00","game":"Lehigh Valley Phantoms vs Providence Bruins","league":"USA - American Hockey League","team":"Providence Bruins","side":"no","price":0.39,"n":2,"cost":0.82,"won":false,"profit":-0.82,"clv":0.0473,"exit_price":null,"exit_profit":null},{"placed":"2026-11-25T20:16:13+00:00","settled":"2026-11-26T01:18:53+00:00","game":"Philadelphia 76ers vs Miami Heat","league":"NBA","team":"Philadelphia","side":"yes","price":0.47,"n":212,"cost":103.34,"won":true,"profit":108.66,"clv":0.0347,"exit_price":null,"exit_profit":null}],"missed":[{"placed":"2026-11-25T22:22:24+00:00","game":"Nikita Ianin vs Grigoriy Lomakin","league":"ITF Men Bhopal - R16","team":"Grigoriy Lomakin","side":"yes","price":0.48,"edge":0.0441},{"placed":"2026-11-25T21:13:23+00:00","game":"Dane Sweeny vs Hayden Jones","league":"ATP Challenger Playford - R16","team":"Hayden Jones","side":"yes","price":0.17,"edge":0.035},{"placed":"2026-11-25T21:07:22+00:00","game":"Jordan Hasson vs Odysseas Geladaris","league":"ITF Men Heraklion - R16","team":"Odysseas Geladaris","side":"yes","price":0.39,"edge":0.0769}],"scan":{"rows":4092,"since":"2026-11-25T16:44:21+00:00","real":0.9843597262952102,"gap":0.012879419066534257,"edge":0.004965243296921549,"leagues":[{"name":"NCAA","n":304,"real":1.0,"gap":0.012015789473684207,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"ITF Men Hradec Kralove - R16","n":259,"real":1.0,"gap":0.03726177606177607,"edge":0.003861003861003861,"bets":1,"clv":0.0528,"profit":0},{"name":"NHL","n":222,"real":1.0,"gap":0.005391891891891887,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"NBA","n":215,"real":1.0,"gap":0.00830651162790698,"edge":0.037209302325581395,"bets":2,"clv":-0.0026999999999999975,"profit":108.66},{"name":"ITF Men Heraklion - R16","n":215,"real":1.0,"gap":0.015910697674418595,"edge":0.009302325581395349,"bets":0,"clv":null,"profit":0},{"name":"ITF Men Santa Cruz - R1","n":198,"real":1.0,"gap":0.013498989898989898,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"ITF Women Trnava - R16","n":172,"real":0.9941860465116279,"gap":0.01232748538011696,"edge":0.005847953216374269,"bets":1,"clv":0.0315,"profit":0},{"name":"ITF Women Heraklion 2 - R16","n":166,"real":0.9457831325301205,"gap":0.012991082802547769,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"ITF Men Monastir 2 - R16","n":152,"real":1.0,"gap":0.015371052631578938,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"ITF Women Monastir - R16","n":152,"real":0.9736842105263158,"gap":0.016559459459459455,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"USA - American Hockey League","n":135,"real":1.0,"gap":0.009553333333333336,"edge":0.007407407407407408,"bets":1,"clv":0.0473,"profit":-0.82},{"name":"ITF Women Lousada - R16","n":134,"real":0.9850746268656716,"gap":0.014934848484848487,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"Russia - Kontinental Hockey League","n":132,"real":1.0,"gap":0.0070530303030303,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"ITF Women Kolkata - R16","n":122,"real":1.0,"gap":0.01587377049180328,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"ITF Women Playford - R16","n":120,"real":1.0,"gap":0.008445000000000003,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"ITF Men Bhopal - R16","n":116,"real":1.0,"gap":0.014061206896551708,"edge":0.008620689655172414,"bets":0,"clv":null,"profit":0},{"name":"AFC - Champions League 2","n":104,"real":1.0,"gap":0.014421153846153842,"edge":0.028846153846153848,"bets":1,"clv":0.05,"profit":0},{"name":"ATP Challenger Playford - R16","n":100,"real":1.0,"gap":0.013311999999999992,"edge":0.01,"bets":0,"clv":null,"profit":0},{"name":"ITF Men Madrid - R16","n":100,"real":1.0,"gap":0.012138000000000003,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"Sweden - SHL","n":100,"real":1.0,"gap":0.008147999999999997,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"Lithuania - National Basketball League","n":78,"real":0.9615384615384616,"gap":0.010501333333333314,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"ATP Challenger Yokohama - R16","n":76,"real":1.0,"gap":0.00839999999999999,"edge":0.02631578947368421,"bets":0,"clv":null,"profit":0},{"name":"Mexico - Liga MX","n":66,"real":1.0,"gap":0.005598484848484844,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"UEFA - Champions League","n":60,"real":1.0,"gap":0.008191666666666658,"edge":0.0,"bets":0,"clv":null,"profit":0},{"name":"ITF Women Florianopolis - R16","n":56,"real":0.9821428571428571,"gap":0.010036363636363633,"edge":0.0,"bets":0,"clv":null,"profit":0}]},"moves":[{"name":"All","n":55,"move":0.032349090909090904,"gaps":{"before":0.029247272727272722,"at":0.027381818181818174,"5":0.023072727272727266,"15":0.02293272727272727,"60":0.021119999999999993,"300":0.017489090909090902},"already":0.2545454545454545},{"name":"ITF Men Heraklion - R16","n":7,"move":0.054514285714285696,"gaps":{"before":0.055042857142857136,"at":0.052899999999999996,"5":0.03781428571428571,"15":0.04290000000000001,"60":0.04001428571428571,"300":0.01922857142857142},"already":0.2857142857142857},{"name":"AFC - Champions League 2","n":7,"move":0.03108571428571429,"gaps":{"before":0.015385714285714296,"at":0.01872857142857142,"5":0.019085714285714286,"15":0.019528571428571433,"60":0.023342857142857172,"300":0.023342857142857172},"already":0.2857142857142857},{"name":"ATP Challenger Playford - R16","n":5,"move":0.02308,"gaps":{"before":0.014280000000000004,"at":0.015080000000000005,"5":0.013080000000000003,"15":0.016079999999999983,"60":0.01043999999999996,"300":0.00973999999999996},"already":0.4},{"name":"ITF Women Heraklion 2 - R16","n":5,"move":0.03324000000000001,"gaps":{"before":0.038259999999999995,"at":0.03626,"5":0.027779999999999982,"15":0.027779999999999982,"60":0.027779999999999982,"300":0.02749999999999999},"already":0.0},{"name":"ITF Women Trnava - R16","n":4,"move":0.04052499999999998,"gaps":{"before":0.03522499999999998,"at":0.027724999999999972,"5":0.02022499999999998,"15":0.01760000000000002,"60":0.013149999999999995,"300":0.013999999999999985},"already":0.25},{"name":"NCAA","n":4,"move":0.02349999999999995,"gaps":{"before":0.023899999999999977,"at":0.023899999999999977,"5":0.02209999999999998,"15":0.01987499999999999,"60":0.02447499999999997,"300":0.01817500000000001},"already":0.25},{"name":"ITF Men Bhopal - R16","n":4,"move":0.02742499999999999,"gaps":{"before":0.03822499999999998,"at":0.03947499999999998,"5":0.031974999999999976,"15":0.029474999999999973,"60":0.023224999999999968,"300":0.020724999999999966},"already":0.0},{"name":"USA - American Hockey League","n":3,"move":0.026000000000000006,"gaps":{"before":0.03406666666666669,"at":0.03406666666666669,"5":0.03023333333333335,"15":0.026900000000000018,"60":0.013566666666666671,"300":0.013566666666666671},"already":0.0},{"name":"NBA","n":3,"move":0.04416666666666665,"gaps":{"before":0.01416666666666666,"at":0.010833333333333325,"5":0.010733333333333336,"15":0.010133333333333328,"60":0.012399999999999986,"300":0.0072666666666666435},"already":0.6666666666666666},{"name":"ATP Challenger Yokohama - R16","n":3,"move":0.021666666666666685,"gaps":{"before":0.02046666666666665,"at":0.02046666666666665,"5":0.02046666666666665,"15":0.017133333333333316,"60":0.013299999999999998,"300":0.01739999999999999},"already":0.0},{"name":"ATP Challenger Ankara - R16","n":2,"move":0.023950000000000027,"gaps":{"before":0.026300000000000018,"at":0.013800000000000034,"5":0.011300000000000032,"15":0.011300000000000032,"60":0.012600000000000028,"300":0.009899999999999992},"already":0.5},{"name":"ITF Women Ortisei - QF","n":2,"move":0.026099999999999998,"gaps":{"before":0.035350000000000006,"at":0.032850000000000004,"5":0.032850000000000004,"15":0.030350000000000002,"60":0.030350000000000002,"300":0.020350000000000007},"already":0.0}]};
+let D = {"updated":"2026-11-26T03:39:42+00:00","repo":"noffenkrantz/kalshi-bot","rules":{"bankroll":10000.0,"stake":100.0,"min_edge":0.03,"max_edge":0.15,"mode":"live","every":60,"poll":2},"status":{"last_run":"2026-11-26T03:28:27+00:00","calls_today":14569,"day":"2026-11-26"},"account":{"start":10000.0,"balance":10107.84,"realized":107.84,"cash":9940.0,"projected":10102.0,"open_n":4,"open_cost":167.84,"settled_n":2,"wins":1,"losses":1,"placed_n":6,"missed_n":3,"unknown_n":0,"no_cash_n":0,"same_game_n":1,"clv":0.029450000000000004,"clv_n":6,"clv_usd":7.29},"real_line":[["2026-11-25T16:44:21+00:00",10000.0],["2026-11-26T01:18:53+00:00",10108.66],["2026-11-26T03:06:25+00:00",10107.84],["2026-11-26T03:39:42+00:00",10107.84]],"proj_line":[["2026-11-26T03:06:25+00:00",10107.84],["2026-11-26T03:39:42+00:00",10102.0]],"verdict":{"state":"early","n":6,"scored_total":6,"mean":0.029450000000000004,"low":0.0007971002049239964,"beat":5,"quick_target":50,"profit":107.84,"settled":2,"wins":1,"profit_state":"early","proof_target":1000},"open":[{"placed":"2026-11-25T21:30:30+00:00","game":"New York Knicks vs Cleveland Cavaliers","league":"NBA","team":"New York","side":"no","price":0.41,"n":150,"wanted":243,"available":150,"cost":64.04,"fair_then":0.4604,"fair_now":0.3699,"ev":-8.56,"starts":"2026-11-26T00:40:00+00:00","live":true},{"placed":"2026-11-25T23:43:22+00:00","game":"Aliona Falei vs Jana Kovackova","league":"ITF Women Trnava - R16","team":"Jana Kovackova","side":"yes","price":0.56,"n":178,"wanted":178,"available":250,"cost":102.76,"fair_then":0.6197,"fair_now":0.592,"ev":2.62,"starts":"2026-11-26T09:00:00+00:00","live":true},{"placed":"2026-11-26T02:34:24+00:00","game":"Tampines Rovers vs Shanghai Shenhua","league":"AFC - Champions League 2","team":"Shanghai Shenhua","side":"no","price":0.26,"n":1,"wanted":384,"available":1,"cost":0.28,"fair_then":0.31,"fair_now":0.31,"ev":0.03,"starts":"2026-11-26T10:00:00+00:00","live":true},{"placed":"2026-11-25T22:41:47+00:00","game":"Petr Michnev vs Liam Hignett","league":"ITF Men Hradec Kralove - R16","team":"Liam Hignett","side":"yes","price":0.36,"n":2,"wanted":277,"available":2,"cost":0.76,"fair_then":0.4133,"fair_now":0.4128,"ev":0.07,"starts":"2026-11-26T11:00:00+00:00","live":true}],"settled":[{"placed":"2026-11-25T22:35:22+00:00","settled":"2026-11-26T03:06:25+00:00","game":"Lehigh Valley Phantoms vs Providence Bruins","league":"USA - American Hockey League","team":"Providence Bruins","side":"no","price":0.39,"n":2,"cost":0.82,"won":false,"profit":-0.82,"clv":0.0473},{"placed":"2026-11-25T20:16:13+00:00","settled":"2026-11-26T01:18:53+00:00","game":"Philadelphia 76ers vs Miami Heat","league":"NBA","team":"Philadelphia","side":"yes","price":0.47,"n":212,"cost":103.34,"won":true,"profit":108.66,"clv":0.0347}],"scan":{"rows":4096,"since":"2026-11-25T16:44:21+00:00","edge":0.00496031746031746}};
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const money = (v, sign) => (sign ? (v >= 0 ? '+' : '−') : (v < 0 ? '−' : '')) + '$' + Math.abs(v).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
 const money0 = v => '$' + Math.round(v).toLocaleString('en-US');
-const pct = p => p == null ? '–' : (p * 100).toFixed(p < 0.1 && p > 0 ? 1 : 0) + '%';
 const cents = p => p == null ? '–' : Math.round(p * 100) + '¢';
 const sc = v => v == null ? '–' : (v >= 0 ? '+' : '−') + Math.abs(v * 100).toFixed(1) + '¢';
-const gapc = v => v == null ? '–' : (v * 100).toFixed(1) + '¢';
 const when = s => s ? new Date(s).toLocaleString('en-US', {weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'}) : '';
 const day = s => s ? new Date(s).toLocaleString('en-US', {month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'}) : '';
 const cls = v => v == null || Math.abs(v) < 0.005 ? '' : (v > 0 ? 'up' : 'down');
 const plural = (n, w) => `${n.toLocaleString('en-US')} ${w}${n === 1 ? '' : 's'}`;
-const betlabel = b => `${b.side === 'yes' ? esc(b.team) + ' to win' : esc(b.team) + ' not to win'}`;
+const betlabel = b => b.side === 'yes' ? `${esc(b.team)} to win` : `${esc(b.team)} to lose`;
 
 let real = [], proj = [], times = [], G = null;
 const s = $('balsvg'), tip = $('tip');
 
 function render() {
-  const A = D.account, R = D.rules, S = D.scan, change = A.balance - A.start;
-  // ---- headline
-  let finding;
-  if (A.settled_n) finding = `${change >= 0 ? 'Up' : 'Down'} ${money(Math.abs(change))} after ${plural(A.settled_n, 'settled bet')}`;
-  else if (A.open_n) finding = `${plural(A.open_n, 'bet')} placed, waiting for results`;
-  else if (S.rows) finding = `No bets yet: Kalshi has stayed within about ${Math.max(1, Math.round((S.gap || 0) * 100))}¢ of Pinnacle`;
-  else finding = 'Waiting for the first comparison';
-  $('finding').textContent = finding;
-  $('subline').textContent = `Updated ${when(D.updated)} · ${R.mode === 'live' ? 'watching Pinnacle every few seconds' : 'checked hourly'}`;
+  const A = D.account, R = D.rules, V = D.verdict, change = A.balance - A.start;
+  // ---- the read
+  const head = {early: 'Too early to tell', promising: 'Promising so far', leaning: 'Leaning positive, not proven yet', not_working: 'Not working so far'}[V.state];
+  $('finding').textContent = head;
+  const avg = V.mean == null ? '' : `${Math.abs(V.mean * 100).toFixed(1)}¢`;
+  $('why').textContent = {
+    early: V.n ? `Only ${plural(V.n, 'bet')} can be checked so far (${avg} ${V.mean >= 0 ? 'below' : 'above'} Pinnacle's final price on average). The first real read comes at about 10, a solid one at about ${V.quick_target}.`
+               : `No bets have reached game time yet. The first real read comes at about 10 bets, a solid one at about ${V.quick_target}.`,
+    promising: `On its last ${plural(V.n, 'bet')}, the bot bought ${avg} below Pinnacle's final pre-game price on average, and ${V.beat} of ${V.n} beat it. That's what a real edge looks like.`,
+    leaning: `On its last ${plural(V.n, 'bet')}, the bot bought ${avg} below Pinnacle's final pre-game price on average (${V.beat} of ${V.n} beat it), but it isn't steady enough yet to rule out luck.`,
+    not_working: `On its last ${plural(V.n, 'bet')}, Kalshi wasn't really cheaper: the bot paid ${avg} ${V.mean < 0 ? 'more than' : 'about the same as'} Pinnacle's final pre-game price on average. When that holds, Kalshi was right and there's no edge.`,
+  }[V.state];
+  const tag = (el, txt, kind) => { el.textContent = txt; el.className = 'state ' + kind; };
+  $('q-v').textContent = V.n ? sc(V.mean) : '–';
+  $('q-v').className = 'fv ' + (V.n ? cls(V.mean) : '');
+  $('q-l').textContent = V.n ? `average per contract vs Pinnacle's final price · ${V.beat} of ${V.n} beat it` : "how far below Pinnacle's final pre-game price it bought";
+  $('q-bar').style.width = Math.min(100, V.scored_total / V.quick_target * 100) + '%';
+  $('q-p').textContent = `${Math.min(V.scored_total, V.quick_target)} of ${V.quick_target} bets`;
+  tag($('q-s'), {early: 'Too early', promising: 'Promising', leaning: 'Leaning positive', not_working: 'Not working'}[V.state],
+      V.state === 'promising' ? 'good' : V.state === 'not_working' ? 'bad' : 'wait');
+  $('p-v').textContent = V.settled ? money(V.profit, true) : '$0.00';
+  $('p-v').className = 'fv ' + (V.settled ? cls(V.profit) : '');
+  $('p-l').textContent = V.settled ? `profit after fees · ${V.wins} won, ${V.settled - V.wins} lost` : 'profit after fees';
+  $('p-bar').style.width = Math.min(100, V.settled / V.proof_target * 100) + '%';
+  $('p-p').textContent = `${V.settled.toLocaleString('en-US')} of ${V.proof_target.toLocaleString('en-US')} settled bets` + (V.profit_state === 'early' ? ' · until about 300, luck outweighs a few cents of edge' : '');
+  tag($('p-s'), {early: 'Too early', ahead: 'Ahead, not proven yet', behind: 'Behind so far', proven: 'Proven: profitable', not_proven: 'Not profitable'}[V.profit_state],
+      V.profit_state === 'proven' ? 'good' : V.profit_state === 'not_proven' || V.profit_state === 'behind' ? 'bad' : 'wait');
+  $('subline').textContent = `Updated ${when(D.updated)} · ${R.mode === 'live' ? 'watching prices every few seconds' : 'checked hourly'}`;
 
-  // ---- balance and figures
+  // ---- balance
   $('bal').textContent = money(A.balance);
-  $('chg').innerHTML = `<span class="${cls(change)}">${money(change, true)} (${(change / A.start * 100).toFixed(1)}%)</span> <span style="color:var(--ink2);font-weight:500">since the ${money0(A.start)} start</span>`;
+  $('chg').innerHTML = `<span class="${cls(change)}">${money(change, true)}</span> <span style="color:var(--ink2);font-weight:500">since the ${money0(A.start)} start</span>`;
   const pg = A.projected - A.balance;
-  $('projline').innerHTML = A.open_n ? `Expected <b>${money(A.projected)}</b> <span class="${cls(pg)}">(${money(pg, true)})</span> if open bets are worth what Pinnacle's latest prices say.` : '';
+  $('projline').innerHTML = A.open_n ? `${plural(A.open_n, 'open bet')} (${money(A.open_cost)} in play) look worth <span class="${cls(pg)}">${money(pg, true)}</span> at Pinnacle's latest prices.` : '';
   $('projkey').hidden = !A.open_n;
-  const figs = [
-    [A.open_n, `open bet${A.open_n === 1 ? '' : 's'} · ${money(A.open_cost)} in play`],
-    [A.settled_n ? `${A.wins}–${A.losses}` : '0', 'won–lost'],
-    [A.settled_n ? money(A.realized, true) : '$0.00', 'profit on settled bets, after fees', A.settled_n ? cls(A.realized) : ''],
-    [A.clv_n ? sc(A.clv) : '–', A.clv_n ? `average closing value per contract (${plural(A.clv_n, 'bet')}, ${money(A.clv_usd, true)} in all)` : 'closing value: shows once bets have a final pre-game price', A.clv_n ? cls(A.clv) : ''],
-    [S.rows ? S.rows.toLocaleString('en-US') : '0', S.rows ? `prices compared · ${pct(S.edge)} could be bought ${Math.round(R.min_edge * 100)}¢+ below Pinnacle` : 'prices compared'],
-  ];
-  $('figs').innerHTML = figs.map(([v, l, c]) => `<div><div class="fv ${c || ''}">${esc(v)}</div><div class="fl">${esc(l)}</div></div>`).join('');
-  const left = [A.missed_n ? `${plural(A.missed_n, 'gap')} had nothing for sale at that price` : '', A.unknown_n ? `${A.unknown_n} couldn't be checked` : '', A.no_cash_n ? `${A.no_cash_n} came when the cash was all in play` : '', A.same_game_n ? `${A.same_game_n} doubled a bet already held on the same game` : ''].filter(Boolean);
-  $('how').innerHTML = `<b>How it trades:</b> starts with ${money0(R.bankroll)}. When Kalshi sells a side for ${Math.round(R.min_edge * 100)}¢ or more below Pinnacle's fair price (Pinnacle's odds with its margin removed), after Kalshi's fee, it buys up to ${money0(R.stake)}, but only as many contracts as were actually for sale at that price. Kalshi's fee is charged the way Kalshi charges it, rounded up to the cent per order. Gaps over ${Math.round(R.max_edge * 100)}¢ are treated as a wrong match and skipped.` + (left.length ? ` Left out so far: ${esc(left.join('; '))}.` : '');
+  $('how').innerHTML = `<b>The rule:</b> when Kalshi sells an outcome for at least ${Math.round(R.min_edge * 100)}¢ less than Pinnacle's price (after Kalshi's fee), it buys up to ${money0(R.stake)}, but only the contracts actually for sale at that price. One bet per game, ${money0(R.bankroll)} start.`;
 
-  // ---- hold vs sell early (the balance above is "hold")
-  const C = A.compare || {n: 0, hold: 0, early: 0, sold: 0, sold_open: 0};
-  const better = C.n ? (C.early > C.hold + 0.005 ? 'early' : C.hold > C.early + 0.005 ? 'hold' : '') : '';
-  $('vs').innerHTML = [['hold', 'Hold until the game ends', C.hold, `${plural(C.n, 'finished bet')}`],
-    ['early', 'Sell early', C.early, C.n ? `sold ${C.sold} of ${C.n} before the game` : 'no finished bets yet']]
-    .map(([k, t, v, sub]) => `<div><div class="fl">${t}${better === k ? ' · <b>ahead</b>' : ''}</div><div class="fv ${C.n ? cls(v) : ''}">${C.n ? money(v, true) : '–'}</div><div class="fl">${sub}</div></div>`).join('');
-  $('vsnote').textContent = `Sell early takes the profit the first time before the game that Kalshi will pay at least the price Pinnacle gave when the bet was placed (52¢ in the Philadelphia example), paying Kalshi's fee again on the sale. If Kalshi never gets there, it holds like the other.` + (C.sold_open ? ` ${plural(C.sold_open, 'open bet')} would already have been sold.` : '');
+  // ---- bets
+  $('open').innerHTML = D.open.length ? `<div class="scroll"><table class="stack"><thead><tr><th>Game</th><th>Bet</th><th class="n">Paid</th><th class="n">Pinnacle then → now</th><th class="n">On paper</th><th class="n">Starts</th></tr></thead><tbody>` +
+    D.open.map(b => `<tr><td class="q">${esc(b.game)}<span class="meta">${esc(b.league)}</span></td><td><span>${betlabel(b)}<span class="meta">${b.n} at ${cents(b.price)}</span></span></td><td class="n">${money(b.cost)}</td><td class="n">${cents(b.fair_then)} → ${cents(b.fair_now)}</td><td class="n ${cls(b.ev)}">${money(b.ev, true)}</td><td class="n">${day(b.starts)}</td></tr>`).join('') + `</tbody></table></div>`
+    : `<p class="empty">None right now.</p>`;
+  $('settled').innerHTML = D.settled.length ? `<div class="scroll"><table class="stack"><thead><tr><th>Game</th><th>Bet</th><th>Result</th><th class="n">Profit</th><th class="n">vs Pinnacle's final price</th></tr></thead><tbody>` +
+    D.settled.map(b => `<tr><td class="q">${esc(b.game)}<span class="meta">${esc(b.league)} · ${day(b.placed)}</span></td><td><span>${betlabel(b)}<span class="meta">${b.n} at ${cents(b.price)}</span></span></td><td><span class="tag ${b.won ? 'won' : 'lost'}">${b.won ? 'Won' : 'Lost'}</span></td><td class="n ${cls(b.profit)}">${money(b.profit, true)}</td><td class="n ${cls(b.clv)}">${sc(b.clv)}</td></tr>`).join('') + `</tbody></table></div>`
+    : `<p class="empty">Nothing settled yet. Kalshi settles a game within hours of the end.</p>`;
+  $('links').innerHTML = D.repo ? `More detail (leagues, how fast Kalshi follows Pinnacle): <a href="https://github.com/${esc(D.repo)}/blob/main/GAPS.md">full report</a>` : '';
 
-  // ---- open bets
-  $('open').innerHTML = D.open.length ? `<div class="scroll"><table class="stack"><thead><tr><th>Game</th><th>Bet</th><th class="n">Contracts</th><th class="n">Paid</th><th class="n">Fair then → now</th><th class="n">Expected</th><th class="n">Sell early</th><th class="n">Starts</th></tr></thead><tbody>` +
-    D.open.map(b => `<tr><td class="q">${esc(b.game)}<span class="meta">${esc(b.league)} · placed ${day(b.placed)}${b.live ? ' · live' : ''}</span></td><td><span>${betlabel(b)}<span class="meta">${b.side.toUpperCase()} at ${cents(b.price)}</span></span></td><td class="n"><span>${b.n}${b.n < b.wanted ? `<span class="meta">of ${b.wanted} wanted</span>` : ''}</span></td><td class="n">${money(b.cost)}</td><td class="n">${cents(b.fair_then)} → ${cents(b.fair_now)}</td><td class="n ${cls(b.ev)}">${money(b.ev, true)}</td><td class="n">${b.exit_price == null ? '<span class="meta" style="display:inline">not yet</span>' : `<span>sold at ${cents(b.exit_price)}<span class="meta ${cls(b.exit_profit)}">${money(b.exit_profit, true)}</span></span>`}</td><td class="n">${day(b.starts)}</td></tr>`).join('') + `</tbody></table></div>`
-    : `<p class="empty">None right now. A bet is placed only when Kalshi is at least ${Math.round(D.rules.min_edge * 100)}¢ cheaper than Pinnacle's fair price after fees and there are contracts for sale at that price.</p>`;
-
-  // ---- settled bets
-  $('settled').innerHTML = D.settled.length ? `<div class="scroll"><table class="stack"><thead><tr><th>Game</th><th>Bet</th><th>Result</th><th class="n">Paid</th><th class="n">Profit</th><th class="n">If sold early</th><th class="n">Closing value</th></tr></thead><tbody>` +
-    D.settled.map(b => `<tr><td class="q">${esc(b.game)}<span class="meta">${esc(b.league)} · ${day(b.placed)}</span></td><td><span>${betlabel(b)}<span class="meta">${b.n} ${b.side.toUpperCase()} at ${cents(b.price)}</span></span></td><td><span class="tag ${b.won ? 'won' : 'lost'}">${b.won ? 'Won' : 'Lost'}</span></td><td class="n">${money(b.cost)}</td><td class="n ${cls(b.profit)}">${money(b.profit, true)}</td><td class="n">${b.exit_price == null ? '<span class="meta" style="display:inline">held</span>' : `<span><span class="${cls(b.exit_profit)}">${money(b.exit_profit, true)}</span><span class="meta">sold at ${cents(b.exit_price)}</span></span>`}</td><td class="n ${cls(b.clv)}">${sc(b.clv)}</td></tr>`).join('') + `</tbody></table></div>`
-    : `<p class="empty">Nothing settled yet. Kalshi settles a game within hours of the final whistle.</p>`;
-  $('missed').innerHTML = D.missed.length ? `<p class="fl" style="margin:22px 0 6px"><b>Gaps with nothing for sale.</b> Kalshi's price looked cheap, but no contracts were actually on offer at it, so a real account couldn't have bought.</p><ul style="margin:0;padding-left:20px">` +
-    D.missed.map(b => `<li>${esc(b.game)} <span class="meta" style="display:inline">· ${esc(b.league)} · ${betlabel(b)} at ${cents(b.price)} (${sc(b.edge)} edge) · ${day(b.placed)}</span></li>`).join('') + `</ul>` : '';
-
-  // ---- where the gaps are
-  $('gapnote').innerHTML = S.rows ? `${S.rows.toLocaleString('en-US')} Kalshi prices compared with Pinnacle's since ${day(S.since)}. ${pct(S.real)} had a real market (buy and sell prices within 10¢). In those, Kalshi's midpoint was <b>${gapc(S.gap)}</b> from Pinnacle's fair price on average, and <b>${pct(S.edge)}</b> could be bought ${Math.round(D.rules.min_edge * 100)}¢ or more below it after fees. <b>No real market</b>: nobody quoting tightly, so nothing to buy at a fair price.` : 'Fills in after the first comparison.';
-  const maxn = Math.max(1, ...S.leagues.map(l => l.n));
-  $('leagues').innerHTML = S.leagues.length ? `<div class="scroll"><table class="stack"><thead><tr><th>League</th><th class="n">Prices compared</th><th class="n">No real market</th><th class="n">Avg gap</th><th class="n">${Math.round(D.rules.min_edge * 100)}¢+ edge</th><th class="n">Bets</th><th class="n">Closing value</th><th class="n">Profit</th></tr></thead><tbody>` +
-    S.leagues.map(l => `<tr><td class="q">${esc(l.name)}</td><td class="n"><span class="bar" style="width:${Math.max(3, Math.round(l.n / maxn * 60))}px"></span>${l.n.toLocaleString('en-US')}</td><td class="n">${pct(1 - l.real)}</td><td class="n">${gapc(l.gap)}</td><td class="n">${pct(l.edge)}</td><td class="n">${l.bets}</td><td class="n ${cls(l.clv)}">${sc(l.clv)}</td><td class="n ${l.bets ? cls(l.profit) : ''}">${l.bets ? money(l.profit, true) : '–'}</td></tr>`).join('') + `</tbody></table></div>` : '';
-
-  // ---- follow speed
-  const M = D.moves || [];
-  $('moves').innerHTML = M.length ? `<div class="scroll"><table class="stack"><thead><tr><th></th><th class="n">Moves</th><th class="n">Avg move</th><th class="n">Gap before</th><th class="n">When seen</th><th class="n">5 s later</th><th class="n">15 s later</th><th class="n">1 min later</th><th class="n">5 min later</th><th class="n">Already there</th></tr></thead><tbody>` +
-    M.map(r => `<tr><td class="q">${esc(r.name === 'All' ? 'All leagues' : r.name)}</td><td class="n">${r.n}</td><td class="n">${r.move == null ? '–' : (r.move * 100).toFixed(1) + ' pts'}</td>${['before', 'at', '5', '15', '60', '300'].map(w => `<td class="n">${gapc(r.gaps[w])}</td>`).join('')}<td class="n">${pct(r.already)}</td></tr>`).join('') + `</tbody></table></div>`
-    : `<p class="empty">${D.rules.mode === 'live' ? 'Waiting for the first big Pinnacle move.' : 'Fills in once live mode is on (it needs the paid pinnapi plan). Hourly checks can’t see how fast Kalshi reacts.'}</p>`;
-
-  // ---- footer
-  const st = D.status || {};
-  $('tracker').textContent = `Tracker: ${D.rules.mode === 'live' ? `live, checking Pinnacle every ${D.rules.poll} seconds` : `hourly snapshots (every ${D.rules.every} minutes)`}` + (st.last_run ? `; last check ${when(st.last_run)}` : '') + (st.calls_today != null ? `; ${st.calls_today} pinnapi requests on ${st.day}` : '') + '.';
-  $('links').innerHTML = D.repo ? `Details: <a href="https://github.com/${esc(D.repo)}/blob/main/GAPS.md">full gap report</a> · <a href="https://github.com/${esc(D.repo)}">code and data</a>` : '';
-
-  // ---- chart data
   const series = a => (a || []).map(([t, v]) => [new Date(t).getTime(), v]).filter(p => !isNaN(p[0])).sort((a, b) => a[0] - b[0]);
   real = series(D.real_line); proj = series(D.proj_line);
   times = [...new Set(real.concat(proj).map(p => p[0]))].sort((a, b) => a - b);
   drawChart();
 }
-
 // ---- balance chart: the balance steps when a bet settles; the expected line is dashed
 const at = (arr, t) => { let v = null; for (const p of arr) { if (p[0] <= t) v = p[1]; else break; } return v; };
 const nice = span => { const raw = Math.max(span, 1e-9) / 4, mag = 10 ** Math.floor(Math.log10(raw)); for (const m of [1, 2, 2.5, 5, 10]) if (m * mag >= raw) return m * mag; return 10 * mag; };
@@ -275,7 +251,7 @@ function drawChart() {
     const pv = proj[proj.length - 1], px = X(pv[0]), py = Y(pv[1]);
     const ly = Math.abs(py - ey) >= 22 ? py + 4 : (py >= ey ? ey + 22 : ey - 14);
     h += `<circle cx="${px}" cy="${py}" r="4" fill="var(--bg)" stroke="var(--muted)" stroke-width="2"/>`;
-    h += `<text x="${px + 10}" y="${ly}">${narrow ? '' : 'Expected '}${money0(pv[1])}</text>`;
+    h += `<text x="${px + 10}" y="${ly}">${money0(pv[1])}</text>`;
   }
   h += `<circle cx="${ex}" cy="${ey}" r="5.5" fill="var(--accent)" stroke="var(--bg)" stroke-width="2"/>`;
   h += `<text x="${ex + 10}" y="${ey + 4}" style="fill:var(--ink);font-weight:600;font-size:14px">${money0(last[1])}</text>`;
@@ -298,7 +274,7 @@ s.addEventListener('pointermove', e => {
   cp.style.display = pv == null ? 'none' : ''; if (pv != null) { cp.setAttribute('cx', px); cp.setAttribute('cy', G.Y(pv)); }
   tip.hidden = false;
   tip.innerHTML = `<b>Balance ${money(rv)}</b> <span class="${cls(rv - start)}">${money(rv - start, true)}</span>` +
-    (pv != null && pv !== rv ? `<br><span style="color:var(--ink2)">Expected ${money(pv)}</span>` : '') +
+    (pv != null && pv !== rv ? `<br><span style="color:var(--ink2)">With open bets ${money(pv)}</span>` : '') +
     `<br><span style="color:var(--muted)">${esc(when(new Date(best).toISOString()))}</span>`;
   const tw = tip.offsetWidth;
   tip.style.left = Math.min(Math.max(px - tw / 2, 0), r.width - tw) + 'px';
