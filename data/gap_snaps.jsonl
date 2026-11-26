@@ -7615,3 +7615,7 @@
 {"ts":"2026-11-26T19:21:35+00:00","ticker":"KXBLEAGUEONEGAME-26NOV270505GIFYOK-GIF","league":"Japan - B.League One","fair":0.1145,"bid":0.05,"ask":0.1,"vol24":671}
 {"ts":"2026-11-26T19:28:16+00:00","ticker":"KXBLEAGUEONEGAME-26NOV270505GIFYOK-GIF","league":"Japan - B.League One","fair":0.1145,"bid":0.05,"ask":0.09,"vol24":671}
 {"ts":"2026-11-26T19:41:10+00:00","ticker":"KXITFMATCH-26NOV25MALDED-DED","league":"ITF Men Santa Cruz - R1","fair":0.2524,"bid":0.3,"ask":0.31,"vol24":8129}
+{"ts":"2026-11-26T19:43:15+00:00","ticker":"KXITFMATCH-26NOV25MALDED-DED","league":"ITF Men Santa Cruz - R1","fair":0.2524,"bid":0.3,"ask":0.32,"vol24":8129}
+{"ts":"2026-11-26T19:45:43+00:00","ticker":"KXITFMATCH-26NOV27MICFRI-MIC","league":"ITF Men Hradec Kralove - QF","fair":0.5633,"bid":0.52,"ask":0.58,"vol24":4}
+{"ts":"2026-11-26T19:45:43+00:00","ticker":"KXITFMATCH-26NOV25MALDED-DED","league":"ITF Men Santa Cruz - R1","fair":0.2524,"bid":0.3,"ask":0.35,"vol24":8842}
+{"ts":"2026-11-26T19:47:45+00:00","ticker":"KXITFWMATCH-26NOV26BULCAR-CAR","league":"ITF Women Florianopolis - R16","fair":0.0435,"bid":0.08,"ask":0.13,"vol24":19547}
