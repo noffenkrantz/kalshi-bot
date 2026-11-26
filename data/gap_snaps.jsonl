@@ -4400,3 +4400,4 @@
 {"ts":"2026-11-26T03:50:07+00:00","ticker":"KXWNBLGAME-26NOV260300TASBEN-TAS","league":"Australia - WNBL","fair":0.3006,"bid":0.26,"ask":0.33,"vol24":0}
 {"ts":"2026-11-26T03:50:07+00:00","ticker":"KXWNBLGAME-26NOV260300TASBEN-BEN","league":"Australia - WNBL","fair":0.6994,"bid":0.67,"ask":0.74,"vol24":0}
 {"ts":"2026-11-26T04:00:18+00:00","ticker":"KXITFMATCH-26NOV26MICHIG-HIG","league":"ITF Men Hradec Kralove - R16","fair":0.4128,"bid":0.36,"ask":0.38,"vol24":1465}
+{"ts":"2026-11-26T04:15:08+00:00","ticker":"KXAFCCL2GAME-26NOV26TAMSHS-SHS","league":"AFC - Champions League 2","fair":0.6858,"bid":0.72,"ask":0.73,"vol24":8415}
