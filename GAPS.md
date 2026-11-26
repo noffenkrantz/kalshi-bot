@@ -72,7 +72,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 88 | 3.3 pts | 3.3¢ | 3.1¢ | 2.7¢ | 2.7¢ | 2.4¢ | 2.1¢ | 18% |
+| All | 89 | 3.3 pts | 3.3¢ | 3.1¢ | 2.7¢ | 2.7¢ | 2.4¢ | 2.1¢ | 18% |
 | AFC - Champions League 2 | 11 | 3.5 pts | 3.2¢ | 3.4¢ | 2.7¢ | 3.3¢ | 3.5¢ | 3.4¢ | 18% |
 | ITF Women Heraklion 2 - R16 | 10 | 3.7 pts | 4.0¢ | 3.8¢ | 3.5¢ | 3.3¢ | 2.5¢ | 2.5¢ | 0% |
 | ITF Men Heraklion - R16 | 7 | 5.5 pts | 5.5¢ | 5.3¢ | 3.8¢ | 4.3¢ | 4.0¢ | 1.9¢ | 29% |
