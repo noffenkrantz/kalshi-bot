@@ -1,16 +1,16 @@
 {
- "ts": "2026-11-26T05:31:36+00:00",
+ "ts": "2026-11-26T05:41:37+00:00",
  "mode": "live",
  "running_since": "2026-11-26T03:45:07+00:00",
  "paired_games": 143,
  "paired_prices": 294,
- "polls_ok": 6971,
- "last_poll_ok": "2026-11-26T05:31:34+00:00",
- "pinnacle_changes_seen": 25991,
+ "polls_ok": 7757,
+ "last_poll_ok": "2026-11-26T05:41:37+00:00",
+ "pinnacle_changes_seen": 28431,
  "moves_logged": 5,
  "moves_waiting": 0,
  "bets_placed": 0,
- "pinnapi_requests": 6987,
+ "pinnapi_requests": 7773,
  "slowed_sports": [
   "soccer"
  ],
