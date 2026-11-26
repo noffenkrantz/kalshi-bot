@@ -1,10 +1,10 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 636 snapshots from 2026-11-25 16:44 to 2026-11-26 18:51 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 637 snapshots from 2026-11-25 16:44 to 2026-11-26 19:15 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-7,613 Kalshi prices compared with Pinnacle's. 97% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 0.9% could be bought at a 3¢+ edge after fees.
+7,614 Kalshi prices compared with Pinnacle's. 97% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 0.9% could be bought at a 3¢+ edge after fees.
 
 19 simulated bets so far; 19 have a closing price. Average edge when placed +3.8¢; average closing value +2.8¢ per contract. Kalshi moved toward Pinnacle's price after 15 of them and Pinnacle moved toward Kalshi's after 15. 13 have settled: 5 won, simulated profit $+53.40 on $451 staked.
 
@@ -49,7 +49,7 @@
 | UEFA - Champions League | 60 | 0% | +0.8¢ | 0% | 40,148 | 0 | – | – |
 | ATP Challenger Ankara - R16 | 60 | 7% | +1.5¢ | 0% | 354 | 0 | – | – |
 | Germany - DEL | 54 | 6% | +1.1¢ | 0% | 0 | 0 | – | – |
-| Japan - B.League One | 49 | 0% | +3.3¢ | 16% | 0 | 1 | +4.0¢ | – |
+| Japan - B.League One | 50 | 0% | +3.3¢ | 16% | 0 | 1 | +4.0¢ | – |
 | ITF Women Playford - QF | 48 | 0% | +1.0¢ | 0% | 12 | 0 | – | – |
 | Bosnia and Herzegovina - Prvenstvo BIH | 46 | 78% | +2.4¢ | 0% | 0 | 0 | – | – |
 | Indonesia - Super League | 45 | 0% | +0.5¢ | 0% | 93 | 0 | – | – |
