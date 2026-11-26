@@ -1,10 +1,10 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 613 snapshots from 2026-11-25 16:44 to 2026-11-26 18:17 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 619 snapshots from 2026-11-25 16:44 to 2026-11-26 18:26 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-7,405 Kalshi prices compared with Pinnacle's. 97% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 0.9% could be bought at a 3¢+ edge after fees.
+7,411 Kalshi prices compared with Pinnacle's. 97% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 0.9% could be bought at a 3¢+ edge after fees.
 
 18 simulated bets so far; 18 have a closing price. Average edge when placed +3.8¢; average closing value +2.7¢ per contract. Kalshi moved toward Pinnacle's price after 14 of them and Pinnacle moved toward Kalshi's after 15. 13 have settled: 5 won, simulated profit $+53.40 on $451 staked.
 
@@ -16,7 +16,7 @@
 |---|---|---|---|---|---|---|---|---|
 | NCAA | 530 | 0% | +1.0¢ | 0% | 2,048 | 0 | – | – |
 | ITF Men Hradec Kralove - R16 | 481 | 2% | +3.1¢ | 0% | 1,189 | 1 | +0.8¢ | $-0.76 |
-| ITF Men Santa Cruz - R1 | 469 | 1% | +1.5¢ | 0% | 1,011 | 1 | +3.1¢ | – |
+| ITF Men Santa Cruz - R1 | 475 | 1% | +1.5¢ | 0% | 1,076 | 1 | +3.1¢ | – |
 | ITF Men Heraklion - R16 | 322 | 4% | +1.4¢ | 1% | 182 | 1 | -4.8¢ | $+0.00 |
 | ITF Women Trnava - R16 | 289 | 4% | +1.2¢ | 0% | 23 | 1 | +3.2¢ | $-102.76 |
 | ITF Women Florianopolis - R16 | 275 | 4% | +1.5¢ | 5% | 200 | 2 | +3.5¢ | $+45.03 |
