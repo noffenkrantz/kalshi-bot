@@ -1,17 +1,17 @@
 {
- "updated": "2026-11-26T21:57:12+00:00",
+ "updated": "2026-11-26T22:27:19+00:00",
  "markets_open": 74,
  "markets_in_play": 37,
  "stations_known": 37,
  "signals_today": 19,
  "bets_today": 0,
- "station_checks_since_start": 10414,
+ "station_checks_since_start": 10667,
  "recent_errors": [
-  "2026-11-26T09:44:18+00:00 Kalshi: GET /markets -> HTTP 429: {\"error\":{\"code\":\"too_many_requests\",\"message\":\"too many requests\"}}",
-  "2026-11-26T16:42:11+00:00 Kalshi: GET /markets -> HTTP 429: {\"error\":{\"code\":\"too_many_requests\",\"message\":\"too many requests\"}}",
-  "2026-11-26T17:32:04+00:00 Kalshi: GET /markets -> HTTP 429: {\"error\":{\"code\":\"too_many_requests\",\"message\":\"too many requests\"}}",
-  "2026-11-26T19:00:34+00:00 Kalshi: GET /markets -> HTTP 429: {\"error\":{\"code\":\"too_many_requests\",\"message\":\"too many requests\"}}",
-  "2026-11-26T20:40:51+00:00 Kalshi: GET /markets -> HTTP 429: {\"error\":{\"code\":\"too_many_requests\",\"message\":\"too many requests\"}}"
+  "2026-11-26T20:40:51+00:00 Kalshi: GET /markets -> HTTP 429: {\"error\":{\"code\":\"too_many_requests\",\"message\":\"too many requests\"}}",
+  "2026-11-26T22:00:45+00:00 weather data for KXRAIN-26NOV26-DAL: GET https://api.weather.gov/stations/KDFW/observations -> HTTP 503: <HTML><HEAD><TITLE>Error</TITLE></HEAD><BODY>\nAn error occurred while processing your request.<p>\nReference&#32;&#35;102&#46;8c4ddb17&#46;1795730445&#46;c022afb8\n<P>https&#58;&#47;&#47;errors&#46;edgesuite&#46;net&#47;102&#46;8c4ddb17&#46;1795730445&#46;c022afb8</P>\n</BODY></HTML>\n",
+  "2026-11-26T22:00:55+00:00 weather data for KXRAIN-26NOV26-DAL: GET https://api.weather.gov/stations/KDFW/observations -> HTTP 503: <HTML><HEAD><TITLE>Error</TITLE></HEAD><BODY>\nAn error occurred while processing your request.<p>\nReference&#32;&#35;102&#46;8c4ddb17&#46;1795730455&#46;c0239b19\n<P>https&#58;&#47;&#47;errors&#46;edgesuite&#46;net&#47;102&#46;8c4ddb17&#46;1795730455&#46;c0239b19</P>\n</BODY></HTML>\n",
+  "2026-11-26T22:09:49+00:00 Kalshi: GET /markets -> HTTP 429: {\"error\":{\"code\":\"too_many_requests\",\"message\":\"too many requests\"}}",
+  "2026-11-26T22:17:35+00:00 Kalshi: GET /markets -> HTTP 429: {\"error\":{\"code\":\"too_many_requests\",\"message\":\"too many requests\"}}"
  ],
  "host": "render",
  "research": false,
@@ -20,6 +20,6 @@
  "last_research_error": null,
  "gap_tracker": true,
  "gap_mode": "live",
- "last_gap_snapshot": "2026-11-26T21:48:06+00:00",
+ "last_gap_snapshot": "2026-11-26T22:18:59+00:00",
  "last_gaps_error": "KalshiError: GET /markets -> HTTP 429: {\"error\":{\"code\":\"too_many_requests\",\"message\":\"too many requests\"}}"
 }
