@@ -1,10 +1,10 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 586 snapshots from 2026-11-25 16:44 to 2026-11-26 16:51 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 587 snapshots from 2026-11-25 16:44 to 2026-11-26 16:53 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-7,183 Kalshi prices compared with Pinnacle's. 97% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 0.9% could be bought at a 3¢+ edge after fees.
+7,184 Kalshi prices compared with Pinnacle's. 97% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 0.9% could be bought at a 3¢+ edge after fees.
 
 17 simulated bets so far; 17 have a closing price. Average edge when placed +3.9¢; average closing value +2.7¢ per contract. Kalshi moved toward Pinnacle's price after 13 of them and Pinnacle moved toward Kalshi's after 14. 12 have settled: 4 won, simulated profit $+8.37 on $416 staked.
 
@@ -53,7 +53,7 @@
 | Indonesia - Super League | 45 | 0% | +0.5¢ | 0% | 93 | 0 | – | – |
 | Colombia - Primera A | 45 | 0% | +0.6¢ | 0% | 1,496 | 0 | – | – |
 | ITF Women Playford - QF | 40 | 0% | +1.1¢ | 0% | 7 | 0 | – | – |
-| Japan - B.League One | 33 | 0% | +3.4¢ | 24% | 0 | 1 | +4.2¢ | – |
+| Japan - B.League One | 34 | 0% | +3.4¢ | 24% | 0 | 1 | +4.2¢ | – |
 | Australia - WNBL | 30 | 60% | +1.2¢ | 0% | 0 | 0 | – | – |
 | England - Championship | 27 | 0% | +0.8¢ | 0% | 1,056 | 0 | – | – |
 | Italy - Serie B | 21 | 0% | +0.4¢ | 0% | 262 | 0 | – | – |
