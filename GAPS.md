@@ -1,10 +1,10 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 748 snapshots from 2026-11-25 16:44 to 2026-11-26 21:31 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 760 snapshots from 2026-11-25 16:44 to 2026-11-26 21:43 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-8,392 Kalshi prices compared with Pinnacle's. 96% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.4¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
+8,404 Kalshi prices compared with Pinnacle's. 96% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.4¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
 
 23 simulated bets so far; 23 have a closing price. Average edge when placed +3.9¢; average closing value +2.4¢ per contract. Kalshi moved toward Pinnacle's price after 17 of them and Pinnacle moved toward Kalshi's after 18. 16 have settled: 7 won, simulated profit $+55.59 on $519 staked.
 
@@ -38,8 +38,8 @@
 | ATP Challenger San Salvador - R16 | 146 | 8% | +1.3¢ | 0% | 414 | 0 | – | – |
 | USA - American Hockey League | 135 | 0% | +1.0¢ | 1% | 39 | 1 | +4.7¢ | $-0.82 |
 | ITF Women Playford - R16 | 120 | 0% | +0.8¢ | 0% | 64 | 0 | – | – |
+| Japan - B.League One | 112 | 0% | +2.7¢ | 12% | 28 | 2 | -1.7¢ | – |
 | ITF Women Ortisei - QF | 108 | 4% | +1.1¢ | 0% | 216 | 0 | – | – |
-| Japan - B.League One | 100 | 0% | +3.0¢ | 13% | 28 | 2 | -1.7¢ | – |
 | ATP Challenger Playford - R16 | 100 | 0% | +1.3¢ | 1% | 3,098 | 1 | +2.6¢ | $+0.00 |
 | Finland - SM Liiga | 98 | 0% | +1.0¢ | 0% | 0 | 0 | – | – |
 | Brazil - Serie A | 84 | 0% | +0.8¢ | 0% | 990 | 0 | – | – |
