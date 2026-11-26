@@ -100,14 +100,16 @@ def build_data(root: Path, cfg: dict, now: datetime | None = None) -> dict:
         open_rows.append({"placed": b["ts"], "game": b["pin_teams"], "league": b["league"], "team": b["team"],
                           "side": b["side"], "price": b["price"], "n": b["n"], "wanted": b["contracts"],
                           "available": b["available"], "cost": b["cost"], "fair_then": b["fair"], "fair_now": fn,
-                          "ev": ev, "starts": b["starts"], "live": bool(b.get("live"))})
+                          "ev": ev, "starts": b["starts"], "live": bool(b.get("live")),
+                          "exit_price": b.get("exit_price"), "exit_profit": b.get("exit_profit"), "exit_ts": b.get("exit_ts")})
     projected = round(balance + sum(r["ev"] for r in open_rows), 2)
     proj_line = [real_line[-2], [iso(now), projected]] if open_rows else []   # dashed: from the last settlement to now
     done = [b for b in placed if b.get("profit") is not None and (b["ticker"], b["side"]) not in held]
     scored = [b for b in placed if b.get("clv") is not None]
     settled_rows = [{"placed": b["ts"], "settled": settled_at.get(b["ticker"]), "game": b["pin_teams"],
                      "league": b["league"], "team": b["team"], "side": b["side"], "price": b["price"], "n": b["n"],
-                     "cost": b["cost"], "won": b["result"] == b["side"], "profit": b["profit"], "clv": b.get("clv")}
+                     "cost": b["cost"], "won": b["result"] == b["side"], "profit": b["profit"], "clv": b.get("clv"),
+                     "exit_price": b.get("exit_price"), "exit_profit": b.get("exit_profit")}
                     for b in sorted(done, key=lambda b: settled_at.get(b["ticker"], ""), reverse=True)[:40]]
     missed_rows = [{"placed": b["ts"], "game": b["pin_teams"], "league": b["league"], "team": b["team"],
                     "side": b["side"], "price": b["price"], "edge": b["edge"]}
@@ -141,6 +143,11 @@ def build_data(root: Path, cfg: dict, now: datetime | None = None) -> dict:
                     "losses": sum(b["result"] != b["side"] for b in done), "placed_n": len(placed),
                     "missed_n": len(missed), "unknown_n": len(unknown), "no_cash_n": len(no_cash),
                     "same_game_n": len(same_game),
+                    "compare": {"n": len(done), "hold": round(sum(b["profit"] for b in done), 2),
+                                "early": round(sum(b["exit_profit"] if b.get("exit_profit") is not None else b["profit"]
+                                                   for b in done), 2),
+                                "sold": sum(b.get("exit_profit") is not None for b in done),
+                                "sold_open": sum(r["exit_profit"] is not None for r in open_rows)},
                     "clv": _mean(b["clv"] for b in scored), "clv_n": len(scored),
                     "clv_usd": round(sum(b["clv"] * b["n"] for b in scored), 2)},
         "real_line": real_line, "proj_line": proj_line,

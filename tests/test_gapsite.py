@@ -98,3 +98,40 @@ def test_available_at_reads_both_order_book_formats():
     assert available_at(Book(legacy), "T", "yes", 0.40) == 12
     assert size_bet(10, 0.40, 12) == {"contracts": 25, "available": 12, "filled": 12}
     assert size_bet(10, 0.40, None)["filled"] is None
+
+
+def test_sell_early_takes_profit_at_pinnacles_original_price(tmp_path):
+    from bot.gaps import sell_early
+    b = {"side": "yes", "ts": T(-5), "fair": 0.52}                        # bought at 47c when Pinnacle said 52c
+    later = [{"ts": T(-4), "fair": 0.50, "bid": 0.49, "ask": 0.50},       # Pinnacle came down; Kalshi short of 52c: hold
+             {"ts": T(-3), "fair": 0.53, "bid": 0.52, "ask": 0.53},       # Kalshi pays 52c: sell
+             {"ts": T(-2), "fair": 0.55, "bid": 0.55, "ask": 0.56}]
+    assert sell_early(b, later) == (T(-3), 0.52)
+    assert sell_early(b, later[:1]) is None
+    no = {"side": "no", "ts": T(-5), "fair": 0.60}                         # NO sells at 1 - YES ask
+    assert sell_early(no, [{"ts": T(-4), "fair": 0.40, "bid": 0.38, "ask": 0.40}]) == (T(-4), 0.6)
+    assert sell_early(no, [{"ts": T(-4), "fair": 0.40, "bid": 0.38, "ask": 0.42}]) is None
+
+
+def test_hold_vs_sell_early_on_the_page(tmp_path):
+    setup(tmp_path)
+    d = build_data(tmp_path, CFG, NOW)
+    C = d["account"]["compare"]
+    # A: 12 YES bought at 40c when Pinnacle said 45c; at -21h Kalshi bids 46c: sold early for 5.52 - 0.21 fee
+    #    = +0.30 instead of the +6.99 it won by holding. B: never reached its price: held, -10.35 either way.
+    #    E (open): Pinnacle said 26c at the bet; Kalshi now bids 27c: already sold.
+    assert C == {"n": 2, "hold": -3.36, "early": -10.05, "sold": 1, "sold_open": 1}
+
+
+def test_sell_early_can_beat_holding(tmp_path):
+    (tmp_path / "data").mkdir()
+    write(tmp_path, "gap_bets.jsonl", [bet("A-BRO", -30, 0.40, 0.46, 500)])        # 25 YES at 40c, cost 10.42
+    write(tmp_path, "gap_snaps.jsonl", [
+        {"ts": T(-30), "ticker": "A-BRO", "league": "L", "fair": 0.46, "bid": 0.38, "ask": 0.40},
+        {"ts": T(-25), "ticker": "A-BRO", "league": "L", "fair": 0.47, "bid": 0.47, "ask": 0.48}])   # Kalshi reached 46c+
+    write(tmp_path, "gap_outcomes.jsonl", [{"ts": T(-10), "ticker": "A-BRO", "result": "no"}])   # and the bet lost
+    d = build_data(tmp_path, CFG, NOW)
+    C = d["account"]["compare"]
+    sale = 25 * 0.47 - 0.44                                  # 11.75 back, minus a 44c fee on the sale
+    assert C["hold"] == -10.42 and C["early"] == round(sale - 10.42, 2) and C["sold"] == 1
+    assert d["settled"][0]["exit_price"] == 0.47
