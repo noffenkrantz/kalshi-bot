@@ -1,10 +1,10 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 281 snapshots from 2026-11-25 16:44 to 2026-11-26 01:34 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 283 snapshots from 2026-11-25 16:44 to 2026-11-26 01:46 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-3,390 Kalshi prices compared with Pinnacle's. 98% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 0.5% could be bought at a 3¢+ edge after fees.
+3,392 Kalshi prices compared with Pinnacle's. 98% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 0.4% could be bought at a 3¢+ edge after fees.
 
 9 simulated bets so far; 9 have a closing price. Average edge when placed +4.1¢; average closing value +2.2¢ per contract. Kalshi moved toward Pinnacle's price after 7 of them and Pinnacle moved toward Kalshi's after 7. 2 have settled: 2 won, simulated profit $+217.32 on $207 staked.
 
@@ -19,7 +19,7 @@
 | NHL | 214 | 0% | +0.5¢ | 0% | 9,184 | 0 | – | – |
 | NBA | 207 | 0% | +0.8¢ | 4% | 93,788 | 3 | +1.0¢ | $+217.32 |
 | ITF Men Santa Cruz - R1 | 162 | 0% | +1.3¢ | 0% | 540 | 0 | – | – |
-| ITF Men Heraklion - R16 | 159 | 0% | +1.8¢ | 1% | 78 | 1 | -4.6¢ | – |
+| ITF Men Heraklion - R16 | 161 | 0% | +1.7¢ | 1% | 78 | 1 | -4.6¢ | – |
 | ITF Women Trnava - R16 | 136 | 1% | +1.3¢ | 1% | 5 | 1 | +3.1¢ | – |
 | ITF Women Heraklion 2 - R16 | 134 | 7% | +1.3¢ | 0% | 36 | 0 | – | – |
 | USA - American Hockey League | 131 | 0% | +1.0¢ | 1% | 39 | 1 | +4.7¢ | – |
