@@ -1,15 +1,17 @@
 {
- "updated": "2026-11-26T04:51:41+00:00",
- "markets_open": 74,
+ "updated": "2026-11-26T05:51:47+00:00",
+ "markets_open": 56,
  "markets_in_play": 37,
  "stations_known": 37,
  "signals_today": 1,
  "bets_today": 0,
- "station_checks_since_start": 783,
+ "station_checks_since_start": 1365,
  "recent_errors": [
-  "2026-11-26T04:31:58+00:00 Kalshi: GET /markets -> HTTP 429: {\"error\":{\"code\":\"too_many_requests\",\"message\":\"too many requests\"}}",
-  "2026-11-26T04:39:44+00:00 Kalshi: GET /markets -> HTTP 429: {\"error\":{\"code\":\"too_many_requests\",\"message\":\"too many requests\"}}",
-  "2026-11-26T04:44:25+00:00 Kalshi: GET /markets -> HTTP 429: {\"error\":{\"code\":\"too_many_requests\",\"message\":\"too many requests\"}}"
+  "2026-11-26T05:05:07+00:00 Kalshi: GET /markets -> HTTP 429: {\"error\":{\"code\":\"too_many_requests\",\"message\":\"too many requests\"}}",
+  "2026-11-26T05:05:38+00:00 Kalshi: GET /markets -> HTTP 429: {\"error\":{\"code\":\"too_many_requests\",\"message\":\"too many requests\"}}",
+  "2026-11-26T05:07:11+00:00 Kalshi: GET /markets -> HTTP 429: {\"error\":{\"code\":\"too_many_requests\",\"message\":\"too many requests\"}}",
+  "2026-11-26T05:08:44+00:00 Kalshi: GET /markets -> HTTP 429: {\"error\":{\"code\":\"too_many_requests\",\"message\":\"too many requests\"}}",
+  "2026-11-26T05:09:15+00:00 Kalshi: GET /markets -> HTTP 429: {\"error\":{\"code\":\"too_many_requests\",\"message\":\"too many requests\"}}"
  ],
  "host": "render",
  "research": false,
@@ -18,6 +20,6 @@
  "last_research_error": null,
  "gap_tracker": true,
  "gap_mode": "live",
- "last_gap_snapshot": "2026-11-26T04:51:32+00:00",
+ "last_gap_snapshot": "2026-11-26T05:51:39+00:00",
  "last_gaps_error": "KalshiError: GET /markets -> HTTP 429: {\"error\":{\"code\":\"too_many_requests\",\"message\":\"too many requests\"}}"
 }
