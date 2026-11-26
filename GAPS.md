@@ -1,10 +1,10 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 206 snapshots from 2026-11-25 16:44 to 2026-11-26 00:03 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 216 snapshots from 2026-11-25 16:44 to 2026-11-26 00:10 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-2,629 Kalshi prices compared with Pinnacle's. 98% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 0.6% could be bought at a 3¢+ edge after fees.
+2,641 Kalshi prices compared with Pinnacle's. 98% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 0.6% could be bought at a 3¢+ edge after fees.
 
 9 simulated bets so far; 9 have a closing price. Average edge when placed +4.1¢; average closing value +2.2¢ per contract. Kalshi moved toward Pinnacle's price after 7 of them and Pinnacle moved toward Kalshi's after 6. None have settled yet.
 
@@ -17,13 +17,13 @@
 | NCAA | 248 | 0% | +1.2¢ | 0% | 1,515 | 0 | – | – |
 | NHL | 196 | 0% | +0.6¢ | 0% | 8,876 | 0 | – | – |
 | NBA | 185 | 0% | +0.9¢ | 4% | 93,788 | 3 | +1.1¢ | – |
-| ITF Men Hradec Kralove - R16 | 144 | 0% | +4.0¢ | 1% | 1,032 | 1 | +5.3¢ | – |
+| ITF Men Hradec Kralove - R16 | 150 | 0% | +4.0¢ | 1% | 1,180 | 1 | +5.3¢ | – |
 | ITF Men Santa Cruz - R1 | 126 | 0% | +1.3¢ | 0% | 488 | 0 | – | – |
 | USA - American Hockey League | 119 | 0% | +1.0¢ | 1% | 36 | 1 | +4.7¢ | – |
 | ITF Women Heraklion 2 - R16 | 102 | 9% | +1.3¢ | 0% | 27 | 0 | – | – |
+| ITF Women Trnava - R16 | 99 | 1% | +1.4¢ | 1% | 19 | 1 | +3.1¢ | – |
 | ITF Women Playford - R16 | 98 | 0% | +0.9¢ | 0% | 41 | 0 | – | – |
-| ITF Men Heraklion - R16 | 96 | 0% | +2.0¢ | 2% | 17 | 1 | -4.6¢ | – |
-| ITF Women Trnava - R16 | 94 | 1% | +1.4¢ | 1% | 0 | 1 | +3.1¢ | – |
+| ITF Men Heraklion - R16 | 97 | 0% | +2.0¢ | 2% | 17 | 1 | -4.6¢ | – |
 | ITF Women Monastir - R16 | 88 | 5% | +1.6¢ | 0% | 0 | 0 | – | – |
 | ITF Men Monastir 2 - R16 | 88 | 0% | +1.5¢ | 0% | 65 | 0 | – | – |
 | Russia - Kontinental Hockey League | 84 | 0% | +0.7¢ | 0% | 0 | 0 | – | – |
