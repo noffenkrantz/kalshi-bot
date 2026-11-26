@@ -3737,3 +3737,15 @@
 {"ts":"2026-11-26T02:14:46+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.3681,"bid":0.36,"ask":0.38,"vol24":1380}
 {"ts":"2026-11-26T02:18:58+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.3681,"bid":0.35,"ask":0.38,"vol24":1380}
 {"ts":"2026-11-26T02:20:01+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25SWEJON-JON","league":"ATP Challenger Playford - R16","fair":0.1989,"bid":0.16,"ask":0.17,"vol24":3508}
+{"ts":"2026-11-26T02:20:31+00:00","ticker":"KXITFWMATCH-26NOV26FALKOV-KOV","league":"ITF Women Trnava - R16","fair":0.5915,"bid":0.57,"ask":0.58,"vol24":926}
+{"ts":"2026-11-26T02:21:34+00:00","ticker":"KXITFWMATCH-26NOV26FALKOV-KOV","league":"ITF Women Trnava - R16","fair":0.5915,"bid":0.57,"ask":0.59,"vol24":926}
+{"ts":"2026-11-26T02:21:34+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25SWEJON-JON","league":"ATP Challenger Playford - R16","fair":0.1965,"bid":0.16,"ask":0.17,"vol24":3508}
+{"ts":"2026-11-26T02:23:39+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25SWEJON-JON","league":"ATP Challenger Playford - R16","fair":0.1965,"bid":0.17,"ask":0.18,"vol24":3508}
+{"ts":"2026-11-26T02:24:11+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25SWEJON-JON","league":"ATP Challenger Playford - R16","fair":0.1965,"bid":0.19,"ask":0.2,"vol24":3508}
+{"ts":"2026-11-26T02:24:41+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25SWEJON-JON","league":"ATP Challenger Playford - R16","fair":0.1965,"bid":0.18,"ask":0.2,"vol24":3508}
+{"ts":"2026-11-26T02:25:12+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25SWEJON-JON","league":"ATP Challenger Playford - R16","fair":0.1965,"bid":0.19,"ask":0.2,"vol24":3508}
+{"ts":"2026-11-26T02:26:14+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25SWEJON-JON","league":"ATP Challenger Playford - R16","fair":0.1965,"bid":0.2,"ask":0.21,"vol24":3508}
+{"ts":"2026-11-26T02:26:44+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25SWEJON-JON","league":"ATP Challenger Playford - R16","fair":0.1965,"bid":0.19,"ask":0.21,"vol24":3508}
+{"ts":"2026-11-26T02:27:16+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25SWEJON-JON","league":"ATP Challenger Playford - R16","fair":0.1965,"bid":0.19,"ask":0.2,"vol24":3508}
+{"ts":"2026-11-26T02:27:16+00:00","ticker":"KXITFMATCH-26NOV26HASGEL-GEL","league":"ITF Men Heraklion - R16","fair":0.3681,"bid":0.36,"ask":0.38,"vol24":1380}
+{"ts":"2026-11-26T02:27:47+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV25SWEJON-JON","league":"ATP Challenger Playford - R16","fair":0.1965,"bid":0.18,"ask":0.21,"vol24":3508}
