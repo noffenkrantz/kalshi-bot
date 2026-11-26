@@ -1,12 +1,12 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 345 snapshots from 2026-11-25 16:44 to 2026-11-26 05:01 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 346 snapshots from 2026-11-25 16:44 to 2026-11-26 05:06 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-4,576 Kalshi prices compared with Pinnacle's. 99% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 0.4% could be bought at a 3¢+ edge after fees.
+4,577 Kalshi prices compared with Pinnacle's. 99% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 0.4% could be bought at a 3¢+ edge after fees.
 
-10 simulated bets so far; 10 have a closing price. Average edge when placed +4.1¢; average closing value +2.8¢ per contract. Kalshi moved toward Pinnacle's price after 8 of them and Pinnacle moved toward Kalshi's after 8. 4 have settled: 2 won, simulated profit $+152.46 on $272 staked.
+10 simulated bets so far; 10 have a closing price. Average edge when placed +4.1¢; average closing value +2.7¢ per contract. Kalshi moved toward Pinnacle's price after 8 of them and Pinnacle moved toward Kalshi's after 8. 4 have settled: 2 won, simulated profit $+152.46 on $272 staked.
 
 ## By league
 
@@ -29,7 +29,7 @@
 | ITF Men Bhopal - R16 | 143 | 0% | +1.4¢ | 1% | 90 | 1 | +5.8¢ | – |
 | ITF Women Kolkata - R16 | 138 | 0% | +1.6¢ | 0% | 370 | 0 | – | – |
 | USA - American Hockey League | 135 | 0% | +1.0¢ | 1% | 39 | 1 | +4.7¢ | $-0.82 |
-| AFC - Champions League 2 | 126 | 0% | +1.5¢ | 2% | 218 | 1 | +5.9¢ | – |
+| AFC - Champions League 2 | 127 | 0% | +1.5¢ | 2% | 250 | 1 | +5.1¢ | – |
 | ITF Men Madrid - R16 | 124 | 0% | +1.2¢ | 0% | 2 | 0 | – | – |
 | ITF Women Playford - R16 | 120 | 0% | +0.8¢ | 0% | 64 | 0 | – | – |
 | Sweden - SHL | 110 | 0% | +0.8¢ | 0% | 0 | 0 | – | – |
@@ -89,7 +89,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | Placed (UTC) | Game | Bet | Paid | Fair | Edge | Closing value | Result |
 |---|---|---|---|---|---|---|---|
-| 11-26 02:34 | Tampines Rovers vs Shanghai Shenhua (AFC - Champions League 2) | NO Shanghai Shenhua | 0.26 | 0.31 | +3.7¢ | +5.9¢ | – |
+| 11-26 02:34 | Tampines Rovers vs Shanghai Shenhua (AFC - Champions League 2) | NO Shanghai Shenhua | 0.26 | 0.31 | +3.7¢ | +5.1¢ | – |
 | 11-25 23:43 | Aliona Falei vs Jana Kovackova (ITF Women Trnava - R16) | YES Jana Kovackova | 0.56 | 0.62 | +4.2¢ | +3.2¢ | – |
 | 11-25 22:41 | Petr Michnev vs Liam Hignett (ITF Men Hradec Kralove - R16) | YES Liam Hignett | 0.36 | 0.41 | +3.7¢ | +5.3¢ | – |
 | 11-25 22:35 | Lehigh Valley Phantoms vs Providence Bruins (USA - American Hockey League) | NO Providence Bruins | 0.39 | 0.44 | +3.1¢ | +4.7¢ | lost $-0.82 |
