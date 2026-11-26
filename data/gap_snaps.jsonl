@@ -7950,3 +7950,12 @@
 {"ts":"2026-11-26T19:55:26+00:00","ticker":"KXITFMATCH-26NOV25MALDED-DED","league":"ITF Men Santa Cruz - R1","fair":0.2671,"bid":0.32,"ask":0.37,"vol24":8842}
 {"ts":"2026-11-26T19:56:58+00:00","ticker":"KXITFWMATCH-26NOV26BULCAR-CAR","league":"ITF Women Florianopolis - R16","fair":0.0472,"bid":0.08,"ask":0.11,"vol24":19547}
 {"ts":"2026-11-26T19:57:30+00:00","ticker":"KXITFWMATCH-26NOV26BULCAR-CAR","league":"ITF Women Florianopolis - R16","fair":0.0472,"bid":0.08,"ask":0.1,"vol24":19547}
+{"ts":"2026-11-26T19:58:00+00:00","ticker":"KXITFMATCH-26NOV25MALDED-DED","league":"ITF Men Santa Cruz - R1","fair":0.2671,"bid":0.33,"ask":0.38,"vol24":8842}
+{"ts":"2026-11-26T19:58:00+00:00","ticker":"KXITFWMATCH-26NOV26BULCAR-CAR","league":"ITF Women Florianopolis - R16","fair":0.0472,"bid":0.08,"ask":0.11,"vol24":19547}
+{"ts":"2026-11-26T19:58:31+00:00","ticker":"KXITFWMATCH-26NOV26BULCAR-CAR","league":"ITF Women Florianopolis - R16","fair":0.0472,"bid":0.08,"ask":0.1,"vol24":19547}
+{"ts":"2026-11-26T19:59:01+00:00","ticker":"KXITFWMATCH-26NOV26BULCAR-CAR","league":"ITF Women Florianopolis - R16","fair":0.0472,"bid":0.1,"ask":0.11,"vol24":19547}
+{"ts":"2026-11-26T19:59:33+00:00","ticker":"KXITFMATCH-26NOV25MALDED-DED","league":"ITF Men Santa Cruz - R1","fair":0.2671,"bid":0.33,"ask":0.37,"vol24":8842}
+{"ts":"2026-11-26T19:59:33+00:00","ticker":"KXITFWMATCH-26NOV26BULCAR-CAR","league":"ITF Women Florianopolis - R16","fair":0.0472,"bid":0.08,"ask":0.1,"vol24":19547}
+{"ts":"2026-11-26T20:00:34+00:00","ticker":"KXITFMATCH-26NOV25MALDED-DED","league":"ITF Men Santa Cruz - R1","fair":0.2671,"bid":0.32,"ask":0.37,"vol24":8842}
+{"ts":"2026-11-26T20:00:34+00:00","ticker":"KXITFWMATCH-26NOV26BULCAR-CAR","league":"ITF Women Florianopolis - R16","fair":0.0472,"bid":0.08,"ask":0.11,"vol24":19547}
+{"ts":"2026-11-26T20:01:26+00:00","ticker":"KXBLEAGUEONEGAME-26NOV270505ALPRZF-RZF","league":"Japan - B.League One","fair":0.4001,"bid":0.27,"ask":0.32,"vol24":0}
