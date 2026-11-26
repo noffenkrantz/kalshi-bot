@@ -1,10 +1,10 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 809 snapshots from 2026-11-25 16:44 to 2026-11-26 22:25 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 815 snapshots from 2026-11-25 16:44 to 2026-11-26 22:35 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-8,808 Kalshi prices compared with Pinnacle's. 96% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
+8,814 Kalshi prices compared with Pinnacle's. 96% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
 
 24 simulated bets so far; 24 have a closing price. Average edge when placed +3.8¢; average closing value +2.1¢ per contract. Kalshi moved toward Pinnacle's price after 17 of them and Pinnacle moved toward Kalshi's after 18. 16 have settled: 7 won, simulated profit $+55.59 on $519 staked.
 
@@ -34,9 +34,9 @@
 | Mexico - Liga MX | 174 | 0% | +0.6¢ | 0% | 19,187 | 0 | – | – |
 | ITF Men Bhopal - R16 | 171 | 0% | +1.5¢ | 1% | 185 | 1 | +5.8¢ | $+0.00 |
 | Lithuania - National Basketball League | 166 | 13% | +1.1¢ | 0% | 0 | 0 | – | – |
+| Japan - B.League One | 149 | 0% | +2.3¢ | 9% | 671 | 2 | -1.7¢ | – |
 | ITF Women Kolkata - R16 | 148 | 0% | +1.5¢ | 0% | 370 | 0 | – | – |
 | ATP Challenger San Salvador - R16 | 148 | 8% | +1.3¢ | 0% | 428 | 0 | – | – |
-| Japan - B.League One | 147 | 0% | +2.3¢ | 9% | 671 | 2 | -1.7¢ | – |
 | USA - American Hockey League | 139 | 0% | +1.0¢ | 1% | 39 | 1 | +4.7¢ | $-0.82 |
 | ITF Women Playford - R16 | 120 | 0% | +0.8¢ | 0% | 64 | 0 | – | – |
 | ITF Women Ortisei - QF | 108 | 4% | +1.1¢ | 0% | 216 | 0 | – | – |
@@ -54,7 +54,7 @@
 | Czech Republic - Extraliga | 56 | 11% | +1.9¢ | 0% | 0 | 0 | – | – |
 | Netherlands - Eerste Divisie | 54 | 0% | +0.8¢ | 0% | 0 | 0 | – | – |
 | ITF Men Heraklion - QF | 54 | 0% | +1.3¢ | 0% | 64 | 0 | – | – |
-| ITF Men Hradec Kralove - QF | 51 | 0% | +1.6¢ | 2% | 4 | 1 | -5.9¢ | – |
+| ITF Men Hradec Kralove - QF | 52 | 0% | +1.6¢ | 2% | 4 | 1 | -4.3¢ | – |
 | Czech Republic - FNL | 51 | 0% | +0.9¢ | 0% | 0 | 0 | – | – |
 | ITF Women Heraklion 2 - QF | 49 | 0% | +1.6¢ | 2% | 0 | 1 | +1.4¢ | – |
 | Bosnia and Herzegovina - Prvenstvo BIH | 46 | 78% | +2.4¢ | 0% | 0 | 0 | – | – |
@@ -99,12 +99,12 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | Placed (UTC) | Game | Bet | Paid | Fair | Edge | Closing value | Result |
 |---|---|---|---|---|---|---|---|
-| 11-26 21:45 | Clara Vlasselaer vs Ekaterina Perelygina (ITF Women Ortisei - SF) | YES Clara Vlasselaer | 0.43 | 0.48 | +3.3¢ | +6.4¢ | – |
+| 11-26 21:45 | Clara Vlasselaer vs Ekaterina Perelygina (ITF Women Ortisei - SF) | YES Clara Vlasselaer | 0.43 | 0.48 | +3.3¢ | +5.6¢ | – |
 | 11-26 20:33 | Priska Madelyn Nugroho vs Sandeepti Singh Rao (ITF Women Kolkata - QF) | NO Sandeepti Singh Rao | 0.90 | 0.94 | +3.2¢ | +4.1¢ | – |
 | 11-26 20:01 | Rizing Fukuoka vs Koshigaya Alphas (Japan - B.League One) | YES Rizing Zephyr Fukuoka | 0.32 | 0.40 | +6.5¢ | -8.0¢ | – |
 | 11-26 19:47 | Miriam Bulgaru vs Maria Eduarda Carbone Dos Santos (ITF Women Florianopolis - R16) | NO Maria Eduarda Carbone dos Santos | 0.92 | 0.96 | +3.1¢ | +3.5¢ | – |
 | 11-26 19:41 | Bastian Malla vs Felipe De Dios (ITF Men Santa Cruz - R1) | NO Felipe De Dios | 0.70 | 0.75 | +3.3¢ | +3.3¢ | – |
-| 11-26 18:45 | Petr Michnev vs Karl Friberg (ITF Men Hradec Kralove - QF) | YES Petr Michnev | 0.51 | 0.56 | +3.6¢ | -5.9¢ | – |
+| 11-26 18:45 | Petr Michnev vs Karl Friberg (ITF Men Hradec Kralove - QF) | YES Petr Michnev | 0.51 | 0.56 | +3.6¢ | -4.3¢ | – |
 | 11-26 17:17 | Martha Matoula vs Victoria Allen (ITF Women Heraklion 2 - QF) | YES Victoria Allen | 0.15 | 0.19 | +3.1¢ | +1.4¢ | – |
 | 11-26 16:12 | Demi Tran vs Laura Pigossi (ITF Women Florianopolis - R16) | YES Laura Pigossi | 0.91 | 0.95 | +3.3¢ | +3.9¢ | won $+5.98 |
 | 11-26 14:15 | Skelleftea AIK vs Rogle BK (Sweden - SHL) | YES Rogle BK | 0.30 | 0.35 | +4.0¢ | +3.8¢ | won $+0.00 |
