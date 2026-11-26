@@ -9235,3 +9235,386 @@
 {"ts":"2026-11-26T23:44:32+00:00","ticker":"KXITFMATCH-26NOV27MICFRI-MIC","league":"ITF Men Hradec Kralove - QF","fair":0.4673,"bid":0.46,"ask":0.47,"vol24":166}
 {"ts":"2026-11-26T23:45:45+00:00","ticker":"KXITFMATCH-26NOV27MICFRI-MIC","league":"ITF Men Hradec Kralove - QF","fair":0.4604,"bid":0.46,"ask":0.47,"vol24":166}
 {"ts":"2026-11-26T23:46:00+00:00","ticker":"KXITFMATCH-26NOV27MICFRI-MIC","league":"ITF Men Hradec Kralove - QF","fair":0.4604,"bid":0.45,"ask":0.47,"vol24":166}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXAHLGAME-26NOV271700SPRHAR-SPR","league":"USA - American Hockey League","fair":0.4608,"bid":0.43,"ask":0.48,"vol24":47}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXAHLGAME-26NOV271700SPRHAR-HAR","league":"USA - American Hockey League","fair":0.5392,"bid":0.51,"ask":0.56,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXAHLGAME-26NOV271600HERCHA-HER","league":"USA - American Hockey League","fair":0.5043,"bid":0.48,"ask":0.51,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXAHLGAME-26NOV271600HERCHA-CHA","league":"USA - American Hockey League","fair":0.4957,"bid":0.47,"ask":0.52,"vol24":46}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXAHLGAME-26NOV271600ABBHEN-HEN","league":"USA - American Hockey League","fair":0.6102,"bid":0.57,"ask":0.64,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXAHLGAME-26NOV271600ABBHEN-ABB","league":"USA - American Hockey League","fair":0.3898,"bid":0.38,"ask":0.44,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXALEAGUEGAME-26NOV27MACMEL-TIE","league":"Australia - A League","fair":0.263,"bid":0.25,"ask":0.26,"vol24":1}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXALEAGUEGAME-26NOV27MACMEL-MEL","league":"Australia - A League","fair":0.4515,"bid":0.46,"ask":0.47,"vol24":105}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXALEAGUEGAME-26NOV27MACMEL-MAC","league":"Australia - A League","fair":0.2855,"bid":0.28,"ask":0.29,"vol24":585}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXAPFDDHGAME-26NOV27NACRUB-TIE","league":"Paraguay - Division Profesional","fair":0.2494,"bid":0.24,"ask":0.25,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXAPFDDHGAME-26NOV27NACRUB-RUB","league":"Paraguay - Division Profesional","fair":0.1791,"bid":0.16,"ask":0.18,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXAPFDDHGAME-26NOV27NACRUB-NAC","league":"Paraguay - Division Profesional","fair":0.5715,"bid":0.57,"ask":0.59,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXAPFDDHGAME-26NOV27LUQOLI-TIE","league":"Paraguay - Division Profesional","fair":0.2226,"bid":0.22,"ask":0.23,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXAPFDDHGAME-26NOV27LUQOLI-OLI","league":"Paraguay - Division Profesional","fair":0.5483,"bid":0.55,"ask":0.56,"vol24":40}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXAPFDDHGAME-26NOV27LUQOLI-LUQ","league":"Paraguay - Division Profesional","fair":0.2291,"bid":0.21,"ask":0.23,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXARGNACBGAME-26NOV27ATLCIU-TIE","league":"Argentina - Primera B Nacional","fair":0.3207,"bid":0.31,"ask":0.33,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXARGNACBGAME-26NOV27ATLCIU-CIU","league":"Argentina - Primera B Nacional","fair":0.2236,"bid":0.2,"ask":0.23,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXARGNACBGAME-26NOV27ATLCIU-ATL","league":"Argentina - Primera B Nacional","fair":0.4557,"bid":0.45,"ask":0.47,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV27TABKEL-TAB","league":"ATP Challenger Monastir - QF","fair":0.5518,"bid":0.55,"ask":0.56,"vol24":105}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV27TABKEL-KEL","league":"ATP Challenger Monastir - QF","fair":0.4482,"bid":0.44,"ask":0.45,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV27BONPAN-PAN","league":"ATP Challenger Monastir - QF","fair":0.3332,"bid":0.32,"ask":0.34,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV27BONPAN-BON","league":"ATP Challenger Monastir - QF","fair":0.6668,"bid":0.66,"ask":0.68,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV27GHEMAR-MAR","league":"ATP Challenger Hersonissos - QF","fair":0.7506,"bid":0.75,"ask":0.76,"vol24":3104}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV27GHEMAR-GHE","league":"ATP Challenger Hersonissos - QF","fair":0.2494,"bid":0.23,"ask":0.24,"vol24":1137}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV27ARNPIE-PIE","league":"ATP Challenger Hersonissos - QF","fair":0.2217,"bid":0.19,"ask":0.2,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV27ARNPIE-ARN","league":"ATP Challenger Hersonissos - QF","fair":0.7783,"bid":0.79,"ask":0.8,"vol24":77}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV27VIVDEB-VIV","league":"ATP Challenger Monastir - QF","fair":0.4229,"bid":0.41,"ask":0.42,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV27VIVDEB-DEB","league":"ATP Challenger Monastir - QF","fair":0.5771,"bid":0.58,"ask":0.59,"vol24":5}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV27COPBLA-COP","league":"ATP Challenger Monastir - QF","fair":0.631,"bid":0.62,"ask":0.63,"vol24":120}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV27COPBLA-BLA","league":"ATP Challenger Monastir - QF","fair":0.369,"bid":0.37,"ask":0.38,"vol24":16}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV27DONRIN-RIN","league":"ATP Challenger Ankara - QF","fair":0.6621,"bid":0.65,"ask":0.68,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV27DONRIN-DON","league":"ATP Challenger Ankara - QF","fair":0.3379,"bid":0.32,"ask":0.34,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV27DEDKIR-KIR","league":"ATP Challenger Ankara - QF","fair":0.41,"bid":0.39,"ask":0.41,"vol24":75}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV27DEDKIR-DED","league":"ATP Challenger Ankara - QF","fair":0.59,"bid":0.59,"ask":0.6,"vol24":3089}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV27OVCXIL-XIL","league":"ATP Challenger Hersonissos - QF","fair":0.5682,"bid":0.56,"ask":0.58,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV27OVCXIL-OVC","league":"ATP Challenger Hersonissos - QF","fair":0.4318,"bid":0.42,"ask":0.44,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV27SANHEN-SAN","league":"ATP Challenger Hersonissos - QF","fair":0.366,"bid":0.35,"ask":0.36,"vol24":3170}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV27SANHEN-HEN","league":"ATP Challenger Hersonissos - QF","fair":0.634,"bid":0.64,"ask":0.65,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV27URSDUR-URS","league":"ATP Challenger Ankara - QF","fair":0.4084,"bid":0.4,"ask":0.41,"vol24":12}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV27URSDUR-DUR","league":"ATP Challenger Ankara - QF","fair":0.5916,"bid":0.59,"ask":0.6,"vol24":4}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV27FAUGUN-GUN","league":"ATP Challenger Ankara - QF","fair":0.2519,"bid":0.24,"ask":0.25,"vol24":322}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV27FAUGUN-FAU","league":"ATP Challenger Ankara - QF","fair":0.7481,"bid":0.75,"ask":0.77,"vol24":3292}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26UCHMIL-UCH","league":"ATP Challenger Yokohama - QF","fair":0.3822,"bid":0.37,"ask":0.38,"vol24":149}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26UCHMIL-MIL","league":"ATP Challenger Yokohama - QF","fair":0.6178,"bid":0.62,"ask":0.63,"vol24":98}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26IMAJOR-JOR","league":"ATP Challenger Yokohama - QF","fair":0.4877,"bid":0.47,"ask":0.48,"vol24":704}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26IMAJOR-IMA","league":"ATP Challenger Yokohama - QF","fair":0.5123,"bid":0.52,"ask":0.53,"vol24":5125}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26JASBOL-JAS","league":"ATP Challenger Playford - QF","fair":0.5378,"bid":0.52,"ask":0.53,"vol24":15573}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26JASBOL-BOL","league":"ATP Challenger Playford - QF","fair":0.4622,"bid":0.47,"ask":0.48,"vol24":22940}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26NOGMAT-NOG","league":"ATP Challenger Yokohama - QF","fair":0.6131,"bid":0.61,"ask":0.62,"vol24":274}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26NOGMAT-MAT","league":"ATP Challenger Yokohama - QF","fair":0.3869,"bid":0.38,"ask":0.39,"vol24":86}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26SHIHON-SHI","league":"ATP Challenger Yokohama - QF","fair":0.7558,"bid":0.75,"ask":0.77,"vol24":264}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26SHIHON-HON","league":"ATP Challenger Yokohama - QF","fair":0.2442,"bid":0.23,"ask":0.24,"vol24":363}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26BOUSCH-SCH","league":"ATP Challenger Playford - QF","fair":0.8341,"bid":0.84,"ask":0.85,"vol24":79}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26BOUSCH-BOU","league":"ATP Challenger Playford - QF","fair":0.1659,"bid":0.15,"ask":0.16,"vol24":1458}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26LANDEL-LAN","league":"ATP Challenger Playford - QF","fair":0.4648,"bid":0.46,"ask":0.47,"vol24":3213}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26LANDEL-DEL","league":"ATP Challenger Playford - QF","fair":0.5352,"bid":0.53,"ask":0.54,"vol24":25024}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26SWEOVE-SWE","league":"ATP Challenger Playford - QF","fair":0.642,"bid":0.66,"ask":0.67,"vol24":15871}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXATPCHALLENGERMATCH-26NOV26SWEOVE-OVE","league":"ATP Challenger Playford - QF","fair":0.358,"bid":0.33,"ask":0.34,"vol24":8997}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXBELCHALLGAME-26NOV27RFBEUP-TIE","league":"Belgium - Challenger Pro League","fair":0.2609,"bid":0.25,"ask":0.27,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXBELCHALLGAME-26NOV27RFBEUP-RFB","league":"Belgium - Challenger Pro League","fair":0.2653,"bid":0.26,"ask":0.27,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXBELCHALLGAME-26NOV27RFBEUP-EUP","league":"Belgium - Challenger Pro League","fair":0.4738,"bid":0.47,"ask":0.49,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXBELGIANPLGAME-26NOV27OHLKOR-TIE","league":"Belgium - Pro League","fair":0.2437,"bid":0.24,"ask":0.25,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXBELGIANPLGAME-26NOV27OHLKOR-OHL","league":"Belgium - Pro League","fair":0.5107,"bid":0.51,"ask":0.52,"vol24":32}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXBELGIANPLGAME-26NOV27OHLKOR-KOR","league":"Belgium - Pro League","fair":0.2456,"bid":0.25,"ask":0.26,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXBLEAGUEONEGAME-26NOV270505GIFYOK-YOK","league":"Japan - B.League One","fair":0.885,"bid":0.88,"ask":0.95,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXBLEAGUEONEGAME-26NOV270505GIFYOK-GIF","league":"Japan - B.League One","fair":0.115,"bid":0.06,"ask":0.1,"vol24":803}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXBLEAGUEONEGAME-26NOV270505ALPRZF-RZF","league":"Japan - B.League One","fair":0.2404,"bid":0.18,"ask":0.25,"vol24":853}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXBLEAGUEONEGAME-26NOV270505ALPRZF-ALP","league":"Japan - B.League One","fair":0.7596,"bid":0.74,"ask":0.79,"vol24":32}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXBOLPDIVGAME-26NOV27INDCDT-TIE","league":"Bolivia - Primera Division","fair":0.2293,"bid":0.19,"ask":0.22,"vol24":2}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXBOLPDIVGAME-26NOV27INDCDT-IND","league":"Bolivia - Primera Division","fair":0.5664,"bid":0.59,"ask":0.62,"vol24":1436}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXBOLPDIVGAME-26NOV27INDCDT-CDT","league":"Bolivia - Primera Division","fair":0.2043,"bid":0.17,"ask":0.2,"vol24":2}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXBRASILEIROGAME-26NOV27FLUCRU-TIE","league":"Brazil - Serie A","fair":0.2598,"bid":0.25,"ask":0.26,"vol24":1053}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXBRASILEIROGAME-26NOV27FLUCRU-FLU","league":"Brazil - Serie A","fair":0.4597,"bid":0.46,"ask":0.47,"vol24":1285}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXBRASILEIROGAME-26NOV27FLUCRU-CRU","league":"Brazil - Serie A","fair":0.2804,"bid":0.275,"ask":0.285,"vol24":637}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXBULFLGAME-26NOV27LSOSLA-TIE","league":"Bulgaria - First League","fair":0.2741,"bid":0.27,"ask":0.28,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXBULFLGAME-26NOV27LSOSLA-SLA","league":"Bulgaria - First League","fair":0.2366,"bid":0.23,"ask":0.24,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXBULFLGAME-26NOV27LSOSLA-LSO","league":"Bulgaria - First League","fair":0.4894,"bid":0.49,"ask":0.5,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXBUNDESLIGA2GAME-26NOV27BOCD98-TIE","league":"Germany - Bundesliga 2","fair":0.2394,"bid":0.23,"ask":0.24,"vol24":8}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXBUNDESLIGA2GAME-26NOV27BOCD98-D98","league":"Germany - Bundesliga 2","fair":0.2286,"bid":0.22,"ask":0.23,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXBUNDESLIGA2GAME-26NOV27BOCD98-BOC","league":"Germany - Bundesliga 2","fair":0.5321,"bid":0.53,"ask":0.54,"vol24":13}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXCZEFLGAME-26NOV27ARTFCS-TIE","league":"Czech Republic - First Liga","fair":0.2766,"bid":0.27,"ask":0.28,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXCZEFLGAME-26NOV27ARTFCS-FCS","league":"Czech Republic - First Liga","fair":0.3303,"bid":0.32,"ask":0.33,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXCZEFLGAME-26NOV27ARTFCS-ART","league":"Czech Republic - First Liga","fair":0.3931,"bid":0.38,"ask":0.4,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXCZEFNLGAME-26NOV27JIHTRI-TRI","league":"Czech Republic - FNL","fair":0.1799,"bid":0.16,"ask":0.17,"vol24":1338}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXCZEFNLGAME-26NOV27JIHTRI-TIE","league":"Czech Republic - FNL","fair":0.208,"bid":0.2,"ask":0.21,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXCZEFNLGAME-26NOV27JIHTRI-JIH","league":"Czech Republic - FNL","fair":0.6121,"bid":0.63,"ask":0.64,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXCZEFNLGAME-26NOV27DUKSIL-TIE","league":"Czech Republic - FNL","fair":0.2531,"bid":0.25,"ask":0.26,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXCZEFNLGAME-26NOV27DUKSIL-SIL","league":"Czech Republic - FNL","fair":0.235,"bid":0.22,"ask":0.23,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXCZEFNLGAME-26NOV27DUKSIL-DUK","league":"Czech Republic - FNL","fair":0.5119,"bid":0.5,"ask":0.53,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXCZEFNLGAME-26NOV27USTHAN-UST","league":"Czech Republic - FNL","fair":0.5862,"bid":0.6,"ask":0.61,"vol24":176}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXCZEFNLGAME-26NOV27USTHAN-TIE","league":"Czech Republic - FNL","fair":0.2219,"bid":0.21,"ask":0.22,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXCZEFNLGAME-26NOV27USTHAN-HAN","league":"Czech Republic - FNL","fair":0.1919,"bid":0.17,"ask":0.19,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXDELGAME-26NOV271330NURGRI-NUR","league":"Germany - DEL","fair":0.5196,"bid":0.47,"ask":0.54,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXDELGAME-26NOV271330NURGRI-GRI","league":"Germany - DEL","fair":0.4804,"bid":0.43,"ask":0.52,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXDELGAME-26NOV271330EISAUG-EIS","league":"Germany - DEL","fair":0.6464,"bid":0.61,"ask":0.71,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXDELGAME-26NOV271330EISAUG-AUG","league":"Germany - DEL","fair":0.3536,"bid":0.31,"ask":0.39,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXDELGAME-26NOV271330KREERC-KRE","league":"Germany - DEL","fair":0.3402,"bid":0.29,"ask":0.38,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXDELGAME-26NOV271330KREERC-ERC","league":"Germany - DEL","fair":0.6598,"bid":0.63,"ask":0.71,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXDELGAME-26NOV271330STRKOL-STR","league":"Germany - DEL","fair":0.3997,"bid":0.36,"ask":0.44,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXDELGAME-26NOV271330STRKOL-KOL","league":"Germany - DEL","fair":0.6003,"bid":0.56,"ask":0.65,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXDENSUPERLIGAGAME-26NOV27SONBRO-TIE","league":"Denmark - Superliga","fair":0.2185,"bid":0.21,"ask":0.22,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXDENSUPERLIGAGAME-26NOV27SONBRO-SON","league":"Denmark - Superliga","fair":0.219,"bid":0.2,"ask":0.22,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXDENSUPERLIGAGAME-26NOV27SONBRO-BRO","league":"Denmark - Superliga","fair":0.5625,"bid":0.57,"ask":0.58,"vol24":1}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXDIMAYORGAME-26NOV27CALBUC-TIE","league":"Colombia - Primera A","fair":0.2725,"bid":0.26,"ask":0.27,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXDIMAYORGAME-26NOV27CALBUC-CAL","league":"Colombia - Primera A","fair":0.5324,"bid":0.54,"ask":0.55,"vol24":883}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXDIMAYORGAME-26NOV27CALBUC-BUC","league":"Colombia - Primera A","fair":0.1951,"bid":0.18,"ask":0.19,"vol24":74}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXECULPGAME-26NOV27DSCORE-TIE","league":"Ecuador - Serie A","fair":0.2966,"bid":0.29,"ask":0.3,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXECULPGAME-26NOV27DSCORE-ORE","league":"Ecuador - Serie A","fair":0.3101,"bid":0.3,"ask":0.32,"vol24":2}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXECULPGAME-26NOV27DSCORE-DSC","league":"Ecuador - Serie A","fair":0.3934,"bid":0.39,"ask":0.4,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXECULPGAME-26NOV27CUEMAN-TIE","league":"Ecuador - Serie A","fair":0.2317,"bid":0.23,"ask":0.24,"vol24":37}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXECULPGAME-26NOV27CUEMAN-MAN","league":"Ecuador - Serie A","fair":0.1982,"bid":0.19,"ask":0.2,"vol24":19}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXECULPGAME-26NOV27CUEMAN-CUE","league":"Ecuador - Serie A","fair":0.5701,"bid":0.57,"ask":0.59,"vol24":2}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEERSTEDIVGAME-26NOV27DORVIT-VIT","league":"Netherlands - Eerste Divisie","fair":0.4447,"bid":0.45,"ask":0.46,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEERSTEDIVGAME-26NOV27DORVIT-TIE","league":"Netherlands - Eerste Divisie","fair":0.2607,"bid":0.26,"ask":0.27,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEERSTEDIVGAME-26NOV27DORVIT-DOR","league":"Netherlands - Eerste Divisie","fair":0.2946,"bid":0.29,"ask":0.3,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEERSTEDIVGAME-26NOV27AJAHER-TIE","league":"Netherlands - Eerste Divisie","fair":0.1669,"bid":0.15,"ask":0.16,"vol24":1}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEERSTEDIVGAME-26NOV27AJAHER-HER","league":"Netherlands - Eerste Divisie","fair":0.6719,"bid":0.68,"ask":0.69,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEERSTEDIVGAME-26NOV27AJAHER-AJA","league":"Netherlands - Eerste Divisie","fair":0.1612,"bid":0.15,"ask":0.16,"vol24":620}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEERSTEDIVGAME-26NOV27AZOSS-TIE","league":"Netherlands - Eerste Divisie","fair":0.2222,"bid":0.21,"ask":0.22,"vol24":1}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEERSTEDIVGAME-26NOV27AZOSS-OSS","league":"Netherlands - Eerste Divisie","fair":0.2196,"bid":0.21,"ask":0.22,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEERSTEDIVGAME-26NOV27AZOSS-AZ","league":"Netherlands - Eerste Divisie","fair":0.5582,"bid":0.58,"ask":0.59,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEERSTEDIVGAME-26NOV27UTRALM-UTR","league":"Netherlands - Eerste Divisie","fair":0.2715,"bid":0.27,"ask":0.28,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEERSTEDIVGAME-26NOV27UTRALM-TIE","league":"Netherlands - Eerste Divisie","fair":0.2329,"bid":0.22,"ask":0.23,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEERSTEDIVGAME-26NOV27UTRALM-ALM","league":"Netherlands - Eerste Divisie","fair":0.4956,"bid":0.49,"ask":0.5,"vol24":1}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEERSTEDIVGAME-26NOV27BREDBO-TIE","league":"Netherlands - Eerste Divisie","fair":0.1692,"bid":0.15,"ask":0.17,"vol24":1}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEERSTEDIVGAME-26NOV27BREDBO-DBO","league":"Netherlands - Eerste Divisie","fair":0.1353,"bid":0.13,"ask":0.14,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEERSTEDIVGAME-26NOV27BREDBO-BRE","league":"Netherlands - Eerste Divisie","fair":0.6955,"bid":0.7,"ask":0.71,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEERSTEDIVGAME-26NOV27VENWAA-WAA","league":"Netherlands - Eerste Divisie","fair":0.3947,"bid":0.39,"ask":0.4,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEERSTEDIVGAME-26NOV27VENWAA-VEN","league":"Netherlands - Eerste Divisie","fair":0.3536,"bid":0.35,"ask":0.36,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEERSTEDIVGAME-26NOV27VENWAA-TIE","league":"Netherlands - Eerste Divisie","fair":0.2517,"bid":0.24,"ask":0.25,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEFLCHAMPIONSHIPGAME-26NOV27SOUMID-TIE","league":"England - Championship","fair":0.2571,"bid":0.25,"ask":0.26,"vol24":22}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEFLCHAMPIONSHIPGAME-26NOV27SOUMID-SOU","league":"England - Championship","fair":0.336,"bid":0.33,"ask":0.34,"vol24":298}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEFLCHAMPIONSHIPGAME-26NOV27SOUMID-MID","league":"England - Championship","fair":0.4069,"bid":0.4,"ask":0.41,"vol24":236}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEKSTRAKLASAGAME-26NOV27CZEPGL-TIE","league":"Poland - Ekstraklasa","fair":0.2318,"bid":0.22,"ask":0.23,"vol24":1}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEKSTRAKLASAGAME-26NOV27CZEPGL-PGL","league":"Poland - Ekstraklasa","fair":0.248,"bid":0.23,"ask":0.25,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEKSTRAKLASAGAME-26NOV27CZEPGL-CZE","league":"Poland - Ekstraklasa","fair":0.5202,"bid":0.52,"ask":0.53,"vol24":1}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEKSTRAKLASAGAME-26NOV27GORPLO-TIE","league":"Poland - Ekstraklasa","fair":0.204,"bid":0.2,"ask":0.21,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEKSTRAKLASAGAME-26NOV27GORPLO-PLO","league":"Poland - Ekstraklasa","fair":0.1471,"bid":0.13,"ask":0.14,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEKSTRAKLASAGAME-26NOV27GORPLO-GOR","league":"Poland - Ekstraklasa","fair":0.6488,"bid":0.65,"ask":0.67,"vol24":1}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXELHGAME-26NOV271200HCEHCR-HCR","league":"Czech Republic - Extraliga","fair":0.5627,"bid":0.52,"ask":0.58,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXELHGAME-26NOV271200HCEHCR-HCE","league":"Czech Republic - Extraliga","fair":0.4373,"bid":0.37,"ask":0.46,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXELHGAME-26NOV271200MOUHCO-MOU","league":"Czech Republic - Extraliga","fair":0.5967,"bid":0.55,"ask":0.57,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXELHGAME-26NOV271200MOUHCO-HCO","league":"Czech Republic - Extraliga","fair":0.4033,"bid":0.39,"ask":0.45,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXELHGAME-26NOV271130HCKHCSK-HCSK","league":"Czech Republic - Extraliga","fair":0.6018,"bid":0.53,"ask":0.61,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXELHGAME-26NOV271130HCKHCSK-HCK","league":"Czech Republic - Extraliga","fair":0.3982,"bid":0.36,"ask":0.44,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXELHGAME-26NOV271130BKMHCVL-HCVL","league":"Czech Republic - Extraliga","fair":0.5054,"bid":0.47,"ask":0.51,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXELHGAME-26NOV271130BKMHCVL-BKM","league":"Czech Republic - Extraliga","fair":0.4946,"bid":0.45,"ask":0.54,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXELHGAME-26NOV271100HCPHCOT-HCP","league":"Czech Republic - Extraliga","fair":0.4501,"bid":0.43,"ask":0.51,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXELHGAME-26NOV271100HCPHCOT-HCOT","league":"Czech Republic - Extraliga","fair":0.5499,"bid":0.51,"ask":0.55,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXENGNLGAME-26NOV27SCUWEA-WEA","league":"England - National League","fair":0.3441,"bid":0.33,"ask":0.35,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXENGNLGAME-26NOV27SCUWEA-TIE","league":"England - National League","fair":0.2286,"bid":0.22,"ask":0.23,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXENGNLGAME-26NOV27SCUWEA-SCU","league":"England - National League","fair":0.4274,"bid":0.42,"ask":0.43,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEPLGAME-26NOV27NFOCFC-TIE","league":"England - Premier League","fair":0.2838,"bid":0.28,"ask":0.29,"vol24":420}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEPLGAME-26NOV27NFOCFC-NFO","league":"England - Premier League","fair":0.3792,"bid":0.38,"ask":0.39,"vol24":6451}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEPLGAME-26NOV27NFOCFC-CFC","league":"England - Premier League","fair":0.337,"bid":0.34,"ask":0.35,"vol24":11616}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEREDIVISIEGAME-26NOV27GROWIL-WIL","league":"Netherlands - Eredivisie","fair":0.1451,"bid":0.13,"ask":0.14,"vol24":3}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEREDIVISIEGAME-26NOV27GROWIL-TIE","league":"Netherlands - Eredivisie","fair":0.1802,"bid":0.17,"ask":0.18,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXEREDIVISIEGAME-26NOV27GROWIL-GRO","league":"Netherlands - Eredivisie","fair":0.6747,"bid":0.68,"ask":0.69,"vol24":3}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXGER3LGAME-26NOV27HANHAV-TIE","league":"Germany - 3. Liga","fair":0.1378,"bid":0.13,"ask":0.14,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXGER3LGAME-26NOV27HANHAV-HAV","league":"Germany - 3. Liga","fair":0.0969,"bid":0.08,"ask":0.09,"vol24":104}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXGER3LGAME-26NOV27HANHAV-HAN","league":"Germany - 3. Liga","fair":0.7653,"bid":0.78,"ask":0.79,"vol24":5}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXHNLGAME-26NOV27ISTVAR-VAR","league":"Croatia - HNL","fair":0.3441,"bid":0.34,"ask":0.35,"vol24":1}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXHNLGAME-26NOV27ISTVAR-TIE","league":"Croatia - HNL","fair":0.2731,"bid":0.26,"ask":0.28,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXHNLGAME-26NOV27ISTVAR-IST","league":"Croatia - HNL","fair":0.3828,"bid":0.38,"ask":0.4,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXHUNNB1GAME-26NOV27GYODEB-TIE","league":"Hungary - NB 1","fair":0.2551,"bid":0.24,"ask":0.26,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXHUNNB1GAME-26NOV27GYODEB-GYO","league":"Hungary - NB 1","fair":0.3732,"bid":0.37,"ask":0.39,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXHUNNB1GAME-26NOV27GYODEB-DEB","league":"Hungary - NB 1","fair":0.3717,"bid":0.36,"ask":0.38,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXINDSLGAME-26NOV27IKSCHU-TIE","league":"India - Super League","fair":0.2459,"bid":0.23,"ask":0.25,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXINDSLGAME-26NOV27IKSCHU-IKS","league":"India - Super League","fair":0.2344,"bid":0.22,"ask":0.24,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXINDSLGAME-26NOV27IKSCHU-CHU","league":"India - Super League","fair":0.5197,"bid":0.52,"ask":0.54,"vol24":469}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXINLGAME-26NOV270600MACPET-PET","league":"Israel - National League","fair":0.2599,"bid":0.08,"ask":0.9,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXINLGAME-26NOV270600MACPET-MAC","league":"Israel - National League","fair":0.7401,"bid":0.08,"ask":0.9,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXINLGAME-26NOV270600HHMOTE-OTE","league":"Israel - National League","fair":0.7025,"bid":0.08,"ask":0.91,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXINLGAME-26NOV270600HHMOTE-HHM","league":"Israel - National League","fair":0.2975,"bid":0.08,"ask":0.91,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27SORPAR-SOR","league":"ITF Men Hradec Kralove - QF","fair":0.7506,"bid":0.76,"ask":0.79,"vol24":2338}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27SORPAR-PAR","league":"ITF Men Hradec Kralove - QF","fair":0.2494,"bid":0.21,"ask":0.23,"vol24":183}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27RODHAL-ROD","league":"ITF Men Madrid - QF","fair":0.6589,"bid":0.67,"ask":0.69,"vol24":89}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27RODHAL-HAL","league":"ITF Men Madrid - QF","fair":0.3411,"bid":0.31,"ask":0.34,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27MICFRI-MIC","league":"ITF Men Hradec Kralove - QF","fair":0.4604,"bid":0.45,"ask":0.47,"vol24":166}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27MICFRI-FRI","league":"ITF Men Hradec Kralove - QF","fair":0.5396,"bid":0.52,"ask":0.55,"vol24":100}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27BEASIN-SIN","league":"ITF Men Hradec Kralove - QF","fair":0.7901,"bid":0.8,"ask":0.82,"vol24":317}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27BEASIN-BEA","league":"ITF Men Hradec Kralove - QF","fair":0.2099,"bid":0.17,"ask":0.19,"vol24":14}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27PIEGEN-PIE","league":"ITF Men Hradec Kralove - QF","fair":0.5327,"bid":0.54,"ask":0.55,"vol24":1041}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27PIEGEN-GEN","league":"ITF Men Hradec Kralove - QF","fair":0.4673,"bid":0.44,"ask":0.45,"vol24":234}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27TKEGAR-TKE","league":"ITF Men Madrid - QF","fair":0.2076,"bid":0.15,"ask":0.2,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27TKEGAR-GAR","league":"ITF Men Madrid - QF","fair":0.7924,"bid":0.78,"ask":0.82,"vol24":1}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27HERMOR-MOR","league":"ITF Men Madrid - QF","fair":0.5,"bid":0.5,"ask":0.51,"vol24":1775}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27HERMOR-HER","league":"ITF Men Madrid - QF","fair":0.5,"bid":0.47,"ask":0.49,"vol24":104}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27PERDES-PER","league":"ITF Men Madrid - QF","fair":0.6377,"bid":0.62,"ask":0.64,"vol24":8}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27PERDES-DES","league":"ITF Men Madrid - QF","fair":0.3623,"bid":0.33,"ask":0.37,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27SHAVAN-VAN","league":"ITF Men Monastir 2 - QF","fair":0.8176,"bid":0.83,"ask":0.85,"vol24":1}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27SHAVAN-SHA","league":"ITF Men Monastir 2 - QF","fair":0.1824,"bid":0.14,"ask":0.16,"vol24":16}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27COCSAL-SAL","league":"ITF Men Monastir 2 - QF","fair":0.5915,"bid":0.58,"ask":0.61,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27COCSAL-COC","league":"ITF Men Monastir 2 - QF","fair":0.4085,"bid":0.38,"ask":0.4,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27NORKUP-NOR","league":"ITF Men Monastir 2 - QF","fair":0.4154,"bid":0.4,"ask":0.43,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27NORKUP-KUP","league":"ITF Men Monastir 2 - QF","fair":0.5846,"bid":0.55,"ask":0.59,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27NEIJER-NEI","league":"ITF Men Monastir 2 - QF","fair":0.7022,"bid":0.7,"ask":0.74,"vol24":90}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27NEIJER-JER","league":"ITF Men Monastir 2 - QF","fair":0.2978,"bid":0.25,"ask":0.29,"vol24":59}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27KAOBOR-KAO","league":"ITF Men Heraklion - QF","fair":0.8921,"bid":0.87,"ask":0.9,"vol24":772}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27KAOBOR-BOR","league":"ITF Men Heraklion - QF","fair":0.1079,"bid":0.1,"ask":0.11,"vol24":2431}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27BASCUR-CUR","league":"ITF Men Heraklion - QF","fair":0.2894,"bid":0.27,"ask":0.29,"vol24":172}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27BASCUR-BAS","league":"ITF Men Heraklion - QF","fair":0.7106,"bid":0.7,"ask":0.72,"vol24":69}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27GELDEL-GEL","league":"ITF Men Heraklion - QF","fair":0.5534,"bid":0.52,"ask":0.54,"vol24":170}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27GELDEL-DEL","league":"ITF Men Heraklion - QF","fair":0.4466,"bid":0.44,"ask":0.45,"vol24":164}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27ROLGAN-ROL","league":"ITF Men Heraklion - QF","fair":0.3639,"bid":0.34,"ask":0.35,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27ROLGAN-GAN","league":"ITF Men Heraklion - QF","fair":0.6361,"bid":0.62,"ask":0.66,"vol24":472}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27REJCHA-REJ","league":"ITF Men Bhopal - QF","fair":0.7702,"bid":0.76,"ask":0.79,"vol24":10}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27REJCHA-CHA","league":"ITF Men Bhopal - QF","fair":0.2298,"bid":0.2,"ask":0.23,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27DUHJAV-JAV","league":"ITF Men Bhopal - QF","fair":0.7626,"bid":0.76,"ask":0.77,"vol24":598}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27DUHJAV-DUH","league":"ITF Men Bhopal - QF","fair":0.2374,"bid":0.23,"ask":0.25,"vol24":1346}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27SURMUK-SUR","league":"ITF Men Bhopal - QF","fair":0.4744,"bid":0.46,"ask":0.48,"vol24":620}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27SURMUK-MUK","league":"ITF Men Bhopal - QF","fair":0.5256,"bid":0.52,"ask":0.53,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27SINLOM-SIN","league":"ITF Men Bhopal - QF","fair":0.898,"bid":0.88,"ask":0.91,"vol24":456}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFMATCH-26NOV27SINLOM-LOM","league":"ITF Men Bhopal - QF","fair":0.102,"bid":0.07,"ask":0.09,"vol24":1381}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27VLAPER-VLA","league":"ITF Women Ortisei - SF","fair":0.4856,"bid":0.47,"ask":0.48,"vol24":286}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27VLAPER-PER","league":"ITF Women Ortisei - SF","fair":0.5144,"bid":0.52,"ask":0.54,"vol24":927}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27BROEWA-EWA","league":"ITF Women Ortisei - SF","fair":0.5,"bid":0.48,"ask":0.49,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27BROEWA-BRO","league":"ITF Women Ortisei - SF","fair":0.5,"bid":0.5,"ask":0.51,"vol24":78}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27YANFRI-YAN","league":"ITF Women Trnava - QF","fair":0.7696,"bid":0.75,"ask":0.79,"vol24":278}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27YANFRI-FRI","league":"ITF Women Trnava - QF","fair":0.2304,"bid":0.19,"ask":0.22,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27LAMMAL-MAL","league":"ITF Women Trnava - QF","fair":0.2757,"bid":0.25,"ask":0.28,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27LAMMAL-LAM","league":"ITF Women Trnava - QF","fair":0.7243,"bid":0.69,"ask":0.74,"vol24":3}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27BONLUC-LUC","league":"ITF Women Monastir - QF","fair":0.3963,"bid":0.37,"ask":0.4,"vol24":138}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27BONLUC-BON","league":"ITF Women Monastir - QF","fair":0.6037,"bid":0.58,"ask":0.62,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27ADEFIR-FIR","league":"ITF Women Lousada - QF","fair":0.3741,"bid":0.34,"ask":0.38,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27ADEFIR-ADE","league":"ITF Women Lousada - QF","fair":0.6259,"bid":0.62,"ask":0.64,"vol24":4}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27TOMHON-TOM","league":"ITF Women Lousada - QF","fair":0.319,"bid":0.29,"ask":0.32,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27TOMHON-HON","league":"ITF Women Lousada - QF","fair":0.681,"bid":0.64,"ask":0.7,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27FALNGO-NGO","league":"ITF Women Trnava - QF","fair":0.4877,"bid":0.46,"ask":0.47,"vol24":202}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27FALNGO-FAL","league":"ITF Women Trnava - QF","fair":0.5123,"bid":0.5,"ask":0.54,"vol24":941}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27PONMIN-PON","league":"ITF Women Trnava - QF","fair":0.2417,"bid":0.23,"ask":0.26,"vol24":86}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27PONMIN-MIN","league":"ITF Women Trnava - QF","fair":0.7583,"bid":0.73,"ask":0.76,"vol24":20}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27TARHAG-TAR","league":"ITF Women Monastir - QF","fair":0.8829,"bid":0.87,"ask":0.9,"vol24":1}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27TARHAG-HAG","league":"ITF Women Monastir - QF","fair":0.1171,"bid":0.08,"ask":0.12,"vol24":39}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27MARINI-MAR","league":"ITF Women Monastir - QF","fair":0.6432,"bid":0.62,"ask":0.65,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27MARINI-INI","league":"ITF Women Monastir - QF","fair":0.3568,"bid":0.33,"ask":0.37,"vol24":5}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27DALCHO-DAL","league":"ITF Women Monastir - QF","fair":0.7458,"bid":0.74,"ask":0.77,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27DALCHO-CHO","league":"ITF Women Monastir - QF","fair":0.2542,"bid":0.22,"ask":0.25,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27CVEPOP-POP","league":"ITF Women Heraklion 2 - QF","fair":0.5751,"bid":0.55,"ask":0.58,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27CVEPOP-CVE","league":"ITF Women Heraklion 2 - QF","fair":0.4249,"bid":0.4,"ask":0.41,"vol24":14}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27MATALL-MAT","league":"ITF Women Heraklion 2 - QF","fair":0.8362,"bid":0.84,"ask":0.87,"vol24":574}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27MATALL-ALL","league":"ITF Women Heraklion 2 - QF","fair":0.1638,"bid":0.15,"ask":0.16,"vol24":145}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27CORDOR-DOR","league":"ITF Women Heraklion 2 - QF","fair":0.5774,"bid":0.57,"ask":0.59,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27CORDOR-COR","league":"ITF Women Heraklion 2 - QF","fair":0.4226,"bid":0.41,"ask":0.42,"vol24":112}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27PANPED-PED","league":"ITF Women Heraklion 2 - QF","fair":0.8064,"bid":0.83,"ask":0.84,"vol24":424}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27PANPED-PAN","league":"ITF Women Heraklion 2 - QF","fair":0.1936,"bid":0.15,"ask":0.16,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27YODLAR-YOD","league":"ITF Women Kolkata - QF","fair":0.5795,"bid":0.6,"ask":0.61,"vol24":1414}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27YODLAR-LAR","league":"ITF Women Kolkata - QF","fair":0.4205,"bid":0.39,"ask":0.4,"vol24":389}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27DEKLIN-LIN","league":"ITF Women Kolkata - QF","fair":0.763,"bid":0.76,"ask":0.8,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV27DEKLIN-DEK","league":"ITF Women Kolkata - QF","fair":0.237,"bid":0.2,"ask":0.23,"vol24":5}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV26NUGRAO-RAO","league":"ITF Women Kolkata - QF","fair":0.0557,"bid":0.07,"ask":0.08,"vol24":3864}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV26NUGRAO-NUG","league":"ITF Women Kolkata - QF","fair":0.9443,"bid":0.92,"ask":0.93,"vol24":198}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV26SWAMIC-SWA","league":"ITF Women Playford - QF","fair":0.9056,"bid":0.87,"ask":0.89,"vol24":856}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV26SWAMIC-MIC","league":"ITF Women Playford - QF","fair":0.0944,"bid":0.11,"ask":0.12,"vol24":6247}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV26ITOJON-JON","league":"ITF Women Playford - QF","fair":0.6999,"bid":0.69,"ask":0.71,"vol24":24}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV26ITOJON-ITO","league":"ITF Women Playford - QF","fair":0.3001,"bid":0.29,"ask":0.3,"vol24":209}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV26KOISAT-SAT","league":"ITF Women Playford - QF","fair":0.3789,"bid":0.38,"ask":0.39,"vol24":793}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV26KOISAT-KOI","league":"ITF Women Playford - QF","fair":0.6211,"bid":0.61,"ask":0.62,"vol24":149}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV26YUAGAD-YUA","league":"ITF Women Playford - QF","fair":0.123,"bid":0.12,"ask":0.13,"vol24":2640}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXITFWMATCH-26NOV26YUAGAD-GAD","league":"ITF Women Playford - QF","fair":0.877,"bid":0.86,"ask":0.88,"vol24":1093}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXKHLGAME-26NOV271130HCBSKA-SKA","league":"Russia - Kontinental Hockey League","fair":0.6164,"bid":0.6,"ask":0.64,"vol24":3}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXKHLGAME-26NOV271130HCBSKA-HCB","league":"Russia - Kontinental Hockey League","fair":0.3836,"bid":0.35,"ask":0.39,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXKHLGAME-26NOV271100SIBSEV-SIB","league":"Russia - Kontinental Hockey League","fair":0.3588,"bid":0.32,"ask":0.37,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXKHLGAME-26NOV271100SIBSEV-SEV","league":"Russia - Kontinental Hockey League","fair":0.6412,"bid":0.62,"ask":0.66,"vol24":3}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXKHLGAME-26NOV271000LOKLAD-LOK","league":"Russia - Kontinental Hockey League","fair":0.7662,"bid":0.76,"ask":0.79,"vol24":1}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXKHLGAME-26NOV271000LOKLAD-LAD","league":"Russia - Kontinental Hockey League","fair":0.2338,"bid":0.2,"ask":0.23,"vol24":40}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLALIGA2GAME-26NOV27LEGSAB-TIE","league":"Spain - Segunda Division","fair":0.3188,"bid":0.31,"ask":0.32,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLALIGA2GAME-26NOV27LEGSAB-SAB","league":"Spain - Segunda Division","fair":0.2901,"bid":0.29,"ask":0.3,"vol24":1}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLALIGA2GAME-26NOV27LEGSAB-LEG","league":"Spain - Segunda Division","fair":0.3911,"bid":0.39,"ask":0.4,"vol24":13}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLALIGAGAME-26NOV27LEVSAN-TIE","league":"Spain - La Liga","fair":0.237,"bid":0.23,"ask":0.24,"vol24":21020}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLALIGAGAME-26NOV27LEVSAN-SAN","league":"Spain - La Liga","fair":0.2877,"bid":0.28,"ask":0.29,"vol24":15780}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLALIGAGAME-26NOV27LEVSAN-LEV","league":"Spain - La Liga","fair":0.4753,"bid":0.47,"ask":0.48,"vol24":31159}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIGAMXGAME-26NOV26PACCDG-TIE","league":"Mexico - Liga MX","fair":0.3052,"bid":0.3,"ask":0.31,"vol24":35328}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIGAMXGAME-26NOV26PACCDG-PAC","league":"Mexico - Liga MX","fair":0.2986,"bid":0.3,"ask":0.31,"vol24":207273}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIGAMXGAME-26NOV26PACCDG-CDG","league":"Mexico - Liga MX","fair":0.3962,"bid":0.39,"ask":0.4,"vol24":324912}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIGAMXGAME-26NOV26LEOCRA-TIE","league":"Mexico - Liga MX","fair":0.2687,"bid":0.26,"ask":0.27,"vol24":18833}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIGAMXGAME-26NOV26LEOCRA-LEO","league":"Mexico - Liga MX","fair":0.2844,"bid":0.28,"ask":0.29,"vol24":52314}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIGAMXGAME-26NOV26LEOCRA-CRA","league":"Mexico - Liga MX","fair":0.4469,"bid":0.45,"ask":0.46,"vol24":182143}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIGAPORTUGAL2GAME-26NOV27FEIPOR-TIE","league":"Portugal - Liga 2","fair":0.2953,"bid":0.29,"ask":0.3,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIGAPORTUGAL2GAME-26NOV27FEIPOR-POR","league":"Portugal - Liga 2","fair":0.4283,"bid":0.41,"ask":0.42,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIGAPORTUGAL2GAME-26NOV27FEIPOR-FEI","league":"Portugal - Liga 2","fair":0.2764,"bid":0.26,"ask":0.28,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIGMAGGAME-26NOV271430CERANG-CER","league":"France - Ligue Magnus","fair":0.3035,"bid":0.24,"ask":0.35,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIGMAGGAME-26NOV271430CERANG-ANG","league":"France - Ligue Magnus","fair":0.6965,"bid":0.66,"ask":0.75,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIGMAGGAME-26NOV271415AGLGRE-GRE","league":"France - Ligue Magnus","fair":0.8721,"bid":0.83,"ask":0.92,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIGMAGGAME-26NOV271415AGLGRE-AGL","league":"France - Ligue Magnus","fair":0.1279,"bid":0.08,"ask":0.17,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIGMAGGAME-26NOV271405BRICHA-CHA","league":"France - Ligue Magnus","fair":0.5665,"bid":0.53,"ask":0.63,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIGMAGGAME-26NOV271405BRICHA-BRI","league":"France - Ligue Magnus","fair":0.4335,"bid":0.38,"ask":0.52,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIGMAGGAME-26NOV271400BORROU-ROU","league":"France - Ligue Magnus","fair":0.6374,"bid":0.56,"ask":0.62,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIGMAGGAME-26NOV271400BORROU-BOR","league":"France - Ligue Magnus","fair":0.3626,"bid":0.3,"ask":0.45,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIGMAGGAME-26NOV271400AMIGAP-GAP","league":"France - Ligue Magnus","fair":0.5446,"bid":0.47,"ask":0.61,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIGMAGGAME-26NOV271400AMIGAP-AMI","league":"France - Ligue Magnus","fair":0.4554,"bid":0.39,"ask":0.53,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIGMAGGAME-26NOV271400MARNIC-NIC","league":"France - Ligue Magnus","fair":0.5915,"bid":0.57,"ask":0.67,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIGMAGGAME-26NOV271400MARNIC-MAR","league":"France - Ligue Magnus","fair":0.4085,"bid":0.35,"ask":0.46,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIGUE1GAME-26NOV27STBPAR-TIE","league":"France - Ligue 1","fair":0.2846,"bid":0.27,"ask":0.28,"vol24":51}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIGUE1GAME-26NOV27STBPAR-STB","league":"France - Ligue 1","fair":0.2742,"bid":0.27,"ask":0.28,"vol24":1696}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIGUE1GAME-26NOV27STBPAR-PAR","league":"France - Ligue 1","fair":0.4412,"bid":0.44,"ask":0.45,"vol24":1857}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIIGAGAME-26NOV271230SAIHIF-SAI","league":"Finland - SM Liiga","fair":0.5199,"bid":0.51,"ask":0.54,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIIGAGAME-26NOV271230SAIHIF-HIF","league":"Finland - SM Liiga","fair":0.4801,"bid":0.46,"ask":0.48,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIIGAGAME-26NOV271130KIETAP-TAP","league":"Finland - SM Liiga","fair":0.5998,"bid":0.58,"ask":0.63,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIIGAGAME-26NOV271130KIETAP-KIE","league":"Finland - SM Liiga","fair":0.4002,"bid":0.37,"ask":0.42,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIIGAGAME-26NOV271130HPKKOO-KOO","league":"Finland - SM Liiga","fair":0.5272,"bid":0.51,"ask":0.57,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIIGAGAME-26NOV271130HPKKOO-HPK","league":"Finland - SM Liiga","fair":0.4728,"bid":0.45,"ask":0.48,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIIGAGAME-26NOV271030MIKLUK-MIK","league":"Finland - SM Liiga","fair":0.3894,"bid":0.36,"ask":0.42,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIIGAGAME-26NOV271030MIKLUK-LUK","league":"Finland - SM Liiga","fair":0.6106,"bid":0.6,"ask":0.67,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIIGAGAME-26NOV271130JYPKAL-KAL","league":"Finland - SM Liiga","fair":0.4608,"bid":0.46,"ask":0.48,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXLIIGAGAME-26NOV271130JYPKAL-JYP","league":"Finland - SM Liiga","fair":0.5392,"bid":0.51,"ask":0.56,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXMYSLGAME-26NOV27BRUKEL-TIE","league":"Malaysia - Super League","fair":0.1244,"bid":0.1,"ask":0.11,"vol24":118}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXMYSLGAME-26NOV27BRUKEL-KEL","league":"Malaysia - Super League","fair":0.0932,"bid":0.06,"ask":0.07,"vol24":2874}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXMYSLGAME-26NOV27BRUKEL-BRU","league":"Malaysia - Super League","fair":0.7824,"bid":0.8,"ask":0.82,"vol24":192}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNCAAMBGAME-26NOV26BAYGONZ-GONZ","league":"NCAA","fair":0.5991,"bid":0.61,"ask":0.62,"vol24":15401}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNCAAMBGAME-26NOV26BAYGONZ-BAY","league":"NCAA","fair":0.4009,"bid":0.39,"ask":0.4,"vol24":26467}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNCAAMBGAME-26NOV26TTUORE-TTU","league":"NCAA","fair":0.824,"bid":0.82,"ask":0.83,"vol24":16951}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNCAAMBGAME-26NOV26TTUORE-ORE","league":"NCAA","fair":0.176,"bid":0.17,"ask":0.18,"vol24":7179}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNCAAMBGAME-26NOV26LOUSJU-SJU","league":"NCAA","fair":0.5093,"bid":0.52,"ask":0.53,"vol24":96665}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNCAAMBGAME-26NOV26LOUSJU-LOU","league":"NCAA","fair":0.4907,"bid":0.47,"ask":0.48,"vol24":15742}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNCAAMBGAME-26NOV26NEOMPAC-PAC","league":"NCAA","fair":0.7519,"bid":0.74,"ask":0.75,"vol24":14056}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNCAAMBGAME-26NOV26NEOMPAC-NEOM","league":"NCAA","fair":0.2481,"bid":0.25,"ask":0.26,"vol24":14419}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNCAAMBGAME-26NOV26SMULSU-SMU","league":"NCAA","fair":0.2937,"bid":0.26,"ask":0.27,"vol24":15755}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNCAAMBGAME-26NOV26SMULSU-LSU","league":"NCAA","fair":0.7063,"bid":0.72,"ask":0.73,"vol24":11104}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNCAAMBGAME-26NOV26PITTDEP-PITT","league":"NCAA","fair":0.4672,"bid":0.45,"ask":0.46,"vol24":86559}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNCAAMBGAME-26NOV26PITTDEP-DEP","league":"NCAA","fair":0.5328,"bid":0.54,"ask":0.55,"vol24":79915}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNHLGAME-26NOV28ANALA-LA","league":"NHL","fair":0.5023,"bid":0.52,"ask":0.55,"vol24":43}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNHLGAME-26NOV28ANALA-ANA","league":"NHL","fair":0.4977,"bid":0.45,"ask":0.48,"vol24":211}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNHLGAME-26NOV27NYRCHI-NYR","league":"NHL","fair":0.6163,"bid":0.61,"ask":0.62,"vol24":579}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNHLGAME-26NOV27NYRCHI-CHI","league":"NHL","fair":0.3837,"bid":0.38,"ask":0.39,"vol24":896}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNHLGAME-26NOV27LAANA-LA","league":"NHL","fair":0.5023,"bid":0.51,"ask":0.52,"vol24":746}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNHLGAME-26NOV27LAANA-ANA","league":"NHL","fair":0.4977,"bid":0.49,"ask":0.5,"vol24":2291}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNHLGAME-26NOV27VGKSJ-VGK","league":"NHL","fair":0.6467,"bid":0.64,"ask":0.65,"vol24":4158}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNHLGAME-26NOV27VGKSJ-SJ","league":"NHL","fair":0.3533,"bid":0.34,"ask":0.35,"vol24":1229}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNHLGAME-26NOV27COLMIN-MIN","league":"NHL","fair":0.5369,"bid":0.53,"ask":0.55,"vol24":3153}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNHLGAME-26NOV27COLMIN-COL","league":"NHL","fair":0.4631,"bid":0.46,"ask":0.47,"vol24":816}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNHLGAME-26NOV27OTTTB-TB","league":"NHL","fair":0.5586,"bid":0.55,"ask":0.57,"vol24":857}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNHLGAME-26NOV27OTTTB-OTT","league":"NHL","fair":0.4414,"bid":0.44,"ask":0.45,"vol24":476}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNHLGAME-26NOV27FLAWSH-WSH","league":"NHL","fair":0.4954,"bid":0.49,"ask":0.5,"vol24":1948}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNHLGAME-26NOV27FLAWSH-FLA","league":"NHL","fair":0.5046,"bid":0.49,"ask":0.5,"vol24":11209}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNHLGAME-26NOV27VANPHI-VAN","league":"NHL","fair":0.3161,"bid":0.31,"ask":0.32,"vol24":75}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNHLGAME-26NOV27VANPHI-PHI","league":"NHL","fair":0.6839,"bid":0.69,"ask":0.7,"vol24":404}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNHLGAME-26NOV27DETCBJ-DET","league":"NHL","fair":0.458,"bid":0.45,"ask":0.46,"vol24":787}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNHLGAME-26NOV27DETCBJ-CBJ","league":"NHL","fair":0.542,"bid":0.54,"ask":0.55,"vol24":468}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNHLGAME-26NOV27DALSTL-STL","league":"NHL","fair":0.4395,"bid":0.45,"ask":0.46,"vol24":906}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNHLGAME-26NOV27DALSTL-DAL","league":"NHL","fair":0.5605,"bid":0.55,"ask":0.57,"vol24":1441}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNHLGAME-26NOV27UTANSH-UTA","league":"NHL","fair":0.5116,"bid":0.51,"ask":0.52,"vol24":2633}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNHLGAME-26NOV27UTANSH-NSH","league":"NHL","fair":0.4884,"bid":0.47,"ask":0.49,"vol24":1486}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNHLGAME-26NOV27CGYNJ-NJ","league":"NHL","fair":0.7087,"bid":0.71,"ask":0.72,"vol24":642}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNHLGAME-26NOV27CGYNJ-CGY","league":"NHL","fair":0.2913,"bid":0.28,"ask":0.3,"vol24":472}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNHLGAME-26NOV27TORBOS-TOR","league":"NHL","fair":0.4029,"bid":0.39,"ask":0.4,"vol24":1942}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXNHLGAME-26NOV27TORBOS-BOS","league":"NHL","fair":0.5971,"bid":0.61,"ask":0.62,"vol24":5499}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXPHLGAME-26NOV271300KATSOS-SOS","league":"Poland - Polska Hokey Liga","fair":0.5781,"bid":0.54,"ask":0.65,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXPHLGAME-26NOV271300KATSOS-KAT","league":"Poland - Polska Hokey Liga","fair":0.4219,"bid":0.35,"ask":0.48,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXPHLGAME-26NOV271200TORCRA-TOR","league":"Poland - Polska Hokey Liga","fair":0.6873,"bid":0.62,"ask":0.76,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXPHLGAME-26NOV271200TORCRA-CRA","league":"Poland - Polska Hokey Liga","fair":0.3127,"bid":0.25,"ask":0.36,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXSAPSLGAME-26NOV27STLTSG-TSG","league":"South Africa - PSL","fair":0.2128,"bid":0.17,"ask":0.19,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXSAPSLGAME-26NOV27STLTSG-TIE","league":"South Africa - PSL","fair":0.2976,"bid":0.27,"ask":0.29,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXSAPSLGAME-26NOV27STLTSG-STL","league":"South Africa - PSL","fair":0.4896,"bid":0.5,"ask":0.52,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXSERIEAGAME-26NOV27VENBFC-VEN","league":"Italy - Serie A","fair":0.2796,"bid":0.27,"ask":0.28,"vol24":5}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXSERIEAGAME-26NOV27VENBFC-TIE","league":"Italy - Serie A","fair":0.2967,"bid":0.29,"ask":0.3,"vol24":3}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXSERIEAGAME-26NOV27VENBFC-BFC","league":"Italy - Serie A","fair":0.4237,"bid":0.42,"ask":0.43,"vol24":1724}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXSERIECGAME-26NOV27CAVSCC-TIE","league":"Italy - Serie C Group C","fair":0.2929,"bid":0.27,"ask":0.31,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXSERIECGAME-26NOV27CAVSCC-SCC","league":"Italy - Serie C Group C","fair":0.233,"bid":0.22,"ask":0.24,"vol24":155}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXSERIECGAME-26NOV27CAVSCC-CAV","league":"Italy - Serie C Group C","fair":0.4741,"bid":0.47,"ask":0.5,"vol24":408}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXSERIECGAME-26NOV27CAFCFC-TIE","league":"Italy - Serie C Group C","fair":0.3125,"bid":0.3,"ask":0.31,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXSERIECGAME-26NOV27CAFCFC-CFC","league":"Italy - Serie C Group C","fair":0.3211,"bid":0.32,"ask":0.33,"vol24":129}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXSERIECGAME-26NOV27CAFCFC-CAF","league":"Italy - Serie C Group C","fair":0.3664,"bid":0.36,"ask":0.37,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXSGPPLGAME-26NOV27GEYTPU-TPU","league":"Singapore - Premier League","fair":0.1941,"bid":0.18,"ask":0.19,"vol24":50}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXSGPPLGAME-26NOV27GEYTPU-TIE","league":"Singapore - Premier League","fair":0.2063,"bid":0.19,"ask":0.21,"vol24":14}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXSGPPLGAME-26NOV27GEYTPU-GEY","league":"Singapore - Premier League","fair":0.5996,"bid":0.61,"ask":0.62,"vol24":90}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXSRBSLGAME-26NOV27IMTMAC-TIE","league":"Serbia - Super Liga","fair":0.2171,"bid":0.21,"ask":0.22,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXSRBSLGAME-26NOV27IMTMAC-MAC","league":"Serbia - Super Liga","fair":0.1255,"bid":0.11,"ask":0.12,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXSRBSLGAME-26NOV27IMTMAC-IMT","league":"Serbia - Super Liga","fair":0.6574,"bid":0.66,"ask":0.67,"vol24":3}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXSUPERLIGGAME-26NOV27ALAKON-TIE","league":"Turkey - Super League","fair":0.2969,"bid":0.29,"ask":0.3,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXSUPERLIGGAME-26NOV27ALAKON-KON","league":"Turkey - Super League","fair":0.3573,"bid":0.35,"ask":0.36,"vol24":1}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXSUPERLIGGAME-26NOV27ALAKON-ALA","league":"Turkey - Super League","fair":0.3458,"bid":0.34,"ask":0.35,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXSUPERLIGGAME-26NOV27RIZKAS-TIE","league":"Turkey - Super League","fair":0.2498,"bid":0.24,"ask":0.25,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXSUPERLIGGAME-26NOV27RIZKAS-RIZ","league":"Turkey - Super League","fair":0.4916,"bid":0.5,"ask":0.51,"vol24":9}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXSUPERLIGGAME-26NOV27RIZKAS-KAS","league":"Turkey - Super League","fair":0.2585,"bid":0.25,"ask":0.27,"vol24":567}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXTHAIL1GAME-26NOV27UTHSIS-UTH","league":"Thailand - League 1","fair":0.5361,"bid":0.54,"ask":0.56,"vol24":73}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXTHAIL1GAME-26NOV27UTHSIS-TIE","league":"Thailand - League 1","fair":0.2368,"bid":0.22,"ask":0.24,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXTHAIL1GAME-26NOV27UTHSIS-SIS","league":"Thailand - League 1","fair":0.2271,"bid":0.21,"ask":0.23,"vol24":41}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXURYPDGAME-26NOV27RCMLIV-TIE","league":"Uruguay - Primera Division","fair":0.3011,"bid":0.29,"ask":0.31,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXURYPDGAME-26NOV27RCMLIV-RCM","league":"Uruguay - Primera Division","fair":0.304,"bid":0.29,"ask":0.31,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXURYPDGAME-26NOV27RCMLIV-LIV","league":"Uruguay - Primera Division","fair":0.3948,"bid":0.39,"ask":0.4,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXWKBLGAME-26NOV270500SHIBLU-SHI","league":"Korea - WKBL","fair":0.5871,"bid":0.08,"ask":0.9,"vol24":0}
+{"ts":"2026-11-26T23:51:46+00:00","ticker":"KXWKBLGAME-26NOV270500SHIBLU-BLU","league":"Korea - WKBL","fair":0.4129,"bid":0.08,"ask":0.9,"vol24":0}
