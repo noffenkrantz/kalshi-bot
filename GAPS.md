@@ -1,12 +1,12 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 747 snapshots from 2026-11-25 16:44 to 2026-11-26 21:21 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 748 snapshots from 2026-11-25 16:44 to 2026-11-26 21:31 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-8,391 Kalshi prices compared with Pinnacle's. 96% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.4¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
+8,392 Kalshi prices compared with Pinnacle's. 96% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.4¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
 
-23 simulated bets so far; 23 have a closing price. Average edge when placed +3.9¢; average closing value +2.4¢ per contract. Kalshi moved toward Pinnacle's price after 17 of them and Pinnacle moved toward Kalshi's after 18. 14 have settled: 6 won, simulated profit $+59.38 on $516 staked.
+23 simulated bets so far; 23 have a closing price. Average edge when placed +3.9¢; average closing value +2.4¢ per contract. Kalshi moved toward Pinnacle's price after 17 of them and Pinnacle moved toward Kalshi's after 18. 16 have settled: 7 won, simulated profit $+55.59 on $519 staked.
 
 ## By league
 
@@ -15,7 +15,7 @@
 | League | Prices compared | No real market | Avg gap (Kalshi mid vs fair) | With a 3¢+ edge | Kalshi volume (24h, median) | Bets | Avg closing value | Profit |
 |---|---|---|---|---|---|---|---|---|
 | NCAA | 580 | 0% | +1.1¢ | 0% | 2,338 | 0 | – | – |
-| ITF Men Santa Cruz - R1 | 554 | 1% | +1.9¢ | 3% | 1,533 | 2 | +3.2¢ | – |
+| ITF Men Santa Cruz - R1 | 554 | 1% | +1.9¢ | 3% | 1,533 | 2 | +3.2¢ | $-3.79 |
 | ITF Men Hradec Kralove - R16 | 481 | 2% | +3.1¢ | 0% | 1,189 | 1 | +0.8¢ | $-0.76 |
 | ITF Men Heraklion - R16 | 322 | 4% | +1.4¢ | 1% | 182 | 1 | -4.8¢ | $+0.00 |
 | ITF Women Florianopolis - R16 | 303 | 4% | +1.8¢ | 5% | 269 | 3 | +3.5¢ | $+51.01 |
@@ -23,7 +23,7 @@
 | Russia - Kontinental Hockey League | 278 | 1% | +0.8¢ | 0% | 0 | 0 | – | – |
 | ITF Women Heraklion 2 - R16 | 263 | 6% | +1.7¢ | 4% | 420 | 1 | -0.9¢ | $-28.47 |
 | NHL | 252 | 0% | +0.6¢ | 0% | 8,160 | 0 | – | – |
-| Sweden - SHL | 250 | 0% | +1.1¢ | 0% | 0 | 1 | +3.8¢ | – |
+| Sweden - SHL | 250 | 0% | +1.1¢ | 0% | 0 | 1 | +3.8¢ | $+0.00 |
 | ITF Men Monastir 2 - R16 | 250 | 5% | +1.5¢ | 0% | 195 | 0 | – | – |
 | ITF Women Lousada - R16 | 244 | 3% | +1.4¢ | 0% | 65 | 0 | – | – |
 | ITF Women Monastir - R16 | 241 | 8% | +1.7¢ | 0% | 0 | 1 | +1.3¢ | $-11.82 |
@@ -62,9 +62,9 @@
 | ITF Men Bhopal - QF | 36 | 0% | +1.1¢ | 0% | 32 | 0 | – | – |
 | ATP Challenger Playford - QF | 36 | 0% | +1.3¢ | 0% | 214 | 0 | – | – |
 | Singapore - Premier League | 30 | 0% | +1.1¢ | 0% | 2 | 0 | – | – |
+| ITF Men Hradec Kralove - QF | 30 | 0% | +1.4¢ | 3% | 4 | 1 | +4.9¢ | – |
 | England - Championship | 30 | 0% | +0.7¢ | 0% | 914 | 0 | – | – |
 | Australia - WNBL | 30 | 60% | +1.2¢ | 0% | 0 | 0 | – | – |
-| ITF Men Hradec Kralove - QF | 29 | 0% | +1.4¢ | 3% | 3 | 1 | +4.9¢ | – |
 | Israel - National League | 28 | 100% | – | 0% | 0 | 0 | – | – |
 | ITF Men Monastir 2 - QF | 28 | 0% | +1.3¢ | 0% | 0 | 0 | – | – |
 | ATP Challenger Yokohama - QF | 28 | 0% | +0.8¢ | 0% | 98 | 0 | – | – |
@@ -106,9 +106,9 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 | 11-26 18:45 | Petr Michnev vs Karl Friberg (ITF Men Hradec Kralove - QF) | YES Petr Michnev | 0.51 | 0.56 | +3.6¢ | +4.9¢ | – |
 | 11-26 17:17 | Martha Matoula vs Victoria Allen (ITF Women Heraklion 2 - QF) | YES Victoria Allen | 0.15 | 0.19 | +3.1¢ | +2.0¢ | – |
 | 11-26 16:12 | Demi Tran vs Laura Pigossi (ITF Women Florianopolis - R16) | YES Laura Pigossi | 0.91 | 0.95 | +3.3¢ | +3.9¢ | won $+5.98 |
-| 11-26 14:15 | Skelleftea AIK vs Rogle BK (Sweden - SHL) | YES Rogle BK | 0.30 | 0.35 | +4.0¢ | +3.8¢ | – |
+| 11-26 14:15 | Skelleftea AIK vs Rogle BK (Sweden - SHL) | YES Rogle BK | 0.30 | 0.35 | +4.0¢ | +3.8¢ | won $+0.00 |
 | 11-26 13:51 | Valeriya Strakhova vs Gabriela Ce (ITF Women Florianopolis - R16) | YES Valeriya Strakhova | 0.42 | 0.47 | +3.1¢ | +3.1¢ | won $+45.03 |
-| 11-26 13:48 | Corsini Lorenzo Sverzut vs Ignacio Monzon (ITF Men Santa Cruz - R1) | YES Lorenzo Sverzut Corsini | 0.05 | 0.08 | +3.1¢ | +3.1¢ | – |
+| 11-26 13:48 | Corsini Lorenzo Sverzut vs Ignacio Monzon (ITF Men Santa Cruz - R1) | YES Lorenzo Sverzut Corsini | 0.05 | 0.08 | +3.1¢ | +3.1¢ | lost $-3.79 |
 | 11-26 10:18 | Yokohama Excellence vs Gifu Swoops (Japan - B.League One) | YES Gifu Swoops | 0.07 | 0.11 | +3.9¢ | +4.5¢ | – |
 | 11-26 08:45 | Mia Horvit vs Elsa Bonelli (ITF Women Monastir - R16) | NO Elsa Bonelli | 0.68 | 0.73 | +3.3¢ | +1.3¢ | lost $-11.82 |
 | 11-26 07:09 | Sofia Shapatava vs Lydia Panagiotidou (ITF Women Heraklion 2 - R16) | YES Sofia Shapatava | 0.53 | 0.59 | +4.6¢ | -0.9¢ | lost $-28.47 |
