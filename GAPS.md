@@ -1,10 +1,10 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 737 snapshots from 2026-11-25 16:44 to 2026-11-26 20:51 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 745 snapshots from 2026-11-25 16:44 to 2026-11-26 20:59 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-8,380 Kalshi prices compared with Pinnacle's. 96% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.4¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
+8,389 Kalshi prices compared with Pinnacle's. 96% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.4¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
 
 23 simulated bets so far; 23 have a closing price. Average edge when placed +3.9¢; average closing value +2.4¢ per contract. Kalshi moved toward Pinnacle's price after 17 of them and Pinnacle moved toward Kalshi's after 18. 14 have settled: 6 won, simulated profit $+59.38 on $516 staked.
 
@@ -15,7 +15,7 @@
 | League | Prices compared | No real market | Avg gap (Kalshi mid vs fair) | With a 3¢+ edge | Kalshi volume (24h, median) | Bets | Avg closing value | Profit |
 |---|---|---|---|---|---|---|---|---|
 | NCAA | 580 | 0% | +1.1¢ | 0% | 2,338 | 0 | – | – |
-| ITF Men Santa Cruz - R1 | 546 | 1% | +2.0¢ | 3% | 1,374 | 2 | +3.2¢ | – |
+| ITF Men Santa Cruz - R1 | 554 | 1% | +1.9¢ | 3% | 1,533 | 2 | +3.2¢ | – |
 | ITF Men Hradec Kralove - R16 | 481 | 2% | +3.1¢ | 0% | 1,189 | 1 | +0.8¢ | $-0.76 |
 | ITF Men Heraklion - R16 | 322 | 4% | +1.4¢ | 1% | 182 | 1 | -4.8¢ | $+0.00 |
 | ITF Women Florianopolis - R16 | 303 | 4% | +1.8¢ | 5% | 269 | 3 | +3.5¢ | $+51.01 |
@@ -66,9 +66,9 @@
 | Australia - WNBL | 30 | 60% | +1.2¢ | 0% | 0 | 0 | – | – |
 | Israel - National League | 28 | 100% | – | 0% | 0 | 0 | – | – |
 | ITF Men Monastir 2 - QF | 28 | 0% | +1.3¢ | 0% | 0 | 0 | – | – |
+| ITF Men Hradec Kralove - QF | 28 | 0% | +1.4¢ | 4% | 3 | 1 | +4.9¢ | – |
 | ATP Challenger Yokohama - QF | 28 | 0% | +0.8¢ | 0% | 98 | 0 | – | – |
 | Thailand - League 1 | 27 | 0% | +1.0¢ | 0% | 0 | 0 | – | – |
-| ITF Men Hradec Kralove - QF | 27 | 0% | +1.4¢ | 4% | 3 | 1 | +4.9¢ | – |
 | Ecuador - Serie A | 27 | 0% | +0.3¢ | 0% | 1,752 | 0 | – | – |
 | Australia - A League | 27 | 0% | +0.4¢ | 0% | 0 | 0 | – | – |
 | Turkey - Super League | 24 | 0% | +0.5¢ | 0% | 0 | 0 | – | – |
@@ -81,7 +81,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 140 | 3.3 pts | 3.6¢ | 3.4¢ | 3.2¢ | 3.2¢ | 3.0¢ | 3.1¢ | 16% |
+| All | 142 | 3.3 pts | 3.6¢ | 3.4¢ | 3.2¢ | 3.2¢ | 3.0¢ | 3.1¢ | 15% |
 | AFC - Champions League 2 | 13 | 3.4 pts | 3.1¢ | 3.2¢ | 6.1¢ | 6.3¢ | 6.5¢ | 6.3¢ | 15% |
 | NCAA | 12 | 2.4 pts | 2.1¢ | 2.1¢ | 2.0¢ | 2.0¢ | 1.8¢ | 1.4¢ | 17% |
 | Lithuania - National Basketball League | 12 | 3.2 pts | 2.7¢ | 2.7¢ | 2.1¢ | 2.1¢ | 1.7¢ | 6.5¢ | 17% |
