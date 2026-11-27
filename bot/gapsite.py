@@ -51,6 +51,7 @@ def verdict(scored: list[dict], done: list[dict]) -> dict:
     only shows in profit after hundreds to about 1,000 settled bets."""
     recent = sorted(scored, key=lambda b: b["ts"])[-RECENT:]
     xs = [b["clv"] for b in recent]
+    moves = [b["kalshi_move"] for b in recent if b.get("kalshi_move") is not None]   # Kalshi's price, bet -> game time
     n = len(xs)
     mean = statistics.fmean(xs) if xs else None
     low = (mean - 2 * statistics.stdev(xs) / math.sqrt(n)) if n > 1 else None
@@ -71,6 +72,7 @@ def verdict(scored: list[dict], done: list[dict]) -> dict:
         pstate = "proven" if profit > 0 else "not_proven"
     return {"state": state, "n": n, "scored_total": len(scored), "mean": mean, "low": low,
             "beat": sum(x > 0 for x in xs), "quick_target": QUICK_TARGET,
+            "toward": sum(m >= 0.01 for m in moves), "toward_n": len(moves),
             "profit": profit, "settled": m, "wins": sum(b["result"] == b["side"] for b in done),
             "profit_state": pstate, "proof_target": PROOF_TARGET}
 

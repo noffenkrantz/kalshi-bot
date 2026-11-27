@@ -106,7 +106,7 @@ table{font-size:15px}
   <h1 id="finding">Loading results</h1>
   <p class="sub" id="why" style="font-size:19px"></p>
   <div class="cards">
-    <div class="card"><h3>Quick check: are the gaps real?</h3><div class="fv" id="q-v"></div><div class="fl" id="q-l"></div>
+    <div class="card"><h3>Quick check: are the gaps real?</h3><div class="fv" id="q-v"></div><div class="fl" id="q-l"></div><div class="fl" id="q-t" style="margin-top:4px"></div>
       <div class="prog" aria-hidden="true"><i id="q-bar"></i></div><div class="fl" id="q-p"></div><span class="state" id="q-s"></span></div>
     <div class="card"><h3>Proof: does it make money?</h3><div class="fv" id="p-v"></div><div class="fl" id="p-l"></div>
       <div class="prog" aria-hidden="true"><i id="p-bar"></i></div><div class="fl" id="p-p"></div><span class="state" id="p-s"></span></div>
@@ -177,6 +177,7 @@ function render() {
   $('q-v').textContent = V.n ? sc(V.mean) : '–';
   $('q-v').className = 'fv ' + (V.n ? cls(V.mean) : '');
   $('q-l').textContent = V.n ? `average per contract vs Pinnacle's final price · ${V.beat} of ${V.n} beat it` : "how far below Pinnacle's final pre-game price it bought";
+  $('q-t').innerHTML = V.toward_n ? `Kalshi then moved toward Pinnacle's price: <b>${Math.round(V.toward / V.toward_n * 100)}%</b> of the time (${V.toward} of ${V.toward_n})` : '';
   $('q-bar').style.width = Math.min(100, V.scored_total / V.quick_target * 100) + '%';
   $('q-p').textContent = `${Math.min(V.scored_total, V.quick_target)} of ${V.quick_target} bets`;
   tag($('q-s'), {early: 'Too early', promising: 'Promising', leaning: 'Leaning positive', not_working: 'Not working'}[V.state],

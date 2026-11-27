@@ -104,8 +104,9 @@ def test_verdict_reads():
     from bot.gapsite import verdict
     mk = lambda clv, i: {"ts": f"2026-11-{10 + i // 24:02d}T{i % 24:02d}:00", "clv": clv}
     assert verdict([mk(0.03, i) for i in range(5)], [])["state"] == "early"                  # fewer than 10 bets
-    good = [mk(0.03 + (0.01 if i % 2 else -0.01), i) for i in range(30)]                  # steady +3c
+    good = [{**mk(0.03 + (0.01 if i % 2 else -0.01), i), "kalshi_move": 0.02 if i % 3 else -0.01} for i in range(30)]
     v = verdict(good, [])
+    assert v["toward"] == 20 and v["toward_n"] == 30                 # Kalshi moved 1c+ our way after 20 of 30
     assert v["state"] == "promising" and v["beat"] == 30 and v["profit_state"] == "early"
     noisy = [mk(0.10 if i % 2 else -0.09, i) for i in range(20)]                           # +0.5c but all over the place
     assert verdict(noisy, [])["state"] == "leaning"
