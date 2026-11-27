@@ -1,11 +1,11 @@
 {
- "updated": "2026-11-27T00:40:07+00:00",
+ "updated": "2026-11-27T01:00:03+00:00",
  "markets_open": 74,
  "markets_in_play": 37,
  "stations_known": 37,
  "signals_today": 1,
  "bets_today": 0,
- "station_checks_since_start": 11828,
+ "station_checks_since_start": 11990,
  "recent_errors": [
   "2026-11-26T22:00:55+00:00 weather data for KXRAIN-26NOV26-DAL: GET https://api.weather.gov/stations/KDFW/observations -> HTTP 503: <HTML><HEAD><TITLE>Error</TITLE></HEAD><BODY>\nAn error occurred while processing your request.<p>\nReference&#32;&#35;102&#46;8c4ddb17&#46;1795730455&#46;c0239b19\n<P>https&#58;&#47;&#47;errors&#46;edgesuite&#46;net&#47;102&#46;8c4ddb17&#46;1795730455&#46;c0239b19</P>\n</BODY></HTML>\n",
   "2026-11-26T22:09:49+00:00 Kalshi: GET /markets -> HTTP 429: {\"error\":{\"code\":\"too_many_requests\",\"message\":\"too many requests\"}}",
@@ -20,6 +20,6 @@
  "last_research_error": null,
  "gap_tracker": true,
  "gap_mode": "live",
- "last_gap_snapshot": "2026-11-27T00:37:18+00:00",
+ "last_gap_snapshot": "2026-11-27T00:57:19+00:00",
  "last_gaps_error": "KalshiError: GET /markets -> HTTP 429: {\"error\":{\"code\":\"too_many_requests\",\"message\":\"too many requests\"}}"
 }
