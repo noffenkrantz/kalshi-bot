@@ -1,10 +1,10 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 1954 snapshots from 2026-11-25 16:44 to 2026-11-27 14:54 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 1969 snapshots from 2026-11-25 16:44 to 2026-11-27 15:05 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-17,654 Kalshi prices compared with Pinnacle's. 93% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 1.4% could be bought at a 3¢+ edge after fees.
+18,255 Kalshi prices compared with Pinnacle's. 92% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 1.4% could be bought at a 3¢+ edge after fees.
 
 34 simulated bets so far; 34 have a closing price. Average edge when placed +4.1¢; average closing value +2.8¢ per contract. Kalshi moved toward Pinnacle's price after 21 of them and Pinnacle moved toward Kalshi's after 26. 26 have settled: 11 won, simulated profit $-72.66 on $959 staked.
 
@@ -14,29 +14,29 @@
 
 | League | Prices compared | No real market | Avg gap (Kalshi mid vs fair) | With a 3¢+ edge | Kalshi volume (24h, median) | Bets | Avg closing value | Profit |
 |---|---|---|---|---|---|---|---|---|
-| NCAA | 1425 | 38% | +1.3¢ | 1% | 448 | 1 | +12.7¢ | – |
-| NHL | 842 | 0% | +0.9¢ | 2% | 1,786 | 1 | +4.8¢ | – |
-| Japan - B.League One | 838 | 23% | +3.1¢ | 6% | 853 | 3 | +0.9¢ | $-116.76 |
+| NCAA | 1490 | 37% | +1.4¢ | 1% | 448 | 1 | +12.9¢ | – |
+| NHL | 876 | 0% | +0.9¢ | 2% | 1,812 | 1 | +4.8¢ | – |
+| Japan - B.League One | 866 | 24% | +3.1¢ | 6% | 853 | 3 | +0.9¢ | $-116.76 |
 | ITF Men Santa Cruz - R1 | 554 | 1% | +1.9¢ | 3% | 1,533 | 2 | +3.2¢ | $+24.16 |
-| USA - American Hockey League | 497 | 0% | +0.9¢ | 0% | 0 | 1 | +4.7¢ | $-0.82 |
+| USA - American Hockey League | 521 | 0% | +0.8¢ | 0% | 0 | 1 | +4.7¢ | $-0.82 |
 | ITF Men Hradec Kralove - R16 | 481 | 2% | +3.1¢ | 0% | 1,189 | 1 | +0.8¢ | $-0.76 |
-| NBA | 455 | 0% | +0.7¢ | 2% | 48,120 | 3 | +1.0¢ | $+153.28 |
-| Russia - Kontinental Hockey League | 406 | 1% | +0.9¢ | 0% | 0 | 0 | – | – |
+| NBA | 477 | 0% | +0.7¢ | 2% | 47,648 | 3 | +1.0¢ | $+153.28 |
+| Russia - Kontinental Hockey League | 418 | 1% | +0.9¢ | 0% | 0 | 0 | – | – |
 | ITF Men Heraklion - R16 | 322 | 4% | +1.4¢ | 1% | 182 | 1 | -4.8¢ | $+0.00 |
 | ITF Women Florianopolis - R16 | 303 | 4% | +1.8¢ | 5% | 269 | 3 | +3.5¢ | $+55.80 |
-| Netherlands - Eerste Divisie | 296 | 0% | +0.8¢ | 0% | 0 | 1 | +4.5¢ | – |
+| Netherlands - Eerste Divisie | 302 | 0% | +0.8¢ | 0% | 0 | 1 | +4.5¢ | – |
 | ITF Women Trnava - R16 | 289 | 4% | +1.2¢ | 0% | 23 | 1 | +3.2¢ | $-102.76 |
-| Finland - SM Liiga | 278 | 1% | +0.8¢ | 0% | 0 | 0 | – | – |
+| Finland - SM Liiga | 288 | 1% | +0.8¢ | 0% | 0 | 0 | – | – |
+| France - Ligue Magnus | 267 | 41% | +2.1¢ | 9% | 0 | 1 | +3.8¢ | – |
 | ITF Women Heraklion 2 - R16 | 263 | 6% | +1.7¢ | 4% | 420 | 1 | -0.9¢ | $-28.47 |
 | ITF Men Hradec Kralove - QF | 260 | 0% | +2.6¢ | 10% | 166 | 1 | -4.6¢ | $+0.00 |
-| France - Ligue Magnus | 252 | 41% | +2.1¢ | 9% | 0 | 1 | +3.8¢ | – |
-| Sweden - SHL | 250 | 0% | +1.1¢ | 0% | 0 | 1 | +3.8¢ | $+0.00 |
+| ITF Men Santa Cruz - R16 | 259 | 1% | +1.6¢ | 1% | 135 | 1 | +2.4¢ | – |
+| Sweden - SHL | 258 | 2% | +1.1¢ | 0% | 0 | 1 | +3.8¢ | $+0.00 |
 | ITF Men Monastir 2 - R16 | 250 | 5% | +1.5¢ | 0% | 195 | 0 | – | – |
 | ITF Women Lousada - R16 | 244 | 3% | +1.4¢ | 0% | 65 | 0 | – | – |
-| ITF Men Santa Cruz - R16 | 242 | 1% | +1.6¢ | 1% | 99 | 1 | +2.4¢ | – |
 | ITF Women Monastir - R16 | 241 | 8% | +1.7¢ | 0% | 0 | 1 | +1.3¢ | $-11.82 |
-| Czech Republic - Extraliga | 226 | 7% | +1.6¢ | 0% | 0 | 0 | – | – |
-| Germany - DEL | 214 | 5% | +0.9¢ | 0% | 0 | 0 | – | – |
+| Czech Republic - Extraliga | 236 | 6% | +1.6¢ | 0% | 0 | 0 | – | – |
+| Germany - DEL | 222 | 5% | +0.9¢ | 0% | 0 | 0 | – | – |
 | AFC - Champions League 2 | 206 | 1% | +2.2¢ | 6% | 1,278 | 1 | +11.3¢ | $-0.28 |
 | Mexico - Liga MX | 201 | 0% | +0.6¢ | 0% | 23,782 | 0 | – | – |
 | Czech Republic - FNL | 198 | 0% | +1.0¢ | 0% | 14 | 0 | – | – |
@@ -49,31 +49,31 @@
 | ITF Women Trnava - QF | 155 | 0% | +2.6¢ | 14% | 202 | 1 | +7.1¢ | $+46.86 |
 | ATP Challenger San Salvador - R16 | 150 | 8% | +1.2¢ | 0% | 436 | 0 | – | – |
 | ITF Women Kolkata - R16 | 148 | 0% | +1.5¢ | 0% | 370 | 0 | – | – |
+| Turkey - Super League | 144 | 0% | +0.4¢ | 0% | 337 | 0 | – | – |
 | ITF Women Kolkata - QF | 141 | 0% | +2.7¢ | 8% | 3,864 | 1 | +4.4¢ | – |
+| Ecuador - Serie A | 141 | 0% | +0.4¢ | 0% | 48 | 0 | – | – |
+| Colombia - Primera A | 141 | 0% | +0.6¢ | 0% | 700 | 0 | – | – |
+| Brazil - Serie A | 141 | 0% | +0.6¢ | 0% | 1,314 | 0 | – | – |
 | ITF Men Madrid - QF | 138 | 0% | +1.4¢ | 0% | 7 | 0 | – | – |
 | ITF Men Heraklion - QF | 138 | 0% | +1.1¢ | 0% | 170 | 0 | – | – |
-| Brazil - Serie A | 138 | 0% | +0.6¢ | 0% | 1,310 | 0 | – | – |
-| Turkey - Super League | 135 | 0% | +0.4¢ | 0% | 290 | 0 | – | – |
-| Ecuador - Serie A | 135 | 0% | +0.4¢ | 0% | 48 | 0 | – | – |
-| Colombia - Primera A | 135 | 0% | +0.6¢ | 0% | 638 | 0 | – | – |
+| Poland - Ekstraklasa | 135 | 0% | +0.6¢ | 0% | 1 | 0 | – | – |
+| Italy - Serie C Group C | 132 | 0% | +0.5¢ | 0% | 49 | 0 | – | – |
 | ITF Men Monastir 2 - QF | 128 | 0% | +1.5¢ | 0% | 1 | 0 | – | – |
-| Poland - Ekstraklasa | 126 | 0% | +0.6¢ | 0% | 1 | 0 | – | – |
-| Italy - Serie C Group C | 123 | 0% | +0.6¢ | 0% | 49 | 0 | – | – |
 | ITF Women Monastir - QF | 122 | 0% | +0.9¢ | 0% | 3 | 0 | – | – |
 | ITF Women Ortisei - SF | 121 | 0% | +1.5¢ | 2% | 312 | 1 | +3.8¢ | $-4.48 |
 | ITF Women Playford - R16 | 120 | 0% | +0.8¢ | 0% | 64 | 0 | – | – |
-| ITF Women Florianopolis - QF | 116 | 0% | +1.1¢ | 0% | 6 | 0 | – | – |
+| ITF Women Florianopolis - QF | 120 | 0% | +1.1¢ | 0% | 6 | 0 | – | – |
+| Indonesia - Super League | 117 | 0% | +0.7¢ | 0% | 0 | 0 | – | – |
+| England - Championship | 114 | 0% | +0.6¢ | 0% | 368 | 0 | – | – |
+| Paraguay - Division Profesional | 111 | 0% | +0.8¢ | 0% | 1 | 0 | – | – |
+| Korea Republic - K League 1 | 108 | 0% | +0.3¢ | 0% | 0 | 0 | – | – |
 | ITF Women Ortisei - QF | 108 | 4% | +1.1¢ | 0% | 216 | 0 | – | – |
 | ATP Challenger Monastir - QF | 106 | 0% | +0.8¢ | 0% | 138 | 0 | – | – |
-| Paraguay - Division Profesional | 105 | 0% | +0.8¢ | 0% | 1 | 0 | – | – |
-| Indonesia - Super League | 105 | 0% | +0.7¢ | 0% | 0 | 0 | – | – |
-| England - Championship | 102 | 0% | +0.6¢ | 0% | 374 | 0 | – | – |
+| Thailand - League 1 | 102 | 0% | +1.0¢ | 0% | 0 | 0 | – | – |
+| Argentina - Primera B Nacional | 102 | 0% | +0.5¢ | 0% | 0 | 0 | – | – |
+| Bolivia - Primera Division | 101 | 0% | +2.0¢ | 1% | 145 | 1 | +0.7¢ | – |
 | ITF Women Playford - QF | 100 | 0% | +1.0¢ | 0% | 100 | 0 | – | – |
 | ATP Challenger Playford - R16 | 100 | 0% | +1.3¢ | 1% | 3,098 | 1 | +2.6¢ | $+0.00 |
-| ATP Challenger Hersonissos - QF | 98 | 0% | +1.0¢ | 0% | 1,095 | 0 | – | – |
-| Korea Republic - K League 1 | 96 | 0% | +0.3¢ | 0% | 0 | 0 | – | – |
-| Bolivia - Primera Division | 96 | 0% | +2.0¢ | 1% | 132 | 1 | +0.7¢ | – |
-| Argentina - Primera B Nacional | 96 | 0% | +0.5¢ | 0% | 0 | 0 | – | – |
 
 ## How fast Kalshi follows Pinnacle (live mode)
 
@@ -81,17 +81,17 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 226 | 3.2 pts | 3.5¢ | 3.3¢ | 3.1¢ | 3.0¢ | 2.8¢ | 2.8¢ | 17% |
-| NCAA | 25 | 2.6 pts | 2.1¢ | 2.1¢ | 2.0¢ | 1.8¢ | 1.6¢ | 1.4¢ | 20% |
+| All | 231 | 3.3 pts | 3.5¢ | 3.3¢ | 3.1¢ | 2.9¢ | 2.7¢ | 2.7¢ | 16% |
+| NCAA | 26 | 2.6 pts | 2.2¢ | 2.2¢ | 2.0¢ | 1.8¢ | 1.6¢ | 1.3¢ | 19% |
 | Japan - B.League One | 20 | 3.7 pts | 5.4¢ | 4.9¢ | 4.0¢ | 3.8¢ | 4.1¢ | 3.5¢ | 10% |
 | AFC - Champions League 2 | 13 | 3.4 pts | 3.1¢ | 3.2¢ | 6.1¢ | 6.3¢ | 6.5¢ | 6.3¢ | 15% |
 | Lithuania - National Basketball League | 12 | 3.2 pts | 2.7¢ | 2.7¢ | 2.1¢ | 2.1¢ | 1.7¢ | 6.5¢ | 17% |
 | ITF Women Heraklion 2 - R16 | 10 | 3.7 pts | 4.0¢ | 3.8¢ | 3.5¢ | 3.3¢ | 2.5¢ | 2.5¢ | 0% |
 | Russia - Kontinental Hockey League | 8 | 3.0 pts | 3.0¢ | 2.6¢ | 2.6¢ | 2.3¢ | 2.2¢ | 1.8¢ | 0% |
+| Finland - SM Liiga | 8 | 3.0 pts | 2.2¢ | 2.2¢ | 1.2¢ | 1.2¢ | 0.8¢ | 0.8¢ | 38% |
 | ITF Men Heraklion - R16 | 7 | 5.5 pts | 5.5¢ | 5.3¢ | 3.8¢ | 4.3¢ | 4.0¢ | 1.9¢ | 29% |
 | ITF Women Trnava - R16 | 7 | 3.4 pts | 3.2¢ | 2.8¢ | 2.1¢ | 1.9¢ | 1.6¢ | 1.2¢ | 14% |
 | Sweden - SHL | 7 | 3.4 pts | 3.4¢ | 3.4¢ | 3.0¢ | 2.1¢ | 2.0¢ | 1.4¢ | 14% |
-| Finland - SM Liiga | 7 | 3.0 pts | 2.0¢ | 1.9¢ | 1.4¢ | 1.3¢ | 0.9¢ | 0.8¢ | 43% |
 | ITF Women Florianopolis - R16 | 6 | 2.5 pts | 1.6¢ | 1.6¢ | 1.4¢ | 1.7¢ | 1.5¢ | 1.5¢ | 33% |
 | ATP Challenger Playford - R16 | 5 | 2.3 pts | 1.4¢ | 1.5¢ | 1.3¢ | 1.6¢ | 1.0¢ | 1.0¢ | 40% |
 
@@ -105,7 +105,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 | 11-27 07:40 | Willian Rejchtman Vinciguerra vs Hitesh Chauhan (ITF Men Bhopal - QF) | NO William Rejchtman Vinciguerra | 0.18 | 0.23 | +3.5¢ | +4.0¢ | lost $-85.65 |
 | 11-27 06:31 | Nicolas Ciancaglini vs Ignacio Monzon (ITF Men Santa Cruz - R16) | YES Nicolas Ciancaglini Rivera | 0.08 | 0.12 | +3.1¢ | +2.4¢ | – |
 | 11-27 04:31 | Karan Singh vs Grigoriy Lomakin (ITF Men Bhopal - QF) | YES Karan Singh | 0.86 | 0.90 | +3.3¢ | +2.3¢ | won $+0.00 |
-| 11-27 03:50 | Kansas vs Villanova (NCAA) | NO Villanova | 0.71 | 0.87 | +14.2¢ | +12.7¢ | – |
+| 11-27 03:50 | Kansas vs Villanova (NCAA) | NO Villanova | 0.71 | 0.87 | +14.2¢ | +12.9¢ | – |
 | 11-27 03:33 | Grenoble vs Anglet Hormadi Elite (France - Ligue Magnus) | YES Anglet Hormadi Elite | 0.09 | 0.13 | +3.2¢ | +3.8¢ | – |
 | 11-27 01:16 | Edmonton Oilers vs Seattle Kraken (NHL) | YES  | 0.61 | 0.66 | +3.5¢ | +4.8¢ | – |
 | 11-27 00:32 | Independiente Petrolero vs Real Oruro (Bolivia - Primera Division) | YES Cdt Real Oruro | 0.19 | 0.24 | +3.6¢ | +0.7¢ | – |
