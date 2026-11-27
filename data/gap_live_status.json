@@ -1,17 +1,19 @@
 {
- "ts": "2026-11-27T22:44:42+00:00",
+ "ts": "2026-11-27T22:54:43+00:00",
  "mode": "live",
  "running_since": "2026-11-27T01:58:58+00:00",
  "paired_games": 267,
  "paired_prices": 706,
- "polls_ok": 88259,
- "last_poll_ok": "2026-11-27T22:44:42+00:00",
- "pinnacle_changes_seen": 478150,
+ "polls_ok": 88986,
+ "last_poll_ok": "2026-11-27T22:54:41+00:00",
+ "pinnacle_changes_seen": 481623,
  "moves_logged": 158,
  "moves_waiting": 0,
  "bets_placed": 16,
- "pinnapi_requests": 88429,
- "slowed_sports": [],
+ "pinnapi_requests": 89156,
+ "slowed_sports": [
+  "basketball"
+ ],
  "kalshi_batch_reads": true,
  "last_error": "2026-11-27T22:25:23+00:00 Kalshi: GET /markets -> HTTP 429: {\"error\":{\"code\":\"too_many_requests\",\"message\":\"too many requests\"}}",
  "settings": {
