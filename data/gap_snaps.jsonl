@@ -9618,3 +9618,5 @@
 {"ts":"2026-11-26T23:51:46+00:00","ticker":"KXURYPDGAME-26NOV27RCMLIV-LIV","league":"Uruguay - Primera Division","fair":0.3948,"bid":0.39,"ask":0.4,"vol24":0}
 {"ts":"2026-11-26T23:51:46+00:00","ticker":"KXWKBLGAME-26NOV270500SHIBLU-SHI","league":"Korea - WKBL","fair":0.5871,"bid":0.08,"ask":0.9,"vol24":0}
 {"ts":"2026-11-26T23:51:46+00:00","ticker":"KXWKBLGAME-26NOV270500SHIBLU-BLU","league":"Korea - WKBL","fair":0.4129,"bid":0.08,"ask":0.9,"vol24":0}
+{"ts":"2026-11-27T00:06:12+00:00","ticker":"KXITFWMATCH-26NOV26NUGRAO-RAO","league":"ITF Women Kolkata - QF","fair":0.0521,"bid":0.07,"ask":0.09,"vol24":3864}
+{"ts":"2026-11-27T00:06:43+00:00","ticker":"KXITFWMATCH-26NOV26NUGRAO-RAO","league":"ITF Women Kolkata - QF","fair":0.0521,"bid":0.07,"ask":0.08,"vol24":3864}
