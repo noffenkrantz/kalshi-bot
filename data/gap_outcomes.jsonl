@@ -18,3 +18,5 @@
 {"ts":"2026-11-26T23:55:51+00:00","ticker":"KXITFWMATCH-26NOV26BULCAR-CAR","result":"no"}
 {"ts":"2026-11-27T08:09:13+00:00","ticker":"KXITFMATCH-26NOV27SINLOM-SIN","result":"yes"}
 {"ts":"2026-11-27T11:39:23+00:00","ticker":"KXITFMATCH-26NOV27REJCHA-REJ","result":"yes"}
+{"ts":"2026-11-27T13:09:29+00:00","ticker":"KXITFWMATCH-26NOV27MATALL-ALL","result":"no"}
+{"ts":"2026-11-27T13:09:29+00:00","ticker":"KXITFWMATCH-26NOV27PONMIN-PON","result":"no"}
