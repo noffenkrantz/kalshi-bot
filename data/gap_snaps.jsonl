@@ -19151,3 +19151,13 @@
 {"ts":"2026-11-27T16:29:37+00:00","ticker":"KXBOLPDIVGAME-26NOV27INDCDT-CDT","league":"Bolivia - Primera Division","fair":0.1946,"bid":0.17,"ask":0.19,"vol24":197}
 {"ts":"2026-11-27T16:29:37+00:00","ticker":"KXNCAAWBGAME-26NOV28VILLKSU-VILL","league":"NCAA","fair":0.16,"bid":0.57,"ask":0.74,"vol24":0}
 {"ts":"2026-11-27T16:31:30+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.1218,"bid":0.08,"ask":0.39,"vol24":17}
+{"ts":"2026-11-27T16:32:03+00:00","ticker":"KXNCAAWBGAME-26NOV28VILLKSU-VILL","league":"NCAA","fair":0.16,"bid":0.57,"ask":0.75,"vol24":0}
+{"ts":"2026-11-27T16:32:33+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.1218,"bid":0.09,"ask":0.37,"vol24":17}
+{"ts":"2026-11-27T16:33:03+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.1218,"bid":0.1,"ask":0.37,"vol24":17}
+{"ts":"2026-11-27T16:33:34+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.1218,"bid":0.1,"ask":0.35,"vol24":17}
+{"ts":"2026-11-27T16:34:35+00:00","ticker":"KXNCAAWBGAME-26NOV28VILLKSU-VILL","league":"NCAA","fair":0.16,"bid":0.57,"ask":0.74,"vol24":0}
+{"ts":"2026-11-27T16:35:06+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.1218,"bid":0.1,"ask":0.33,"vol24":17}
+{"ts":"2026-11-27T16:35:37+00:00","ticker":"KXNCAAWBGAME-26NOV28VILLKSU-VILL","league":"NCAA","fair":0.16,"bid":0.55,"ask":0.75,"vol24":0}
+{"ts":"2026-11-27T16:36:07+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.1218,"bid":0.1,"ask":0.17,"vol24":17}
+{"ts":"2026-11-27T16:36:07+00:00","ticker":"KXNCAAWBGAME-26NOV28VILLKSU-VILL","league":"NCAA","fair":0.16,"bid":0.55,"ask":0.74,"vol24":0}
+{"ts":"2026-11-27T16:36:37+00:00","ticker":"KXITFWMATCH-26NOV28MATPOP-POP","league":"ITF Women Heraklion 2 - SF","fair":0.4765,"bid":0.41,"ask":0.42,"vol24":0}
