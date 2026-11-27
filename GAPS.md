@@ -1,10 +1,10 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 1773 snapshots from 2026-11-25 16:44 to 2026-11-27 12:34 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 1785 snapshots from 2026-11-25 16:44 to 2026-11-27 12:45 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-16,534 Kalshi prices compared with Pinnacle's. 93% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 1.5% could be bought at a 3¢+ edge after fees.
+16,547 Kalshi prices compared with Pinnacle's. 93% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 1.5% could be bought at a 3¢+ edge after fees.
 
 34 simulated bets so far; 34 have a closing price. Average edge when placed +4.1¢; average closing value +3.0¢ per contract. Kalshi moved toward Pinnacle's price after 22 of them and Pinnacle moved toward Kalshi's after 23. 20 have settled: 10 won, simulated profit $+2.68 on $734 staked.
 
@@ -14,9 +14,9 @@
 
 | League | Prices compared | No real market | Avg gap (Kalshi mid vs fair) | With a 3¢+ edge | Kalshi volume (24h, median) | Bets | Avg closing value | Profit |
 |---|---|---|---|---|---|---|---|---|
-| NCAA | 1285 | 35% | +1.2¢ | 0% | 625 | 1 | +15.7¢ | – |
+| NCAA | 1287 | 35% | +1.2¢ | 0% | 619 | 1 | +15.7¢ | – |
 | NHL | 775 | 0% | +0.9¢ | 2% | 1,753 | 1 | +5.3¢ | – |
-| Japan - B.League One | 725 | 13% | +3.1¢ | 7% | 853 | 3 | +1.0¢ | – |
+| Japan - B.League One | 734 | 14% | +3.1¢ | 7% | 853 | 3 | +1.0¢ | – |
 | ITF Men Santa Cruz - R1 | 554 | 1% | +1.9¢ | 3% | 1,533 | 2 | +3.2¢ | $+24.16 |
 | ITF Men Hradec Kralove - R16 | 481 | 2% | +3.1¢ | 0% | 1,189 | 1 | +0.8¢ | $-0.76 |
 | USA - American Hockey League | 449 | 0% | +0.9¢ | 0% | 0 | 1 | +4.7¢ | $-0.82 |
@@ -71,8 +71,8 @@
 | Paraguay - Division Profesional | 93 | 0% | +0.8¢ | 0% | 0 | 0 | – | – |
 | ATP Challenger Ankara - QF | 92 | 0% | +0.6¢ | 0% | 322 | 0 | – | – |
 | Israel - National League | 84 | 100% | – | 0% | 0 | 0 | – | – |
+| Bolivia - Primera Division | 84 | 0% | +2.1¢ | 1% | 92 | 1 | +0.8¢ | – |
 | Argentina - Primera B Nacional | 84 | 0% | +0.5¢ | 0% | 0 | 0 | – | – |
-| Bolivia - Primera Division | 82 | 0% | +2.1¢ | 1% | 67 | 1 | +0.8¢ | – |
 | Indonesia - Super League | 81 | 0% | +0.6¢ | 0% | 2 | 0 | – | – |
 
 ## How fast Kalshi follows Pinnacle (live mode)
