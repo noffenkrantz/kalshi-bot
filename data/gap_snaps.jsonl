@@ -20901,3 +20901,29 @@
 {"ts":"2026-11-27T18:18:45+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.1221,"bid":0.05,"ask":0.12,"vol24":17}
 {"ts":"2026-11-27T18:18:45+00:00","ticker":"KXWNBLGAME-26NOV272300TOWSYD-SYD","league":"Australia - WNBL","fair":0.2587,"bid":0.13,"ask":0.29,"vol24":112}
 {"ts":"2026-11-27T18:19:17+00:00","ticker":"KXDELGAME-26NOV271330EISAUG-EIS","league":"Germany - DEL","fair":0.5747,"bid":0.63,"ask":0.64,"vol24":0}
+{"ts":"2026-11-27T18:19:23+00:00","ticker":"KXDELGAME-26NOV271330EISAUG-EIS","league":"Germany - DEL","fair":0.5747,"bid":0.54,"ask":0.64,"vol24":0}
+{"ts":"2026-11-27T18:19:46+00:00","ticker":"KXWNBLGAME-26NOV272300TOWSYD-SYD","league":"Australia - WNBL","fair":0.2587,"bid":0.13,"ask":0.28,"vol24":112}
+{"ts":"2026-11-27T18:20:17+00:00","ticker":"KXDELGAME-26NOV271330EISAUG-EIS","league":"Germany - DEL","fair":0.5747,"bid":0.55,"ask":0.64,"vol24":0}
+{"ts":"2026-11-27T18:20:47+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.1221,"bid":0.05,"ask":0.11,"vol24":17}
+{"ts":"2026-11-27T18:21:18+00:00","ticker":"KXDELGAME-26NOV271330EISAUG-EIS","league":"Germany - DEL","fair":0.5688,"bid":0.55,"ask":0.64,"vol24":0}
+{"ts":"2026-11-27T18:21:49+00:00","ticker":"KXWNBLGAME-26NOV272300TOWSYD-SYD","league":"Australia - WNBL","fair":0.2587,"bid":0.13,"ask":0.27,"vol24":112}
+{"ts":"2026-11-27T18:21:49+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.1221,"bid":0.05,"ask":0.1,"vol24":17}
+{"ts":"2026-11-27T18:22:20+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.1221,"bid":0.05,"ask":0.14,"vol24":17}
+{"ts":"2026-11-27T18:22:51+00:00","ticker":"KXWNBLGAME-26NOV272300TOWSYD-SYD","league":"Australia - WNBL","fair":0.2587,"bid":0.13,"ask":0.26,"vol24":112}
+{"ts":"2026-11-27T18:22:51+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.1221,"bid":0.05,"ask":0.12,"vol24":17}
+{"ts":"2026-11-27T18:23:23+00:00","ticker":"KXWNBLGAME-26NOV272300TOWSYD-SYD","league":"Australia - WNBL","fair":0.2587,"bid":0.13,"ask":0.28,"vol24":112}
+{"ts":"2026-11-27T18:24:19+00:00","ticker":"KXDELGAME-26NOV271330EISAUG-EIS","league":"Germany - DEL","fair":0.5688,"bid":0.55,"ask":0.6,"vol24":0}
+{"ts":"2026-11-27T18:24:25+00:00","ticker":"KXWNBLGAME-26NOV272300TOWSYD-SYD","league":"Australia - WNBL","fair":0.2587,"bid":0.13,"ask":0.27,"vol24":112}
+{"ts":"2026-11-27T18:24:25+00:00","ticker":"KXDELGAME-26NOV271330EISAUG-EIS","league":"Germany - DEL","fair":0.5688,"bid":0.55,"ask":0.59,"vol24":0}
+{"ts":"2026-11-27T18:24:56+00:00","ticker":"KXITFWMATCH-26NOV28MATPOP-POP","league":"ITF Women Heraklion 2 - SF","fair":0.4624,"bid":0.4,"ask":0.41,"vol24":823}
+{"ts":"2026-11-27T18:25:57+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.1221,"bid":0.05,"ask":0.11,"vol24":17}
+{"ts":"2026-11-27T18:25:57+00:00","ticker":"KXWNBLGAME-26NOV272300TOWSYD-SYD","league":"Australia - WNBL","fair":0.2587,"bid":0.13,"ask":0.28,"vol24":112}
+{"ts":"2026-11-27T18:26:27+00:00","ticker":"KXITFWMATCH-26NOV28MATPOP-POP","league":"ITF Women Heraklion 2 - SF","fair":0.4624,"bid":0.4,"ask":0.42,"vol24":823}
+{"ts":"2026-11-27T18:26:58+00:00","ticker":"KXLIGMAGGAME-26NOV271415AGLGRE-AGL","league":"France - Ligue Magnus","fair":0.1279,"bid":0.08,"ask":0.11,"vol24":0}
+{"ts":"2026-11-27T18:26:58+00:00","ticker":"KXWNBLGAME-26NOV272300TOWSYD-SYD","league":"Australia - WNBL","fair":0.2587,"bid":0.13,"ask":0.27,"vol24":112}
+{"ts":"2026-11-27T18:28:00+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.1221,"bid":0.05,"ask":0.14,"vol24":17}
+{"ts":"2026-11-27T18:28:00+00:00","ticker":"KXLIGMAGGAME-26NOV271415AGLGRE-AGL","league":"France - Ligue Magnus","fair":0.1279,"bid":0.08,"ask":0.14,"vol24":0}
+{"ts":"2026-11-27T18:28:31+00:00","ticker":"KXWNBLGAME-26NOV272300TOWSYD-SYD","league":"Australia - WNBL","fair":0.2587,"bid":0.13,"ask":0.29,"vol24":112}
+{"ts":"2026-11-27T18:29:01+00:00","ticker":"KXLIGMAGGAME-26NOV271415AGLGRE-AGL","league":"France - Ligue Magnus","fair":0.1279,"bid":0.08,"ask":0.09,"vol24":0}
+{"ts":"2026-11-27T18:29:01+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.1221,"bid":0.05,"ask":0.13,"vol24":17}
+{"ts":"2026-11-27T18:29:01+00:00","ticker":"KXWNBLGAME-26NOV272300TOWSYD-SYD","league":"Australia - WNBL","fair":0.2587,"bid":0.13,"ask":0.28,"vol24":112}

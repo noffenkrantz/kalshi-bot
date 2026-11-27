@@ -1,12 +1,12 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 2246 snapshots from 2026-11-25 16:44 to 2026-11-27 18:19 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 2264 snapshots from 2026-11-25 16:44 to 2026-11-27 18:29 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-20,903 Kalshi prices compared with Pinnacle's. 92% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.2¢ from Pinnacle's fair price on average, and 1.3% could be bought at a 3¢+ edge after fees.
+20,929 Kalshi prices compared with Pinnacle's. 91% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.2¢ from Pinnacle's fair price on average, and 1.3% could be bought at a 3¢+ edge after fees.
 
-40 simulated bets so far; 39 have a closing price. Average edge when placed +4.0¢; average closing value +3.0¢ per contract. Kalshi moved toward Pinnacle's price after 26 of them and Pinnacle moved toward Kalshi's after 29. 26 have settled: 11 won, simulated profit $-72.66 on $959 staked.
+40 simulated bets so far; 40 have a closing price. Average edge when placed +4.0¢; average closing value +3.1¢ per contract. Kalshi moved toward Pinnacle's price after 27 of them and Pinnacle moved toward Kalshi's after 29. 26 have settled: 11 won, simulated profit $-72.66 on $959 staked.
 
 ## By league
 
@@ -15,7 +15,7 @@
 | League | Prices compared | No real market | Avg gap (Kalshi mid vs fair) | With a 3¢+ edge | Kalshi volume (24h, median) | Bets | Avg closing value | Profit |
 |---|---|---|---|---|---|---|---|---|
 | NCAA | 1804 | 40% | +1.5¢ | 1% | 298 | 1 | +13.0¢ | – |
-| Japan - B.League One | 1082 | 31% | +2.9¢ | 6% | 17 | 3 | +0.9¢ | $-116.76 |
+| Japan - B.League One | 1089 | 31% | +2.9¢ | 5% | 17 | 3 | +0.9¢ | $-116.76 |
 | NHL | 970 | 0% | +0.9¢ | 2% | 2,033 | 1 | +4.4¢ | – |
 | USA - American Hockey League | 593 | 0% | +0.8¢ | 0% | 0 | 1 | +4.7¢ | $-0.82 |
 | ITF Men Santa Cruz - R1 | 554 | 1% | +1.9¢ | 3% | 1,533 | 2 | +3.2¢ | $+24.16 |
@@ -24,16 +24,16 @@
 | Russia - Kontinental Hockey League | 444 | 1% | +0.9¢ | 0% | 3 | 0 | – | – |
 | Netherlands - Eerste Divisie | 329 | 0% | +0.8¢ | 0% | 1 | 1 | +4.5¢ | – |
 | ITF Men Heraklion - R16 | 322 | 4% | +1.4¢ | 1% | 182 | 1 | -4.8¢ | $+0.00 |
+| France - Ligue Magnus | 312 | 39% | +2.2¢ | 11% | 0 | 1 | +3.8¢ | – |
 | ITF Men Santa Cruz - R16 | 310 | 1% | +1.6¢ | 1% | 245 | 1 | +2.4¢ | – |
-| France - Ligue Magnus | 309 | 39% | +2.2¢ | 10% | 0 | 1 | +3.8¢ | – |
 | Finland - SM Liiga | 304 | 1% | +0.8¢ | 0% | 0 | 0 | – | – |
 | ITF Women Florianopolis - R16 | 303 | 4% | +1.8¢ | 5% | 269 | 3 | +3.5¢ | $+55.80 |
 | ITF Women Trnava - R16 | 289 | 4% | +1.2¢ | 0% | 23 | 1 | +3.2¢ | $-102.76 |
 | Sweden - SHL | 286 | 3% | +1.0¢ | 0% | 0 | 1 | +3.8¢ | $+0.00 |
 | ITF Women Heraklion 2 - R16 | 263 | 6% | +1.7¢ | 4% | 420 | 1 | -0.9¢ | $-28.47 |
 | ITF Men Hradec Kralove - QF | 260 | 0% | +2.6¢ | 10% | 166 | 1 | -4.6¢ | $+0.00 |
+| Germany - DEL | 252 | 4% | +0.9¢ | 0% | 0 | 1 | +6.1¢ | – |
 | ITF Men Monastir 2 - R16 | 250 | 5% | +1.5¢ | 0% | 195 | 0 | – | – |
-| Germany - DEL | 247 | 4% | +0.9¢ | 0% | 0 | 1 | – | – |
 | ITF Women Lousada - R16 | 244 | 3% | +1.4¢ | 0% | 65 | 0 | – | – |
 | Czech Republic - Extraliga | 244 | 6% | +1.6¢ | 0% | 0 | 0 | – | – |
 | ITF Women Monastir - R16 | 241 | 8% | +1.7¢ | 0% | 0 | 1 | +1.3¢ | $-11.82 |
@@ -61,11 +61,11 @@
 | ATP Challenger San Salvador - R16 | 150 | 8% | +1.2¢ | 0% | 436 | 0 | – | – |
 | ITF Women Kolkata - R16 | 148 | 0% | +1.5¢ | 0% | 370 | 0 | – | – |
 | Korea Republic - K League 1 | 144 | 0% | +0.3¢ | 0% | 0 | 0 | – | – |
+| Australia - WNBL | 143 | 90% | +2.2¢ | 7% | 112 | 1 | +4.9¢ | – |
 | ITF Women Kolkata - QF | 141 | 0% | +2.7¢ | 8% | 3,864 | 1 | +4.4¢ | – |
 | ITF Women Florianopolis - QF | 139 | 0% | +1.4¢ | 4% | 378 | 1 | +5.3¢ | – |
 | ITF Men Madrid - QF | 138 | 0% | +1.4¢ | 0% | 7 | 0 | – | – |
 | ITF Men Heraklion - QF | 138 | 0% | +1.1¢ | 0% | 170 | 0 | – | – |
-| Australia - WNBL | 134 | 89% | +2.2¢ | 7% | 112 | 1 | +4.9¢ | – |
 | Thailand - League 1 | 129 | 0% | +1.0¢ | 0% | 0 | 0 | – | – |
 | Paraguay - Division Profesional | 129 | 0% | +0.8¢ | 0% | 9 | 0 | – | – |
 | ITF Men Monastir 2 - QF | 128 | 0% | +1.5¢ | 0% | 1 | 0 | – | – |
@@ -81,7 +81,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 269 | 3.2 pts | 3.4¢ | 3.2¢ | 3.0¢ | 2.8¢ | 2.6¢ | 2.7¢ | 16% |
+| All | 270 | 3.2 pts | 3.4¢ | 3.2¢ | 3.0¢ | 2.8¢ | 2.6¢ | 2.7¢ | 16% |
 | NCAA | 30 | 2.6 pts | 2.2¢ | 2.2¢ | 2.1¢ | 1.9¢ | 1.7¢ | 1.4¢ | 17% |
 | Japan - B.League One | 23 | 3.7 pts | 5.4¢ | 5.0¢ | 4.2¢ | 4.0¢ | 4.3¢ | 3.9¢ | 13% |
 | AFC - Champions League 2 | 13 | 3.4 pts | 3.1¢ | 3.2¢ | 6.1¢ | 6.3¢ | 6.5¢ | 6.3¢ | 15% |
@@ -99,7 +99,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | Placed (UTC) | Game | Bet | Paid | Fair | Edge | Closing value | Result |
 |---|---|---|---|---|---|---|---|
-| 11-27 18:19 | Augsburger Panther vs Eisbaren Berlin (Germany - DEL) | NO Eisbären Berlin | 0.37 | 0.43 | +3.9¢ | – | – |
+| 11-27 18:19 | Augsburger Panther vs Eisbaren Berlin (Germany - DEL) | NO Eisbären Berlin | 0.37 | 0.43 | +3.9¢ | +6.1¢ | – |
 | 11-27 17:19 | Sydney Uni Flames vs Townsville Fire (Australia - WNBL) | YES Sydney Uni Flames | 0.21 | 0.26 | +3.7¢ | +4.9¢ | – |
 | 11-27 17:17 | Stellenbosch vs TS Galaxy (South Africa - PSL) | YES Stellenbosch | 0.51 | 0.56 | +3.1¢ | +3.5¢ | – |
 | 11-27 16:36 | Martha Matoula vs Giulia Safina Popa (ITF Women Heraklion 2 - SF) | YES Giulia Safina Popa | 0.42 | 0.48 | +3.9¢ | +4.2¢ | – |
