@@ -9620,3 +9620,10 @@
 {"ts":"2026-11-26T23:51:46+00:00","ticker":"KXWKBLGAME-26NOV270500SHIBLU-BLU","league":"Korea - WKBL","fair":0.4129,"bid":0.08,"ask":0.9,"vol24":0}
 {"ts":"2026-11-27T00:06:12+00:00","ticker":"KXITFWMATCH-26NOV26NUGRAO-RAO","league":"ITF Women Kolkata - QF","fair":0.0521,"bid":0.07,"ask":0.09,"vol24":3864}
 {"ts":"2026-11-27T00:06:43+00:00","ticker":"KXITFWMATCH-26NOV26NUGRAO-RAO","league":"ITF Women Kolkata - QF","fair":0.0521,"bid":0.07,"ask":0.08,"vol24":3864}
+{"ts":"2026-11-27T00:08:16+00:00","ticker":"KXITFMATCH-26NOV27MICFRI-MIC","league":"ITF Men Hradec Kralove - QF","fair":0.4604,"bid":0.45,"ask":0.46,"vol24":166}
+{"ts":"2026-11-27T00:15:30+00:00","ticker":"KXBLEAGUEONEGAME-26NOV270505ALPRZF-RZF","league":"Japan - B.League One","fair":0.2404,"bid":0.18,"ask":0.22,"vol24":853}
+{"ts":"2026-11-27T00:16:01+00:00","ticker":"KXBLEAGUEONEGAME-26NOV270505GIFYOK-GIF","league":"Japan - B.League One","fair":0.115,"bid":0.05,"ask":0.09,"vol24":803}
+{"ts":"2026-11-27T00:16:01+00:00","ticker":"KXBLEAGUEONEGAME-26NOV270505ALPRZF-RZF","league":"Japan - B.League One","fair":0.2404,"bid":0.18,"ask":0.23,"vol24":853}
+{"ts":"2026-11-27T00:16:01+00:00","ticker":"KXITFMATCH-26NOV27MICFRI-MIC","league":"ITF Men Hradec Kralove - QF","fair":0.4584,"bid":0.45,"ask":0.46,"vol24":166}
+{"ts":"2026-11-27T00:16:01+00:00","ticker":"KXBLEAGUEONEGAME-26NOV270505GIFYOK-GIF","league":"Japan - B.League One","fair":0.115,"bid":0.05,"ask":0.08,"vol24":803}
+{"ts":"2026-11-27T00:16:01+00:00","ticker":"KXBLEAGUEONEGAME-26NOV270505ALPRZF-RZF","league":"Japan - B.League One","fair":0.2404,"bid":0.18,"ask":0.22,"vol24":853}
