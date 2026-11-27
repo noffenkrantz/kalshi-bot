@@ -1,10 +1,10 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 2642 snapshots from 2026-11-25 16:44 to 2026-11-27 22:40 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 2651 snapshots from 2026-11-25 16:44 to 2026-11-27 22:52 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-24,274 Kalshi prices compared with Pinnacle's. 91% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.2¢ from Pinnacle's fair price on average, and 1.3% could be bought at a 3¢+ edge after fees.
+24,283 Kalshi prices compared with Pinnacle's. 91% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.2¢ from Pinnacle's fair price on average, and 1.3% could be bought at a 3¢+ edge after fees.
 
 42 simulated bets so far; 42 have a closing price. Average edge when placed +4.0¢; average closing value +3.2¢ per contract. Kalshi moved toward Pinnacle's price after 30 of them and Pinnacle moved toward Kalshi's after 30. 33 have settled: 14 won, simulated profit $-138.67 on $1,046 staked.
 
@@ -15,7 +15,7 @@
 | League | Prices compared | No real market | Avg gap (Kalshi mid vs fair) | With a 3¢+ edge | Kalshi volume (24h, median) | Bets | Avg closing value | Profit |
 |---|---|---|---|---|---|---|---|---|
 | NCAA | 2150 | 44% | +1.6¢ | 1% | 120 | 1 | +13.8¢ | – |
-| Japan - B.League One | 1321 | 28% | +3.0¢ | 5% | 17 | 4 | +2.0¢ | $-116.76 |
+| Japan - B.League One | 1329 | 28% | +3.0¢ | 5% | 17 | 4 | +2.0¢ | $-116.76 |
 | NHL | 1046 | 0% | +0.9¢ | 1% | 2,082 | 1 | +4.7¢ | – |
 | USA - American Hockey League | 683 | 0% | +0.8¢ | 0% | 0 | 1 | +4.7¢ | $-0.82 |
 | NBA | 661 | 0% | +0.7¢ | 2% | 52,489 | 4 | +1.0¢ | $+153.28 |
