@@ -20004,3 +20004,10 @@
 {"ts":"2026-11-27T17:17:07+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.1218,"bid":0.07,"ask":0.16,"vol24":17}
 {"ts":"2026-11-27T17:17:07+00:00","ticker":"KXITFMATCH-26NOV27CIAMON-CIA","league":"ITF Men Santa Cruz - R16","fair":0.104,"bid":0.08,"ask":0.11,"vol24":2005}
 {"ts":"2026-11-27T17:17:26+00:00","ticker":"KXSAPSLGAME-26NOV27STLTSG-STL","league":"South Africa - PSL","fair":0.5586,"bid":0.5,"ask":0.51,"vol24":157}
+{"ts":"2026-11-27T17:17:38+00:00","ticker":"KXITFMATCH-26NOV27CIAMON-CIA","league":"ITF Men Santa Cruz - R16","fair":0.104,"bid":0.07,"ask":0.11,"vol24":2005}
+{"ts":"2026-11-27T17:17:38+00:00","ticker":"KXNCAAWBGAME-26NOV28VILLKSU-VILL","league":"NCAA","fair":0.1602,"bid":0.56,"ask":0.74,"vol24":0}
+{"ts":"2026-11-27T17:18:08+00:00","ticker":"KXNCAAWBGAME-26NOV28VILLKSU-VILL","league":"NCAA","fair":0.1602,"bid":0.56,"ask":0.76,"vol24":0}
+{"ts":"2026-11-27T17:18:38+00:00","ticker":"KXNCAAWBGAME-26NOV28VILLKSU-VILL","league":"NCAA","fair":0.1602,"bid":0.56,"ask":0.75,"vol24":0}
+{"ts":"2026-11-27T17:19:10+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.1218,"bid":0.06,"ask":0.15,"vol24":17}
+{"ts":"2026-11-27T17:19:40+00:00","ticker":"KXWNBLGAME-26NOV272300TOWSYD-SYD","league":"Australia - WNBL","fair":0.2587,"bid":0.12,"ask":0.21,"vol24":113}
+{"ts":"2026-11-27T17:19:40+00:00","ticker":"KXITFMATCH-26NOV27CIAMON-CIA","league":"ITF Men Santa Cruz - R16","fair":0.104,"bid":0.07,"ask":0.12,"vol24":2005}
