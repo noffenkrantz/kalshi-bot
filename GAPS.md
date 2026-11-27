@@ -1,12 +1,12 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 1387 snapshots from 2026-11-25 16:44 to 2026-11-27 07:31 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 1400 snapshots from 2026-11-25 16:44 to 2026-11-27 07:40 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-13,772 Kalshi prices compared with Pinnacle's. 95% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
+13,788 Kalshi prices compared with Pinnacle's. 95% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 1.2% could be bought at a 3¢+ edge after fees.
 
-30 simulated bets so far; 30 have a closing price. Average edge when placed +4.1¢; average closing value +2.8¢ per contract. Kalshi moved toward Pinnacle's price after 20 of them and Pinnacle moved toward Kalshi's after 23. 18 have settled: 9 won, simulated profit $+88.33 on $649 staked.
+31 simulated bets so far; 30 have a closing price. Average edge when placed +4.1¢; average closing value +2.8¢ per contract. Kalshi moved toward Pinnacle's price after 19 of them and Pinnacle moved toward Kalshi's after 23. 18 have settled: 9 won, simulated profit $+88.33 on $649 staked.
 
 ## By league
 
@@ -14,7 +14,7 @@
 
 | League | Prices compared | No real market | Avg gap (Kalshi mid vs fair) | With a 3¢+ edge | Kalshi volume (24h, median) | Bets | Avg closing value | Profit |
 |---|---|---|---|---|---|---|---|---|
-| NCAA | 933 | 22% | +1.0¢ | 0% | 1,288 | 1 | +15.7¢ | – |
+| NCAA | 943 | 23% | +1.0¢ | 0% | 1,277 | 1 | +15.7¢ | – |
 | NHL | 601 | 0% | +0.8¢ | 2% | 1,948 | 1 | +4.9¢ | – |
 | ITF Men Santa Cruz - R1 | 554 | 1% | +1.9¢ | 3% | 1,533 | 2 | +3.2¢ | $+24.16 |
 | ITF Men Hradec Kralove - R16 | 481 | 2% | +3.1¢ | 0% | 1,189 | 1 | +0.8¢ | $-0.76 |
@@ -39,13 +39,13 @@
 | ITF Men Madrid - R16 | 180 | 2% | +1.1¢ | 0% | 5 | 0 | – | – |
 | ITF Men Bhopal - R16 | 171 | 0% | +1.5¢ | 1% | 185 | 1 | +5.8¢ | $+0.00 |
 | Lithuania - National Basketball League | 166 | 13% | +1.1¢ | 0% | 0 | 0 | – | – |
-| France - Ligue Magnus | 162 | 51% | +1.8¢ | 5% | 0 | 1 | +3.8¢ | – |
+| France - Ligue Magnus | 163 | 51% | +1.8¢ | 6% | 0 | 1 | +3.8¢ | – |
+| ITF Men Bhopal - QF | 158 | 0% | +1.9¢ | 5% | 630 | 2 | +2.3¢ | – |
 | Germany - DEL | 158 | 6% | +0.8¢ | 0% | 0 | 0 | – | – |
-| ITF Men Bhopal - QF | 157 | 0% | +1.9¢ | 4% | 625 | 1 | +2.3¢ | – |
 | Czech Republic - Extraliga | 156 | 9% | +1.8¢ | 0% | 0 | 0 | – | – |
 | ATP Challenger San Salvador - R16 | 150 | 8% | +1.2¢ | 0% | 436 | 0 | – | – |
 | ITF Women Kolkata - R16 | 148 | 0% | +1.5¢ | 0% | 370 | 0 | – | – |
-| ITF Women Heraklion 2 - QF | 146 | 0% | +1.2¢ | 1% | 124 | 1 | -0.2¢ | – |
+| ITF Women Heraklion 2 - QF | 148 | 0% | +1.2¢ | 1% | 127 | 1 | -0.2¢ | – |
 | ITF Women Kolkata - QF | 141 | 0% | +2.7¢ | 8% | 3,864 | 1 | +4.4¢ | – |
 | ITF Men Heraklion - QF | 134 | 0% | +1.1¢ | 0% | 166 | 0 | – | – |
 | Czech Republic - FNL | 132 | 0% | +1.0¢ | 0% | 0 | 0 | – | – |
@@ -99,6 +99,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | Placed (UTC) | Game | Bet | Paid | Fair | Edge | Closing value | Result |
 |---|---|---|---|---|---|---|---|
+| 11-27 07:40 | Willian Rejchtman Vinciguerra vs Hitesh Chauhan (ITF Men Bhopal - QF) | NO William Rejchtman Vinciguerra | 0.18 | 0.23 | +3.5¢ | – | – |
 | 11-27 06:31 | Nicolas Ciancaglini vs Ignacio Monzon (ITF Men Santa Cruz - R16) | YES Nicolas Ciancaglini Rivera | 0.08 | 0.12 | +3.1¢ | +3.2¢ | – |
 | 11-27 04:31 | Karan Singh vs Grigoriy Lomakin (ITF Men Bhopal - QF) | YES Karan Singh | 0.86 | 0.90 | +3.3¢ | +2.3¢ | – |
 | 11-27 03:50 | Kansas vs Villanova (NCAA) | NO Villanova | 0.71 | 0.87 | +14.2¢ | +15.7¢ | – |
@@ -128,4 +129,3 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 | 11-25 21:13 | Dane Sweeny vs Hayden Jones (ATP Challenger Playford - R16) | YES Hayden Jones | 0.17 | 0.21 | +3.5¢ | +2.6¢ | lost $+0.00 |
 | 11-25 21:07 | Jordan Hasson vs Odysseas Geladaris (ITF Men Heraklion - R16) | YES Odysseas Geladaris | 0.39 | 0.48 | +7.7¢ | -4.8¢ | won $+0.00 |
 | 11-25 20:16 | Philadelphia 76ers vs Miami Heat (NBA) | YES Philadelphia | 0.47 | 0.52 | +3.6¢ | +3.5¢ | won $+108.66 |
-| 11-25 20:16 | Philadelphia 76ers vs Miami Heat (NBA) | NO Miami | 0.47 | 0.52 | +3.6¢ | +3.5¢ | won $+108.66 |
