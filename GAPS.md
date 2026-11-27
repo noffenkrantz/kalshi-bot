@@ -1,10 +1,10 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 2482 snapshots from 2026-11-25 16:44 to 2026-11-27 20:41 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 2497 snapshots from 2026-11-25 16:44 to 2026-11-27 20:51 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-22,693 Kalshi prices compared with Pinnacle's. 91% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.2¢ from Pinnacle's fair price on average, and 1.3% could be bought at a 3¢+ edge after fees.
+22,713 Kalshi prices compared with Pinnacle's. 91% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.2¢ from Pinnacle's fair price on average, and 1.3% could be bought at a 3¢+ edge after fees.
 
 42 simulated bets so far; 42 have a closing price. Average edge when placed +4.0¢; average closing value +3.2¢ per contract. Kalshi moved toward Pinnacle's price after 30 of them and Pinnacle moved toward Kalshi's after 31. 29 have settled: 13 won, simulated profit $-72.19 on $959 staked.
 
@@ -14,7 +14,7 @@
 
 | League | Prices compared | No real market | Avg gap (Kalshi mid vs fair) | With a 3¢+ edge | Kalshi volume (24h, median) | Bets | Avg closing value | Profit |
 |---|---|---|---|---|---|---|---|---|
-| NCAA | 2013 | 43% | +1.6¢ | 1% | 158 | 1 | +13.1¢ | – |
+| NCAA | 2026 | 43% | +1.6¢ | 1% | 136 | 1 | +13.1¢ | – |
 | Japan - B.League One | 1221 | 29% | +3.0¢ | 5% | 17 | 4 | +2.3¢ | $-116.76 |
 | NHL | 1016 | 0% | +0.9¢ | 1% | 2,057 | 1 | +4.2¢ | – |
 | USA - American Hockey League | 641 | 0% | +0.8¢ | 0% | 0 | 1 | +4.7¢ | $-0.82 |
@@ -31,9 +31,9 @@
 | ITF Women Florianopolis - R16 | 303 | 4% | +1.8¢ | 5% | 269 | 3 | +3.5¢ | $+55.80 |
 | ITF Women Trnava - R16 | 289 | 4% | +1.2¢ | 0% | 23 | 1 | +3.2¢ | $-102.76 |
 | England - National League | 270 | 0% | +0.5¢ | 0% | 0 | 0 | – | – |
+| Australia - WNBL | 268 | 92% | +3.8¢ | 10% | 110 | 1 | +4.8¢ | – |
 | ITF Women Heraklion 2 - R16 | 263 | 6% | +1.7¢ | 4% | 420 | 1 | -0.9¢ | $-28.47 |
 | England - Championship | 261 | 0% | +0.6¢ | 0% | 297 | 0 | – | – |
-| Australia - WNBL | 261 | 92% | +3.8¢ | 10% | 110 | 1 | +4.8¢ | – |
 | ITF Men Hradec Kralove - QF | 260 | 0% | +2.6¢ | 10% | 166 | 1 | -4.6¢ | $+0.00 |
 | Germany - DEL | 253 | 4% | +0.9¢ | 0% | 0 | 1 | +6.1¢ | – |
 | ITF Men Monastir 2 - R16 | 250 | 5% | +1.5¢ | 0% | 195 | 0 | – | – |
@@ -81,7 +81,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 297 | 3.2 pts | 3.3¢ | 3.1¢ | 2.8¢ | 2.7¢ | 2.5¢ | 2.5¢ | 18% |
+| All | 298 | 3.2 pts | 3.3¢ | 3.1¢ | 2.8¢ | 2.7¢ | 2.5¢ | 2.5¢ | 17% |
 | NCAA | 34 | 2.6 pts | 2.1¢ | 2.1¢ | 2.0¢ | 1.9¢ | 1.6¢ | 1.3¢ | 18% |
 | Japan - B.League One | 23 | 3.7 pts | 5.4¢ | 5.0¢ | 4.2¢ | 4.0¢ | 4.3¢ | 3.9¢ | 13% |
 | AFC - Champions League 2 | 13 | 3.4 pts | 3.1¢ | 3.2¢ | 6.1¢ | 6.3¢ | 6.5¢ | 6.3¢ | 15% |
@@ -90,10 +90,10 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 | ITF Women Heraklion 2 - R16 | 10 | 3.7 pts | 4.0¢ | 3.8¢ | 3.5¢ | 3.3¢ | 2.5¢ | 2.5¢ | 0% |
 | Russia - Kontinental Hockey League | 10 | 3.1 pts | 3.1¢ | 2.8¢ | 2.8¢ | 2.5¢ | 2.5¢ | 2.0¢ | 0% |
 | Finland - SM Liiga | 10 | 3.0 pts | 2.3¢ | 2.2¢ | 1.4¢ | 1.3¢ | 1.1¢ | 1.7¢ | 40% |
+| Bolivia - Primera Division | 8 | 4.5 pts | 3.8¢ | 2.2¢ | 2.2¢ | 2.4¢ | 2.7¢ | 2.8¢ | 12% |
 | ITF Men Heraklion - R16 | 7 | 5.5 pts | 5.5¢ | 5.3¢ | 3.8¢ | 4.3¢ | 4.0¢ | 1.9¢ | 29% |
 | ITF Women Trnava - R16 | 7 | 3.4 pts | 3.2¢ | 2.8¢ | 2.1¢ | 1.9¢ | 1.6¢ | 1.2¢ | 14% |
 | NBA | 7 | 3.9 pts | 1.1¢ | 0.9¢ | 0.8¢ | 0.7¢ | 1.0¢ | 0.4¢ | 57% |
-| Sweden - SHL | 7 | 3.4 pts | 3.4¢ | 3.4¢ | 3.0¢ | 2.1¢ | 2.0¢ | 1.4¢ | 14% |
 
 ## Latest simulated bets
 
