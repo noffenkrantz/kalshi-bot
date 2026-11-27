@@ -1,12 +1,12 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 2137 snapshots from 2026-11-25 16:44 to 2026-11-27 17:06 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 2153 snapshots from 2026-11-25 16:44 to 2026-11-27 17:16 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-19,972 Kalshi prices compared with Pinnacle's. 92% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 1.4% could be bought at a 3¢+ edge after fees.
+20,003 Kalshi prices compared with Pinnacle's. 92% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 1.4% could be bought at a 3¢+ edge after fees.
 
-37 simulated bets so far; 37 have a closing price. Average edge when placed +4.0¢; average closing value +3.0¢ per contract. Kalshi moved toward Pinnacle's price after 26 of them and Pinnacle moved toward Kalshi's after 28. 26 have settled: 11 won, simulated profit $-72.66 on $959 staked.
+37 simulated bets so far; 37 have a closing price. Average edge when placed +4.0¢; average closing value +3.0¢ per contract. Kalshi moved toward Pinnacle's price after 25 of them and Pinnacle moved toward Kalshi's after 28. 26 have settled: 11 won, simulated profit $-72.66 on $959 staked.
 
 ## By league
 
@@ -14,8 +14,8 @@
 
 | League | Prices compared | No real market | Avg gap (Kalshi mid vs fair) | With a 3¢+ edge | Kalshi volume (24h, median) | Bets | Avg closing value | Profit |
 |---|---|---|---|---|---|---|---|---|
-| NCAA | 1697 | 39% | +1.5¢ | 1% | 344 | 1 | +13.0¢ | – |
-| Japan - B.League One | 1001 | 29% | +3.0¢ | 6% | 28 | 3 | +0.9¢ | $-116.76 |
+| NCAA | 1710 | 39% | +1.5¢ | 1% | 330 | 1 | +13.0¢ | – |
+| Japan - B.League One | 1013 | 30% | +3.0¢ | 6% | 28 | 3 | +0.9¢ | $-116.76 |
 | NHL | 945 | 0% | +0.9¢ | 2% | 1,942 | 1 | +4.3¢ | – |
 | USA - American Hockey League | 569 | 0% | +0.8¢ | 0% | 0 | 1 | +4.7¢ | $-0.82 |
 | ITF Men Santa Cruz - R1 | 554 | 1% | +1.9¢ | 3% | 1,533 | 2 | +3.2¢ | $+24.16 |
@@ -26,8 +26,8 @@
 | Netherlands - Eerste Divisie | 320 | 0% | +0.8¢ | 0% | 1 | 1 | +4.5¢ | – |
 | ITF Women Florianopolis - R16 | 303 | 4% | +1.8¢ | 5% | 269 | 3 | +3.5¢ | $+55.80 |
 | Finland - SM Liiga | 302 | 1% | +0.8¢ | 0% | 0 | 0 | – | – |
-| ITF Men Santa Cruz - R16 | 294 | 1% | +1.6¢ | 1% | 226 | 1 | +2.4¢ | – |
-| France - Ligue Magnus | 293 | 40% | +2.1¢ | 9% | 0 | 1 | +3.8¢ | – |
+| ITF Men Santa Cruz - R16 | 299 | 1% | +1.6¢ | 1% | 230 | 1 | +2.4¢ | – |
+| France - Ligue Magnus | 294 | 40% | +2.1¢ | 10% | 0 | 1 | +3.8¢ | – |
 | ITF Women Trnava - R16 | 289 | 4% | +1.2¢ | 0% | 23 | 1 | +3.2¢ | $-102.76 |
 | Sweden - SHL | 274 | 3% | +1.1¢ | 0% | 0 | 1 | +3.8¢ | $+0.00 |
 | ITF Women Heraklion 2 - R16 | 263 | 6% | +1.7¢ | 4% | 420 | 1 | -0.9¢ | $-28.47 |
@@ -81,9 +81,9 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 254 | 3.2 pts | 3.5¢ | 3.3¢ | 3.0¢ | 2.9¢ | 2.7¢ | 2.7¢ | 16% |
+| All | 257 | 3.2 pts | 3.5¢ | 3.2¢ | 3.0¢ | 2.9¢ | 2.7¢ | 2.7¢ | 16% |
 | NCAA | 29 | 2.6 pts | 2.2¢ | 2.2¢ | 2.0¢ | 1.9¢ | 1.7¢ | 1.3¢ | 17% |
-| Japan - B.League One | 22 | 3.7 pts | 5.6¢ | 5.1¢ | 4.3¢ | 4.1¢ | 4.4¢ | 3.9¢ | 14% |
+| Japan - B.League One | 23 | 3.7 pts | 5.4¢ | 5.0¢ | 4.2¢ | 4.0¢ | 4.3¢ | 3.9¢ | 13% |
 | AFC - Champions League 2 | 13 | 3.4 pts | 3.1¢ | 3.2¢ | 6.1¢ | 6.3¢ | 6.5¢ | 6.3¢ | 15% |
 | Lithuania - National Basketball League | 12 | 3.2 pts | 2.7¢ | 2.7¢ | 2.1¢ | 2.1¢ | 1.7¢ | 6.5¢ | 17% |
 | ITF Women Heraklion 2 - R16 | 10 | 3.7 pts | 4.0¢ | 3.8¢ | 3.5¢ | 3.3¢ | 2.5¢ | 2.5¢ | 0% |
