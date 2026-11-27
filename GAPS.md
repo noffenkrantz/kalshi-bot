@@ -1,12 +1,12 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 2153 snapshots from 2026-11-25 16:44 to 2026-11-27 17:16 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 2155 snapshots from 2026-11-25 16:44 to 2026-11-27 17:17 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-20,003 Kalshi prices compared with Pinnacle's. 92% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 1.4% could be bought at a 3¢+ edge after fees.
+20,006 Kalshi prices compared with Pinnacle's. 92% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 1.4% could be bought at a 3¢+ edge after fees.
 
-37 simulated bets so far; 37 have a closing price. Average edge when placed +4.0¢; average closing value +3.0¢ per contract. Kalshi moved toward Pinnacle's price after 25 of them and Pinnacle moved toward Kalshi's after 28. 26 have settled: 11 won, simulated profit $-72.66 on $959 staked.
+38 simulated bets so far; 37 have a closing price. Average edge when placed +4.0¢; average closing value +3.0¢ per contract. Kalshi moved toward Pinnacle's price after 25 of them and Pinnacle moved toward Kalshi's after 28. 26 have settled: 11 won, simulated profit $-72.66 on $959 staked.
 
 ## By league
 
@@ -15,7 +15,7 @@
 | League | Prices compared | No real market | Avg gap (Kalshi mid vs fair) | With a 3¢+ edge | Kalshi volume (24h, median) | Bets | Avg closing value | Profit |
 |---|---|---|---|---|---|---|---|---|
 | NCAA | 1710 | 39% | +1.5¢ | 1% | 330 | 1 | +13.0¢ | – |
-| Japan - B.League One | 1013 | 30% | +3.0¢ | 6% | 28 | 3 | +0.9¢ | $-116.76 |
+| Japan - B.League One | 1014 | 30% | +3.0¢ | 6% | 28 | 3 | +0.9¢ | $-116.76 |
 | NHL | 945 | 0% | +0.9¢ | 2% | 1,942 | 1 | +4.3¢ | – |
 | USA - American Hockey League | 569 | 0% | +0.8¢ | 0% | 0 | 1 | +4.7¢ | $-0.82 |
 | ITF Men Santa Cruz - R1 | 554 | 1% | +1.9¢ | 3% | 1,533 | 2 | +3.2¢ | $+24.16 |
@@ -26,7 +26,7 @@
 | Netherlands - Eerste Divisie | 320 | 0% | +0.8¢ | 0% | 1 | 1 | +4.5¢ | – |
 | ITF Women Florianopolis - R16 | 303 | 4% | +1.8¢ | 5% | 269 | 3 | +3.5¢ | $+55.80 |
 | Finland - SM Liiga | 302 | 1% | +0.8¢ | 0% | 0 | 0 | – | – |
-| ITF Men Santa Cruz - R16 | 299 | 1% | +1.6¢ | 1% | 230 | 1 | +2.4¢ | – |
+| ITF Men Santa Cruz - R16 | 300 | 1% | +1.6¢ | 1% | 230 | 1 | +2.4¢ | – |
 | France - Ligue Magnus | 294 | 40% | +2.1¢ | 10% | 0 | 1 | +3.8¢ | – |
 | ITF Women Trnava - R16 | 289 | 4% | +1.2¢ | 0% | 23 | 1 | +3.2¢ | $-102.76 |
 | Sweden - SHL | 274 | 3% | +1.1¢ | 0% | 0 | 1 | +3.8¢ | $+0.00 |
@@ -99,6 +99,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | Placed (UTC) | Game | Bet | Paid | Fair | Edge | Closing value | Result |
 |---|---|---|---|---|---|---|---|
+| 11-27 17:17 | Stellenbosch vs TS Galaxy (South Africa - PSL) | YES Stellenbosch | 0.51 | 0.56 | +3.1¢ | – | – |
 | 11-27 16:36 | Martha Matoula vs Giulia Safina Popa (ITF Women Heraklion 2 - SF) | YES Giulia Safina Popa | 0.42 | 0.48 | +3.9¢ | +4.2¢ | – |
 | 11-27 16:21 | Darja Semenistaja vs Valeriya Strakhova (ITF Women Florianopolis - QF) | YES Valeriya Strakhova | 0.25 | 0.30 | +4.0¢ | +5.3¢ | – |
 | 11-27 15:34 | IMT Novi Beograd vs Macva Sabac (Serbia - Super Liga) | NO IMT Novi Beograd | 0.35 | 0.40 | +3.3¢ | +3.9¢ | – |
@@ -128,4 +129,3 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 | 11-26 07:09 | Sofia Shapatava vs Lydia Panagiotidou (ITF Women Heraklion 2 - R16) | YES Sofia Shapatava | 0.53 | 0.59 | +4.6¢ | -0.9¢ | lost $-28.47 |
 | 11-26 02:34 | Tampines Rovers vs Shanghai Shenhua (AFC - Champions League 2) | NO Shanghai Shenhua | 0.26 | 0.31 | +3.7¢ | +11.3¢ | lost $-0.28 |
 | 11-25 23:43 | Aliona Falei vs Jana Kovackova (ITF Women Trnava - R16) | YES Jana Kovackova | 0.56 | 0.62 | +4.2¢ | +3.2¢ | lost $-102.76 |
-| 11-25 22:41 | Petr Michnev vs Liam Hignett (ITF Men Hradec Kralove - R16) | YES Liam Hignett | 0.36 | 0.41 | +3.7¢ | +0.8¢ | lost $-0.76 |

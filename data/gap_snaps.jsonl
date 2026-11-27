@@ -20001,3 +20001,6 @@
 {"ts":"2026-11-27T17:16:36+00:00","ticker":"KXNCAAWBGAME-26NOV28VILLKSU-VILL","league":"NCAA","fair":0.1602,"bid":0.56,"ask":0.75,"vol24":0}
 {"ts":"2026-11-27T17:16:36+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.1218,"bid":0.07,"ask":0.17,"vol24":17}
 {"ts":"2026-11-27T17:16:36+00:00","ticker":"KXITFMATCH-26NOV27CIAMON-CIA","league":"ITF Men Santa Cruz - R16","fair":0.104,"bid":0.07,"ask":0.11,"vol24":2005}
+{"ts":"2026-11-27T17:17:07+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.1218,"bid":0.07,"ask":0.16,"vol24":17}
+{"ts":"2026-11-27T17:17:07+00:00","ticker":"KXITFMATCH-26NOV27CIAMON-CIA","league":"ITF Men Santa Cruz - R16","fair":0.104,"bid":0.08,"ask":0.11,"vol24":2005}
+{"ts":"2026-11-27T17:17:26+00:00","ticker":"KXSAPSLGAME-26NOV27STLTSG-STL","league":"South Africa - PSL","fair":0.5586,"bid":0.5,"ask":0.51,"vol24":157}
