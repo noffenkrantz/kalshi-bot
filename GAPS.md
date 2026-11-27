@@ -1,12 +1,12 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 1712 snapshots from 2026-11-25 16:44 to 2026-11-27 11:33 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 1715 snapshots from 2026-11-25 16:44 to 2026-11-27 11:44 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-16,048 Kalshi prices compared with Pinnacle's. 94% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 1.5% could be bought at a 3¢+ edge after fees.
+16,052 Kalshi prices compared with Pinnacle's. 94% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 1.5% could be bought at a 3¢+ edge after fees.
 
-33 simulated bets so far; 33 have a closing price. Average edge when placed +4.1¢; average closing value +2.9¢ per contract. Kalshi moved toward Pinnacle's price after 21 of them and Pinnacle moved toward Kalshi's after 24. 20 have settled: 10 won, simulated profit $+2.68 on $734 staked.
+34 simulated bets so far; 33 have a closing price. Average edge when placed +4.1¢; average closing value +2.9¢ per contract. Kalshi moved toward Pinnacle's price after 21 of them and Pinnacle moved toward Kalshi's after 24. 20 have settled: 10 won, simulated profit $+2.68 on $734 staked.
 
 ## By league
 
@@ -14,9 +14,9 @@
 
 | League | Prices compared | No real market | Avg gap (Kalshi mid vs fair) | With a 3¢+ edge | Kalshi volume (24h, median) | Bets | Avg closing value | Profit |
 |---|---|---|---|---|---|---|---|---|
-| NCAA | 1244 | 34% | +1.2¢ | 0% | 688 | 1 | +15.7¢ | – |
+| NCAA | 1245 | 34% | +1.2¢ | 0% | 686 | 1 | +15.7¢ | – |
 | NHL | 739 | 0% | +0.9¢ | 2% | 1,772 | 1 | +4.9¢ | – |
-| Japan - B.League One | 653 | 5% | +3.1¢ | 7% | 853 | 2 | -0.5¢ | – |
+| Japan - B.League One | 654 | 5% | +3.1¢ | 7% | 853 | 3 | -0.5¢ | – |
 | ITF Men Santa Cruz - R1 | 554 | 1% | +1.9¢ | 3% | 1,533 | 2 | +3.2¢ | $+24.16 |
 | ITF Men Hradec Kralove - R16 | 481 | 2% | +3.1¢ | 0% | 1,189 | 1 | +0.8¢ | $-0.76 |
 | USA - American Hockey League | 425 | 0% | +0.9¢ | 0% | 0 | 1 | +4.7¢ | $-0.82 |
@@ -71,9 +71,9 @@
 | ATP Challenger Ankara - QF | 92 | 0% | +0.6¢ | 0% | 322 | 0 | – | – |
 | Paraguay - Division Profesional | 87 | 0% | +0.8¢ | 0% | 0 | 0 | – | – |
 | Israel - National League | 84 | 100% | – | 0% | 0 | 0 | – | – |
+| Bolivia - Primera Division | 79 | 0% | +2.1¢ | 1% | 67 | 1 | +0.8¢ | – |
 | Argentina - Primera B Nacional | 78 | 0% | +0.4¢ | 0% | 0 | 0 | – | – |
 | ATP Challenger Yokohama - R16 | 78 | 0% | +0.8¢ | 3% | 380 | 0 | – | – |
-| ATP Challenger Yokohama - QF | 78 | 0% | +0.7¢ | 0% | 318 | 0 | – | – |
 
 ## How fast Kalshi follows Pinnacle (live mode)
 
@@ -99,6 +99,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | Placed (UTC) | Game | Bet | Paid | Fair | Edge | Closing value | Result |
 |---|---|---|---|---|---|---|---|
+| 11-27 11:44 | Yokohama Excellence vs Gifu Swoops (Japan - B.League One) | NO Gifu Swoops | 0.84 | 0.88 | +3.1¢ | – | – |
 | 11-27 09:52 | VVV Venlo vs RKC Waalwijk (Netherlands - Eerste Divisie) | YES Venlo | 0.27 | 0.32 | +3.2¢ | +4.5¢ | – |
 | 11-27 09:10 | Jessika Ponchet vs Greet Minnen (ITF Women Trnava - QF) | NO Jessika Ponchet | 0.67 | 0.74 | +5.6¢ | +7.1¢ | – |
 | 11-27 07:40 | Willian Rejchtman Vinciguerra vs Hitesh Chauhan (ITF Men Bhopal - QF) | NO William Rejchtman Vinciguerra | 0.18 | 0.23 | +3.5¢ | +4.0¢ | lost $-85.65 |
@@ -128,4 +129,3 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 | 11-25 22:35 | Lehigh Valley Phantoms vs Providence Bruins (USA - American Hockey League) | NO Providence Bruins | 0.39 | 0.44 | +3.1¢ | +4.7¢ | lost $-0.82 |
 | 11-25 22:22 | Nikita Ianin vs Grigoriy Lomakin (ITF Men Bhopal - R16) | YES Grigoriy Lomakin | 0.48 | 0.54 | +4.4¢ | +5.8¢ | won $+0.00 |
 | 11-25 21:30 | New York Knicks vs Cleveland Cavaliers (NBA) | NO New York | 0.41 | 0.46 | +3.3¢ | -4.0¢ | lost $-64.04 |
-| 11-25 21:13 | Dane Sweeny vs Hayden Jones (ATP Challenger Playford - R16) | YES Hayden Jones | 0.17 | 0.21 | +3.5¢ | +2.6¢ | lost $+0.00 |
