@@ -1,10 +1,10 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 2286 snapshots from 2026-11-25 16:44 to 2026-11-27 18:41 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 2300 snapshots from 2026-11-25 16:44 to 2026-11-27 18:51 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-20,968 Kalshi prices compared with Pinnacle's. 91% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.2¢ from Pinnacle's fair price on average, and 1.4% could be bought at a 3¢+ edge after fees.
+21,001 Kalshi prices compared with Pinnacle's. 91% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.2¢ from Pinnacle's fair price on average, and 1.4% could be bought at a 3¢+ edge after fees.
 
 41 simulated bets so far; 41 have a closing price. Average edge when placed +4.0¢; average closing value +3.0¢ per contract. Kalshi moved toward Pinnacle's price after 28 of them and Pinnacle moved toward Kalshi's after 30. 26 have settled: 11 won, simulated profit $-72.66 on $959 staked.
 
@@ -14,8 +14,8 @@
 
 | League | Prices compared | No real market | Avg gap (Kalshi mid vs fair) | With a 3¢+ edge | Kalshi volume (24h, median) | Bets | Avg closing value | Profit |
 |---|---|---|---|---|---|---|---|---|
-| NCAA | 1813 | 40% | +1.5¢ | 1% | 279 | 1 | +13.1¢ | – |
-| Japan - B.League One | 1096 | 31% | +2.9¢ | 5% | 17 | 3 | +0.9¢ | $-116.76 |
+| NCAA | 1824 | 41% | +1.5¢ | 1% | 260 | 1 | +13.1¢ | – |
+| Japan - B.League One | 1103 | 31% | +2.9¢ | 5% | 17 | 3 | +0.9¢ | $-116.76 |
 | NHL | 970 | 0% | +0.9¢ | 2% | 2,033 | 1 | +4.4¢ | – |
 | USA - American Hockey League | 593 | 0% | +0.8¢ | 0% | 0 | 1 | +4.7¢ | $-0.82 |
 | ITF Men Santa Cruz - R1 | 554 | 1% | +1.9¢ | 3% | 1,533 | 2 | +3.2¢ | $+24.16 |
@@ -24,7 +24,7 @@
 | Russia - Kontinental Hockey League | 444 | 1% | +0.9¢ | 0% | 3 | 0 | – | – |
 | Netherlands - Eerste Divisie | 329 | 0% | +0.8¢ | 0% | 1 | 1 | +4.5¢ | – |
 | ITF Men Heraklion - R16 | 322 | 4% | +1.4¢ | 1% | 182 | 1 | -4.8¢ | $+0.00 |
-| France - Ligue Magnus | 312 | 39% | +2.2¢ | 11% | 0 | 1 | +3.8¢ | – |
+| France - Ligue Magnus | 314 | 39% | +2.2¢ | 11% | 0 | 1 | +3.8¢ | – |
 | ITF Men Santa Cruz - R16 | 310 | 1% | +1.6¢ | 1% | 245 | 1 | +2.4¢ | – |
 | Finland - SM Liiga | 304 | 1% | +0.8¢ | 0% | 0 | 0 | – | – |
 | ITF Women Florianopolis - R16 | 303 | 4% | +1.8¢ | 5% | 269 | 3 | +3.5¢ | $+55.80 |
@@ -49,12 +49,12 @@
 | Italy - Serie C Group C | 171 | 0% | +0.6¢ | 0% | 1 | 0 | – | – |
 | ITF Men Bhopal - R16 | 171 | 0% | +1.5¢ | 1% | 185 | 1 | +5.8¢ | $+0.00 |
 | ITF Men Bhopal - QF | 170 | 0% | +2.1¢ | 8% | 764 | 2 | +3.1¢ | $-85.65 |
+| Australia - WNBL | 168 | 91% | +2.2¢ | 7% | 110 | 1 | +4.9¢ | – |
 | Turkey - Super League | 165 | 0% | +0.4¢ | 0% | 276 | 0 | – | – |
 | Ecuador - Serie A | 165 | 0% | +0.4¢ | 0% | 50 | 0 | – | – |
 | ITF Women Heraklion 2 - QF | 163 | 0% | +1.3¢ | 1% | 145 | 1 | +0.0¢ | $-0.96 |
 | Poland - Ekstraklasa | 162 | 0% | +0.5¢ | 0% | 1 | 0 | – | – |
 | Colombia - Primera A | 159 | 0% | +0.6¢ | 0% | 742 | 0 | – | – |
-| Australia - WNBL | 157 | 90% | +2.2¢ | 7% | 112 | 1 | +4.9¢ | – |
 | Germany - 3. Liga | 156 | 0% | +0.9¢ | 0% | 0 | 0 | – | – |
 | ITF Women Trnava - QF | 155 | 0% | +2.6¢ | 14% | 202 | 1 | +7.1¢ | $+46.86 |
 | Indonesia - Super League | 153 | 0% | +0.7¢ | 0% | 0 | 0 | – | – |
