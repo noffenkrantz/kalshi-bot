@@ -22711,3 +22711,23 @@
 {"ts":"2026-11-27T20:50:36+00:00","ticker":"KXNCAAWBGAME-26NOV28VILLKSU-VILL","league":"NCAA","fair":0.1587,"bid":0.57,"ask":0.75,"vol24":0}
 {"ts":"2026-11-27T20:51:38+00:00","ticker":"KXWNBLGAME-26NOV272300TOWSYD-SYD","league":"Australia - WNBL","fair":0.2581,"bid":0.13,"ask":0.26,"vol24":53}
 {"ts":"2026-11-27T20:51:38+00:00","ticker":"KXNCAAWBGAME-26NOV28VILLKSU-VILL","league":"NCAA","fair":0.1587,"bid":0.55,"ask":0.74,"vol24":0}
+{"ts":"2026-11-27T20:52:10+00:00","ticker":"KXNCAAWBGAME-26NOV28VILLKSU-VILL","league":"NCAA","fair":0.1587,"bid":0.55,"ask":0.76,"vol24":0}
+{"ts":"2026-11-27T20:52:41+00:00","ticker":"KXWNBLGAME-26NOV272300TOWSYD-SYD","league":"Australia - WNBL","fair":0.2581,"bid":0.13,"ask":0.25,"vol24":53}
+{"ts":"2026-11-27T20:52:41+00:00","ticker":"KXNCAAWBGAME-26NOV28VILLKSU-VILL","league":"NCAA","fair":0.1587,"bid":0.56,"ask":0.74,"vol24":0}
+{"ts":"2026-11-27T20:53:46+00:00","ticker":"KXWNBLGAME-26NOV272300TOWSYD-SYD","league":"Australia - WNBL","fair":0.2581,"bid":0.13,"ask":0.24,"vol24":53}
+{"ts":"2026-11-27T20:53:46+00:00","ticker":"KXNCAAWBGAME-26NOV28VILLKSU-VILL","league":"NCAA","fair":0.1587,"bid":0.57,"ask":0.75,"vol24":0}
+{"ts":"2026-11-27T20:55:19+00:00","ticker":"KXWNBLGAME-26NOV272300TOWSYD-SYD","league":"Australia - WNBL","fair":0.2581,"bid":0.1,"ask":0.24,"vol24":53}
+{"ts":"2026-11-27T20:55:19+00:00","ticker":"KXNCAAWBGAME-26NOV28VILLKSU-VILL","league":"NCAA","fair":0.1587,"bid":0.55,"ask":0.74,"vol24":0}
+{"ts":"2026-11-27T20:56:21+00:00","ticker":"KXWNBLGAME-26NOV272300TOWSYD-SYD","league":"Australia - WNBL","fair":0.2581,"bid":0.1,"ask":0.23,"vol24":53}
+{"ts":"2026-11-27T20:56:21+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.1221,"bid":0.05,"ask":0.13,"vol24":17}
+{"ts":"2026-11-27T20:56:21+00:00","ticker":"KXNCAAWBGAME-26NOV28VILLKSU-VILL","league":"NCAA","fair":0.1587,"bid":0.53,"ask":0.76,"vol24":0}
+{"ts":"2026-11-27T20:56:52+00:00","ticker":"KXNCAAWBGAME-26NOV28VILLKSU-VILL","league":"NCAA","fair":0.1587,"bid":0.56,"ask":0.75,"vol24":0}
+{"ts":"2026-11-27T20:57:24+00:00","ticker":"KXNCAAWBGAME-26NOV28VILLKSU-VILL","league":"NCAA","fair":0.1587,"bid":0.54,"ask":0.75,"vol24":0}
+{"ts":"2026-11-27T20:57:24+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.1221,"bid":0.05,"ask":0.12,"vol24":17}
+{"ts":"2026-11-27T20:57:55+00:00","ticker":"KXNCAAWBGAME-26NOV28VILLKSU-VILL","league":"NCAA","fair":0.1587,"bid":0.55,"ask":0.75,"vol24":0}
+{"ts":"2026-11-27T20:58:26+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.1221,"bid":0.05,"ask":0.13,"vol24":17}
+{"ts":"2026-11-27T20:59:29+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.1221,"bid":0.05,"ask":0.12,"vol24":17}
+{"ts":"2026-11-27T20:59:29+00:00","ticker":"KXNCAAWBGAME-26NOV28VILLKSU-VILL","league":"NCAA","fair":0.1587,"bid":0.56,"ask":0.75,"vol24":0}
+{"ts":"2026-11-27T20:59:57+00:00","ticker":"KXNBAGAME-26NOV27GSWPOR-GSW","league":"NBA","fair":0.2751,"bid":0.27,"ask":0.28,"vol24":362197}
+{"ts":"2026-11-27T20:59:57+00:00","ticker":"KXNCAAWBGAME-26NOV28VILLKSU-VILL","league":"NCAA","fair":0.1587,"bid":0.55,"ask":0.74,"vol24":0}
+{"ts":"2026-11-27T20:59:57+00:00","ticker":"KXNHLGAME-26NOV28EDMSEA-EDM","league":"NHL","fair":0.6507,"bid":0.61,"ask":0.62,"vol24":805}
