@@ -1,10 +1,10 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 1645 snapshots from 2026-11-25 16:44 to 2026-11-27 10:20 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 1656 snapshots from 2026-11-25 16:44 to 2026-11-27 10:31 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-15,559 Kalshi prices compared with Pinnacle's. 94% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 1.5% could be bought at a 3¢+ edge after fees.
+15,570 Kalshi prices compared with Pinnacle's. 94% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 1.5% could be bought at a 3¢+ edge after fees.
 
 33 simulated bets so far; 33 have a closing price. Average edge when placed +4.1¢; average closing value +3.0¢ per contract. Kalshi moved toward Pinnacle's price after 23 of them and Pinnacle moved toward Kalshi's after 24. 19 have settled: 10 won, simulated profit $+88.33 on $649 staked.
 
@@ -14,7 +14,7 @@
 
 | League | Prices compared | No real market | Avg gap (Kalshi mid vs fair) | With a 3¢+ edge | Kalshi volume (24h, median) | Bets | Avg closing value | Profit |
 |---|---|---|---|---|---|---|---|---|
-| NCAA | 1174 | 33% | +1.0¢ | 0% | 807 | 1 | +15.7¢ | – |
+| NCAA | 1185 | 33% | +1.0¢ | 0% | 764 | 1 | +15.7¢ | – |
 | NHL | 705 | 0% | +0.9¢ | 2% | 1,806 | 1 | +4.9¢ | – |
 | Japan - B.League One | 633 | 4% | +3.1¢ | 7% | 853 | 2 | -0.5¢ | – |
 | ITF Men Santa Cruz - R1 | 554 | 1% | +1.9¢ | 3% | 1,533 | 2 | +3.2¢ | $+24.16 |
@@ -81,7 +81,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 193 | 3.3 pts | 3.5¢ | 3.3¢ | 3.1¢ | 3.0¢ | 2.8¢ | 2.8¢ | 16% |
+| All | 195 | 3.3 pts | 3.5¢ | 3.3¢ | 3.1¢ | 3.0¢ | 2.8¢ | 2.8¢ | 16% |
 | Japan - B.League One | 18 | 3.8 pts | 5.7¢ | 5.1¢ | 4.3¢ | 4.2¢ | 4.6¢ | 3.9¢ | 11% |
 | NCAA | 15 | 2.5 pts | 2.1¢ | 2.1¢ | 2.0¢ | 1.9¢ | 1.6¢ | 1.3¢ | 20% |
 | AFC - Champions League 2 | 13 | 3.4 pts | 3.1¢ | 3.2¢ | 6.1¢ | 6.3¢ | 6.5¢ | 6.3¢ | 15% |
