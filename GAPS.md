@@ -1,12 +1,12 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 1839 snapshots from 2026-11-25 16:44 to 2026-11-27 13:24 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 1852 snapshots from 2026-11-25 16:44 to 2026-11-27 13:34 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-17,039 Kalshi prices compared with Pinnacle's. 93% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 1.4% could be bought at a 3¢+ edge after fees.
+17,057 Kalshi prices compared with Pinnacle's. 93% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 1.4% could be bought at a 3¢+ edge after fees.
 
-34 simulated bets so far; 34 have a closing price. Average edge when placed +4.1¢; average closing value +2.9¢ per contract. Kalshi moved toward Pinnacle's price after 22 of them and Pinnacle moved toward Kalshi's after 25. 22 have settled: 11 won, simulated profit $+48.58 on $837 staked.
+34 simulated bets so far; 34 have a closing price. Average edge when placed +4.1¢; average closing value +2.9¢ per contract. Kalshi moved toward Pinnacle's price after 21 of them and Pinnacle moved toward Kalshi's after 25. 22 have settled: 11 won, simulated profit $+48.58 on $837 staked.
 
 ## By league
 
@@ -14,9 +14,9 @@
 
 | League | Prices compared | No real market | Avg gap (Kalshi mid vs fair) | With a 3¢+ edge | Kalshi volume (24h, median) | Bets | Avg closing value | Profit |
 |---|---|---|---|---|---|---|---|---|
-| NCAA | 1326 | 35% | +1.3¢ | 1% | 597 | 1 | +14.8¢ | – |
+| NCAA | 1327 | 35% | +1.3¢ | 1% | 595 | 1 | +14.8¢ | – |
 | NHL | 807 | 0% | +0.9¢ | 2% | 1,761 | 1 | +5.3¢ | – |
-| Japan - B.League One | 795 | 20% | +3.1¢ | 6% | 853 | 3 | +1.0¢ | – |
+| Japan - B.League One | 807 | 21% | +3.1¢ | 6% | 853 | 3 | +1.0¢ | – |
 | ITF Men Santa Cruz - R1 | 554 | 1% | +1.9¢ | 3% | 1,533 | 2 | +3.2¢ | $+24.16 |
 | ITF Men Hradec Kralove - R16 | 481 | 2% | +3.1¢ | 0% | 1,189 | 1 | +0.8¢ | $-0.76 |
 | USA - American Hockey League | 473 | 0% | +0.9¢ | 0% | 0 | 1 | +4.7¢ | $-0.82 |
@@ -69,9 +69,9 @@
 | ATP Challenger Playford - R16 | 100 | 0% | +1.3¢ | 1% | 3,098 | 1 | +2.6¢ | $+0.00 |
 | Paraguay - Division Profesional | 99 | 0% | +0.8¢ | 0% | 0 | 0 | – | – |
 | ATP Challenger Hersonissos - QF | 98 | 0% | +1.0¢ | 0% | 1,095 | 0 | – | – |
+| Bolivia - Primera Division | 96 | 0% | +2.0¢ | 1% | 132 | 1 | +0.7¢ | – |
 | Indonesia - Super League | 93 | 0% | +0.6¢ | 0% | 0 | 0 | – | – |
 | ATP Challenger Ankara - QF | 92 | 0% | +0.6¢ | 0% | 322 | 0 | – | – |
-| Bolivia - Primera Division | 91 | 0% | +2.0¢ | 1% | 118 | 1 | +0.8¢ | – |
 | England - Championship | 90 | 0% | +0.6¢ | 0% | 444 | 0 | – | – |
 | Argentina - Primera B Nacional | 90 | 0% | +0.5¢ | 0% | 0 | 0 | – | – |
 
@@ -81,7 +81,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 206 | 3.3 pts | 3.6¢ | 3.4¢ | 3.2¢ | 3.1¢ | 2.9¢ | 2.9¢ | 16% |
+| All | 209 | 3.3 pts | 3.6¢ | 3.4¢ | 3.2¢ | 3.1¢ | 2.9¢ | 2.9¢ | 16% |
 | Japan - B.League One | 20 | 3.7 pts | 5.4¢ | 4.9¢ | 4.0¢ | 3.8¢ | 4.1¢ | 3.5¢ | 10% |
 | NCAA | 17 | 2.5 pts | 2.0¢ | 2.0¢ | 1.9¢ | 1.8¢ | 1.6¢ | 1.3¢ | 24% |
 | AFC - Champions League 2 | 13 | 3.4 pts | 3.1¢ | 3.2¢ | 6.1¢ | 6.3¢ | 6.5¢ | 6.3¢ | 15% |
@@ -108,7 +108,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 | 11-27 03:50 | Kansas vs Villanova (NCAA) | NO Villanova | 0.71 | 0.87 | +14.2¢ | +14.8¢ | – |
 | 11-27 03:33 | Grenoble vs Anglet Hormadi Elite (France - Ligue Magnus) | YES Anglet Hormadi Elite | 0.09 | 0.13 | +3.2¢ | +3.8¢ | – |
 | 11-27 01:16 | Edmonton Oilers vs Seattle Kraken (NHL) | YES  | 0.61 | 0.66 | +3.5¢ | +5.3¢ | – |
-| 11-27 00:32 | Independiente Petrolero vs Real Oruro (Bolivia - Primera Division) | YES Cdt Real Oruro | 0.19 | 0.24 | +3.6¢ | +0.8¢ | – |
+| 11-27 00:32 | Independiente Petrolero vs Real Oruro (Bolivia - Primera Division) | YES Cdt Real Oruro | 0.19 | 0.24 | +3.6¢ | +0.7¢ | – |
 | 11-26 21:45 | Clara Vlasselaer vs Ekaterina Perelygina (ITF Women Ortisei - SF) | YES Clara Vlasselaer | 0.43 | 0.48 | +3.3¢ | +3.8¢ | – |
 | 11-26 20:33 | Priska Madelyn Nugroho vs Sandeepti Singh Rao (ITF Women Kolkata - QF) | NO Sandeepti Singh Rao | 0.90 | 0.94 | +3.2¢ | +4.4¢ | – |
 | 11-26 20:01 | Rizing Fukuoka vs Koshigaya Alphas (Japan - B.League One) | YES Rizing Zephyr Fukuoka | 0.32 | 0.40 | +6.5¢ | -8.6¢ | – |
