@@ -1,10 +1,10 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 875 snapshots from 2026-11-25 16:44 to 2026-11-27 00:16 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 879 snapshots from 2026-11-25 16:44 to 2026-11-27 00:27 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-9,629 Kalshi prices compared with Pinnacle's. 96% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 1.0% could be bought at a 3¢+ edge after fees.
+9,633 Kalshi prices compared with Pinnacle's. 96% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 1.0% could be bought at a 3¢+ edge after fees.
 
 24 simulated bets so far; 24 have a closing price. Average edge when placed +3.8¢; average closing value +2.1¢ per contract. Kalshi moved toward Pinnacle's price after 17 of them and Pinnacle moved toward Kalshi's after 18. 18 have settled: 9 won, simulated profit $+88.33 on $649 staked.
 
@@ -34,7 +34,7 @@
 | ITF Men Madrid - R16 | 180 | 2% | +1.1¢ | 0% | 5 | 0 | – | – |
 | ITF Men Bhopal - R16 | 171 | 0% | +1.5¢ | 1% | 185 | 1 | +5.8¢ | $+0.00 |
 | Lithuania - National Basketball League | 166 | 13% | +1.1¢ | 0% | 0 | 0 | – | – |
-| Japan - B.League One | 162 | 0% | +2.3¢ | 8% | 803 | 2 | -1.7¢ | – |
+| Japan - B.League One | 164 | 0% | +2.3¢ | 8% | 803 | 2 | -1.7¢ | – |
 | USA - American Hockey League | 151 | 0% | +0.9¢ | 1% | 37 | 1 | +4.7¢ | $-0.82 |
 | ATP Challenger San Salvador - R16 | 150 | 8% | +1.2¢ | 0% | 436 | 0 | – | – |
 | ITF Women Kolkata - R16 | 148 | 0% | +1.5¢ | 0% | 370 | 0 | – | – |
@@ -71,9 +71,9 @@
 | ITF Women Monastir - QF | 44 | 0% | +1.0¢ | 0% | 0 | 0 | – | – |
 | Turkey - Super League | 42 | 0% | +0.5¢ | 0% | 0 | 0 | – | – |
 | Israel - National League | 40 | 100% | – | 0% | 0 | 0 | – | – |
+| ITF Women Kolkata - QF | 40 | 0% | +2.3¢ | 2% | 240 | 1 | +4.8¢ | – |
 | Singapore - Premier League | 39 | 0% | +1.1¢ | 0% | 2 | 0 | – | – |
 | ITF Women Ortisei - SF | 39 | 0% | +1.7¢ | 3% | 0 | 1 | +5.6¢ | – |
-| England - Championship | 39 | 0% | +0.6¢ | 0% | 547 | 0 | – | – |
 
 ## How fast Kalshi follows Pinnacle (live mode)
 
