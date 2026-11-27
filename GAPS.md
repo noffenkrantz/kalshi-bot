@@ -1,10 +1,10 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 901 snapshots from 2026-11-25 16:44 to 2026-11-27 00:52 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 911 snapshots from 2026-11-25 16:44 to 2026-11-27 01:01 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-10,050 Kalshi prices compared with Pinnacle's. 96% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 1.0% could be bought at a 3¢+ edge after fees.
+10,060 Kalshi prices compared with Pinnacle's. 96% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 1.0% could be bought at a 3¢+ edge after fees.
 
 25 simulated bets so far; 25 have a closing price. Average edge when placed +3.8¢; average closing value +2.1¢ per contract. Kalshi moved toward Pinnacle's price after 18 of them and Pinnacle moved toward Kalshi's after 19. 18 have settled: 9 won, simulated profit $+88.33 on $649 staked.
 
@@ -30,8 +30,8 @@
 | NBA | 215 | 0% | +0.8¢ | 4% | 93,788 | 3 | +1.0¢ | $+153.28 |
 | AFC - Champions League 2 | 206 | 1% | +2.2¢ | 6% | 1,278 | 1 | +11.3¢ | $-0.28 |
 | Mexico - Liga MX | 192 | 0% | +0.6¢ | 0% | 21,360 | 0 | – | – |
+| Japan - B.League One | 190 | 0% | +2.6¢ | 7% | 853 | 2 | -1.7¢ | – |
 | ATP Challenger Florianopolis - R16 | 184 | 3% | +1.2¢ | 0% | 159 | 0 | – | – |
-| Japan - B.League One | 182 | 0% | +2.5¢ | 7% | 853 | 2 | -1.7¢ | – |
 | ITF Men Madrid - R16 | 180 | 2% | +1.1¢ | 0% | 5 | 0 | – | – |
 | ITF Men Bhopal - R16 | 171 | 0% | +1.5¢ | 1% | 185 | 1 | +5.8¢ | $+0.00 |
 | USA - American Hockey League | 167 | 0% | +0.9¢ | 1% | 36 | 1 | +4.7¢ | $-0.82 |
