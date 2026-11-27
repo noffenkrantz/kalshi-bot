@@ -1,10 +1,10 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 1355 snapshots from 2026-11-25 16:44 to 2026-11-27 07:11 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 1369 snapshots from 2026-11-25 16:44 to 2026-11-27 07:21 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-13,724 Kalshi prices compared with Pinnacle's. 95% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
+13,743 Kalshi prices compared with Pinnacle's. 95% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
 
 30 simulated bets so far; 30 have a closing price. Average edge when placed +4.1¢; average closing value +2.8¢ per contract. Kalshi moved toward Pinnacle's price after 19 of them and Pinnacle moved toward Kalshi's after 23. 18 have settled: 9 won, simulated profit $+88.33 on $649 staked.
 
@@ -14,11 +14,11 @@
 
 | League | Prices compared | No real market | Avg gap (Kalshi mid vs fair) | With a 3¢+ edge | Kalshi volume (24h, median) | Bets | Avg closing value | Profit |
 |---|---|---|---|---|---|---|---|---|
-| NCAA | 904 | 19% | +1.0¢ | 0% | 1,481 | 1 | +15.7¢ | – |
+| NCAA | 915 | 20% | +1.0¢ | 0% | 1,401 | 1 | +15.7¢ | – |
 | NHL | 601 | 0% | +0.8¢ | 2% | 1,948 | 1 | +4.9¢ | – |
 | ITF Men Santa Cruz - R1 | 554 | 1% | +1.9¢ | 3% | 1,533 | 2 | +3.2¢ | $+24.16 |
 | ITF Men Hradec Kralove - R16 | 481 | 2% | +3.1¢ | 0% | 1,189 | 1 | +0.8¢ | $-0.76 |
-| Japan - B.League One | 458 | 1% | +3.4¢ | 7% | 853 | 2 | +1.0¢ | – |
+| Japan - B.League One | 462 | 1% | +3.4¢ | 7% | 853 | 2 | -0.1¢ | – |
 | Russia - Kontinental Hockey League | 344 | 1% | +0.9¢ | 0% | 0 | 0 | – | – |
 | USA - American Hockey League | 329 | 0% | +0.9¢ | 0% | 5 | 1 | +4.7¢ | $-0.82 |
 | NBA | 325 | 0% | +0.8¢ | 2% | 62,507 | 3 | +1.0¢ | $+153.28 |
@@ -34,7 +34,7 @@
 | Finland - SM Liiga | 208 | 1% | +0.9¢ | 0% | 0 | 0 | – | – |
 | AFC - Champions League 2 | 206 | 1% | +2.2¢ | 6% | 1,278 | 1 | +11.3¢ | $-0.28 |
 | Mexico - Liga MX | 201 | 0% | +0.6¢ | 0% | 23,782 | 0 | – | – |
-| ITF Men Hradec Kralove - QF | 196 | 0% | +1.5¢ | 1% | 166 | 1 | -5.1¢ | – |
+| ITF Men Hradec Kralove - QF | 198 | 0% | +1.5¢ | 1% | 166 | 1 | -5.1¢ | – |
 | ATP Challenger Florianopolis - R16 | 184 | 3% | +1.2¢ | 0% | 159 | 0 | – | – |
 | ITF Men Madrid - R16 | 180 | 2% | +1.1¢ | 0% | 5 | 0 | – | – |
 | ITF Men Bhopal - R16 | 171 | 0% | +1.5¢ | 1% | 185 | 1 | +5.8¢ | $+0.00 |
@@ -46,7 +46,7 @@
 | ATP Challenger San Salvador - R16 | 150 | 8% | +1.2¢ | 0% | 436 | 0 | – | – |
 | ITF Women Kolkata - R16 | 148 | 0% | +1.5¢ | 0% | 370 | 0 | – | – |
 | ITF Women Kolkata - QF | 141 | 0% | +2.7¢ | 8% | 3,864 | 1 | +4.4¢ | – |
-| ITF Women Heraklion 2 - QF | 138 | 0% | +1.3¢ | 1% | 115 | 1 | -0.2¢ | – |
+| ITF Women Heraklion 2 - QF | 140 | 0% | +1.3¢ | 1% | 118 | 1 | -0.2¢ | – |
 | ITF Men Heraklion - QF | 134 | 0% | +1.1¢ | 0% | 166 | 0 | – | – |
 | Czech Republic - FNL | 132 | 0% | +1.0¢ | 0% | 0 | 0 | – | – |
 | ITF Women Playford - R16 | 120 | 0% | +0.8¢ | 0% | 64 | 0 | – | – |
@@ -107,7 +107,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 | 11-27 00:32 | Independiente Petrolero vs Real Oruro (Bolivia - Primera Division) | YES Cdt Real Oruro | 0.19 | 0.24 | +3.6¢ | +0.9¢ | – |
 | 11-26 21:45 | Clara Vlasselaer vs Ekaterina Perelygina (ITF Women Ortisei - SF) | YES Clara Vlasselaer | 0.43 | 0.48 | +3.3¢ | +5.5¢ | – |
 | 11-26 20:33 | Priska Madelyn Nugroho vs Sandeepti Singh Rao (ITF Women Kolkata - QF) | NO Sandeepti Singh Rao | 0.90 | 0.94 | +3.2¢ | +4.4¢ | – |
-| 11-26 20:01 | Rizing Fukuoka vs Koshigaya Alphas (Japan - B.League One) | YES Rizing Zephyr Fukuoka | 0.32 | 0.40 | +6.5¢ | -1.0¢ | – |
+| 11-26 20:01 | Rizing Fukuoka vs Koshigaya Alphas (Japan - B.League One) | YES Rizing Zephyr Fukuoka | 0.32 | 0.40 | +6.5¢ | -3.1¢ | – |
 | 11-26 19:47 | Miriam Bulgaru vs Maria Eduarda Carbone Dos Santos (ITF Women Florianopolis - R16) | NO Maria Eduarda Carbone dos Santos | 0.92 | 0.96 | +3.1¢ | +3.5¢ | won $+4.79 |
 | 11-26 19:41 | Bastian Malla vs Felipe De Dios (ITF Men Santa Cruz - R1) | NO Felipe De Dios | 0.70 | 0.75 | +3.3¢ | +3.3¢ | won $+27.95 |
 | 11-26 18:45 | Petr Michnev vs Karl Friberg (ITF Men Hradec Kralove - QF) | YES Petr Michnev | 0.51 | 0.56 | +3.6¢ | -5.1¢ | – |
