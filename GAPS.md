@@ -1,10 +1,10 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 1206 snapshots from 2026-11-25 16:44 to 2026-11-27 05:09 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 1213 snapshots from 2026-11-25 16:44 to 2026-11-27 05:21 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-12,605 Kalshi prices compared with Pinnacle's. 96% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
+12,613 Kalshi prices compared with Pinnacle's. 96% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
 
 29 simulated bets so far; 29 have a closing price. Average edge when placed +4.1¢; average closing value +2.7¢ per contract. Kalshi moved toward Pinnacle's price after 17 of them and Pinnacle moved toward Kalshi's after 21. 18 have settled: 9 won, simulated profit $+88.33 on $649 staked.
 
@@ -14,7 +14,7 @@
 
 | League | Prices compared | No real market | Avg gap (Kalshi mid vs fair) | With a 3¢+ edge | Kalshi volume (24h, median) | Bets | Avg closing value | Profit |
 |---|---|---|---|---|---|---|---|---|
-| NCAA | 768 | 10% | +1.0¢ | 0% | 2,191 | 1 | +15.7¢ | – |
+| NCAA | 774 | 10% | +1.0¢ | 0% | 2,185 | 1 | +15.7¢ | – |
 | ITF Men Santa Cruz - R1 | 554 | 1% | +1.9¢ | 3% | 1,533 | 2 | +3.2¢ | $+24.16 |
 | NHL | 530 | 0% | +0.8¢ | 2% | 2,156 | 1 | +5.2¢ | – |
 | ITF Men Hradec Kralove - R16 | 481 | 2% | +3.1¢ | 0% | 1,189 | 1 | +0.8¢ | $-0.76 |
@@ -40,8 +40,8 @@
 | ITF Men Hradec Kralove - QF | 170 | 0% | +1.3¢ | 1% | 166 | 1 | -5.3¢ | – |
 | Lithuania - National Basketball League | 166 | 13% | +1.1¢ | 0% | 0 | 0 | – | – |
 | ATP Challenger San Salvador - R16 | 150 | 8% | +1.2¢ | 0% | 436 | 0 | – | – |
+| ITF Men Bhopal - QF | 149 | 0% | +2.0¢ | 5% | 625 | 1 | +2.3¢ | – |
 | ITF Women Kolkata - R16 | 148 | 0% | +1.5¢ | 0% | 370 | 0 | – | – |
-| ITF Men Bhopal - QF | 147 | 0% | +1.9¢ | 5% | 620 | 1 | +2.3¢ | – |
 | Germany - DEL | 142 | 6% | +0.9¢ | 0% | 0 | 0 | – | – |
 | ITF Women Kolkata - QF | 141 | 0% | +2.7¢ | 8% | 3,864 | 1 | +4.4¢ | – |
 | Czech Republic - Extraliga | 136 | 10% | +1.8¢ | 0% | 0 | 0 | – | – |
