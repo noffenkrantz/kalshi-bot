@@ -1,12 +1,12 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 2679 snapshots from 2026-11-25 16:44 to 2026-11-27 23:37 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 2680 snapshots from 2026-11-25 16:44 to 2026-11-27 23:46 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-24,983 Kalshi prices compared with Pinnacle's. 91% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.2¢ from Pinnacle's fair price on average, and 1.2% could be bought at a 3¢+ edge after fees.
+24,984 Kalshi prices compared with Pinnacle's. 91% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.2¢ from Pinnacle's fair price on average, and 1.2% could be bought at a 3¢+ edge after fees.
 
-42 simulated bets so far; 42 have a closing price. Average edge when placed +4.0¢; average closing value +3.3¢ per contract. Kalshi moved toward Pinnacle's price after 30 of them and Pinnacle moved toward Kalshi's after 30. 33 have settled: 14 won, simulated profit $-138.67 on $1,046 staked.
+42 simulated bets so far; 42 have a closing price. Average edge when placed +4.0¢; average closing value +3.2¢ per contract. Kalshi moved toward Pinnacle's price after 30 of them and Pinnacle moved toward Kalshi's after 30. 33 have settled: 14 won, simulated profit $-138.67 on $1,046 staked.
 
 ## By league
 
@@ -18,7 +18,7 @@
 | Japan - B.League One | 1371 | 28% | +3.0¢ | 4% | 17 | 4 | +2.0¢ | $-116.76 |
 | NHL | 1055 | 0% | +1.0¢ | 1% | 2,090 | 1 | +4.8¢ | – |
 | USA - American Hockey League | 703 | 0% | +0.8¢ | 0% | 0 | 1 | +4.7¢ | $-0.82 |
-| NBA | 685 | 0% | +0.7¢ | 1% | 54,448 | 4 | +1.2¢ | $+153.28 |
+| NBA | 686 | 0% | +0.7¢ | 1% | 54,474 | 4 | +1.1¢ | $+153.28 |
 | ITF Men Santa Cruz - R1 | 554 | 1% | +1.9¢ | 3% | 1,533 | 2 | +3.2¢ | $+24.16 |
 | Russia - Kontinental Hockey League | 484 | 1% | +0.8¢ | 0% | 3 | 0 | – | – |
 | ITF Men Hradec Kralove - R16 | 481 | 2% | +3.1¢ | 0% | 1,189 | 1 | +0.8¢ | $-0.76 |
@@ -81,7 +81,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 320 | 3.2 pts | 3.3¢ | 3.0¢ | 2.8¢ | 2.6¢ | 2.4¢ | 2.4¢ | 18% |
+| All | 321 | 3.2 pts | 3.3¢ | 3.0¢ | 2.8¢ | 2.6¢ | 2.4¢ | 2.4¢ | 18% |
 | NCAA | 37 | 2.6 pts | 2.0¢ | 2.0¢ | 1.9¢ | 1.8¢ | 1.5¢ | 1.2¢ | 19% |
 | Japan - B.League One | 23 | 3.7 pts | 5.4¢ | 5.0¢ | 4.2¢ | 4.0¢ | 4.3¢ | 3.9¢ | 13% |
 | Bolivia - Primera Division | 14 | 3.6 pts | 3.4¢ | 2.4¢ | 2.2¢ | 2.0¢ | 2.2¢ | 2.1¢ | 7% |
@@ -100,7 +100,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 | Placed (UTC) | Game | Bet | Paid | Fair | Edge | Closing value | Result |
 |---|---|---|---|---|---|---|---|
 | 11-27 19:21 | Veltex Shizuoka vs Fukui Blowwinds (Japan - B.League One) | YES Veltex Shizuoka | 0.55 | 0.60 | +3.1¢ | +5.3¢ | – |
-| 11-27 18:29 | Portland Trail Blazers vs Golden State Warriors (NBA) | NO Golden State | 0.72 | 0.78 | +4.2¢ | +2.0¢ | – |
+| 11-27 18:29 | Portland Trail Blazers vs Golden State Warriors (NBA) | NO Golden State | 0.72 | 0.78 | +4.2¢ | +1.3¢ | – |
 | 11-27 18:19 | Augsburger Panther vs Eisbaren Berlin (Germany - DEL) | NO Eisbären Berlin | 0.37 | 0.43 | +3.9¢ | +6.1¢ | lost $+0.00 |
 | 11-27 17:19 | Sydney Uni Flames vs Townsville Fire (Australia - WNBL) | YES Sydney Uni Flames | 0.21 | 0.26 | +3.7¢ | +4.0¢ | – |
 | 11-27 17:17 | Stellenbosch vs TS Galaxy (South Africa - PSL) | YES Stellenbosch | 0.51 | 0.56 | +3.1¢ | +3.5¢ | won $+0.47 |
