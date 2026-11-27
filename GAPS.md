@@ -1,12 +1,12 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 938 snapshots from 2026-11-25 16:44 to 2026-11-27 01:26 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 950 snapshots from 2026-11-25 16:44 to 2026-11-27 01:37 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-10,089 Kalshi prices compared with Pinnacle's. 96% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 1.0% could be bought at a 3¢+ edge after fees.
+10,103 Kalshi prices compared with Pinnacle's. 96% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 1.0% could be bought at a 3¢+ edge after fees.
 
-26 simulated bets so far; 25 have a closing price. Average edge when placed +3.8¢; average closing value +2.1¢ per contract. Kalshi moved toward Pinnacle's price after 18 of them and Pinnacle moved toward Kalshi's after 19. 18 have settled: 9 won, simulated profit $+88.33 on $649 staked.
+26 simulated bets so far; 25 have a closing price. Average edge when placed +3.8¢; average closing value +2.1¢ per contract. Kalshi moved toward Pinnacle's price after 17 of them and Pinnacle moved toward Kalshi's after 19. 18 have settled: 9 won, simulated profit $+88.33 on $649 staked.
 
 ## By league
 
@@ -27,7 +27,7 @@
 | ITF Men Monastir 2 - R16 | 250 | 5% | +1.5¢ | 0% | 195 | 0 | – | – |
 | ITF Women Lousada - R16 | 244 | 3% | +1.4¢ | 0% | 65 | 0 | – | – |
 | ITF Women Monastir - R16 | 241 | 8% | +1.7¢ | 0% | 0 | 1 | +1.3¢ | $-11.82 |
-| Japan - B.League One | 216 | 0% | +2.8¢ | 6% | 853 | 2 | -1.7¢ | – |
+| Japan - B.League One | 227 | 0% | +2.9¢ | 6% | 853 | 2 | -1.7¢ | – |
 | NBA | 215 | 0% | +0.8¢ | 4% | 93,788 | 3 | +1.0¢ | $+153.28 |
 | AFC - Champions League 2 | 206 | 1% | +2.2¢ | 6% | 1,278 | 1 | +11.3¢ | $-0.28 |
 | Mexico - Liga MX | 192 | 0% | +0.6¢ | 0% | 21,360 | 0 | – | – |
@@ -71,8 +71,8 @@
 | ITF Women Kolkata - QF | 48 | 0% | +2.2¢ | 2% | 258 | 1 | +4.8¢ | – |
 | Bosnia and Herzegovina - Prvenstvo BIH | 46 | 78% | +2.4¢ | 0% | 0 | 0 | – | – |
 | Indonesia - Super League | 45 | 0% | +0.5¢ | 0% | 93 | 0 | – | – |
+| ITF Women Ortisei - SF | 45 | 0% | +1.7¢ | 2% | 0 | 1 | +5.6¢ | – |
 | Israel - National League | 44 | 100% | – | 0% | 0 | 0 | – | – |
-| ITF Women Ortisei - SF | 43 | 0% | +1.7¢ | 2% | 0 | 1 | +5.6¢ | – |
 | Singapore - Premier League | 42 | 0% | +1.1¢ | 0% | 8 | 0 | – | – |
 
 ## How fast Kalshi follows Pinnacle (live mode)
