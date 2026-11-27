@@ -1,10 +1,10 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 1014 snapshots from 2026-11-25 16:44 to 2026-11-27 02:28 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 1030 snapshots from 2026-11-25 16:44 to 2026-11-27 02:39 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-11,042 Kalshi prices compared with Pinnacle's. 96% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 0.9% could be bought at a 3¢+ edge after fees.
+11,062 Kalshi prices compared with Pinnacle's. 96% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.3¢ from Pinnacle's fair price on average, and 0.9% could be bought at a 3¢+ edge after fees.
 
 26 simulated bets so far; 26 have a closing price. Average edge when placed +3.8¢; average closing value +2.2¢ per contract. Kalshi moved toward Pinnacle's price after 17 of them and Pinnacle moved toward Kalshi's after 19. 18 have settled: 9 won, simulated profit $+88.33 on $649 staked.
 
@@ -20,9 +20,9 @@
 | NHL | 426 | 0% | +0.7¢ | 1% | 2,745 | 1 | +5.2¢ | – |
 | ITF Men Heraklion - R16 | 322 | 4% | +1.4¢ | 1% | 182 | 1 | -4.8¢ | $+0.00 |
 | Russia - Kontinental Hockey League | 314 | 1% | +0.8¢ | 0% | 0 | 0 | – | – |
+| Japan - B.League One | 303 | 0% | +3.3¢ | 4% | 853 | 2 | -1.7¢ | – |
 | ITF Women Florianopolis - R16 | 303 | 4% | +1.8¢ | 5% | 269 | 3 | +3.5¢ | $+55.80 |
 | ITF Women Trnava - R16 | 289 | 4% | +1.2¢ | 0% | 23 | 1 | +3.2¢ | $-102.76 |
-| Japan - B.League One | 287 | 0% | +3.2¢ | 5% | 853 | 2 | -1.7¢ | – |
 | ITF Women Heraklion 2 - R16 | 263 | 6% | +1.7¢ | 4% | 420 | 1 | -0.9¢ | $-28.47 |
 | Sweden - SHL | 250 | 0% | +1.1¢ | 0% | 0 | 1 | +3.8¢ | $+0.00 |
 | ITF Men Monastir 2 - R16 | 250 | 5% | +1.5¢ | 0% | 195 | 0 | – | – |
@@ -52,7 +52,7 @@
 | Czech Republic - FNL | 96 | 0% | +1.0¢ | 0% | 0 | 0 | – | – |
 | ITF Men Heraklion - QF | 94 | 0% | +1.2¢ | 0% | 70 | 0 | – | – |
 | ITF Women Heraklion 2 - QF | 91 | 0% | +1.5¢ | 1% | 14 | 1 | +1.1¢ | – |
-| ITF Women Kolkata - QF | 84 | 0% | +2.2¢ | 1% | 1,230 | 1 | +4.8¢ | – |
+| ITF Women Kolkata - QF | 87 | 0% | +2.3¢ | 1% | 1,315 | 1 | +4.8¢ | – |
 | ITF Men Bhopal - QF | 80 | 0% | +0.8¢ | 0% | 456 | 0 | – | – |
 | ATP Challenger Yokohama - R16 | 78 | 0% | +0.8¢ | 3% | 380 | 0 | – | – |
 | ITF Men Monastir 2 - QF | 76 | 0% | +1.5¢ | 0% | 0 | 0 | – | – |
