@@ -27,3 +27,5 @@
 {"ts":"2026-11-27T19:09:53+00:00","ticker":"KXSRBSLGAME-26NOV27IMTMAC-IMT","result":"yes"}
 {"ts":"2026-11-27T20:40:12+00:00","ticker":"KXITFWMATCH-26NOV27SEMSTR-STR","result":"yes"}
 {"ts":"2026-11-27T20:40:12+00:00","ticker":"KXSAPSLGAME-26NOV27STLTSG-STL","result":"yes"}
+{"ts":"2026-11-27T21:40:15+00:00","ticker":"KXDELGAME-26NOV271330EISAUG-EIS","result":"yes"}
+{"ts":"2026-11-27T21:40:15+00:00","ticker":"KXITFMATCH-26NOV27CIAMON-CIA","result":"no"}
