@@ -34241,3 +34241,5 @@
 {"ts":"2026-11-28T10:27:19+00:00","ticker":"KXWNBLGAME-26NOV282100BENSOU-BEN","league":"Australia - WNBL","fair":0.8085,"bid":0.78,"ask":0.93,"vol24":160}
 {"ts":"2026-11-28T10:27:19+00:00","ticker":"KXWNBLGAME-26NOV282300CANTAS-TAS","league":"Australia - WNBL","fair":0.6107,"bid":0.1,"ask":0.92,"vol24":0}
 {"ts":"2026-11-28T10:27:19+00:00","ticker":"KXWNBLGAME-26NOV282300CANTAS-CAN","league":"Australia - WNBL","fair":0.3893,"bid":0.08,"ask":0.92,"vol24":0}
+{"ts":"2026-11-28T10:36:22+00:00","ticker":"KXAHLGAME-26NOV281900ROCMIL-MIL","league":"USA - American Hockey League","fair":0.5681,"bid":0.55,"ask":0.6,"vol24":20}
+{"ts":"2026-11-28T10:37:25+00:00","ticker":"KXITFMATCH-26NOV28PARFRI-FRI","league":"ITF Men Hradec Kralove - SF","fair":0.6107,"bid":0.62,"ask":0.63,"vol24":5562}
