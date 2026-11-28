@@ -25704,3 +25704,8 @@
 {"ts":"2026-11-28T00:30:06+00:00","ticker":"KXNBAGAME-26NOV27GSWPOR-GSW","league":"NBA","fair":0.2596,"bid":0.26,"ask":0.27,"vol24":406892}
 {"ts":"2026-11-28T00:30:06+00:00","ticker":"KXNHLGAME-26NOV28EDMSEA-EDM","league":"NHL","fair":0.6495,"bid":0.61,"ask":0.62,"vol24":911}
 {"ts":"2026-11-28T00:31:18+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.1221,"bid":0.05,"ask":0.1,"vol24":20}
+{"ts":"2026-11-28T00:37:28+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.1221,"bid":0.05,"ask":0.11,"vol24":20}
+{"ts":"2026-11-28T00:38:29+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.1221,"bid":0.05,"ask":0.1,"vol24":20}
+{"ts":"2026-11-28T00:39:00+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.1221,"bid":0.05,"ask":0.09,"vol24":20}
+{"ts":"2026-11-28T00:39:31+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.1221,"bid":0.05,"ask":0.11,"vol24":20}
+{"ts":"2026-11-28T00:40:32+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.1221,"bid":0.05,"ask":0.1,"vol24":20}
