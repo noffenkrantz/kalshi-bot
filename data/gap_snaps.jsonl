@@ -41090,3 +41090,25 @@
 {"ts":"2026-11-28T19:20:29+00:00","ticker":"KXAHLGAME-26NOV281400BELMAN-BEL","league":"USA - American Hockey League","fair":0.4882,"bid":0.43,"ask":0.45,"vol24":0}
 {"ts":"2026-11-28T19:21:32+00:00","ticker":"KXITFMATCH-26NOV28DELROC-ROC","league":"ITF Men Santa Cruz - SF","fair":0.1089,"bid":0.15,"ask":0.17,"vol24":12373}
 {"ts":"2026-11-28T19:21:32+00:00","ticker":"KXWNBLGAME-26NOV282300CANTAS-TAS","league":"Australia - WNBL","fair":0.6361,"bid":0.37,"ask":0.58,"vol24":24}
+{"ts":"2026-11-28T19:22:04+00:00","ticker":"KXWNBLGAME-26NOV282300CANTAS-TAS","league":"Australia - WNBL","fair":0.6361,"bid":0.29,"ask":0.65,"vol24":24}
+{"ts":"2026-11-28T19:22:04+00:00","ticker":"KXITFMATCH-26NOV28DELROC-ROC","league":"ITF Men Santa Cruz - SF","fair":0.1089,"bid":0.14,"ask":0.16,"vol24":12373}
+{"ts":"2026-11-28T19:23:04+00:00","ticker":"KXWNBLGAME-26NOV282300CANTAS-TAS","league":"Australia - WNBL","fair":0.6361,"bid":0.3,"ask":0.65,"vol24":24}
+{"ts":"2026-11-28T19:24:05+00:00","ticker":"KXWNBLGAME-26NOV282300CANTAS-TAS","league":"Australia - WNBL","fair":0.6361,"bid":0.3,"ask":0.64,"vol24":24}
+{"ts":"2026-11-28T19:24:36+00:00","ticker":"KXWNBLGAME-26NOV282300CANTAS-TAS","league":"Australia - WNBL","fair":0.6361,"bid":0.31,"ask":0.63,"vol24":24}
+{"ts":"2026-11-28T19:24:36+00:00","ticker":"KXAHLGAME-26NOV281400BELMAN-BEL","league":"USA - American Hockey League","fair":0.4882,"bid":0.44,"ask":0.48,"vol24":0}
+{"ts":"2026-11-28T19:24:36+00:00","ticker":"KXITFMATCH-26NOV28DELROC-ROC","league":"ITF Men Santa Cruz - SF","fair":0.1089,"bid":0.14,"ask":0.15,"vol24":12373}
+{"ts":"2026-11-28T19:26:09+00:00","ticker":"KXWNBLGAME-26NOV282300CANTAS-TAS","league":"Australia - WNBL","fair":0.6361,"bid":0.32,"ask":0.63,"vol24":24}
+{"ts":"2026-11-28T19:26:41+00:00","ticker":"KXWNBLGAME-26NOV282300CANTAS-TAS","league":"Australia - WNBL","fair":0.6361,"bid":0.33,"ask":0.62,"vol24":24}
+{"ts":"2026-11-28T19:27:12+00:00","ticker":"KXWNBLGAME-26NOV282300CANTAS-TAS","league":"Australia - WNBL","fair":0.6361,"bid":0.33,"ask":0.61,"vol24":24}
+{"ts":"2026-11-28T19:28:13+00:00","ticker":"KXAHLGAME-26NOV281400BELMAN-BEL","league":"USA - American Hockey League","fair":0.487,"bid":0.35,"ask":0.46,"vol24":0}
+{"ts":"2026-11-28T19:28:43+00:00","ticker":"KXWNBLGAME-26NOV282300CANTAS-TAS","league":"Australia - WNBL","fair":0.6361,"bid":0.34,"ask":0.6,"vol24":24}
+{"ts":"2026-11-28T19:28:43+00:00","ticker":"KXAHLGAME-26NOV281400BELMAN-BEL","league":"USA - American Hockey League","fair":0.487,"bid":0.36,"ask":0.44,"vol24":0}
+{"ts":"2026-11-28T19:29:45+00:00","ticker":"KXWNBLGAME-26NOV282300CANTAS-TAS","league":"Australia - WNBL","fair":0.6361,"bid":0.35,"ask":0.59,"vol24":24}
+{"ts":"2026-11-28T19:30:09+00:00","ticker":"KXAPFDDHGAME-26NOV28TRIREC-REC","league":"Paraguay - Division Profesional","fair":0.1279,"bid":0.1,"ask":0.11,"vol24":123783}
+{"ts":"2026-11-28T19:30:16+00:00","ticker":"KXWNBLGAME-26NOV282300CANTAS-TAS","league":"Australia - WNBL","fair":0.6361,"bid":0.36,"ask":0.59,"vol24":24}
+{"ts":"2026-11-28T19:30:16+00:00","ticker":"KXAHLGAME-26NOV281400BELMAN-BEL","league":"USA - American Hockey League","fair":0.487,"bid":0.37,"ask":0.44,"vol24":0}
+{"ts":"2026-11-28T19:30:16+00:00","ticker":"KXITFMATCH-26NOV28DELROC-ROC","league":"ITF Men Santa Cruz - SF","fair":0.1089,"bid":0.14,"ask":0.16,"vol24":12373}
+{"ts":"2026-11-28T19:30:18+00:00","ticker":"KXAPFDDHGAME-26NOV28TRIREC-REC","league":"Paraguay - Division Profesional","fair":0.1339,"bid":0.1,"ask":0.11,"vol24":123783}
+{"ts":"2026-11-28T19:30:45+00:00","ticker":"KXAPFDDHGAME-26NOV28TRIREC-REC","league":"Paraguay - Division Profesional","fair":0.1363,"bid":0.1,"ask":0.11,"vol24":123783}
+{"ts":"2026-11-28T19:30:47+00:00","ticker":"KXWNBLGAME-26NOV282300CANTAS-TAS","league":"Australia - WNBL","fair":0.6361,"bid":0.36,"ask":0.58,"vol24":24}
+{"ts":"2026-11-28T19:30:47+00:00","ticker":"KXNBAGAME-26NOV28OKCMIL-MIL","league":"NBA","fair":0.1927,"bid":0.14,"ask":0.15,"vol24":63379}

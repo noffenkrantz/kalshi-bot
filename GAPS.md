@@ -1,12 +1,12 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 3668 snapshots from 2026-11-25 16:44 to 2026-11-28 19:21 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 3683 snapshots from 2026-11-25 16:44 to 2026-11-28 19:30 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-41,092 Kalshi prices compared with Pinnacle's. 93% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.0¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
+41,114 Kalshi prices compared with Pinnacle's. 93% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.0¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
 
-59 simulated bets so far; 58 have a closing price. Average edge when placed +4.0¢; average closing value +3.7¢ per contract. Kalshi moved toward Pinnacle's price after 44 of them and Pinnacle moved toward Kalshi's after 39. 47 have settled: 21 won, simulated profit $+15.50 on $1,294 staked.
+60 simulated bets so far; 59 have a closing price. Average edge when placed +4.0¢; average closing value +3.7¢ per contract. Kalshi moved toward Pinnacle's price after 44 of them and Pinnacle moved toward Kalshi's after 38. 47 have settled: 21 won, simulated profit $+15.50 on $1,294 staked.
 
 ## By league
 
@@ -16,15 +16,15 @@
 |---|---|---|---|---|---|---|---|---|
 | NCAA | 2951 | 32% | +1.4¢ | 1% | 286 | 2 | +9.0¢ | – |
 | Japan - B.League One | 1948 | 34% | +2.9¢ | 4% | 17 | 8 | +4.3¢ | $-85.25 |
-| USA - American Hockey League | 1543 | 2% | +0.7¢ | 0% | 5 | 3 | +5.0¢ | $-0.82 |
+| USA - American Hockey League | 1547 | 2% | +0.8¢ | 0% | 5 | 3 | +4.9¢ | $-0.82 |
 | NHL | 1508 | 0% | +0.9¢ | 1% | 1,932 | 1 | +4.1¢ | – |
-| NBA | 904 | 0% | +0.7¢ | 1% | 47,556 | 4 | +1.2¢ | $+153.28 |
+| NBA | 905 | 0% | +0.7¢ | 1% | 47,648 | 5 | +1.2¢ | $+153.28 |
 | England - League 2 | 870 | 0% | +0.5¢ | 0% | 0 | 0 | – | – |
 | England - National League | 867 | 0% | +0.6¢ | 0% | 0 | 1 | +8.1¢ | – |
 | England - League 1 | 798 | 0% | +0.5¢ | 0% | 1 | 0 | – | – |
 | England - Championship | 780 | 0% | +0.6¢ | 0% | 330 | 0 | – | – |
 | Russia - Kontinental Hockey League | 632 | 1% | +0.8¢ | 0% | 3 | 0 | – | – |
-| Australia - WNBL | 601 | 73% | +2.0¢ | 2% | 24 | 2 | +2.2¢ | $-0.45 |
+| Australia - WNBL | 612 | 73% | +2.0¢ | 2% | 24 | 2 | +2.2¢ | $-0.45 |
 | Finland - SM Liiga | 576 | 5% | +0.9¢ | 0% | 0 | 0 | – | – |
 | ITF Men Santa Cruz - R1 | 554 | 1% | +1.9¢ | 3% | 1,533 | 2 | +3.2¢ | $+24.16 |
 | Sweden - SHL | 538 | 3% | +0.9¢ | 0% | 0 | 1 | +3.8¢ | $+0.00 |
@@ -70,7 +70,7 @@
 | Czech Republic - First Liga | 279 | 0% | +0.4¢ | 0% | 0 | 0 | – | – |
 | ITF Women Heraklion 2 - R16 | 263 | 6% | +1.7¢ | 4% | 420 | 1 | -0.9¢ | $-28.47 |
 | ITF Men Hradec Kralove - QF | 260 | 0% | +2.6¢ | 10% | 166 | 1 | -4.6¢ | $+0.00 |
-| Paraguay - Division Profesional | 256 | 0% | +1.8¢ | 15% | 232 | 1 | +3.4¢ | – |
+| Paraguay - Division Profesional | 259 | 0% | +1.8¢ | 15% | 244 | 1 | +4.6¢ | – |
 | Colombia - Primera A | 255 | 0% | +0.6¢ | 0% | 736 | 0 | – | – |
 | Bulgaria - First League | 252 | 0% | +0.6¢ | 0% | 0 | 0 | – | – |
 | ITF Men Monastir 2 - R16 | 250 | 5% | +1.5¢ | 0% | 195 | 0 | – | – |
@@ -81,12 +81,12 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 518 | 3.0 pts | 3.0¢ | 2.8¢ | 2.5¢ | 2.3¢ | 2.2¢ | 2.3¢ | 21% |
+| All | 520 | 3.0 pts | 3.0¢ | 2.8¢ | 2.5¢ | 2.3¢ | 2.2¢ | 2.3¢ | 21% |
 | NCAA | 60 | 2.6 pts | 2.0¢ | 2.0¢ | 1.8¢ | 1.7¢ | 1.5¢ | 1.2¢ | 17% |
 | Japan - B.League One | 38 | 3.4 pts | 5.8¢ | 5.5¢ | 5.0¢ | 4.8¢ | 4.9¢ | 4.9¢ | 11% |
 | Bolivia - Primera Division | 31 | 3.8 pts | 3.7¢ | 3.1¢ | 2.6¢ | 2.6¢ | 2.5¢ | 2.2¢ | 16% |
 | Finland - SM Liiga | 27 | 2.9 pts | 2.4¢ | 2.2¢ | 1.8¢ | 1.7¢ | 1.2¢ | 1.4¢ | 22% |
-| USA - American Hockey League | 16 | 2.9 pts | 3.4¢ | 3.0¢ | 2.9¢ | 2.5¢ | 1.8¢ | 1.6¢ | 12% |
+| USA - American Hockey League | 18 | 2.8 pts | 3.5¢ | 3.2¢ | 3.1¢ | 2.8¢ | 2.1¢ | 1.8¢ | 11% |
 | AFC - Champions League 2 | 13 | 3.4 pts | 3.1¢ | 3.2¢ | 6.1¢ | 6.3¢ | 6.5¢ | 6.3¢ | 15% |
 | Lithuania - National Basketball League | 13 | 3.2 pts | 2.5¢ | 2.5¢ | 1.9¢ | 2.0¢ | 1.6¢ | 6.0¢ | 23% |
 | Serbia - Super Liga | 13 | 3.0 pts | 2.1¢ | 2.1¢ | 2.0¢ | 2.1¢ | 2.0¢ | 6.2¢ | 23% |
@@ -99,8 +99,9 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | Placed (UTC) | Game | Bet | Paid | Fair | Edge | Closing value | Result |
 |---|---|---|---|---|---|---|---|
-| 11-28 19:21 | Murkel Dellien vs Lautaro Rocha Lautaroerocha (ITF Men Santa Cruz - SF) | NO Lautaro Rocha | 0.85 | 0.89 | +3.2¢ | – | – |
-| 11-28 19:17 | Manitoba Moose vs Belleville Senators (USA - American Hockey League) | YES Belleville Senators | 0.45 | 0.50 | +3.5¢ | +3.8¢ | – |
+| 11-28 19:30 | Milwaukee Bucks vs Oklahoma City Thunder (NBA) | YES Milwaukee | 0.15 | 0.19 | +3.4¢ | – | – |
+| 11-28 19:21 | Murkel Dellien vs Lautaro Rocha Lautaroerocha (ITF Men Santa Cruz - SF) | NO Lautaro Rocha | 0.85 | 0.89 | +3.2¢ | +4.1¢ | – |
+| 11-28 19:17 | Manitoba Moose vs Belleville Senators (USA - American Hockey League) | YES Belleville Senators | 0.45 | 0.50 | +3.5¢ | +3.7¢ | – |
 | 11-28 18:00 | Tasmania Jewels vs Canberra Capitals (Australia - WNBL) | YES Tasmania Jewels | 0.57 | 0.64 | +4.9¢ | +6.6¢ | – |
 | 11-28 15:51 | Marshall vs East Texas A&M (NCAA) | NO Marshall | 0.22 | 0.26 | +3.1¢ | +4.2¢ | – |
 | 11-28 13:07 | Harrogate Town vs Yeovil Town (England - National League) | NO Harrogate | 0.44 | 0.50 | +3.8¢ | +8.1¢ | – |
@@ -112,7 +113,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 | 11-28 05:24 | Kumamoto Volters vs Ehime Orange Vikings (Japan - B.League One) | NO Kumamoto Volters | 0.16 | 0.21 | +4.3¢ | +5.1¢ | lost $-0.34 |
 | 11-28 04:49 | Milwaukee Admirals vs Rockford Icehogs (USA - American Hockey League) | YES Milwaukee Admirals | 0.51 | 0.57 | +4.1¢ | +6.4¢ | – |
 | 11-28 04:32 | Jensi Dipakbhai Kanabar vs Florentine Dekkers (ITF Women Kolkata - SF) | YES Jensi Dipakbhai Kanabar | 0.84 | 0.89 | +3.8¢ | +4.3¢ | won $+3.76 |
-| 11-28 04:05 | Sportivo Trinidense vs Deportivo Recoleta (Paraguay - Division Profesional) | YES CD Recoleta | 0.09 | 0.14 | +3.9¢ | +3.4¢ | – |
+| 11-28 04:05 | Sportivo Trinidense vs Deportivo Recoleta (Paraguay - Division Profesional) | YES CD Recoleta | 0.09 | 0.14 | +3.9¢ | +4.6¢ | – |
 | 11-28 03:02 | Priska Madelyn Nugroho vs Kamonwan Yodpetch (ITF Women Kolkata - SF) | YES Priska Madelyn Nugroho | 0.83 | 0.88 | +4.2¢ | +5.2¢ | won $+2.40 |
 | 11-28 01:44 | Rizing Fukuoka vs Koshigaya Alphas (Japan - B.League One) | YES Koshigaya Alphas | 0.80 | 0.84 | +3.1¢ | +2.2¢ | won $+0.18 |
 | 11-28 00:02 | Nacional Potosi vs Oriente Petrolero (Bolivia - Primera Division) | NO Nacional Potosi | 0.13 | 0.17 | +3.3¢ | +4.1¢ | – |
@@ -128,4 +129,3 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 | 11-27 09:52 | VVV Venlo vs RKC Waalwijk (Netherlands - Eerste Divisie) | YES Venlo | 0.27 | 0.32 | +3.2¢ | +4.5¢ | – |
 | 11-27 09:10 | Jessika Ponchet vs Greet Minnen (ITF Women Trnava - QF) | NO Jessika Ponchet | 0.67 | 0.74 | +5.6¢ | +7.1¢ | won $+46.86 |
 | 11-27 07:40 | Willian Rejchtman Vinciguerra vs Hitesh Chauhan (ITF Men Bhopal - QF) | NO William Rejchtman Vinciguerra | 0.18 | 0.23 | +3.5¢ | +4.0¢ | lost $-85.65 |
-| 11-27 06:31 | Nicolas Ciancaglini vs Ignacio Monzon (ITF Men Santa Cruz - R16) | YES Nicolas Ciancaglini Rivera | 0.08 | 0.12 | +3.1¢ | +2.4¢ | lost $-0.09 |
