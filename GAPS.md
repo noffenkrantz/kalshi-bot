@@ -81,7 +81,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 386 | 3.1 pts | 3.2¢ | 3.0¢ | 2.7¢ | 2.5¢ | 2.4¢ | 2.4¢ | 19% |
+| All | 390 | 3.1 pts | 3.2¢ | 3.0¢ | 2.7¢ | 2.5¢ | 2.4¢ | 2.5¢ | 19% |
 | NCAA | 42 | 2.6 pts | 2.0¢ | 2.0¢ | 1.8¢ | 1.7¢ | 1.5¢ | 1.2¢ | 19% |
 | Japan - B.League One | 36 | 3.4 pts | 5.6¢ | 5.3¢ | 4.8¢ | 4.6¢ | 4.7¢ | 4.7¢ | 11% |
 | USA - American Hockey League | 15 | 2.9 pts | 3.5¢ | 3.2¢ | 3.0¢ | 2.6¢ | 1.9¢ | 1.7¢ | 7% |
