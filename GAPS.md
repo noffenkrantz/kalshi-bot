@@ -1,12 +1,12 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 3709 snapshots from 2026-11-25 16:44 to 2026-11-28 19:50 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 3719 snapshots from 2026-11-25 16:44 to 2026-11-28 19:59 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-41,812 Kalshi prices compared with Pinnacle's. 93% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.0¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
+41,824 Kalshi prices compared with Pinnacle's. 93% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.0¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
 
-60 simulated bets so far; 60 have a closing price. Average edge when placed +4.0¢; average closing value +3.7¢ per contract. Kalshi moved toward Pinnacle's price after 44 of them and Pinnacle moved toward Kalshi's after 39. 47 have settled: 21 won, simulated profit $+15.50 on $1,294 staked.
+60 simulated bets so far; 60 have a closing price. Average edge when placed +4.0¢; average closing value +3.7¢ per contract. Kalshi moved toward Pinnacle's price after 43 of them and Pinnacle moved toward Kalshi's after 39. 47 have settled: 21 won, simulated profit $+15.50 on $1,294 staked.
 
 ## By league
 
@@ -23,8 +23,8 @@
 | England - National League | 867 | 0% | +0.6¢ | 0% | 0 | 1 | +8.1¢ | – |
 | England - League 1 | 798 | 0% | +0.5¢ | 0% | 1 | 0 | – | – |
 | England - Championship | 783 | 0% | +0.6¢ | 0% | 330 | 0 | – | – |
+| Australia - WNBL | 645 | 75% | +2.0¢ | 2% | 24 | 2 | +2.2¢ | $-0.45 |
 | Russia - Kontinental Hockey League | 638 | 1% | +0.8¢ | 0% | 3 | 0 | – | – |
-| Australia - WNBL | 636 | 74% | +2.0¢ | 2% | 24 | 2 | +2.2¢ | $-0.45 |
 | Finland - SM Liiga | 578 | 5% | +0.9¢ | 0% | 0 | 0 | – | – |
 | ITF Men Santa Cruz - R1 | 554 | 1% | +1.9¢ | 3% | 1,533 | 2 | +3.2¢ | $+24.16 |
 | Sweden - SHL | 538 | 3% | +0.9¢ | 0% | 0 | 1 | +3.8¢ | $+0.00 |
@@ -68,7 +68,7 @@
 | Italy - Serie C Group B | 300 | 0% | +0.8¢ | 0% | 0 | 0 | – | – |
 | Czech Republic - First Liga | 291 | 0% | +0.4¢ | 0% | 0 | 0 | – | – |
 | ITF Women Trnava - R16 | 289 | 4% | +1.2¢ | 0% | 23 | 1 | +3.2¢ | $-102.76 |
-| Paraguay - Division Profesional | 263 | 0% | +1.8¢ | 15% | 244 | 1 | +4.6¢ | – |
+| Paraguay - Division Profesional | 264 | 0% | +1.8¢ | 15% | 244 | 1 | +4.6¢ | – |
 | ITF Women Heraklion 2 - R16 | 263 | 6% | +1.7¢ | 4% | 420 | 1 | -0.9¢ | $-28.47 |
 | ITF Men Hradec Kralove - QF | 260 | 0% | +2.6¢ | 10% | 166 | 1 | -4.6¢ | $+0.00 |
 | Colombia - Primera A | 258 | 0% | +0.6¢ | 0% | 718 | 0 | – | – |
