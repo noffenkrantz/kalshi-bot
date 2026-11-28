@@ -1,12 +1,12 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 3660 snapshots from 2026-11-25 16:44 to 2026-11-28 19:17 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 3668 snapshots from 2026-11-25 16:44 to 2026-11-28 19:21 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-41,082 Kalshi prices compared with Pinnacle's. 93% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.0¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
+41,092 Kalshi prices compared with Pinnacle's. 93% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.0¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
 
-58 simulated bets so far; 57 have a closing price. Average edge when placed +4.0¢; average closing value +3.7¢ per contract. Kalshi moved toward Pinnacle's price after 43 of them and Pinnacle moved toward Kalshi's after 38. 47 have settled: 21 won, simulated profit $+15.50 on $1,294 staked.
+59 simulated bets so far; 58 have a closing price. Average edge when placed +4.0¢; average closing value +3.7¢ per contract. Kalshi moved toward Pinnacle's price after 44 of them and Pinnacle moved toward Kalshi's after 39. 47 have settled: 21 won, simulated profit $+15.50 on $1,294 staked.
 
 ## By league
 
@@ -16,7 +16,7 @@
 |---|---|---|---|---|---|---|---|---|
 | NCAA | 2951 | 32% | +1.4¢ | 1% | 286 | 2 | +9.0¢ | – |
 | Japan - B.League One | 1948 | 34% | +2.9¢ | 4% | 17 | 8 | +4.3¢ | $-85.25 |
-| USA - American Hockey League | 1539 | 2% | +0.7¢ | 0% | 5 | 3 | +5.6¢ | $-0.82 |
+| USA - American Hockey League | 1543 | 2% | +0.7¢ | 0% | 5 | 3 | +5.0¢ | $-0.82 |
 | NHL | 1508 | 0% | +0.9¢ | 1% | 1,932 | 1 | +4.1¢ | – |
 | NBA | 904 | 0% | +0.7¢ | 1% | 47,556 | 4 | +1.2¢ | $+153.28 |
 | England - League 2 | 870 | 0% | +0.5¢ | 0% | 0 | 0 | – | – |
@@ -24,7 +24,7 @@
 | England - League 1 | 798 | 0% | +0.5¢ | 0% | 1 | 0 | – | – |
 | England - Championship | 780 | 0% | +0.6¢ | 0% | 330 | 0 | – | – |
 | Russia - Kontinental Hockey League | 632 | 1% | +0.8¢ | 0% | 3 | 0 | – | – |
-| Australia - WNBL | 596 | 73% | +2.0¢ | 2% | 24 | 2 | +2.2¢ | $-0.45 |
+| Australia - WNBL | 601 | 73% | +2.0¢ | 2% | 24 | 2 | +2.2¢ | $-0.45 |
 | Finland - SM Liiga | 576 | 5% | +0.9¢ | 0% | 0 | 0 | – | – |
 | ITF Men Santa Cruz - R1 | 554 | 1% | +1.9¢ | 3% | 1,533 | 2 | +3.2¢ | $+24.16 |
 | Sweden - SHL | 538 | 3% | +0.9¢ | 0% | 0 | 1 | +3.8¢ | $+0.00 |
@@ -99,7 +99,8 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | Placed (UTC) | Game | Bet | Paid | Fair | Edge | Closing value | Result |
 |---|---|---|---|---|---|---|---|
-| 11-28 19:17 | Manitoba Moose vs Belleville Senators (USA - American Hockey League) | YES Belleville Senators | 0.45 | 0.50 | +3.5¢ | – | – |
+| 11-28 19:21 | Murkel Dellien vs Lautaro Rocha Lautaroerocha (ITF Men Santa Cruz - SF) | NO Lautaro Rocha | 0.85 | 0.89 | +3.2¢ | – | – |
+| 11-28 19:17 | Manitoba Moose vs Belleville Senators (USA - American Hockey League) | YES Belleville Senators | 0.45 | 0.50 | +3.5¢ | +3.8¢ | – |
 | 11-28 18:00 | Tasmania Jewels vs Canberra Capitals (Australia - WNBL) | YES Tasmania Jewels | 0.57 | 0.64 | +4.9¢ | +6.6¢ | – |
 | 11-28 15:51 | Marshall vs East Texas A&M (NCAA) | NO Marshall | 0.22 | 0.26 | +3.1¢ | +4.2¢ | – |
 | 11-28 13:07 | Harrogate Town vs Yeovil Town (England - National League) | NO Harrogate | 0.44 | 0.50 | +3.8¢ | +8.1¢ | – |
@@ -128,4 +129,3 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 | 11-27 09:10 | Jessika Ponchet vs Greet Minnen (ITF Women Trnava - QF) | NO Jessika Ponchet | 0.67 | 0.74 | +5.6¢ | +7.1¢ | won $+46.86 |
 | 11-27 07:40 | Willian Rejchtman Vinciguerra vs Hitesh Chauhan (ITF Men Bhopal - QF) | NO William Rejchtman Vinciguerra | 0.18 | 0.23 | +3.5¢ | +4.0¢ | lost $-85.65 |
 | 11-27 06:31 | Nicolas Ciancaglini vs Ignacio Monzon (ITF Men Santa Cruz - R16) | YES Nicolas Ciancaglini Rivera | 0.08 | 0.12 | +3.1¢ | +2.4¢ | lost $-0.09 |
-| 11-27 04:31 | Karan Singh vs Grigoriy Lomakin (ITF Men Bhopal - QF) | YES Karan Singh | 0.86 | 0.90 | +3.3¢ | +2.3¢ | won $+0.00 |

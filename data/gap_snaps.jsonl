@@ -41080,3 +41080,13 @@
 {"ts":"2026-11-28T19:15:54+00:00","ticker":"KXWNBLGAME-26NOV282300CANTAS-TAS","league":"Australia - WNBL","fair":0.6361,"bid":0.32,"ask":0.61,"vol24":24}
 {"ts":"2026-11-28T19:16:55+00:00","ticker":"KXWNBLGAME-26NOV282300CANTAS-TAS","league":"Australia - WNBL","fair":0.6361,"bid":0.33,"ask":0.61,"vol24":24}
 {"ts":"2026-11-28T19:17:08+00:00","ticker":"KXAHLGAME-26NOV281400BELMAN-BEL","league":"USA - American Hockey League","fair":0.5022,"bid":0.41,"ask":0.45,"vol24":0}
+{"ts":"2026-11-28T19:17:23+00:00","ticker":"KXAHLGAME-26NOV281400BELMAN-BEL","league":"USA - American Hockey League","fair":0.5054,"bid":0.41,"ask":0.45,"vol24":0}
+{"ts":"2026-11-28T19:17:52+00:00","ticker":"KXAHLGAME-26NOV281400BELMAN-BEL","league":"USA - American Hockey League","fair":0.4882,"bid":0.41,"ask":0.45,"vol24":0}
+{"ts":"2026-11-28T19:17:57+00:00","ticker":"KXWNBLGAME-26NOV282300CANTAS-TAS","league":"Australia - WNBL","fair":0.6361,"bid":0.34,"ask":0.61,"vol24":24}
+{"ts":"2026-11-28T19:18:27+00:00","ticker":"KXWNBLGAME-26NOV282300CANTAS-TAS","league":"Australia - WNBL","fair":0.6361,"bid":0.35,"ask":0.6,"vol24":24}
+{"ts":"2026-11-28T19:18:58+00:00","ticker":"KXWNBLGAME-26NOV282300CANTAS-TAS","league":"Australia - WNBL","fair":0.6361,"bid":0.36,"ask":0.6,"vol24":24}
+{"ts":"2026-11-28T19:19:59+00:00","ticker":"KXWNBLGAME-26NOV282300CANTAS-TAS","league":"Australia - WNBL","fair":0.6361,"bid":0.36,"ask":0.59,"vol24":24}
+{"ts":"2026-11-28T19:19:59+00:00","ticker":"KXAHLGAME-26NOV281400BELMAN-BEL","league":"USA - American Hockey League","fair":0.4882,"bid":0.44,"ask":0.45,"vol24":0}
+{"ts":"2026-11-28T19:20:29+00:00","ticker":"KXAHLGAME-26NOV281400BELMAN-BEL","league":"USA - American Hockey League","fair":0.4882,"bid":0.43,"ask":0.45,"vol24":0}
+{"ts":"2026-11-28T19:21:32+00:00","ticker":"KXITFMATCH-26NOV28DELROC-ROC","league":"ITF Men Santa Cruz - SF","fair":0.1089,"bid":0.15,"ask":0.17,"vol24":12373}
+{"ts":"2026-11-28T19:21:32+00:00","ticker":"KXWNBLGAME-26NOV282300CANTAS-TAS","league":"Australia - WNBL","fair":0.6361,"bid":0.37,"ask":0.58,"vol24":24}
