@@ -1,10 +1,10 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 2894 snapshots from 2026-11-25 16:44 to 2026-11-28 03:51 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 2903 snapshots from 2026-11-25 16:44 to 2026-11-28 04:00 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-27,977 Kalshi prices compared with Pinnacle's. 91% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.2¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
+27,987 Kalshi prices compared with Pinnacle's. 91% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.2¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
 
 45 simulated bets so far; 45 have a closing price. Average edge when placed +4.0¢; average closing value +3.3¢ per contract. Kalshi moved toward Pinnacle's price after 32 of them and Pinnacle moved toward Kalshi's after 29. 34 have settled: 14 won, simulated profit $-138.67 on $1,046 staked.
 
@@ -15,7 +15,7 @@
 | League | Prices compared | No real market | Avg gap (Kalshi mid vs fair) | With a 3¢+ edge | Kalshi volume (24h, median) | Bets | Avg closing value | Profit |
 |---|---|---|---|---|---|---|---|---|
 | NCAA | 2180 | 44% | +1.6¢ | 1% | 132 | 1 | +13.8¢ | – |
-| Japan - B.League One | 1594 | 28% | +2.9¢ | 4% | 17 | 5 | +3.6¢ | $-116.76 |
+| Japan - B.League One | 1595 | 28% | +2.9¢ | 4% | 17 | 5 | +3.6¢ | $-116.76 |
 | NHL | 1092 | 0% | +1.0¢ | 1% | 2,053 | 1 | +4.1¢ | – |
 | USA - American Hockey League | 749 | 2% | +0.8¢ | 0% | 0 | 1 | +4.7¢ | $-0.82 |
 | NBA | 738 | 0% | +0.7¢ | 1% | 56,398 | 4 | +1.2¢ | $+153.28 |
@@ -26,7 +26,7 @@
 | England - League 2 | 450 | 0% | +0.5¢ | 0% | 0 | 0 | – | – |
 | England - Championship | 450 | 0% | +0.6¢ | 0% | 85 | 0 | – | – |
 | England - League 1 | 444 | 0% | +0.5¢ | 0% | 0 | 0 | – | – |
-| Australia - WNBL | 430 | 67% | +2.0¢ | 3% | 53 | 1 | -2.2¢ | – |
+| Australia - WNBL | 436 | 66% | +2.0¢ | 3% | 53 | 1 | -2.2¢ | – |
 | Finland - SM Liiga | 404 | 6% | +0.9¢ | 0% | 0 | 0 | – | – |
 | Sweden - SHL | 394 | 4% | +1.0¢ | 0% | 0 | 1 | +3.8¢ | $+0.00 |
 | Netherlands - Eerste Divisie | 356 | 0% | +0.9¢ | 0% | 1 | 1 | +4.5¢ | – |
