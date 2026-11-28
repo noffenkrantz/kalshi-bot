@@ -1,10 +1,10 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 3079 snapshots from 2026-11-25 16:44 to 2026-11-28 06:05 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 3080 snapshots from 2026-11-25 16:44 to 2026-11-28 06:17 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-30,401 Kalshi prices compared with Pinnacle's. 92% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.1¢ from Pinnacle's fair price on average, and 1.3% could be bought at a 3¢+ edge after fees.
+30,402 Kalshi prices compared with Pinnacle's. 92% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.1¢ from Pinnacle's fair price on average, and 1.3% could be bought at a 3¢+ edge after fees.
 
 51 simulated bets so far; 51 have a closing price. Average edge when placed +4.0¢; average closing value +3.5¢ per contract. Kalshi moved toward Pinnacle's price after 36 of them and Pinnacle moved toward Kalshi's after 34. 35 have settled: 15 won, simulated profit $-138.67 on $1,046 staked.
 
@@ -17,7 +17,7 @@
 | NCAA | 2232 | 43% | +1.6¢ | 1% | 125 | 1 | +13.8¢ | – |
 | Japan - B.League One | 1764 | 29% | +3.0¢ | 4% | 17 | 8 | +4.3¢ | $-116.76 |
 | NHL | 1144 | 0% | +1.0¢ | 1% | 1,918 | 1 | +4.1¢ | – |
-| USA - American Hockey League | 828 | 3% | +0.8¢ | 0% | 0 | 2 | +5.3¢ | $-0.82 |
+| USA - American Hockey League | 829 | 3% | +0.8¢ | 0% | 0 | 2 | +5.3¢ | $-0.82 |
 | NBA | 764 | 0% | +0.7¢ | 1% | 53,722 | 4 | +1.2¢ | $+153.28 |
 | England - National League | 567 | 0% | +0.6¢ | 0% | 0 | 0 | – | – |
 | England - League 2 | 558 | 0% | +0.5¢ | 0% | 0 | 0 | – | – |
