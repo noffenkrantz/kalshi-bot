@@ -1,12 +1,12 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 2909 snapshots from 2026-11-25 16:44 to 2026-11-28 04:05 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 2925 snapshots from 2026-11-25 16:44 to 2026-11-28 04:14 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-28,677 Kalshi prices compared with Pinnacle's. 91% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.1¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
+28,699 Kalshi prices compared with Pinnacle's. 91% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.1¢ from Pinnacle's fair price on average, and 1.2% could be bought at a 3¢+ edge after fees.
 
-46 simulated bets so far; 45 have a closing price. Average edge when placed +4.0¢; average closing value +3.3¢ per contract. Kalshi moved toward Pinnacle's price after 32 of them and Pinnacle moved toward Kalshi's after 30. 34 have settled: 14 won, simulated profit $-138.67 on $1,046 staked.
+46 simulated bets so far; 46 have a closing price. Average edge when placed +4.0¢; average closing value +3.3¢ per contract. Kalshi moved toward Pinnacle's price after 32 of them and Pinnacle moved toward Kalshi's after 31. 34 have settled: 14 won, simulated profit $-138.67 on $1,046 staked.
 
 ## By league
 
@@ -15,7 +15,7 @@
 | League | Prices compared | No real market | Avg gap (Kalshi mid vs fair) | With a 3¢+ edge | Kalshi volume (24h, median) | Bets | Avg closing value | Profit |
 |---|---|---|---|---|---|---|---|---|
 | NCAA | 2180 | 44% | +1.6¢ | 1% | 132 | 1 | +13.8¢ | – |
-| Japan - B.League One | 1618 | 29% | +2.9¢ | 4% | 17 | 5 | +3.4¢ | $-116.76 |
+| Japan - B.League One | 1623 | 29% | +2.9¢ | 4% | 17 | 5 | +3.3¢ | $-116.76 |
 | NHL | 1092 | 0% | +1.0¢ | 1% | 2,053 | 1 | +4.1¢ | – |
 | USA - American Hockey League | 767 | 3% | +0.8¢ | 0% | 0 | 1 | +4.7¢ | $-0.82 |
 | NBA | 746 | 0% | +0.7¢ | 1% | 55,624 | 4 | +1.2¢ | $+153.28 |
@@ -72,8 +72,8 @@
 | England - Premier League | 183 | 0% | +0.6¢ | 0% | 3,445 | 0 | – | – |
 | ITF Men Madrid - R16 | 180 | 2% | +1.1¢ | 0% | 5 | 0 | – | – |
 | Brazil - Serie A | 177 | 0% | +0.6¢ | 0% | 1,314 | 0 | – | – |
+| Paraguay - Division Profesional | 175 | 0% | +1.3¢ | 7% | 16 | 1 | +3.6¢ | – |
 | ITF Men Bhopal - R16 | 171 | 0% | +1.5¢ | 1% | 185 | 1 | +5.8¢ | $+0.00 |
-| ITF Men Bhopal - QF | 170 | 0% | +2.1¢ | 8% | 764 | 2 | +3.1¢ | $-85.65 |
 
 ## How fast Kalshi follows Pinnacle (live mode)
 
@@ -81,7 +81,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 343 | 3.2 pts | 3.3¢ | 3.0¢ | 2.8¢ | 2.6¢ | 2.4¢ | 2.4¢ | 18% |
+| All | 345 | 3.1 pts | 3.3¢ | 3.0¢ | 2.8¢ | 2.6¢ | 2.4¢ | 2.4¢ | 18% |
 | NCAA | 37 | 2.6 pts | 2.0¢ | 2.0¢ | 1.9¢ | 1.8¢ | 1.5¢ | 1.2¢ | 19% |
 | Japan - B.League One | 29 | 3.6 pts | 5.7¢ | 5.3¢ | 4.8¢ | 4.5¢ | 4.7¢ | 4.5¢ | 14% |
 | Bolivia - Primera Division | 15 | 3.5 pts | 3.3¢ | 2.4¢ | 2.1¢ | 1.9¢ | 2.0¢ | 1.9¢ | 7% |
@@ -99,9 +99,9 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | Placed (UTC) | Game | Bet | Paid | Fair | Edge | Closing value | Result |
 |---|---|---|---|---|---|---|---|
-| 11-28 04:05 | Sportivo Trinidense vs Deportivo Recoleta (Paraguay - Division Profesional) | YES CD Recoleta | 0.09 | 0.14 | +3.9¢ | – | – |
+| 11-28 04:05 | Sportivo Trinidense vs Deportivo Recoleta (Paraguay - Division Profesional) | YES CD Recoleta | 0.09 | 0.14 | +3.9¢ | +3.6¢ | – |
 | 11-28 03:02 | Priska Madelyn Nugroho vs Kamonwan Yodpetch (ITF Women Kolkata - SF) | YES Priska Madelyn Nugroho | 0.83 | 0.88 | +4.2¢ | +5.2¢ | – |
-| 11-28 01:44 | Rizing Fukuoka vs Koshigaya Alphas (Japan - B.League One) | YES Koshigaya Alphas | 0.80 | 0.84 | +3.1¢ | +2.9¢ | – |
+| 11-28 01:44 | Rizing Fukuoka vs Koshigaya Alphas (Japan - B.League One) | YES Koshigaya Alphas | 0.80 | 0.84 | +3.1¢ | +2.4¢ | – |
 | 11-28 00:02 | Nacional Potosi vs Oriente Petrolero (Bolivia - Primera Division) | NO Nacional Potosi | 0.13 | 0.17 | +3.3¢ | +4.1¢ | – |
 | 11-27 19:21 | Veltex Shizuoka vs Fukui Blowwinds (Japan - B.League One) | YES Veltex Shizuoka | 0.55 | 0.60 | +3.1¢ | +9.6¢ | – |
 | 11-27 18:29 | Portland Trail Blazers vs Golden State Warriors (NBA) | NO Golden State | 0.72 | 0.78 | +4.2¢ | +1.9¢ | – |
