@@ -1,10 +1,10 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 3522 snapshots from 2026-11-25 16:44 to 2026-11-28 17:36 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 3523 snapshots from 2026-11-25 16:44 to 2026-11-28 17:47 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-39,560 Kalshi prices compared with Pinnacle's. 93% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.0¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
+39,561 Kalshi prices compared with Pinnacle's. 93% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.0¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
 
 56 simulated bets so far; 56 have a closing price. Average edge when placed +4.0¢; average closing value +3.5¢ per contract. Kalshi moved toward Pinnacle's price after 41 of them and Pinnacle moved toward Kalshi's after 38. 47 have settled: 21 won, simulated profit $+15.50 on $1,294 staked.
 
@@ -52,7 +52,7 @@
 | Thailand - League 1 | 348 | 0% | +0.9¢ | 0% | 0 | 0 | – | – |
 | Italy - Serie C Group A | 348 | 0% | +0.8¢ | 0% | 0 | 0 | – | – |
 | France - Ligue Magnus | 341 | 37% | +2.4¢ | 13% | 0 | 1 | +3.8¢ | $-68.26 |
-| Bolivia - Primera Division | 333 | 0% | +1.7¢ | 2% | 197 | 3 | +3.3¢ | $+0.00 |
+| Bolivia - Primera Division | 334 | 0% | +1.7¢ | 2% | 197 | 3 | +3.3¢ | $+0.00 |
 | Turkey - Super League | 330 | 0% | +0.5¢ | 0% | 92 | 0 | – | – |
 | ITF Men Heraklion - R16 | 322 | 4% | +1.4¢ | 1% | 182 | 1 | -4.8¢ | $+0.00 |
 | South Africa - PSL | 316 | 0% | +1.3¢ | 0% | 0 | 1 | +3.5¢ | $+0.47 |
@@ -81,7 +81,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 506 | 3.0 pts | 3.0¢ | 2.7¢ | 2.5¢ | 2.3¢ | 2.1¢ | 2.2¢ | 21% |
+| All | 509 | 3.0 pts | 3.0¢ | 2.7¢ | 2.4¢ | 2.3¢ | 2.1¢ | 2.2¢ | 21% |
 | NCAA | 60 | 2.6 pts | 2.0¢ | 2.0¢ | 1.8¢ | 1.7¢ | 1.5¢ | 1.2¢ | 17% |
 | Japan - B.League One | 38 | 3.4 pts | 5.8¢ | 5.5¢ | 5.0¢ | 4.8¢ | 4.9¢ | 4.9¢ | 11% |
 | Finland - SM Liiga | 26 | 2.9 pts | 2.2¢ | 2.0¢ | 1.6¢ | 1.4¢ | 0.9¢ | 1.1¢ | 23% |
