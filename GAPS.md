@@ -1,12 +1,12 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 2997 snapshots from 2026-11-25 16:44 to 2026-11-28 05:18 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 3003 snapshots from 2026-11-25 16:44 to 2026-11-28 05:24 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-29,525 Kalshi prices compared with Pinnacle's. 92% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.1¢ from Pinnacle's fair price on average, and 1.3% could be bought at a 3¢+ edge after fees.
+29,532 Kalshi prices compared with Pinnacle's. 92% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.1¢ from Pinnacle's fair price on average, and 1.3% could be bought at a 3¢+ edge after fees.
 
-48 simulated bets so far; 48 have a closing price. Average edge when placed +4.0¢; average closing value +3.3¢ per contract. Kalshi moved toward Pinnacle's price after 33 of them and Pinnacle moved toward Kalshi's after 32. 34 have settled: 14 won, simulated profit $-138.67 on $1,046 staked.
+49 simulated bets so far; 48 have a closing price. Average edge when placed +4.0¢; average closing value +3.3¢ per contract. Kalshi moved toward Pinnacle's price after 33 of them and Pinnacle moved toward Kalshi's after 32. 34 have settled: 14 won, simulated profit $-138.67 on $1,046 staked.
 
 ## By league
 
@@ -15,9 +15,9 @@
 | League | Prices compared | No real market | Avg gap (Kalshi mid vs fair) | With a 3¢+ edge | Kalshi volume (24h, median) | Bets | Avg closing value | Profit |
 |---|---|---|---|---|---|---|---|---|
 | NCAA | 2198 | 43% | +1.6¢ | 1% | 130 | 1 | +13.8¢ | – |
-| Japan - B.League One | 1676 | 29% | +2.9¢ | 4% | 17 | 5 | +3.5¢ | $-116.76 |
+| Japan - B.League One | 1678 | 29% | +2.9¢ | 4% | 17 | 6 | +3.5¢ | $-116.76 |
 | NHL | 1118 | 0% | +1.0¢ | 1% | 1,992 | 1 | +4.1¢ | – |
-| USA - American Hockey League | 797 | 3% | +0.8¢ | 0% | 0 | 2 | +5.3¢ | $-0.82 |
+| USA - American Hockey League | 798 | 3% | +0.8¢ | 0% | 0 | 2 | +5.3¢ | $-0.82 |
 | NBA | 754 | 0% | +0.7¢ | 1% | 54,738 | 4 | +1.2¢ | $+153.28 |
 | ITF Men Santa Cruz - R1 | 554 | 1% | +1.9¢ | 3% | 1,533 | 2 | +3.2¢ | $+24.16 |
 | England - National League | 534 | 0% | +0.6¢ | 0% | 0 | 0 | – | – |
@@ -99,6 +99,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | Placed (UTC) | Game | Bet | Paid | Fair | Edge | Closing value | Result |
 |---|---|---|---|---|---|---|---|
+| 11-28 05:24 | Kumamoto Volters vs Ehime Orange Vikings (Japan - B.League One) | NO Kumamoto Volters | 0.16 | 0.21 | +4.3¢ | – | – |
 | 11-28 04:49 | Milwaukee Admirals vs Rockford Icehogs (USA - American Hockey League) | YES Milwaukee Admirals | 0.51 | 0.57 | +4.1¢ | +5.8¢ | – |
 | 11-28 04:32 | Jensi Dipakbhai Kanabar vs Florentine Dekkers (ITF Women Kolkata - SF) | YES Jensi Dipakbhai Kanabar | 0.84 | 0.89 | +3.8¢ | +4.3¢ | – |
 | 11-28 04:05 | Sportivo Trinidense vs Deportivo Recoleta (Paraguay - Division Profesional) | YES CD Recoleta | 0.09 | 0.14 | +3.9¢ | +1.8¢ | – |
@@ -128,4 +129,3 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 | 11-26 20:01 | Rizing Fukuoka vs Koshigaya Alphas (Japan - B.League One) | YES Rizing Zephyr Fukuoka | 0.32 | 0.40 | +6.5¢ | -8.6¢ | lost $-104.60 |
 | 11-26 19:47 | Miriam Bulgaru vs Maria Eduarda Carbone Dos Santos (ITF Women Florianopolis - R16) | NO Maria Eduarda Carbone dos Santos | 0.92 | 0.96 | +3.1¢ | +3.5¢ | won $+4.79 |
 | 11-26 19:41 | Bastian Malla vs Felipe De Dios (ITF Men Santa Cruz - R1) | NO Felipe De Dios | 0.70 | 0.75 | +3.3¢ | +3.3¢ | won $+27.95 |
-| 11-26 18:45 | Petr Michnev vs Karl Friberg (ITF Men Hradec Kralove - QF) | YES Petr Michnev | 0.51 | 0.56 | +3.6¢ | -4.6¢ | lost $+0.00 |

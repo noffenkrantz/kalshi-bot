@@ -29523,3 +29523,10 @@
 {"ts":"2026-11-28T05:17:51+00:00","ticker":"KXAPFDDHGAME-26NOV28TRIREC-REC","league":"Paraguay - Division Profesional","fair":0.108,"bid":0.06,"ask":0.08,"vol24":85781}
 {"ts":"2026-11-28T05:18:21+00:00","ticker":"KXAPFDDHGAME-26NOV28TRIREC-REC","league":"Paraguay - Division Profesional","fair":0.108,"bid":0.06,"ask":0.07,"vol24":85781}
 {"ts":"2026-11-28T05:18:51+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.1074,"bid":0.05,"ask":0.07,"vol24":20}
+{"ts":"2026-11-28T05:20:24+00:00","ticker":"KXAHLGAME-26NOV281900ROCMIL-MIL","league":"USA - American Hockey League","fair":0.5681,"bid":0.54,"ask":0.59,"vol24":0}
+{"ts":"2026-11-28T05:20:56+00:00","ticker":"KXITFWMATCH-26NOV28DIPDEK-DIP","league":"ITF Women Kolkata - SF","fair":0.8826,"bid":0.74,"ask":0.81,"vol24":3664}
+{"ts":"2026-11-28T05:21:27+00:00","ticker":"KXITFWMATCH-26NOV28DIPDEK-DIP","league":"ITF Women Kolkata - SF","fair":0.8826,"bid":0.74,"ask":0.77,"vol24":3664}
+{"ts":"2026-11-28T05:22:14+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.1069,"bid":0.05,"ask":0.07,"vol24":20}
+{"ts":"2026-11-28T05:22:14+00:00","ticker":"KXITFWMATCH-26NOV28DIPDEK-DIP","league":"ITF Women Kolkata - SF","fair":0.8826,"bid":0.75,"ask":0.79,"vol24":4431}
+{"ts":"2026-11-28T05:23:45+00:00","ticker":"KXITFWMATCH-26NOV28DIPDEK-DIP","league":"ITF Women Kolkata - SF","fair":0.8826,"bid":0.75,"ask":0.82,"vol24":4431}
+{"ts":"2026-11-28T05:24:44+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105EHIKUM-KUM","league":"Japan - B.League One","fair":0.7877,"bid":0.84,"ask":0.88,"vol24":11}
