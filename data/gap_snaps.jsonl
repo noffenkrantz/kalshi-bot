@@ -37488,3 +37488,18 @@
 {"ts":"2026-11-28T14:56:36+00:00","ticker":"KXBOLPDIVGAME-26NOV28CLUPOT-POT","league":"Bolivia - Primera Division","fair":0.5655,"bid":0.55,"ask":0.57,"vol24":2055}
 {"ts":"2026-11-28T14:57:28+00:00","ticker":"KXBOLPDIVGAME-26NOV28CLUPOT-POT","league":"Bolivia - Primera Division","fair":0.5655,"bid":0.56,"ask":0.57,"vol24":2055}
 {"ts":"2026-11-28T14:57:28+00:00","ticker":"KXAHLGAME-26NOV281900ROCMIL-MIL","league":"USA - American Hockey League","fair":0.574,"bid":0.56,"ask":0.59,"vol24":20}
+{"ts":"2026-11-28T15:00:36+00:00","ticker":"KXAHLGAME-26NOV281900ROCMIL-MIL","league":"USA - American Hockey League","fair":0.574,"bid":0.56,"ask":0.58,"vol24":20}
+{"ts":"2026-11-28T15:02:09+00:00","ticker":"KXAHLGAME-26NOV281900ROCMIL-MIL","league":"USA - American Hockey League","fair":0.574,"bid":0.56,"ask":0.59,"vol24":20}
+{"ts":"2026-11-28T15:02:40+00:00","ticker":"KXAHLGAME-26NOV281900ROCMIL-MIL","league":"USA - American Hockey League","fair":0.574,"bid":0.56,"ask":0.58,"vol24":20}
+{"ts":"2026-11-28T15:03:10+00:00","ticker":"KXAHLGAME-26NOV281900ROCMIL-MIL","league":"USA - American Hockey League","fair":0.574,"bid":0.56,"ask":0.59,"vol24":20}
+{"ts":"2026-11-28T15:03:41+00:00","ticker":"KXAHLGAME-26NOV281900ROCMIL-MIL","league":"USA - American Hockey League","fair":0.574,"bid":0.56,"ask":0.58,"vol24":20}
+{"ts":"2026-11-28T15:04:12+00:00","ticker":"KXBOLPDIVGAME-26NOV28CLUPOT-POT","league":"Bolivia - Primera Division","fair":0.5655,"bid":0.56,"ask":0.58,"vol24":2055}
+{"ts":"2026-11-28T15:04:12+00:00","ticker":"KXAHLGAME-26NOV281900ROCMIL-MIL","league":"USA - American Hockey League","fair":0.574,"bid":0.56,"ask":0.59,"vol24":20}
+{"ts":"2026-11-28T15:04:43+00:00","ticker":"KXBOLPDIVGAME-26NOV28CLUPOT-POT","league":"Bolivia - Primera Division","fair":0.5655,"bid":0.56,"ask":0.57,"vol24":2055}
+{"ts":"2026-11-28T15:04:43+00:00","ticker":"KXAHLGAME-26NOV281900ROCMIL-MIL","league":"USA - American Hockey League","fair":0.574,"bid":0.56,"ask":0.58,"vol24":20}
+{"ts":"2026-11-28T15:04:43+00:00","ticker":"KXAPFDDHGAME-26NOV28TRIREC-REC","league":"Paraguay - Division Profesional","fair":0.1161,"bid":0.09,"ask":0.1,"vol24":122875}
+{"ts":"2026-11-28T15:05:14+00:00","ticker":"KXAHLGAME-26NOV281900ROCMIL-MIL","league":"USA - American Hockey League","fair":0.574,"bid":0.56,"ask":0.57,"vol24":20}
+{"ts":"2026-11-28T15:05:45+00:00","ticker":"KXAHLGAME-26NOV281900ROCMIL-MIL","league":"USA - American Hockey League","fair":0.574,"bid":0.56,"ask":0.59,"vol24":20}
+{"ts":"2026-11-28T15:06:16+00:00","ticker":"KXAHLGAME-26NOV281900ROCMIL-MIL","league":"USA - American Hockey League","fair":0.574,"bid":0.56,"ask":0.58,"vol24":20}
+{"ts":"2026-11-28T15:06:47+00:00","ticker":"KXAHLGAME-26NOV281900ROCMIL-MIL","league":"USA - American Hockey League","fair":0.574,"bid":0.57,"ask":0.59,"vol24":20}
+{"ts":"2026-11-28T15:07:18+00:00","ticker":"KXAHLGAME-26NOV281900ROCMIL-MIL","league":"USA - American Hockey League","fair":0.574,"bid":0.57,"ask":0.58,"vol24":20}
