@@ -1,10 +1,10 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 3231 snapshots from 2026-11-25 16:44 to 2026-11-28 11:16 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 3232 snapshots from 2026-11-25 16:44 to 2026-11-28 11:22 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-34,258 Kalshi prices compared with Pinnacle's. 92% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.1¢ from Pinnacle's fair price on average, and 1.2% could be bought at a 3¢+ edge after fees.
+34,259 Kalshi prices compared with Pinnacle's. 92% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.1¢ from Pinnacle's fair price on average, and 1.2% could be bought at a 3¢+ edge after fees.
 
 53 simulated bets so far; 53 have a closing price. Average edge when placed +4.0¢; average closing value +3.5¢ per contract. Kalshi moved toward Pinnacle's price after 39 of them and Pinnacle moved toward Kalshi's after 36. 38 have settled: 17 won, simulated profit $-132.96 on $1,080 staked.
 
@@ -72,7 +72,7 @@
 | Japan - J2 League | 234 | 0% | +0.6¢ | 0% | 0 | 0 | – | – |
 | Italy - Serie A | 228 | 0% | +0.5¢ | 0% | 1,116 | 0 | – | – |
 | Colombia - Primera A | 228 | 0% | +0.6¢ | 0% | 750 | 0 | – | – |
-| Paraguay - Division Profesional | 221 | 0% | +1.8¢ | 18% | 92 | 1 | +2.7¢ | – |
+| Paraguay - Division Profesional | 222 | 0% | +1.8¢ | 18% | 92 | 1 | +2.6¢ | – |
 | AFC - Champions League 2 | 206 | 1% | +2.2¢ | 6% | 1,278 | 1 | +11.3¢ | $-0.28 |
 
 ## How fast Kalshi follows Pinnacle (live mode)
@@ -81,7 +81,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 412 | 3.1 pts | 3.2¢ | 2.9¢ | 2.6¢ | 2.5¢ | 2.3¢ | 2.5¢ | 19% |
+| All | 413 | 3.1 pts | 3.2¢ | 2.9¢ | 2.6¢ | 2.5¢ | 2.3¢ | 2.5¢ | 19% |
 | NCAA | 42 | 2.6 pts | 2.0¢ | 2.0¢ | 1.8¢ | 1.7¢ | 1.5¢ | 1.2¢ | 19% |
 | Japan - B.League One | 36 | 3.4 pts | 5.6¢ | 5.3¢ | 4.8¢ | 4.6¢ | 4.7¢ | 4.7¢ | 11% |
 | Finland - SM Liiga | 17 | 3.0 pts | 2.2¢ | 2.1¢ | 1.4¢ | 1.3¢ | 0.9¢ | 1.3¢ | 29% |
@@ -106,7 +106,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 | 11-28 05:24 | Kumamoto Volters vs Ehime Orange Vikings (Japan - B.League One) | NO Kumamoto Volters | 0.16 | 0.21 | +4.3¢ | +5.1¢ | – |
 | 11-28 04:49 | Milwaukee Admirals vs Rockford Icehogs (USA - American Hockey League) | YES Milwaukee Admirals | 0.51 | 0.57 | +4.1¢ | +6.6¢ | – |
 | 11-28 04:32 | Jensi Dipakbhai Kanabar vs Florentine Dekkers (ITF Women Kolkata - SF) | YES Jensi Dipakbhai Kanabar | 0.84 | 0.89 | +3.8¢ | +4.3¢ | won $+3.76 |
-| 11-28 04:05 | Sportivo Trinidense vs Deportivo Recoleta (Paraguay - Division Profesional) | YES CD Recoleta | 0.09 | 0.14 | +3.9¢ | +2.7¢ | – |
+| 11-28 04:05 | Sportivo Trinidense vs Deportivo Recoleta (Paraguay - Division Profesional) | YES CD Recoleta | 0.09 | 0.14 | +3.9¢ | +2.6¢ | – |
 | 11-28 03:02 | Priska Madelyn Nugroho vs Kamonwan Yodpetch (ITF Women Kolkata - SF) | YES Priska Madelyn Nugroho | 0.83 | 0.88 | +4.2¢ | +5.2¢ | won $+2.40 |
 | 11-28 01:44 | Rizing Fukuoka vs Koshigaya Alphas (Japan - B.League One) | YES Koshigaya Alphas | 0.80 | 0.84 | +3.1¢ | +2.2¢ | – |
 | 11-28 00:02 | Nacional Potosi vs Oriente Petrolero (Bolivia - Primera Division) | NO Nacional Potosi | 0.13 | 0.17 | +3.3¢ | +4.1¢ | – |
