@@ -30370,3 +30370,12 @@
 {"ts":"2026-11-28T05:45:32+00:00","ticker":"KXAHLGAME-26NOV281900ROCMIL-MIL","league":"USA - American Hockey League","fair":0.5681,"bid":0.52,"ask":0.61,"vol24":20}
 {"ts":"2026-11-28T05:45:32+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105NIITKG-TKG","league":"Japan - B.League One","fair":0.5889,"bid":0.62,"ask":0.66,"vol24":0}
 {"ts":"2026-11-28T05:45:35+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105NIITKG-TKG","league":"Japan - B.League One","fair":0.5951,"bid":0.62,"ask":0.66,"vol24":0}
+{"ts":"2026-11-28T05:46:02+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.1018,"bid":0.05,"ask":0.08,"vol24":20}
+{"ts":"2026-11-28T05:46:32+00:00","ticker":"KXAHLGAME-26NOV281900ROCMIL-MIL","league":"USA - American Hockey League","fair":0.5681,"bid":0.52,"ask":0.62,"vol24":20}
+{"ts":"2026-11-28T05:46:32+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105EHIKUM-KUM","league":"Japan - B.League One","fair":0.7873,"bid":0.77,"ask":0.85,"vol24":11}
+{"ts":"2026-11-28T05:47:34+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105EHIKUM-KUM","league":"Japan - B.League One","fair":0.7911,"bid":0.76,"ask":0.85,"vol24":11}
+{"ts":"2026-11-28T05:48:04+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105EHIKUM-KUM","league":"Japan - B.League One","fair":0.7949,"bid":0.78,"ask":0.85,"vol24":11}
+{"ts":"2026-11-28T05:50:07+00:00","ticker":"KXAHLGAME-26NOV281900ROCMIL-MIL","league":"USA - American Hockey League","fair":0.5681,"bid":0.52,"ask":0.61,"vol24":20}
+{"ts":"2026-11-28T05:52:09+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105EHIKUM-KUM","league":"Japan - B.League One","fair":0.797,"bid":0.79,"ask":0.85,"vol24":11}
+{"ts":"2026-11-28T05:55:21+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105GIFYOK-GIF","league":"Japan - B.League One","fair":0.102,"bid":0.05,"ask":0.09,"vol24":20}
+{"ts":"2026-11-28T05:55:21+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280105EHIKUM-KUM","league":"Japan - B.League One","fair":0.7954,"bid":0.79,"ask":0.84,"vol24":11}
