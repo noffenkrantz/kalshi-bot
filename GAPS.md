@@ -1,12 +1,12 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 3523 snapshots from 2026-11-25 16:44 to 2026-11-28 17:47 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 3528 snapshots from 2026-11-25 16:44 to 2026-11-28 18:00 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-39,561 Kalshi prices compared with Pinnacle's. 93% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.0¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
+39,566 Kalshi prices compared with Pinnacle's. 93% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.0¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
 
-56 simulated bets so far; 56 have a closing price. Average edge when placed +4.0¢; average closing value +3.5¢ per contract. Kalshi moved toward Pinnacle's price after 41 of them and Pinnacle moved toward Kalshi's after 38. 47 have settled: 21 won, simulated profit $+15.50 on $1,294 staked.
+57 simulated bets so far; 56 have a closing price. Average edge when placed +4.0¢; average closing value +3.5¢ per contract. Kalshi moved toward Pinnacle's price after 41 of them and Pinnacle moved toward Kalshi's after 38. 47 have settled: 21 won, simulated profit $+15.50 on $1,294 staked.
 
 ## By league
 
@@ -16,7 +16,7 @@
 |---|---|---|---|---|---|---|---|---|
 | NCAA | 2823 | 34% | +1.4¢ | 1% | 225 | 2 | +9.0¢ | – |
 | Japan - B.League One | 1916 | 33% | +2.9¢ | 4% | 17 | 8 | +4.3¢ | $-85.25 |
-| USA - American Hockey League | 1481 | 2% | +0.7¢ | 0% | 5 | 2 | +5.6¢ | $-0.82 |
+| USA - American Hockey League | 1482 | 2% | +0.7¢ | 0% | 5 | 2 | +5.6¢ | $-0.82 |
 | NHL | 1456 | 0% | +0.9¢ | 1% | 1,838 | 1 | +4.1¢ | – |
 | NBA | 884 | 0% | +0.7¢ | 1% | 46,776 | 4 | +1.2¢ | $+153.28 |
 | England - League 2 | 870 | 0% | +0.5¢ | 0% | 0 | 0 | – | – |
@@ -28,7 +28,7 @@
 | ITF Men Santa Cruz - R1 | 554 | 1% | +1.9¢ | 3% | 1,533 | 2 | +3.2¢ | $+24.16 |
 | Sweden - SHL | 538 | 3% | +0.9¢ | 0% | 0 | 1 | +3.8¢ | $+0.00 |
 | Germany - 3. Liga | 513 | 0% | +0.6¢ | 0% | 0 | 0 | – | – |
-| Australia - WNBL | 506 | 68% | +2.0¢ | 2% | 53 | 1 | -2.2¢ | $-0.45 |
+| Australia - WNBL | 507 | 68% | +2.0¢ | 2% | 53 | 2 | -2.2¢ | $-0.45 |
 | ITF Men Hradec Kralove - R16 | 481 | 2% | +3.1¢ | 0% | 1,189 | 1 | +0.8¢ | $-0.76 |
 | USA - Major League Soccer | 444 | 0% | +0.6¢ | 0% | 1,052 | 0 | – | – |
 | Japan - J2 League | 423 | 0% | +0.6¢ | 0% | 0 | 0 | – | – |
@@ -52,7 +52,7 @@
 | Thailand - League 1 | 348 | 0% | +0.9¢ | 0% | 0 | 0 | – | – |
 | Italy - Serie C Group A | 348 | 0% | +0.8¢ | 0% | 0 | 0 | – | – |
 | France - Ligue Magnus | 341 | 37% | +2.4¢ | 13% | 0 | 1 | +3.8¢ | $-68.26 |
-| Bolivia - Primera Division | 334 | 0% | +1.7¢ | 2% | 197 | 3 | +3.3¢ | $+0.00 |
+| Bolivia - Primera Division | 337 | 0% | +1.7¢ | 2% | 197 | 3 | +3.3¢ | $+0.00 |
 | Turkey - Super League | 330 | 0% | +0.5¢ | 0% | 92 | 0 | – | – |
 | ITF Men Heraklion - R16 | 322 | 4% | +1.4¢ | 1% | 182 | 1 | -4.8¢ | $+0.00 |
 | South Africa - PSL | 316 | 0% | +1.3¢ | 0% | 0 | 1 | +3.5¢ | $+0.47 |
@@ -81,12 +81,12 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 509 | 3.0 pts | 3.0¢ | 2.7¢ | 2.4¢ | 2.3¢ | 2.1¢ | 2.2¢ | 21% |
+| All | 510 | 3.0 pts | 3.0¢ | 2.7¢ | 2.4¢ | 2.3¢ | 2.1¢ | 2.2¢ | 21% |
 | NCAA | 60 | 2.6 pts | 2.0¢ | 2.0¢ | 1.8¢ | 1.7¢ | 1.5¢ | 1.2¢ | 17% |
 | Japan - B.League One | 38 | 3.4 pts | 5.8¢ | 5.5¢ | 5.0¢ | 4.8¢ | 4.9¢ | 4.9¢ | 11% |
 | Finland - SM Liiga | 26 | 2.9 pts | 2.2¢ | 2.0¢ | 1.6¢ | 1.4¢ | 0.9¢ | 1.1¢ | 23% |
 | Bolivia - Primera Division | 26 | 3.6 pts | 3.2¢ | 2.6¢ | 2.1¢ | 2.1¢ | 2.1¢ | 1.8¢ | 19% |
-| USA - American Hockey League | 15 | 2.9 pts | 3.5¢ | 3.2¢ | 3.0¢ | 2.6¢ | 1.9¢ | 1.7¢ | 7% |
+| USA - American Hockey League | 16 | 2.9 pts | 3.4¢ | 3.0¢ | 2.9¢ | 2.5¢ | 1.8¢ | 1.6¢ | 12% |
 | AFC - Champions League 2 | 13 | 3.4 pts | 3.1¢ | 3.2¢ | 6.1¢ | 6.3¢ | 6.5¢ | 6.3¢ | 15% |
 | Lithuania - National Basketball League | 13 | 3.2 pts | 2.5¢ | 2.5¢ | 1.9¢ | 2.0¢ | 1.6¢ | 6.0¢ | 23% |
 | Serbia - Super Liga | 13 | 3.0 pts | 2.1¢ | 2.1¢ | 2.0¢ | 2.1¢ | 2.0¢ | 6.2¢ | 23% |
@@ -99,6 +99,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | Placed (UTC) | Game | Bet | Paid | Fair | Edge | Closing value | Result |
 |---|---|---|---|---|---|---|---|
+| 11-28 18:00 | Tasmania Jewels vs Canberra Capitals (Australia - WNBL) | YES Tasmania Jewels | 0.57 | 0.64 | +4.9¢ | – | – |
 | 11-28 15:51 | Marshall vs East Texas A&M (NCAA) | NO Marshall | 0.22 | 0.26 | +3.1¢ | +4.2¢ | – |
 | 11-28 13:07 | Harrogate Town vs Yeovil Town (England - National League) | NO Harrogate | 0.44 | 0.50 | +3.8¢ | +8.1¢ | – |
 | 11-28 11:58 | GV San Jose vs Real Potosi (Bolivia - Primera Division) | NO Real Potosi | 0.45 | 0.54 | +7.3¢ | +0.1¢ | – |
@@ -128,4 +129,3 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 | 11-27 06:31 | Nicolas Ciancaglini vs Ignacio Monzon (ITF Men Santa Cruz - R16) | YES Nicolas Ciancaglini Rivera | 0.08 | 0.12 | +3.1¢ | +2.4¢ | lost $-0.09 |
 | 11-27 04:31 | Karan Singh vs Grigoriy Lomakin (ITF Men Bhopal - QF) | YES Karan Singh | 0.86 | 0.90 | +3.3¢ | +2.3¢ | won $+0.00 |
 | 11-27 03:50 | Kansas vs Villanova (NCAA) | NO Villanova | 0.71 | 0.87 | +14.2¢ | +13.8¢ | – |
-| 11-27 03:33 | Grenoble vs Anglet Hormadi Elite (France - Ligue Magnus) | YES Anglet Hormadi Elite | 0.09 | 0.13 | +3.2¢ | +3.8¢ | lost $-68.26 |
