@@ -1,12 +1,12 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 3290 snapshots from 2026-11-25 16:44 to 2026-11-28 12:38 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 3304 snapshots from 2026-11-25 16:44 to 2026-11-28 12:48 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-35,786 Kalshi prices compared with Pinnacle's. 93% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.1¢ from Pinnacle's fair price on average, and 1.2% could be bought at a 3¢+ edge after fees.
+35,800 Kalshi prices compared with Pinnacle's. 93% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.1¢ from Pinnacle's fair price on average, and 1.2% could be bought at a 3¢+ edge after fees.
 
-54 simulated bets so far; 54 have a closing price. Average edge when placed +4.0¢; average closing value +3.5¢ per contract. Kalshi moved toward Pinnacle's price after 40 of them and Pinnacle moved toward Kalshi's after 37. 39 have settled: 17 won, simulated profit $-180.54 on $1,128 staked.
+54 simulated bets so far; 54 have a closing price. Average edge when placed +4.0¢; average closing value +3.4¢ per contract. Kalshi moved toward Pinnacle's price after 40 of them and Pinnacle moved toward Kalshi's after 37. 39 have settled: 17 won, simulated profit $-180.54 on $1,128 staked.
 
 ## By league
 
@@ -17,7 +17,7 @@
 | NCAA | 2470 | 39% | +1.5¢ | 1% | 132 | 1 | +13.8¢ | – |
 | Japan - B.League One | 1836 | 32% | +3.0¢ | 4% | 17 | 8 | +4.3¢ | $-116.76 |
 | NHL | 1326 | 0% | +0.9¢ | 1% | 1,766 | 1 | +4.1¢ | – |
-| USA - American Hockey League | 1163 | 2% | +0.8¢ | 0% | 0 | 2 | +5.6¢ | $-0.82 |
+| USA - American Hockey League | 1176 | 2% | +0.8¢ | 0% | 0 | 2 | +5.6¢ | $-0.82 |
 | NBA | 834 | 0% | +0.7¢ | 1% | 48,812 | 4 | +1.2¢ | $+153.28 |
 | England - League 2 | 810 | 0% | +0.5¢ | 0% | 0 | 0 | – | – |
 | England - National League | 798 | 0% | +0.6¢ | 0% | 0 | 0 | – | – |
@@ -60,7 +60,7 @@
 | Mexico - Liga MX | 270 | 0% | +0.5¢ | 0% | 12,243 | 0 | – | – |
 | Czech Republic - FNL | 270 | 0% | +0.8¢ | 0% | 0 | 0 | – | – |
 | England - Premier League | 267 | 0% | +0.5¢ | 0% | 5,565 | 0 | – | – |
-| Bolivia - Primera Division | 266 | 0% | +1.8¢ | 2% | 148 | 3 | +4.3¢ | $+0.00 |
+| Bolivia - Primera Division | 267 | 0% | +1.8¢ | 2% | 148 | 3 | +4.0¢ | $+0.00 |
 | Hungary - NB 1 | 264 | 0% | +0.5¢ | 0% | 0 | 0 | – | – |
 | ITF Women Heraklion 2 - R16 | 263 | 6% | +1.7¢ | 4% | 420 | 1 | -0.9¢ | $-28.47 |
 | ITF Men Hradec Kralove - QF | 260 | 0% | +2.6¢ | 10% | 166 | 1 | -4.6¢ | $+0.00 |
@@ -99,7 +99,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | Placed (UTC) | Game | Bet | Paid | Fair | Edge | Closing value | Result |
 |---|---|---|---|---|---|---|---|
-| 11-28 11:58 | GV San Jose vs Real Potosi (Bolivia - Primera Division) | NO Real Potosi | 0.45 | 0.54 | +7.3¢ | +3.1¢ | – |
+| 11-28 11:58 | GV San Jose vs Real Potosi (Bolivia - Primera Division) | NO Real Potosi | 0.45 | 0.54 | +7.3¢ | +2.3¢ | – |
 | 11-28 08:49 | Tadeas Paroulek vs Karl Friberg (ITF Men Hradec Kralove - SF) | NO Karl Friberg | 0.35 | 0.40 | +3.2¢ | +3.9¢ | – |
 | 11-28 08:48 | Sabah vs Selangor (Malaysia - Super League) | NO Selangor FC | 0.38 | 0.43 | +3.2¢ | +2.9¢ | lost $-47.58 |
 | 11-28 05:35 | Tokushima Gambarous vs Niigata Albirex BB (Japan - B.League One) | NO Tokushima Gambarous | 0.37 | 0.42 | +3.8¢ | +2.1¢ | – |
