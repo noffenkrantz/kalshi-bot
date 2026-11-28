@@ -1,19 +1,17 @@
 {
- "ts": "2026-11-28T10:35:08+00:00",
+ "ts": "2026-11-28T10:45:10+00:00",
  "mode": "live",
  "running_since": "2026-11-28T04:22:13+00:00",
  "paired_games": 272,
  "paired_prices": 721,
- "polls_ok": 26835,
- "last_poll_ok": "2026-11-28T10:35:08+00:00",
- "pinnacle_changes_seen": 158234,
- "moves_logged": 55,
- "moves_waiting": 2,
+ "polls_ok": 27572,
+ "last_poll_ok": "2026-11-28T10:45:08+00:00",
+ "pinnacle_changes_seen": 162292,
+ "moves_logged": 57,
+ "moves_waiting": 7,
  "bets_placed": 7,
- "pinnapi_requests": 26887,
- "slowed_sports": [
-  "basketball"
- ],
+ "pinnapi_requests": 27624,
+ "slowed_sports": [],
  "kalshi_batch_reads": true,
  "last_error": null,
  "settings": {
