@@ -518,12 +518,27 @@ def score_bets(data: Path) -> list[dict]:
         n = contracts_of(b)
         r["n"] = n
         r["cost"] = round(n * b["price"] + order_fee(b["price"], n), 2) if n else 0.0
+        exit_ = sell_early(b, before)        # for the "sell early" experiment on the results page
+        if exit_ and n:
+            r["exit_ts"], r["exit_price"] = exit_
+            r["exit_profit"] = round(n * r["exit_price"] - order_fee(r["exit_price"], n) - r["cost"], 2)
         res = results.get(b["ticker"])
         if res:
             r["result"] = res
             r["profit"] = round((n if res == b["side"] else 0) - r["cost"], 2)
         out.append(r)
     return out
+
+
+def sell_early(b: dict, later: list[dict]) -> tuple[str, float] | None:
+    """The first price check before the game when Kalshi will buy the bot's contracts back for at
+    least the price Pinnacle gave when the bet was placed (b["fair"], already for the side bet).
+    Returns (time, sale price), or None if it never got there."""
+    for s in later:
+        sell = s.get("bid") if b["side"] == "yes" else (None if s.get("ask") is None else round(1 - s["ask"], 4))
+        if sell is not None and 0 < sell < 1 and sell >= b["fair"] - 1e-9:
+            return s["ts"], round(sell, 4)
+    return None
 
 
 def contracts_of(b: dict) -> int:

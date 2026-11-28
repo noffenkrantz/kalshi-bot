@@ -85,6 +85,12 @@ td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 .state.good{color:var(--up);background:color-mix(in srgb,var(--up) 10%,transparent)}
 .state.bad{color:var(--down);background:color-mix(in srgb,var(--down) 10%,transparent)}
 .state.wait{color:var(--ink2)}
+.modes{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.modes button{min-height:38px;padding:0 14px;border-radius:999px;border:1px solid var(--rule);background:var(--bg);color:var(--ink2);font-size:15px;font-weight:600;cursor:pointer}
+.modes button:hover{border-color:var(--muted);color:var(--ink)}
+.modes button[aria-selected=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.modes button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.about{font-size:15px;color:var(--ink2);margin:-4px 0 14px;max-width:70ch}
 .foot{border-top:1px solid var(--rule);color:var(--ink2);font-size:15px}
 .foot p+p{margin-top:6px}
 .foot a{color:var(--accent)}
@@ -103,6 +109,8 @@ table{font-size:15px}
 <body>
 <header class="band"><div class="wrap">
   <p class="fl" style="font-size:15px;margin-bottom:8px">Experiment: buy on Kalshi when it's cheaper than Pinnacle's price</p>
+  <div class="modes" id="modes" role="tablist" aria-label="Experiment"></div>
+  <p class="about" id="about"></p>
   <h1 id="finding">Loading results</h1>
   <p class="sub" id="why" style="font-size:19px"></p>
   <div class="cards">
@@ -160,8 +168,16 @@ const betlabel = b => b.side === 'yes' ? `${esc(b.team)} to win` : `${esc(b.team
 let real = [], proj = [], times = [], G = null;
 const s = $('balsvg'), tip = $('tip');
 
+const MODEKEY = 'kalshi-gap-mode';
+let MODE = (() => { const h = location.hash.slice(1); if (h) return h; try { return localStorage.getItem(MODEKEY) || 'main'; } catch (e) { return 'main'; } })();
+const cur = () => (D.modes && D.modes[MODE]) || (D.modes && D.modes.main) || D;
 function render() {
-  const A = D.account, R = D.rules, V = D.verdict, change = A.balance - A.start;
+  const M = cur(), A = M.account, R = D.rules, V = M.verdict, change = A.balance - A.start;
+  const order = D.mode_order || [];
+  if (!D.modes || !D.modes[MODE]) MODE = 'main';
+  $('modes').innerHTML = order.map(k => `<button type="button" role="tab" data-k="${k}" aria-selected="${k === MODE}">${esc(D.modes[k].name)}</button>`).join('');
+  $('modes').hidden = order.length < 2;
+  $('about').textContent = M.about || '';
   // ---- the read
   const head = {early: 'Too early to tell', promising: 'Promising so far', leaning: 'Leaning positive, not proven yet', not_working: 'Not working so far'}[V.state];
   $('finding').textContent = head;
@@ -184,7 +200,7 @@ function render() {
       V.state === 'promising' ? 'good' : V.state === 'not_working' ? 'bad' : 'wait');
   $('p-v').textContent = V.settled ? money(V.profit, true) : '$0.00';
   $('p-v').className = 'fv ' + (V.settled ? cls(V.profit) : '');
-  $('p-l').textContent = V.settled ? `profit after fees · ${V.wins} won, ${V.settled - V.wins} lost` : 'profit after fees';
+  $('p-l').textContent = V.settled ? `profit after fees · ${V.wins} won, ${V.settled - V.wins} lost` + (A.sold_n ? ` (${A.sold_n} sold before the game)` : '') : 'profit after fees';
   $('p-bar').style.width = Math.min(100, V.settled / V.proof_target * 100) + '%';
   $('p-p').textContent = `${V.settled.toLocaleString('en-US')} of ${V.proof_target.toLocaleString('en-US')} settled bets` + (V.profit_state === 'early' ? ' · until about 300, luck outweighs a few cents of edge' : '');
   tag($('p-s'), {early: 'Too early', ahead: 'Ahead, not proven yet', behind: 'Behind so far', proven: 'Proven: profitable', not_proven: 'Not profitable'}[V.profit_state],
@@ -200,16 +216,16 @@ function render() {
   $('how').innerHTML = `<b>The rule:</b> when Kalshi sells an outcome for at least ${Math.round(R.min_edge * 100)}¢ less than Pinnacle's price (after Kalshi's fee), it buys up to ${money0(R.stake)}, but only the contracts actually for sale at that price. One bet per game, ${money0(R.bankroll)} start.`;
 
   // ---- bets
-  $('open').innerHTML = D.open.length ? `<div class="scroll"><table class="stack"><thead><tr><th>Game</th><th>Bet</th><th class="n">Paid</th><th class="n">Pinnacle then → now</th><th class="n">On paper</th><th class="n">Starts</th></tr></thead><tbody>` +
-    D.open.map(b => `<tr><td class="q">${esc(b.game)}<span class="meta">${esc(b.league)}</span></td><td><span>${betlabel(b)}<span class="meta">${b.n} at ${cents(b.price)}</span></span></td><td class="n">${money(b.cost)}</td><td class="n">${cents(b.fair_then)} → ${cents(b.fair_now)}</td><td class="n ${cls(b.ev)}">${money(b.ev, true)}</td><td class="n">${day(b.starts)}</td></tr>`).join('') + `</tbody></table></div>`
+  $('open').innerHTML = M.open.length ? `<div class="scroll"><table class="stack"><thead><tr><th>Game</th><th>Bet</th><th class="n">Paid</th><th class="n">Pinnacle then → now</th><th class="n">On paper</th><th class="n">Starts</th></tr></thead><tbody>` +
+    M.open.map(b => `<tr><td class="q">${esc(b.game)}<span class="meta">${esc(b.league)}</span></td><td><span>${betlabel(b)}<span class="meta">${b.n} at ${cents(b.price)}</span></span></td><td class="n">${money(b.cost)}</td><td class="n">${cents(b.fair_then)} → ${cents(b.fair_now)}</td><td class="n ${cls(b.ev)}">${money(b.ev, true)}</td><td class="n">${day(b.starts)}</td></tr>`).join('') + `</tbody></table></div>`
     : `<p class="empty">None right now.</p>`;
-  $('settled').innerHTML = D.settled.length ? `<div class="scroll"><table class="stack"><thead><tr><th>Game</th><th>Bet</th><th>Result</th><th class="n">Profit</th><th class="n">vs Pinnacle's final price</th></tr></thead><tbody>` +
-    D.settled.map(b => `<tr><td class="q">${esc(b.game)}<span class="meta">${esc(b.league)} · ${day(b.placed)}</span></td><td><span>${betlabel(b)}<span class="meta">${b.n} at ${cents(b.price)}</span></span></td><td><span class="tag ${b.won ? 'won' : 'lost'}">${b.won ? 'Won' : 'Lost'}</span></td><td class="n ${cls(b.profit)}">${money(b.profit, true)}</td><td class="n ${cls(b.clv)}">${sc(b.clv)}</td></tr>`).join('') + `</tbody></table></div>`
+  $('settled').innerHTML = M.settled.length ? `<div class="scroll"><table class="stack"><thead><tr><th>Game</th><th>Bet</th><th>Result</th><th class="n">Profit</th><th class="n">vs Pinnacle's final price</th></tr></thead><tbody>` +
+    M.settled.map(b => `<tr><td class="q">${esc(b.game)}<span class="meta">${esc(b.league)} · ${day(b.placed)}</span></td><td><span>${betlabel(b)}<span class="meta">${b.n} at ${cents(b.price)}</span></span></td><td>${b.how === 'sold' ? `<span><span class="tag">Sold</span><span class="meta">at ${cents(b.exit_price)}</span></span>` : `<span class="tag ${b.won ? 'won' : 'lost'}">${b.won ? 'Won' : 'Lost'}</span>`}</td><td class="n ${cls(b.profit)}">${money(b.profit, true)}</td><td class="n ${cls(b.clv)}">${sc(b.clv)}</td></tr>`).join('') + `</tbody></table></div>`
     : `<p class="empty">Nothing settled yet. Kalshi settles a game within hours of the end.</p>`;
   $('links').innerHTML = D.repo ? `More detail (leagues, how fast Kalshi follows Pinnacle): <a href="https://github.com/${esc(D.repo)}/blob/main/GAPS.md">full report</a>` : '';
 
   const series = a => (a || []).map(([t, v]) => [new Date(t).getTime(), v]).filter(p => !isNaN(p[0])).sort((a, b) => a[0] - b[0]);
-  real = series(D.real_line); proj = series(D.proj_line);
+  real = series(M.real_line); proj = series(M.proj_line);
   times = [...new Set(real.concat(proj).map(p => p[0]))].sort((a, b) => a - b);
   drawChart();
 }
@@ -217,7 +233,7 @@ function render() {
 const at = (arr, t) => { let v = null; for (const p of arr) { if (p[0] <= t) v = p[1]; else break; } return v; };
 const nice = span => { const raw = Math.max(span, 1e-9) / 4, mag = 10 ** Math.floor(Math.log10(raw)); for (const m of [1, 2, 2.5, 5, 10]) if (m * mag >= raw) return m * mag; return 10 * mag; };
 function drawChart() {
-  const W = s.clientWidth, H = s.clientHeight, start = D.account.start;
+  const W = s.clientWidth, H = s.clientHeight, start = cur().account.start;
   if (!W || !H || !real.length) return;
   const narrow = W < 520, m = {l: narrow ? 58 : 68, r: narrow ? 88 : 118, t: 14, b: 30};
   let t1 = times[times.length - 1], t0 = times[0];
@@ -257,14 +273,14 @@ function drawChart() {
   h += `<circle cx="${ex}" cy="${ey}" r="5.5" fill="var(--accent)" stroke="var(--bg)" stroke-width="2"/>`;
   h += `<text x="${ex + 10}" y="${ey + 4}" style="fill:var(--ink);font-weight:600;font-size:14px">${money0(last[1])}</text>`;
   h += `<g id="cross" style="display:none"><line id="cx" class="grid" y1="${m.t}" y2="${H - m.b}" style="stroke:var(--ink2)"/><circle id="cp" r="4" fill="var(--bg)" stroke="var(--muted)" stroke-width="2"/><circle id="cd" r="5" fill="var(--accent)" stroke="var(--bg)" stroke-width="2"/></g>`;
-  if (real.length <= 2 && !D.account.settled_n) h += `<text x="${(m.l + W - m.r) / 2}" y="${ys + 34}" text-anchor="middle">The balance moves when a bet settles</text>`;
+  if (real.length <= 2 && !cur().account.settled_n) h += `<text x="${(m.l + W - m.r) / 2}" y="${ys + 34}" text-anchor="middle">The balance moves when a bet settles</text>`;
   s.innerHTML = h;
   G = {X, Y};
 }
 new ResizeObserver(drawChart).observe(s);
 s.addEventListener('pointermove', e => {
   if (!G || !times.length) return;
-  const r = s.getBoundingClientRect(), x = e.clientX - r.left, start = D.account.start;
+  const r = s.getBoundingClientRect(), x = e.clientX - r.left, start = cur().account.start;
   let best = times[0];
   for (const t of times) if (Math.abs(G.X(t) - x) < Math.abs(G.X(best) - x)) best = t;
   const rv = at(real, best) ?? start, pv = proj.length ? at(proj, best) : null, px = G.X(best);
@@ -283,6 +299,14 @@ s.addEventListener('pointermove', e => {
 });
 s.addEventListener('pointerleave', () => { const c = document.getElementById('cross'); if (c) c.style.display = 'none'; tip.hidden = true; });
 
+$('modes').addEventListener('click', e => {
+  const k = e.target.closest('button')?.dataset.k;
+  if (!k || k === MODE) return;
+  MODE = k;
+  try { localStorage.setItem(MODEKEY, k); } catch (err) {}
+  history.replaceState(null, '', k === 'main' ? location.pathname + location.search : '#' + k);
+  render();
+});
 render();
 
 // ---- on GitHub Pages: pull the newest results straight from the repo (no redeploy needed)

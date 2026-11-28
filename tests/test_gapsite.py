@@ -124,3 +124,30 @@ def test_page_carries_its_design_version(tmp_path):
     assert d["page"] == page_version() and len(d["page"]) == 10
     assert json.loads((tmp_path / "site" / "gaps.json").read_text())["page"] == d["page"]
     assert f'"page":"{d["page"]}"' in (tmp_path / "site" / "index.html").read_text()
+
+
+def test_experiments_favorites_only_and_sell_early(tmp_path):
+    (tmp_path / "data").mkdir()
+    write(tmp_path, "gap_bets.jsonl", [
+        bet("A-BRO", -30, 0.40, 0.46, 500),             # underdog by Pinnacle (46%): not in "favorites only"
+        bet("B-BRO", -29, 0.55, 0.60, 500),             # favourite (60%)
+    ])
+    write(tmp_path, "gap_snaps.jsonl", [
+        {"ts": T(-30), "ticker": "A-BRO", "league": "L", "fair": 0.46, "bid": 0.38, "ask": 0.40},
+        {"ts": T(-25), "ticker": "A-BRO", "league": "L", "fair": 0.47, "bid": 0.47, "ask": 0.48},   # Kalshi reaches 46c+
+        {"ts": T(-29), "ticker": "B-BRO", "league": "L", "fair": 0.60, "bid": 0.53, "ask": 0.55},
+        {"ts": T(-24), "ticker": "B-BRO", "league": "L", "fair": 0.61, "bid": 0.57, "ask": 0.58}])  # never reaches 60c
+    write(tmp_path, "gap_outcomes.jsonl", [{"ts": T(-10), "ticker": "A-BRO", "result": "no"},
+                                           {"ts": T(-9), "ticker": "B-BRO", "result": "yes"}])
+    d = build_data(tmp_path, CFG, NOW)
+    main, fav, sell = d["modes"]["main"], d["modes"]["fav"], d["modes"]["sell"]
+    assert d["account"] == main["account"] and d["mode_order"] == ["main", "fav", "sell"]
+    # main: A lost (-10.42), B won: 18 x 55c = 9.90 + fee ceil(0.07*18*.2475)=0.32 -> cost 10.22, +7.78
+    assert main["account"]["realized"] == round(-10.42 + 7.78, 2) and main["account"]["settled_n"] == 2
+    assert fav["account"]["realized"] == 7.78 and fav["account"]["settled_n"] == 1
+    # sell early: A sold at 47c before the game: 25 x 47c - 44c fee - 10.42 = +0.89; B held, +7.78
+    sa = sell["account"]
+    assert sa["sold_n"] == 1 and sa["realized"] == round(0.89 + 7.78, 2)
+    assert sell["settled"][-1]["how"] == "sold" and sell["settled"][-1]["exit_price"] == 0.47
+    html = render(d)
+    assert "Favorites only" in html and "Sell early" in html

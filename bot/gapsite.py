@@ -23,6 +23,7 @@ from datetime import datetime
 from pathlib import Path
 
 from .gaps import _mean, _share_edge, _tight, read_jsonl, score_bets, settings
+from .strategy import order_fee
 from .util import iso, parse_time, utcnow
 
 TEMPLATE = Path(__file__).with_name("gapsite_template.html")
@@ -73,56 +74,63 @@ def verdict(scored: list[dict], done: list[dict]) -> dict:
     return {"state": state, "n": n, "scored_total": len(scored), "mean": mean, "low": low,
             "beat": sum(x > 0 for x in xs), "quick_target": QUICK_TARGET,
             "toward": sum(m >= 0.01 for m in moves), "toward_n": len(moves),
-            "profit": profit, "settled": m, "wins": sum(b["result"] == b["side"] for b in done),
+            "profit": profit, "settled": m, "wins": sum(bool(b.get("won", b.get("result") == b.get("side"))) for b in done),
             "profit_state": pstate, "proof_target": PROOF_TARGET}
 
 
-def build_data(root: Path, cfg: dict, now: datetime | None = None) -> dict:
-    now = now or utcnow()
-    g = settings(cfg)
-    data = Path(root) / "data"
-    snaps = read_jsonl(data / "gap_snaps.jsonl")
-    bets = score_bets(data)
-    settled_at = {o["ticker"]: o["ts"] for o in read_jsonl(data / "gap_outcomes.jsonl")}
-    latest_fair = {}
-    for s in snaps:
-        latest_fair[s["ticker"]] = s["fair"]
-    try:
-        state = json.loads((data / "gap_state.json").read_text())
-    except (OSError, ValueError):
-        state = {}
+MODES = [
+    {"key": "main", "name": "All bets",
+     "about": "Buys whenever Kalshi is cheap enough compared with Pinnacle, and holds every bet until the game ends."},
+    {"key": "fav", "name": "Favorites only",
+     "about": "The same bets, but only when Pinnacle gives the side the bot backs more than a 50% chance."},
+    {"key": "sell", "name": "Sell early",
+     "about": "The same bets, but sells before the game if Kalshi will pay the price Pinnacle gave when the bet "
+              "was placed (paying Kalshi's fee again on the sale). Bets that never get there are held to the end."},
+]
 
-    # ---- the account, replayed in time order -------------------------------------------------
-    start = float(g["bankroll_usd"])
+
+def account(bets: list[dict], settled_at: dict, latest_fair: dict, start: float, now: datetime, first: str,
+            sell: bool = False) -> dict:
+    """Replay one experiment's bets in time order: what a real account would have done."""
     events = []
     for b in bets:
         events.append((b["ts"], 0, b))
-        if b.get("result") and b["ticker"] in settled_at:
-            events.append((settled_at[b["ticker"]], 1, b))
+        settled = settled_at.get(b["ticker"]) if b.get("result") else None
+        if sell and b.get("exit_ts") and (settled is None or b["exit_ts"] < settled):
+            events.append((b["exit_ts"], 1, b))           # sold before the game
+        elif settled:
+            events.append((settled, 2, b))
     events.sort(key=lambda e: (e[0], e[1]))
-    first = snaps[0]["ts"] if snaps else (events[0][0] if events else iso(now))
     cash, realized = start, 0.0
-    held, placed, missed, unknown, no_cash, same_game = {}, [], [], [], [], []
+    held, placed, finished = {}, [], []
+    left = {"missed": 0, "unknown": 0, "no_cash": 0, "same_game": 0}
     real_line = [[first, start]]
     for ts, kind, b in events:
         key = (b["ticker"], b["side"])
         if kind == 0:
             if any(h.get("event") == b.get("event") for h in held.values()):   # same game, same bet twice
-                same_game.append(b)
+                left["same_game"] += 1
             elif b.get("available") is None:               # couldn't see what was for sale: left out
-                unknown.append(b)
+                left["unknown"] += 1
             elif b["n"] == 0:
-                missed.append(b)
+                left["missed"] += 1
             elif b["cost"] > cash:
-                no_cash.append(b)
+                left["no_cash"] += 1
             else:
                 cash -= b["cost"]
                 held[key] = b
                 placed.append(b)
         elif key in held:
             held.pop(key)
-            cash += b["n"] if b["result"] == b["side"] else 0
-            realized += b["profit"]
+            if kind == 1:
+                cash += b["n"] * b["exit_price"] - order_fee(b["exit_price"], b["n"])
+                done = {**b, "profit": b["exit_profit"], "how": "sold", "won": b["exit_profit"] > 0, "closed": ts}
+            else:
+                cash += b["n"] if b["result"] == b["side"] else 0
+                won = b["result"] == b["side"]
+                done = {**b, "how": "won" if won else "lost", "won": won, "closed": ts}
+            finished.append(done)
+            realized += done["profit"]
             real_line.append([ts, round(start + realized, 2)])
     balance = round(start + realized, 2)
     real_line.append([iso(now), balance])
@@ -140,32 +148,54 @@ def build_data(root: Path, cfg: dict, now: datetime | None = None) -> dict:
                           "available": b["available"], "cost": b["cost"], "fair_then": b["fair"], "fair_now": fn,
                           "ev": ev, "starts": b["starts"], "live": bool(b.get("live"))})
     projected = round(balance + sum(r["ev"] for r in open_rows), 2)
-    proj_line = [real_line[-2], [iso(now), projected]] if open_rows else []   # dashed: from the last settlement to now
-    done = [b for b in placed if b.get("profit") is not None and (b["ticker"], b["side"]) not in held]
     scored = [b for b in placed if b.get("clv") is not None]
-    settled_rows = [{"placed": b["ts"], "settled": settled_at.get(b["ticker"]), "game": b["pin_teams"],
-                     "league": b["league"], "team": b["team"], "side": b["side"], "price": b["price"], "n": b["n"],
-                     "cost": b["cost"], "won": b["result"] == b["side"], "profit": b["profit"], "clv": b.get("clv")}
-                    for b in sorted(done, key=lambda b: settled_at.get(b["ticker"], ""), reverse=True)[:40]]
-    tight = [s for s in snaps if _tight(s)]
+    settled_rows = [{"placed": b["ts"], "settled": b["closed"], "game": b["pin_teams"], "league": b["league"],
+                     "team": b["team"], "side": b["side"], "price": b["price"], "n": b["n"], "cost": b["cost"],
+                     "how": b["how"], "won": b["won"], "profit": b["profit"], "clv": b.get("clv"),
+                     "exit_price": b.get("exit_price") if b["how"] == "sold" else None}
+                    for b in sorted(finished, key=lambda b: b["closed"], reverse=True)[:40]]
+    return {
+        "account": {"start": start, "balance": balance, "realized": round(realized, 2), "cash": round(cash, 2),
+                    "projected": projected, "open_n": len(open_rows), "open_cost": round(sum(r["cost"] for r in open_rows), 2),
+                    "settled_n": len(finished), "wins": sum(b["won"] for b in finished),
+                    "losses": sum(not b["won"] for b in finished), "sold_n": sum(b["how"] == "sold" for b in finished),
+                    "placed_n": len(placed), **{f"{k}_n": v for k, v in left.items()},
+                    "clv": _mean(b["clv"] for b in scored), "clv_n": len(scored),
+                    "clv_usd": round(sum(b["clv"] * b["n"] for b in scored), 2)},
+        "real_line": real_line, "proj_line": [real_line[-2], [iso(now), projected]] if open_rows else [],
+        "verdict": verdict(scored, finished), "open": open_rows, "settled": settled_rows,
+    }
 
+
+def build_data(root: Path, cfg: dict, now: datetime | None = None) -> dict:
+    now = now or utcnow()
+    g = settings(cfg)
+    data = Path(root) / "data"
+    snaps = read_jsonl(data / "gap_snaps.jsonl")
+    bets = score_bets(data)
+    settled_at = {o["ticker"]: o["ts"] for o in read_jsonl(data / "gap_outcomes.jsonl")}
+    latest_fair = {}
+    for s in snaps:
+        latest_fair[s["ticker"]] = s["fair"]
+    try:
+        state = json.loads((data / "gap_state.json").read_text())
+    except (OSError, ValueError):
+        state = {}
+    start = float(g["bankroll_usd"])
+    first = snaps[0]["ts"] if snaps else (min(b["ts"] for b in bets) if bets else iso(now))
+    modes = {}
+    for m in MODES:
+        subset = [b for b in bets if (b.get("fair") or 0) > 0.5] if m["key"] == "fav" else bets
+        modes[m["key"]] = {**m, **account(subset, settled_at, latest_fair, start, now, first, sell=m["key"] == "sell")}
+    tight = [s for s in snaps if _tight(s)]
     return {
         "updated": iso(now), "repo": repo_slug(root),
         "rules": {"bankroll": start, "stake": float(g["stake_usd"]), "min_edge": float(g["min_edge"]),
                   "max_edge": float(g["max_edge"]), "mode": g.get("mode", "hourly"), "every": g["every_minutes"],
                   "poll": g.get("poll_seconds", 5)},
         "status": {"last_run": state.get("last_run"), "calls_today": state.get("calls"), "day": state.get("day")},
-        "account": {"start": start, "balance": balance, "realized": round(realized, 2), "cash": round(cash, 2),
-                    "projected": projected, "open_n": len(open_rows), "open_cost": round(sum(r["cost"] for r in open_rows), 2),
-                    "settled_n": len(done), "wins": sum(b["result"] == b["side"] for b in done),
-                    "losses": sum(b["result"] != b["side"] for b in done), "placed_n": len(placed),
-                    "missed_n": len(missed), "unknown_n": len(unknown), "no_cash_n": len(no_cash),
-                    "same_game_n": len(same_game),
-                    "clv": _mean(b["clv"] for b in scored), "clv_n": len(scored),
-                    "clv_usd": round(sum(b["clv"] * b["n"] for b in scored), 2)},
-        "real_line": real_line, "proj_line": proj_line,
-        "verdict": verdict(scored, done),
-        "open": open_rows, "settled": settled_rows,
+        **{k: v for k, v in modes["main"].items() if k not in ("key", "name", "about")},   # the main page, as before
+        "modes": modes, "mode_order": [m["key"] for m in MODES],
         "scan": {"rows": len(snaps), "since": first if snaps else None, "edge": _share_edge(tight) if tight else None},
     }
 
