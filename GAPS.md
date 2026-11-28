@@ -81,12 +81,12 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 396 | 3.1 pts | 3.2¢ | 3.0¢ | 2.7¢ | 2.5¢ | 2.3¢ | 2.5¢ | 19% |
+| All | 398 | 3.1 pts | 3.2¢ | 3.0¢ | 2.7¢ | 2.5¢ | 2.3¢ | 2.5¢ | 19% |
 | NCAA | 42 | 2.6 pts | 2.0¢ | 2.0¢ | 1.8¢ | 1.7¢ | 1.5¢ | 1.2¢ | 19% |
 | Japan - B.League One | 36 | 3.4 pts | 5.6¢ | 5.3¢ | 4.8¢ | 4.6¢ | 4.7¢ | 4.7¢ | 11% |
+| Finland - SM Liiga | 16 | 3.0 pts | 2.2¢ | 2.1¢ | 1.4¢ | 1.4¢ | 0.9¢ | 1.3¢ | 31% |
 | USA - American Hockey League | 15 | 2.9 pts | 3.5¢ | 3.2¢ | 3.0¢ | 2.6¢ | 1.9¢ | 1.7¢ | 7% |
 | Bolivia - Primera Division | 15 | 3.5 pts | 3.3¢ | 2.4¢ | 2.1¢ | 1.9¢ | 2.0¢ | 1.9¢ | 7% |
-| Finland - SM Liiga | 14 | 2.9 pts | 2.2¢ | 2.1¢ | 1.3¢ | 1.3¢ | 1.0¢ | 1.4¢ | 29% |
 | AFC - Champions League 2 | 13 | 3.4 pts | 3.1¢ | 3.2¢ | 6.1¢ | 6.3¢ | 6.5¢ | 6.3¢ | 15% |
 | Lithuania - National Basketball League | 13 | 3.2 pts | 2.5¢ | 2.5¢ | 1.9¢ | 2.0¢ | 1.6¢ | 6.0¢ | 23% |
 | NBA | 11 | 3.3 pts | 1.3¢ | 1.3¢ | 1.0¢ | 0.8¢ | 0.9¢ | 0.6¢ | 45% |
