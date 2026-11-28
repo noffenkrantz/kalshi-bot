@@ -1,12 +1,12 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 3190 snapshots from 2026-11-25 16:44 to 2026-11-28 08:27 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 3194 snapshots from 2026-11-25 16:44 to 2026-11-28 08:30 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-32,770 Kalshi prices compared with Pinnacle's. 92% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.1¢ from Pinnacle's fair price on average, and 1.3% could be bought at a 3¢+ edge after fees.
+32,774 Kalshi prices compared with Pinnacle's. 92% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.1¢ from Pinnacle's fair price on average, and 1.3% could be bought at a 3¢+ edge after fees.
 
-51 simulated bets so far; 51 have a closing price. Average edge when placed +4.0¢; average closing value +3.5¢ per contract. Kalshi moved toward Pinnacle's price after 37 of them and Pinnacle moved toward Kalshi's after 34. 37 have settled: 16 won, simulated profit $-136.72 on $1,059 staked.
+51 simulated bets so far; 51 have a closing price. Average edge when placed +4.0¢; average closing value +3.5¢ per contract. Kalshi moved toward Pinnacle's price after 37 of them and Pinnacle moved toward Kalshi's after 34. 38 have settled: 17 won, simulated profit $-132.96 on $1,080 staked.
 
 ## By league
 
@@ -17,7 +17,7 @@
 | NCAA | 2334 | 41% | +1.5¢ | 1% | 124 | 1 | +13.8¢ | – |
 | Japan - B.League One | 1772 | 30% | +3.0¢ | 4% | 17 | 8 | +4.3¢ | $-116.76 |
 | NHL | 1222 | 0% | +0.9¢ | 1% | 1,823 | 1 | +4.1¢ | – |
-| USA - American Hockey League | 991 | 3% | +0.8¢ | 0% | 0 | 2 | +5.3¢ | $-0.82 |
+| USA - American Hockey League | 995 | 3% | +0.8¢ | 0% | 0 | 2 | +5.3¢ | $-0.82 |
 | NBA | 794 | 0% | +0.7¢ | 1% | 51,028 | 4 | +1.2¢ | $+153.28 |
 | England - National League | 666 | 0% | +0.6¢ | 0% | 0 | 0 | – | – |
 | England - League 2 | 666 | 0% | +0.5¢ | 0% | 0 | 0 | – | – |
@@ -81,9 +81,9 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 375 | 3.1 pts | 3.2¢ | 3.0¢ | 2.7¢ | 2.5¢ | 2.4¢ | 2.4¢ | 19% |
+| All | 376 | 3.1 pts | 3.2¢ | 3.0¢ | 2.7¢ | 2.6¢ | 2.4¢ | 2.4¢ | 19% |
 | NCAA | 42 | 2.6 pts | 2.0¢ | 2.0¢ | 1.8¢ | 1.7¢ | 1.5¢ | 1.2¢ | 19% |
-| Japan - B.League One | 34 | 3.5 pts | 5.5¢ | 5.2¢ | 4.7¢ | 4.5¢ | 4.6¢ | 4.6¢ | 12% |
+| Japan - B.League One | 35 | 3.5 pts | 5.7¢ | 5.4¢ | 4.8¢ | 4.6¢ | 4.8¢ | 4.7¢ | 11% |
 | Bolivia - Primera Division | 15 | 3.5 pts | 3.3¢ | 2.4¢ | 2.1¢ | 1.9¢ | 2.0¢ | 1.9¢ | 7% |
 | USA - American Hockey League | 14 | 2.9 pts | 3.4¢ | 3.1¢ | 3.0¢ | 2.5¢ | 1.7¢ | 1.6¢ | 7% |
 | AFC - Champions League 2 | 13 | 3.4 pts | 3.1¢ | 3.2¢ | 6.1¢ | 6.3¢ | 6.5¢ | 6.3¢ | 15% |
@@ -103,7 +103,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 | 11-28 05:27 | Iwate Big Bulls vs Aomori Wats (Japan - B.League One) | YES Iwate Bigbulls | 0.75 | 0.82 | +5.5¢ | +8.9¢ | – |
 | 11-28 05:24 | Kumamoto Volters vs Ehime Orange Vikings (Japan - B.League One) | NO Kumamoto Volters | 0.16 | 0.21 | +4.3¢ | +5.1¢ | – |
 | 11-28 04:49 | Milwaukee Admirals vs Rockford Icehogs (USA - American Hockey League) | YES Milwaukee Admirals | 0.51 | 0.57 | +4.1¢ | +5.8¢ | – |
-| 11-28 04:32 | Jensi Dipakbhai Kanabar vs Florentine Dekkers (ITF Women Kolkata - SF) | YES Jensi Dipakbhai Kanabar | 0.84 | 0.89 | +3.8¢ | +4.3¢ | – |
+| 11-28 04:32 | Jensi Dipakbhai Kanabar vs Florentine Dekkers (ITF Women Kolkata - SF) | YES Jensi Dipakbhai Kanabar | 0.84 | 0.89 | +3.8¢ | +4.3¢ | won $+3.76 |
 | 11-28 04:05 | Sportivo Trinidense vs Deportivo Recoleta (Paraguay - Division Profesional) | YES CD Recoleta | 0.09 | 0.14 | +3.9¢ | +2.7¢ | – |
 | 11-28 03:02 | Priska Madelyn Nugroho vs Kamonwan Yodpetch (ITF Women Kolkata - SF) | YES Priska Madelyn Nugroho | 0.83 | 0.88 | +4.2¢ | +5.2¢ | won $+2.40 |
 | 11-28 01:44 | Rizing Fukuoka vs Koshigaya Alphas (Japan - B.League One) | YES Koshigaya Alphas | 0.80 | 0.84 | +3.1¢ | +2.2¢ | – |
