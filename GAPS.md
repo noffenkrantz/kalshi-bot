@@ -1,12 +1,12 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 3483 snapshots from 2026-11-25 16:44 to 2026-11-28 15:07 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 3492 snapshots from 2026-11-25 16:44 to 2026-11-28 15:11 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-37,505 Kalshi prices compared with Pinnacle's. 93% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.1¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
+37,515 Kalshi prices compared with Pinnacle's. 93% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.1¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
 
-55 simulated bets so far; 55 have a closing price. Average edge when placed +4.0¢; average closing value +3.5¢ per contract. Kalshi moved toward Pinnacle's price after 40 of them and Pinnacle moved toward Kalshi's after 37. 41 have settled: 18 won, simulated profit $-16.01 on $1,248 staked.
+55 simulated bets so far; 55 have a closing price. Average edge when placed +4.0¢; average closing value +3.6¢ per contract. Kalshi moved toward Pinnacle's price after 41 of them and Pinnacle moved toward Kalshi's after 37. 41 have settled: 18 won, simulated profit $-16.01 on $1,248 staked.
 
 ## By league
 
@@ -16,7 +16,7 @@
 |---|---|---|---|---|---|---|---|---|
 | NCAA | 2596 | 37% | +1.4¢ | 1% | 143 | 1 | +13.8¢ | – |
 | Japan - B.League One | 1868 | 33% | +2.9¢ | 4% | 17 | 8 | +4.3¢ | $-116.76 |
-| USA - American Hockey League | 1392 | 2% | +0.7¢ | 0% | 6 | 2 | +5.6¢ | $-0.82 |
+| USA - American Hockey League | 1396 | 2% | +0.7¢ | 0% | 6 | 2 | +5.6¢ | $-0.82 |
 | NHL | 1378 | 0% | +0.9¢ | 1% | 1,759 | 1 | +4.1¢ | – |
 | England - League 2 | 870 | 0% | +0.5¢ | 0% | 0 | 0 | – | – |
 | England - National League | 858 | 0% | +0.6¢ | 0% | 0 | 1 | +8.1¢ | – |
@@ -56,8 +56,8 @@
 | Italy - Serie C Group A | 303 | 0% | +0.8¢ | 0% | 0 | 0 | – | – |
 | ITF Women Florianopolis - R16 | 303 | 4% | +1.8¢ | 5% | 269 | 3 | +3.5¢ | $+55.80 |
 | England - Premier League | 303 | 0% | +0.5¢ | 0% | 4,802 | 0 | – | – |
+| Bolivia - Primera Division | 300 | 0% | +1.8¢ | 2% | 175 | 3 | +5.2¢ | $+0.00 |
 | South Africa - PSL | 298 | 0% | +1.3¢ | 0% | 0 | 1 | +3.5¢ | $+0.47 |
-| Bolivia - Primera Division | 294 | 0% | +1.7¢ | 2% | 175 | 3 | +2.8¢ | $+0.00 |
 | ITF Women Trnava - R16 | 289 | 4% | +1.2¢ | 0% | 23 | 1 | +3.2¢ | $-102.76 |
 | Mexico - Liga MX | 282 | 0% | +0.5¢ | 0% | 11,198 | 0 | – | – |
 | Hungary - NB 1 | 282 | 0% | +0.5¢ | 0% | 0 | 0 | – | – |
@@ -81,11 +81,11 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 479 | 3.0 pts | 3.0¢ | 2.8¢ | 2.5¢ | 2.3¢ | 2.2¢ | 2.3¢ | 21% |
-| NCAA | 54 | 2.6 pts | 1.9¢ | 1.9¢ | 1.8¢ | 1.7¢ | 1.5¢ | 1.2¢ | 19% |
+| All | 482 | 3.0 pts | 3.1¢ | 2.8¢ | 2.5¢ | 2.4¢ | 2.2¢ | 2.3¢ | 21% |
+| NCAA | 56 | 2.6 pts | 2.0¢ | 2.0¢ | 1.8¢ | 1.7¢ | 1.5¢ | 1.2¢ | 18% |
 | Japan - B.League One | 37 | 3.4 pts | 5.8¢ | 5.6¢ | 5.0¢ | 4.8¢ | 5.0¢ | 4.9¢ | 11% |
 | Finland - SM Liiga | 26 | 2.9 pts | 2.2¢ | 2.0¢ | 1.6¢ | 1.4¢ | 0.9¢ | 1.1¢ | 23% |
-| Bolivia - Primera Division | 22 | 3.4 pts | 3.0¢ | 2.4¢ | 2.0¢ | 1.8¢ | 2.0¢ | 1.7¢ | 18% |
+| Bolivia - Primera Division | 23 | 3.6 pts | 3.2¢ | 2.7¢ | 2.1¢ | 2.0¢ | 2.0¢ | 1.7¢ | 17% |
 | USA - American Hockey League | 15 | 2.9 pts | 3.5¢ | 3.2¢ | 3.0¢ | 2.6¢ | 1.9¢ | 1.7¢ | 7% |
 | AFC - Champions League 2 | 13 | 3.4 pts | 3.1¢ | 3.2¢ | 6.1¢ | 6.3¢ | 6.5¢ | 6.3¢ | 15% |
 | Lithuania - National Basketball League | 13 | 3.2 pts | 2.5¢ | 2.5¢ | 1.9¢ | 2.0¢ | 1.6¢ | 6.0¢ | 23% |
@@ -100,7 +100,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 | Placed (UTC) | Game | Bet | Paid | Fair | Edge | Closing value | Result |
 |---|---|---|---|---|---|---|---|
 | 11-28 13:07 | Harrogate Town vs Yeovil Town (England - National League) | NO Harrogate | 0.44 | 0.50 | +3.8¢ | +8.1¢ | – |
-| 11-28 11:58 | GV San Jose vs Real Potosi (Bolivia - Primera Division) | NO Real Potosi | 0.45 | 0.54 | +7.3¢ | -1.6¢ | – |
+| 11-28 11:58 | GV San Jose vs Real Potosi (Bolivia - Primera Division) | NO Real Potosi | 0.45 | 0.54 | +7.3¢ | +5.7¢ | – |
 | 11-28 08:49 | Tadeas Paroulek vs Karl Friberg (ITF Men Hradec Kralove - SF) | NO Karl Friberg | 0.35 | 0.40 | +3.2¢ | +3.9¢ | won $+180.71 |
 | 11-28 08:48 | Sabah vs Selangor (Malaysia - Super League) | NO Selangor FC | 0.38 | 0.43 | +3.2¢ | +2.9¢ | lost $-47.58 |
 | 11-28 05:35 | Tokushima Gambarous vs Niigata Albirex BB (Japan - B.League One) | NO Tokushima Gambarous | 0.37 | 0.42 | +3.8¢ | +2.1¢ | – |
