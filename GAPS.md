@@ -1,12 +1,12 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 3517 snapshots from 2026-11-25 16:44 to 2026-11-28 17:27 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 3522 snapshots from 2026-11-25 16:44 to 2026-11-28 17:36 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-39,555 Kalshi prices compared with Pinnacle's. 93% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.0¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
+39,560 Kalshi prices compared with Pinnacle's. 93% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.0¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
 
-56 simulated bets so far; 56 have a closing price. Average edge when placed +4.0¢; average closing value +3.5¢ per contract. Kalshi moved toward Pinnacle's price after 42 of them and Pinnacle moved toward Kalshi's after 38. 47 have settled: 21 won, simulated profit $+15.50 on $1,294 staked.
+56 simulated bets so far; 56 have a closing price. Average edge when placed +4.0¢; average closing value +3.5¢ per contract. Kalshi moved toward Pinnacle's price after 41 of them and Pinnacle moved toward Kalshi's after 38. 47 have settled: 21 won, simulated profit $+15.50 on $1,294 staked.
 
 ## By league
 
@@ -52,8 +52,8 @@
 | Thailand - League 1 | 348 | 0% | +0.9¢ | 0% | 0 | 0 | – | – |
 | Italy - Serie C Group A | 348 | 0% | +0.8¢ | 0% | 0 | 0 | – | – |
 | France - Ligue Magnus | 341 | 37% | +2.4¢ | 13% | 0 | 1 | +3.8¢ | $-68.26 |
+| Bolivia - Primera Division | 333 | 0% | +1.7¢ | 2% | 197 | 3 | +3.3¢ | $+0.00 |
 | Turkey - Super League | 330 | 0% | +0.5¢ | 0% | 92 | 0 | – | – |
-| Bolivia - Primera Division | 328 | 0% | +1.7¢ | 2% | 197 | 3 | +4.1¢ | $+0.00 |
 | ITF Men Heraklion - R16 | 322 | 4% | +1.4¢ | 1% | 182 | 1 | -4.8¢ | $+0.00 |
 | South Africa - PSL | 316 | 0% | +1.3¢ | 0% | 0 | 1 | +3.5¢ | $+0.47 |
 | ITF Men Santa Cruz - R16 | 310 | 1% | +1.6¢ | 1% | 245 | 1 | +2.4¢ | $-0.09 |
@@ -81,11 +81,11 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 505 | 3.0 pts | 3.0¢ | 2.8¢ | 2.5¢ | 2.3¢ | 2.1¢ | 2.2¢ | 21% |
+| All | 506 | 3.0 pts | 3.0¢ | 2.7¢ | 2.5¢ | 2.3¢ | 2.1¢ | 2.2¢ | 21% |
 | NCAA | 60 | 2.6 pts | 2.0¢ | 2.0¢ | 1.8¢ | 1.7¢ | 1.5¢ | 1.2¢ | 17% |
 | Japan - B.League One | 38 | 3.4 pts | 5.8¢ | 5.5¢ | 5.0¢ | 4.8¢ | 4.9¢ | 4.9¢ | 11% |
 | Finland - SM Liiga | 26 | 2.9 pts | 2.2¢ | 2.0¢ | 1.6¢ | 1.4¢ | 0.9¢ | 1.1¢ | 23% |
-| Bolivia - Primera Division | 25 | 3.7 pts | 3.3¢ | 2.7¢ | 2.2¢ | 2.1¢ | 2.1¢ | 1.8¢ | 16% |
+| Bolivia - Primera Division | 26 | 3.6 pts | 3.2¢ | 2.6¢ | 2.1¢ | 2.1¢ | 2.1¢ | 1.8¢ | 19% |
 | USA - American Hockey League | 15 | 2.9 pts | 3.5¢ | 3.2¢ | 3.0¢ | 2.6¢ | 1.9¢ | 1.7¢ | 7% |
 | AFC - Champions League 2 | 13 | 3.4 pts | 3.1¢ | 3.2¢ | 6.1¢ | 6.3¢ | 6.5¢ | 6.3¢ | 15% |
 | Lithuania - National Basketball League | 13 | 3.2 pts | 2.5¢ | 2.5¢ | 1.9¢ | 2.0¢ | 1.6¢ | 6.0¢ | 23% |
@@ -101,7 +101,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 |---|---|---|---|---|---|---|---|
 | 11-28 15:51 | Marshall vs East Texas A&M (NCAA) | NO Marshall | 0.22 | 0.26 | +3.1¢ | +4.2¢ | – |
 | 11-28 13:07 | Harrogate Town vs Yeovil Town (England - National League) | NO Harrogate | 0.44 | 0.50 | +3.8¢ | +8.1¢ | – |
-| 11-28 11:58 | GV San Jose vs Real Potosi (Bolivia - Primera Division) | NO Real Potosi | 0.45 | 0.54 | +7.3¢ | +2.4¢ | – |
+| 11-28 11:58 | GV San Jose vs Real Potosi (Bolivia - Primera Division) | NO Real Potosi | 0.45 | 0.54 | +7.3¢ | +0.1¢ | – |
 | 11-28 08:49 | Tadeas Paroulek vs Karl Friberg (ITF Men Hradec Kralove - SF) | NO Karl Friberg | 0.35 | 0.40 | +3.2¢ | +3.9¢ | won $+180.71 |
 | 11-28 08:48 | Sabah vs Selangor (Malaysia - Super League) | NO Selangor FC | 0.38 | 0.43 | +3.2¢ | +2.9¢ | lost $-47.58 |
 | 11-28 05:35 | Tokushima Gambarous vs Niigata Albirex BB (Japan - B.League One) | NO Tokushima Gambarous | 0.37 | 0.42 | +3.8¢ | +2.1¢ | lost $+0.00 |

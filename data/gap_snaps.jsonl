@@ -39553,3 +39553,8 @@
 {"ts":"2026-11-28T17:27:26+00:00","ticker":"KXWNBLGAME-26NOV282100BENSOU-BEN","league":"Australia - WNBL","fair":0.8047,"bid":0.78,"ask":0.87,"vol24":0}
 {"ts":"2026-11-28T17:27:26+00:00","ticker":"KXWNBLGAME-26NOV282300CANTAS-TAS","league":"Australia - WNBL","fair":0.6107,"bid":0.6,"ask":0.61,"vol24":0}
 {"ts":"2026-11-28T17:27:26+00:00","ticker":"KXWNBLGAME-26NOV282300CANTAS-CAN","league":"Australia - WNBL","fair":0.3893,"bid":0.35,"ask":0.4,"vol24":0}
+{"ts":"2026-11-28T17:33:35+00:00","ticker":"KXBOLPDIVGAME-26NOV28CLUPOT-POT","league":"Bolivia - Primera Division","fair":0.5487,"bid":0.54,"ask":0.57,"vol24":2043}
+{"ts":"2026-11-28T17:33:41+00:00","ticker":"KXBOLPDIVGAME-26NOV28CLUPOT-POT","league":"Bolivia - Primera Division","fair":0.5487,"bid":0.54,"ask":0.59,"vol24":2043}
+{"ts":"2026-11-28T17:34:21+00:00","ticker":"KXBOLPDIVGAME-26NOV28CLUPOT-POT","league":"Bolivia - Primera Division","fair":0.5487,"bid":0.53,"ask":0.59,"vol24":2043}
+{"ts":"2026-11-28T17:35:53+00:00","ticker":"KXBOLPDIVGAME-26NOV28CLUPOT-POT","league":"Bolivia - Primera Division","fair":0.5487,"bid":0.54,"ask":0.59,"vol24":2043}
+{"ts":"2026-11-28T17:36:23+00:00","ticker":"KXBOLPDIVGAME-26NOV28CLUPOT-POT","league":"Bolivia - Primera Division","fair":0.5487,"bid":0.55,"ask":0.59,"vol24":2043}
