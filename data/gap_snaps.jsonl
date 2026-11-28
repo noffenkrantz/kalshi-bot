@@ -38168,3 +38168,5 @@
 {"ts":"2026-11-28T15:27:24+00:00","ticker":"KXWNBLGAME-26NOV282300CANTAS-TAS","league":"Australia - WNBL","fair":0.6107,"bid":0.08,"ask":0.92,"vol24":0}
 {"ts":"2026-11-28T15:27:24+00:00","ticker":"KXWNBLGAME-26NOV282300CANTAS-CAN","league":"Australia - WNBL","fair":0.3893,"bid":0.1,"ask":0.92,"vol24":0}
 {"ts":"2026-11-28T15:48:02+00:00","ticker":"KXAHLGAME-26NOV281900ROCMIL-MIL","league":"USA - American Hockey League","fair":0.574,"bid":0.56,"ask":0.57,"vol24":20}
+{"ts":"2026-11-28T15:48:32+00:00","ticker":"KXAHLGAME-26NOV281900ROCMIL-MIL","league":"USA - American Hockey League","fair":0.574,"bid":0.56,"ask":0.59,"vol24":20}
+{"ts":"2026-11-28T15:51:26+00:00","ticker":"KXNCAAMBGAME-26NOV28ETAMMRSH-MRSH","league":"NCAA","fair":0.7369,"bid":0.78,"ask":0.79,"vol24":90}
