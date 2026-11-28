@@ -1,12 +1,12 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 2939 snapshots from 2026-11-25 16:44 to 2026-11-28 04:29 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 2940 snapshots from 2026-11-25 16:44 to 2026-11-28 04:32 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-29,453 Kalshi prices compared with Pinnacle's. 92% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.1¢ from Pinnacle's fair price on average, and 1.2% could be bought at a 3¢+ edge after fees.
+29,454 Kalshi prices compared with Pinnacle's. 92% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.1¢ from Pinnacle's fair price on average, and 1.2% could be bought at a 3¢+ edge after fees.
 
-46 simulated bets so far; 46 have a closing price. Average edge when placed +4.0¢; average closing value +3.2¢ per contract. Kalshi moved toward Pinnacle's price after 32 of them and Pinnacle moved toward Kalshi's after 31. 34 have settled: 14 won, simulated profit $-138.67 on $1,046 staked.
+47 simulated bets so far; 46 have a closing price. Average edge when placed +4.0¢; average closing value +3.2¢ per contract. Kalshi moved toward Pinnacle's price after 32 of them and Pinnacle moved toward Kalshi's after 31. 34 have settled: 14 won, simulated profit $-138.67 on $1,046 staked.
 
 ## By league
 
@@ -99,6 +99,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | Placed (UTC) | Game | Bet | Paid | Fair | Edge | Closing value | Result |
 |---|---|---|---|---|---|---|---|
+| 11-28 04:32 | Jensi Dipakbhai Kanabar vs Florentine Dekkers (ITF Women Kolkata - SF) | YES Jensi Dipakbhai Kanabar | 0.84 | 0.89 | +3.8¢ | – | – |
 | 11-28 04:05 | Sportivo Trinidense vs Deportivo Recoleta (Paraguay - Division Profesional) | YES CD Recoleta | 0.09 | 0.14 | +3.9¢ | +1.8¢ | – |
 | 11-28 03:02 | Priska Madelyn Nugroho vs Kamonwan Yodpetch (ITF Women Kolkata - SF) | YES Priska Madelyn Nugroho | 0.83 | 0.88 | +4.2¢ | +5.2¢ | – |
 | 11-28 01:44 | Rizing Fukuoka vs Koshigaya Alphas (Japan - B.League One) | YES Koshigaya Alphas | 0.80 | 0.84 | +3.1¢ | +2.4¢ | – |
@@ -128,4 +129,3 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 | 11-26 19:41 | Bastian Malla vs Felipe De Dios (ITF Men Santa Cruz - R1) | NO Felipe De Dios | 0.70 | 0.75 | +3.3¢ | +3.3¢ | won $+27.95 |
 | 11-26 18:45 | Petr Michnev vs Karl Friberg (ITF Men Hradec Kralove - QF) | YES Petr Michnev | 0.51 | 0.56 | +3.6¢ | -4.6¢ | lost $+0.00 |
 | 11-26 17:17 | Martha Matoula vs Victoria Allen (ITF Women Heraklion 2 - QF) | YES Victoria Allen | 0.15 | 0.19 | +3.1¢ | +0.0¢ | lost $-0.96 |
-| 11-26 16:12 | Demi Tran vs Laura Pigossi (ITF Women Florianopolis - R16) | YES Laura Pigossi | 0.91 | 0.95 | +3.3¢ | +3.9¢ | won $+5.98 |
