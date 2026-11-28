@@ -6,7 +6,7 @@
 
 38,169 Kalshi prices compared with Pinnacle's. 93% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.1¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
 
-55 simulated bets so far; 55 have a closing price. Average edge when placed +4.0¢; average closing value +3.5¢ per contract. Kalshi moved toward Pinnacle's price after 41 of them and Pinnacle moved toward Kalshi's after 37. 41 have settled: 18 won, simulated profit $-16.01 on $1,248 staked.
+55 simulated bets so far; 55 have a closing price. Average edge when placed +4.0¢; average closing value +3.5¢ per contract. Kalshi moved toward Pinnacle's price after 41 of them and Pinnacle moved toward Kalshi's after 37. 47 have settled: 21 won, simulated profit $+15.50 on $1,294 staked.
 
 ## By league
 
@@ -15,7 +15,7 @@
 | League | Prices compared | No real market | Avg gap (Kalshi mid vs fair) | With a 3¢+ edge | Kalshi volume (24h, median) | Bets | Avg closing value | Profit |
 |---|---|---|---|---|---|---|---|---|
 | NCAA | 2672 | 36% | +1.4¢ | 1% | 174 | 1 | +13.8¢ | – |
-| Japan - B.League One | 1884 | 33% | +2.9¢ | 4% | 17 | 8 | +4.3¢ | $-116.76 |
+| Japan - B.League One | 1884 | 33% | +2.9¢ | 4% | 17 | 8 | +4.3¢ | $-85.25 |
 | USA - American Hockey League | 1422 | 2% | +0.7¢ | 0% | 5 | 2 | +5.6¢ | $-0.82 |
 | NHL | 1404 | 0% | +0.9¢ | 1% | 1,764 | 1 | +4.1¢ | – |
 | England - League 2 | 870 | 0% | +0.5¢ | 0% | 0 | 0 | – | – |
@@ -81,8 +81,8 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 484 | 3.0 pts | 3.0¢ | 2.8¢ | 2.5¢ | 2.4¢ | 2.2¢ | 2.3¢ | 21% |
-| NCAA | 56 | 2.6 pts | 2.0¢ | 2.0¢ | 1.8¢ | 1.7¢ | 1.5¢ | 1.2¢ | 18% |
+| All | 487 | 3.0 pts | 3.0¢ | 2.8¢ | 2.5¢ | 2.3¢ | 2.2¢ | 2.3¢ | 21% |
+| NCAA | 57 | 2.6 pts | 2.0¢ | 2.0¢ | 1.8¢ | 1.7¢ | 1.5¢ | 1.2¢ | 18% |
 | Japan - B.League One | 37 | 3.4 pts | 5.8¢ | 5.6¢ | 5.0¢ | 4.8¢ | 5.0¢ | 4.9¢ | 11% |
 | Finland - SM Liiga | 26 | 2.9 pts | 2.2¢ | 2.0¢ | 1.6¢ | 1.4¢ | 0.9¢ | 1.1¢ | 23% |
 | Bolivia - Primera Division | 24 | 3.5 pts | 3.1¢ | 2.6¢ | 2.1¢ | 2.0¢ | 2.1¢ | 1.7¢ | 17% |
@@ -103,16 +103,16 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 | 11-28 11:58 | GV San Jose vs Real Potosi (Bolivia - Primera Division) | NO Real Potosi | 0.45 | 0.54 | +7.3¢ | +3.2¢ | – |
 | 11-28 08:49 | Tadeas Paroulek vs Karl Friberg (ITF Men Hradec Kralove - SF) | NO Karl Friberg | 0.35 | 0.40 | +3.2¢ | +3.9¢ | won $+180.71 |
 | 11-28 08:48 | Sabah vs Selangor (Malaysia - Super League) | NO Selangor FC | 0.38 | 0.43 | +3.2¢ | +2.9¢ | lost $-47.58 |
-| 11-28 05:35 | Tokushima Gambarous vs Niigata Albirex BB (Japan - B.League One) | NO Tokushima Gambarous | 0.37 | 0.42 | +3.8¢ | +2.1¢ | – |
-| 11-28 05:27 | Iwate Big Bulls vs Aomori Wats (Japan - B.League One) | YES Iwate Bigbulls | 0.75 | 0.82 | +5.5¢ | +8.9¢ | – |
-| 11-28 05:24 | Kumamoto Volters vs Ehime Orange Vikings (Japan - B.League One) | NO Kumamoto Volters | 0.16 | 0.21 | +4.3¢ | +5.1¢ | – |
+| 11-28 05:35 | Tokushima Gambarous vs Niigata Albirex BB (Japan - B.League One) | NO Tokushima Gambarous | 0.37 | 0.42 | +3.8¢ | +2.1¢ | lost $+0.00 |
+| 11-28 05:27 | Iwate Big Bulls vs Aomori Wats (Japan - B.League One) | YES Iwate Bigbulls | 0.75 | 0.82 | +5.5¢ | +8.9¢ | won $+0.94 |
+| 11-28 05:24 | Kumamoto Volters vs Ehime Orange Vikings (Japan - B.League One) | NO Kumamoto Volters | 0.16 | 0.21 | +4.3¢ | +5.1¢ | lost $-0.34 |
 | 11-28 04:49 | Milwaukee Admirals vs Rockford Icehogs (USA - American Hockey League) | YES Milwaukee Admirals | 0.51 | 0.57 | +4.1¢ | +6.4¢ | – |
 | 11-28 04:32 | Jensi Dipakbhai Kanabar vs Florentine Dekkers (ITF Women Kolkata - SF) | YES Jensi Dipakbhai Kanabar | 0.84 | 0.89 | +3.8¢ | +4.3¢ | won $+3.76 |
 | 11-28 04:05 | Sportivo Trinidense vs Deportivo Recoleta (Paraguay - Division Profesional) | YES CD Recoleta | 0.09 | 0.14 | +3.9¢ | +2.6¢ | – |
 | 11-28 03:02 | Priska Madelyn Nugroho vs Kamonwan Yodpetch (ITF Women Kolkata - SF) | YES Priska Madelyn Nugroho | 0.83 | 0.88 | +4.2¢ | +5.2¢ | won $+2.40 |
-| 11-28 01:44 | Rizing Fukuoka vs Koshigaya Alphas (Japan - B.League One) | YES Koshigaya Alphas | 0.80 | 0.84 | +3.1¢ | +2.2¢ | – |
+| 11-28 01:44 | Rizing Fukuoka vs Koshigaya Alphas (Japan - B.League One) | YES Koshigaya Alphas | 0.80 | 0.84 | +3.1¢ | +2.2¢ | won $+0.18 |
 | 11-28 00:02 | Nacional Potosi vs Oriente Petrolero (Bolivia - Primera Division) | NO Nacional Potosi | 0.13 | 0.17 | +3.3¢ | +4.1¢ | – |
-| 11-27 19:21 | Veltex Shizuoka vs Fukui Blowwinds (Japan - B.League One) | YES Veltex Shizuoka | 0.55 | 0.60 | +3.1¢ | +11.2¢ | – |
+| 11-27 19:21 | Veltex Shizuoka vs Fukui Blowwinds (Japan - B.League One) | YES Veltex Shizuoka | 0.55 | 0.60 | +3.1¢ | +11.2¢ | won $+31.58 |
 | 11-27 18:29 | Portland Trail Blazers vs Golden State Warriors (NBA) | NO Golden State | 0.72 | 0.78 | +4.2¢ | +1.9¢ | won $+0.00 |
 | 11-27 18:19 | Augsburger Panther vs Eisbaren Berlin (Germany - DEL) | NO Eisbären Berlin | 0.37 | 0.43 | +3.9¢ | +6.1¢ | lost $+0.00 |
 | 11-27 17:19 | Sydney Uni Flames vs Townsville Fire (Australia - WNBL) | YES Sydney Uni Flames | 0.21 | 0.26 | +3.7¢ | -2.2¢ | lost $-0.45 |
@@ -120,7 +120,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 | 11-27 16:36 | Martha Matoula vs Giulia Safina Popa (ITF Women Heraklion 2 - SF) | YES Giulia Safina Popa | 0.42 | 0.48 | +3.9¢ | +2.4¢ | lost $-16.18 |
 | 11-27 16:21 | Darja Semenistaja vs Valeriya Strakhova (ITF Women Florianopolis - QF) | YES Valeriya Strakhova | 0.25 | 0.30 | +4.0¢ | +5.3¢ | won $+0.00 |
 | 11-27 15:34 | IMT Novi Beograd vs Macva Sabac (Serbia - Super Liga) | NO IMT Novi Beograd | 0.35 | 0.40 | +3.3¢ | +3.9¢ | lost $+0.00 |
-| 11-27 11:44 | Yokohama Excellence vs Gifu Swoops (Japan - B.League One) | NO Gifu Swoops | 0.84 | 0.88 | +3.1¢ | +5.8¢ | – |
+| 11-27 11:44 | Yokohama Excellence vs Gifu Swoops (Japan - B.League One) | NO Gifu Swoops | 0.84 | 0.88 | +3.1¢ | +5.8¢ | lost $-0.85 |
 | 11-27 09:52 | VVV Venlo vs RKC Waalwijk (Netherlands - Eerste Divisie) | YES Venlo | 0.27 | 0.32 | +3.2¢ | +4.5¢ | – |
 | 11-27 09:10 | Jessika Ponchet vs Greet Minnen (ITF Women Trnava - QF) | NO Jessika Ponchet | 0.67 | 0.74 | +5.6¢ | +7.1¢ | won $+46.86 |
 | 11-27 07:40 | Willian Rejchtman Vinciguerra vs Hitesh Chauhan (ITF Men Bhopal - QF) | NO William Rejchtman Vinciguerra | 0.18 | 0.23 | +3.5¢ | +4.0¢ | lost $-85.65 |
