@@ -65,7 +65,7 @@ class FakeKalshi:
             return {"markets": [self.market(t) for t in self.q]}
         if params and "tickers" in params:
             return {"markets": [self.market(t) for t in params["tickers"].split(",")]}
-        return {"market": {"result": ""}}
+        return {"market": {"result": getattr(self, "results", {}).get(path.split("/")[-1], "")}}
 
 
 def setup(tmp_path):
@@ -147,3 +147,18 @@ def test_one_bet_per_game_the_best_side(tmp_path):
     clock.t += timedelta(seconds=31)
     live.tick()
     assert len(rows(tmp_path, "gap_bets.jsonl")) == 1
+
+
+def test_results_are_picked_up_soon_after_the_game_and_published_at_once(tmp_path):
+    live, clock, kalshi, pinn, _ = setup(tmp_path)
+    kalshi.q[f"{EV}-BRO"] = (0.38, 0.40)
+    live.tick()                                            # bets Bromley; the game starts in 5 hours
+    live.dirty, live.new_bets = False, 0
+    kalshi.results = {f"{EV}-BRO": "yes"}
+    clock.t = START + timedelta(minutes=70)                # too soon to check
+    live.tick()
+    assert rows(tmp_path, "gap_outcomes.jsonl") == []
+    clock.t = START + timedelta(minutes=80)
+    live.tick()
+    assert [o["result"] for o in rows(tmp_path, "gap_outcomes.jsonl")] == ["yes"]
+    assert live.new_results == 1 and live.dirty and (tmp_path / "site" / "gaps.json").exists()

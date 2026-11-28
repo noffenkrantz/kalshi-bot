@@ -67,7 +67,7 @@ class LiveGaps:
                      "report": now + timedelta(minutes=10)}
         self.calls_logged = 0
         self.last_page: datetime | None = None
-        self.dirty, self.new_bets = False, 0
+        self.dirty, self.new_bets, self.new_results = False, 0, 0
         self.started, self.polls_ok, self.changes_seen, self.moves_logged, self.bets_placed = now, 0, 0, 0, 0
         self.last_poll_ok: datetime | None = None
         self.last_error: str | None = None
@@ -116,9 +116,11 @@ class LiveGaps:
                 self.sweep(now)
             if self._due("snapshot", now, timedelta(minutes=float(g["snapshot_minutes"]))):
                 self.snapshot_rows(now)
-            if self._due("settle", now, timedelta(minutes=30)):
-                if settle(self.kalshi, self.data, now):
-                    self.dirty = True
+            if self._due("settle", now, timedelta(minutes=5)):
+                found = settle(self.kalshi, self.data, now)
+                if found:                                  # a result: show it now, not at the next report
+                    self.dirty, self.new_results = True, self.new_results + found
+                    self.next["report"] = now
         except KalshiError as e:
             self.last_error = f"{iso(now)} Kalshi: {str(e)[:200]}"
             self.say(f"Kalshi: {str(e)[:200]}")

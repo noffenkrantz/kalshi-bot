@@ -475,11 +475,15 @@ def snapshot(kalshi: KalshiClient, pinn: PinnAPI, root: Path, cfg: dict, now: da
             "bets": len(bets), "settled": settled, "suspicious": len(suspicious)}
 
 
+SETTLE_AFTER = timedelta(minutes=75)   # the shortest games (tennis, soccer) can be over this soon after the start
+
+
 def settle(kalshi: KalshiClient, data: Path, now: datetime) -> int:
-    """Record results of simulated bets whose games ended (checked from 3 hours after the start)."""
+    """Record results of simulated bets whose games may be over (checked from 75 minutes after the
+    start; Kalshi fills in the result once it settles the market, usually soon after the end)."""
     done = {o["ticker"] for o in read_jsonl(data / "gap_outcomes.jsonl")}
     due = sorted({b["ticker"] for b in read_jsonl(data / "gap_bets.jsonl")
-                  if b["ticker"] not in done and (parse_time(b["starts"]) or now) < now - timedelta(hours=3)})
+                  if b["ticker"] not in done and (parse_time(b["starts"]) or now) < now - SETTLE_AFTER})
     rows = []
     for t in due[:60]:
         try:

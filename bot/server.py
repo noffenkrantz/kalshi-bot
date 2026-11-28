@@ -235,14 +235,16 @@ class Supervisor:
             traceback.print_exc()
         now = self.clock()
         if (self.sync and not self.dry_run and self.live.dirty
-                and (self.live.new_bets or self.stopping or now - self.last_gaps_push >= timedelta(minutes=10))):
+                and (self.live.new_bets or getattr(self.live, "new_results", 0) or self.stopping
+                     or now - self.last_gaps_push >= timedelta(minutes=10))):
             from .gaps import write_report
             from .gapsite import write_site
             write_report(self.root)
             write_site(self.root, self.cfg, now, page=False)
-            if self.sync.push(f"gaps: live {now:%Y-%m-%dT%H:%MZ}" + (f", {self.live.new_bets} new bets" if self.live.new_bets else ""),
-                              GAP_PATHS):
-                self.live.dirty, self.live.new_bets = False, 0
+            news = [f"{self.live.new_bets} new bets" if self.live.new_bets else "",
+                    f"{self.live.new_results} results" if getattr(self.live, "new_results", 0) else ""]
+            if self.sync.push(f"gaps: live {now:%Y-%m-%dT%H:%MZ}" + "".join(f", {x}" for x in news if x), GAP_PATHS):
+                self.live.dirty, self.live.new_bets, self.live.new_results = False, 0, 0
                 self.last_gaps_push = now
 
     def gaps_due(self, now: datetime) -> bool:
