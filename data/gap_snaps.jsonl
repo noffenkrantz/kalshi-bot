@@ -27222,3 +27222,15 @@
 {"ts":"2026-11-28T02:52:37+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280005FKBSHI-SHI","league":"Japan - B.League One","fair":0.6485,"bid":0.6,"ask":0.67,"vol24":76}
 {"ts":"2026-11-28T02:52:37+00:00","ticker":"KXWNBLGAME-26NOV272300TOWSYD-SYD","league":"Australia - WNBL","fair":0.1798,"bid":0.16,"ask":0.19,"vol24":0}
 {"ts":"2026-11-28T02:53:37+00:00","ticker":"KXWNBLGAME-26NOV272300TOWSYD-SYD","league":"Australia - WNBL","fair":0.1798,"bid":0.14,"ask":0.19,"vol24":0}
+{"ts":"2026-11-28T02:54:39+00:00","ticker":"KXWNBLGAME-26NOV272300TOWSYD-SYD","league":"Australia - WNBL","fair":0.1798,"bid":0.16,"ask":0.19,"vol24":0}
+{"ts":"2026-11-28T02:56:43+00:00","ticker":"KXWNBLGAME-26NOV272300TOWSYD-SYD","league":"Australia - WNBL","fair":0.1794,"bid":0.15,"ask":0.19,"vol24":0}
+{"ts":"2026-11-28T02:57:44+00:00","ticker":"KXWNBLGAME-26NOV272300TOWSYD-SYD","league":"Australia - WNBL","fair":0.1794,"bid":0.16,"ask":0.19,"vol24":0}
+{"ts":"2026-11-28T02:58:47+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280005FKBSHI-SHI","league":"Japan - B.League One","fair":0.6485,"bid":0.6,"ask":0.66,"vol24":76}
+{"ts":"2026-11-28T02:58:47+00:00","ticker":"KXWNBLGAME-26NOV272300TOWSYD-SYD","league":"Australia - WNBL","fair":0.1794,"bid":0.14,"ask":0.19,"vol24":0}
+{"ts":"2026-11-28T02:59:18+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280005ALPRZF-ALP","league":"Japan - B.League One","fair":0.8419,"bid":0.5,"ask":0.8,"vol24":3}
+{"ts":"2026-11-28T03:00:18+00:00","ticker":"KXWNBLGAME-26NOV272300TOWSYD-SYD","league":"Australia - WNBL","fair":0.1794,"bid":0.15,"ask":0.19,"vol24":0}
+{"ts":"2026-11-28T03:00:18+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280005FKBSHI-SHI","league":"Japan - B.League One","fair":0.6485,"bid":0.6,"ask":0.68,"vol24":76}
+{"ts":"2026-11-28T03:00:33+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280005FKBSHI-SHI","league":"Japan - B.League One","fair":0.6485,"bid":0.6,"ask":0.67,"vol24":76}
+{"ts":"2026-11-28T03:00:33+00:00","ticker":"KXWNBLGAME-26NOV272300TOWSYD-SYD","league":"Australia - WNBL","fair":0.1794,"bid":0.16,"ask":0.19,"vol24":0}
+{"ts":"2026-11-28T03:02:18+00:00","ticker":"KXBLEAGUEONEGAME-26NOV280005ALPRZF-ALP","league":"Japan - B.League One","fair":0.8419,"bid":0.51,"ask":0.89,"vol24":6}
+{"ts":"2026-11-28T03:02:18+00:00","ticker":"KXITFWMATCH-26NOV27NUGYOD-NUG","league":"ITF Women Kolkata - SF","fair":0.882,"bid":0.82,"ask":0.83,"vol24":2464}
