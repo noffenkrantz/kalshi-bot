@@ -32773,3 +32773,5 @@
 {"ts":"2026-11-28T08:29:42+00:00","ticker":"KXAHLGAME-26NOV281900ROCMIL-MIL","league":"USA - American Hockey League","fair":0.5681,"bid":0.54,"ask":0.62,"vol24":20}
 {"ts":"2026-11-28T08:30:13+00:00","ticker":"KXAHLGAME-26NOV281900ROCMIL-MIL","league":"USA - American Hockey League","fair":0.5681,"bid":0.54,"ask":0.6,"vol24":20}
 {"ts":"2026-11-28T08:48:36+00:00","ticker":"KXMYSLGAME-26NOV28SABSEL-SEL","league":"Malaysia - Super League","fair":0.5719,"bid":0.62,"ask":0.63,"vol24":1396}
+{"ts":"2026-11-28T08:48:42+00:00","ticker":"KXMYSLGAME-26NOV28SABSEL-SEL","league":"Malaysia - Super League","fair":0.5913,"bid":0.62,"ask":0.63,"vol24":1396}
+{"ts":"2026-11-28T08:49:37+00:00","ticker":"KXITFMATCH-26NOV28PARFRI-FRI","league":"ITF Men Hradec Kralove - SF","fair":0.6023,"bid":0.65,"ask":0.66,"vol24":4719}
