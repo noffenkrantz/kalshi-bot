@@ -1,12 +1,12 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 2983 snapshots from 2026-11-25 16:44 to 2026-11-28 05:09 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 2997 snapshots from 2026-11-25 16:44 to 2026-11-28 05:18 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-29,507 Kalshi prices compared with Pinnacle's. 92% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.1¢ from Pinnacle's fair price on average, and 1.2% could be bought at a 3¢+ edge after fees.
+29,525 Kalshi prices compared with Pinnacle's. 92% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.1¢ from Pinnacle's fair price on average, and 1.3% could be bought at a 3¢+ edge after fees.
 
-48 simulated bets so far; 48 have a closing price. Average edge when placed +4.0¢; average closing value +3.3¢ per contract. Kalshi moved toward Pinnacle's price after 34 of them and Pinnacle moved toward Kalshi's after 32. 34 have settled: 14 won, simulated profit $-138.67 on $1,046 staked.
+48 simulated bets so far; 48 have a closing price. Average edge when placed +4.0¢; average closing value +3.3¢ per contract. Kalshi moved toward Pinnacle's price after 33 of them and Pinnacle moved toward Kalshi's after 32. 34 have settled: 14 won, simulated profit $-138.67 on $1,046 staked.
 
 ## By league
 
@@ -15,9 +15,9 @@
 | League | Prices compared | No real market | Avg gap (Kalshi mid vs fair) | With a 3¢+ edge | Kalshi volume (24h, median) | Bets | Avg closing value | Profit |
 |---|---|---|---|---|---|---|---|---|
 | NCAA | 2198 | 43% | +1.6¢ | 1% | 130 | 1 | +13.8¢ | – |
-| Japan - B.League One | 1672 | 29% | +2.9¢ | 4% | 17 | 5 | +3.5¢ | $-116.76 |
+| Japan - B.League One | 1676 | 29% | +2.9¢ | 4% | 17 | 5 | +3.5¢ | $-116.76 |
 | NHL | 1118 | 0% | +1.0¢ | 1% | 1,992 | 1 | +4.1¢ | – |
-| USA - American Hockey League | 792 | 3% | +0.8¢ | 0% | 0 | 2 | +5.3¢ | $-0.82 |
+| USA - American Hockey League | 797 | 3% | +0.8¢ | 0% | 0 | 2 | +5.3¢ | $-0.82 |
 | NBA | 754 | 0% | +0.7¢ | 1% | 54,738 | 4 | +1.2¢ | $+153.28 |
 | ITF Men Santa Cruz - R1 | 554 | 1% | +1.9¢ | 3% | 1,533 | 2 | +3.2¢ | $+24.16 |
 | England - National League | 534 | 0% | +0.6¢ | 0% | 0 | 0 | – | – |
@@ -69,7 +69,7 @@
 | Belgium - Pro League | 201 | 0% | +0.4¢ | 0% | 0 | 0 | – | – |
 | Hungary - NB 1 | 192 | 0% | +0.5¢ | 0% | 0 | 0 | – | – |
 | England - Premier League | 192 | 0% | +0.6¢ | 0% | 3,571 | 0 | – | – |
-| Paraguay - Division Profesional | 186 | 0% | +1.5¢ | 11% | 40 | 1 | +1.8¢ | – |
+| Paraguay - Division Profesional | 188 | 0% | +1.5¢ | 12% | 40 | 1 | +1.8¢ | – |
 | ATP Challenger Florianopolis - R16 | 184 | 3% | +1.2¢ | 0% | 159 | 0 | – | – |
 | ITF Men Madrid - R16 | 180 | 2% | +1.1¢ | 0% | 5 | 0 | – | – |
 | Brazil - Serie A | 180 | 0% | +0.6¢ | 0% | 1,296 | 0 | – | – |
@@ -81,8 +81,8 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 352 | 3.1 pts | 3.3¢ | 3.0¢ | 2.7¢ | 2.6¢ | 2.4¢ | 2.4¢ | 18% |
-| NCAA | 41 | 2.6 pts | 2.0¢ | 2.0¢ | 1.8¢ | 1.7¢ | 1.5¢ | 1.2¢ | 20% |
+| All | 353 | 3.1 pts | 3.3¢ | 3.0¢ | 2.7¢ | 2.6¢ | 2.4¢ | 2.4¢ | 18% |
+| NCAA | 42 | 2.6 pts | 2.0¢ | 2.0¢ | 1.8¢ | 1.7¢ | 1.5¢ | 1.2¢ | 19% |
 | Japan - B.League One | 31 | 3.5 pts | 5.5¢ | 5.2¢ | 4.5¢ | 4.3¢ | 4.5¢ | 4.3¢ | 13% |
 | Bolivia - Primera Division | 15 | 3.5 pts | 3.3¢ | 2.4¢ | 2.1¢ | 1.9¢ | 2.0¢ | 1.9¢ | 7% |
 | USA - American Hockey League | 14 | 2.9 pts | 3.4¢ | 3.1¢ | 3.0¢ | 2.5¢ | 1.7¢ | 1.6¢ | 7% |
@@ -113,7 +113,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 | 11-27 16:36 | Martha Matoula vs Giulia Safina Popa (ITF Women Heraklion 2 - SF) | YES Giulia Safina Popa | 0.42 | 0.48 | +3.9¢ | +4.1¢ | – |
 | 11-27 16:21 | Darja Semenistaja vs Valeriya Strakhova (ITF Women Florianopolis - QF) | YES Valeriya Strakhova | 0.25 | 0.30 | +4.0¢ | +5.3¢ | won $+0.00 |
 | 11-27 15:34 | IMT Novi Beograd vs Macva Sabac (Serbia - Super Liga) | NO IMT Novi Beograd | 0.35 | 0.40 | +3.3¢ | +3.9¢ | lost $+0.00 |
-| 11-27 11:44 | Yokohama Excellence vs Gifu Swoops (Japan - B.League One) | NO Gifu Swoops | 0.84 | 0.88 | +3.1¢ | +5.2¢ | – |
+| 11-27 11:44 | Yokohama Excellence vs Gifu Swoops (Japan - B.League One) | NO Gifu Swoops | 0.84 | 0.88 | +3.1¢ | +5.3¢ | – |
 | 11-27 09:52 | VVV Venlo vs RKC Waalwijk (Netherlands - Eerste Divisie) | YES Venlo | 0.27 | 0.32 | +3.2¢ | +4.5¢ | – |
 | 11-27 09:10 | Jessika Ponchet vs Greet Minnen (ITF Women Trnava - QF) | NO Jessika Ponchet | 0.67 | 0.74 | +5.6¢ | +7.1¢ | won $+46.86 |
 | 11-27 07:40 | Willian Rejchtman Vinciguerra vs Hitesh Chauhan (ITF Men Bhopal - QF) | NO William Rejchtman Vinciguerra | 0.18 | 0.23 | +3.5¢ | +4.0¢ | lost $-85.65 |
