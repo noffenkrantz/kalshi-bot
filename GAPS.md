@@ -1,10 +1,10 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 3515 snapshots from 2026-11-25 16:44 to 2026-11-28 17:09 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 3516 snapshots from 2026-11-25 16:44 to 2026-11-28 17:13 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-38,864 Kalshi prices compared with Pinnacle's. 93% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.0¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
+38,865 Kalshi prices compared with Pinnacle's. 93% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.0¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
 
 56 simulated bets so far; 56 have a closing price. Average edge when placed +4.0¢; average closing value +3.5¢ per contract. Kalshi moved toward Pinnacle's price after 42 of them and Pinnacle moved toward Kalshi's after 38. 47 have settled: 21 won, simulated profit $+15.50 on $1,294 staked.
 
@@ -16,7 +16,7 @@
 |---|---|---|---|---|---|---|---|---|
 | NCAA | 2753 | 35% | +1.4¢ | 1% | 191 | 2 | +9.0¢ | – |
 | Japan - B.League One | 1900 | 33% | +3.0¢ | 4% | 17 | 8 | +4.3¢ | $-85.25 |
-| USA - American Hockey League | 1454 | 2% | +0.7¢ | 0% | 5 | 2 | +5.6¢ | $-0.82 |
+| USA - American Hockey League | 1455 | 2% | +0.7¢ | 0% | 5 | 2 | +5.6¢ | $-0.82 |
 | NHL | 1430 | 0% | +0.9¢ | 1% | 1,802 | 1 | +4.1¢ | – |
 | NBA | 874 | 0% | +0.7¢ | 1% | 47,168 | 4 | +1.2¢ | $+153.28 |
 | England - League 2 | 870 | 0% | +0.5¢ | 0% | 0 | 0 | – | – |
@@ -81,7 +81,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 504 | 3.0 pts | 3.0¢ | 2.8¢ | 2.5¢ | 2.3¢ | 2.1¢ | 2.2¢ | 21% |
+| All | 505 | 3.0 pts | 3.0¢ | 2.8¢ | 2.5¢ | 2.3¢ | 2.1¢ | 2.2¢ | 21% |
 | NCAA | 60 | 2.6 pts | 2.0¢ | 2.0¢ | 1.8¢ | 1.7¢ | 1.5¢ | 1.2¢ | 17% |
 | Japan - B.League One | 38 | 3.4 pts | 5.8¢ | 5.5¢ | 5.0¢ | 4.8¢ | 4.9¢ | 4.9¢ | 11% |
 | Finland - SM Liiga | 26 | 2.9 pts | 2.2¢ | 2.0¢ | 1.6¢ | 1.4¢ | 0.9¢ | 1.1¢ | 23% |
@@ -89,7 +89,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 | USA - American Hockey League | 15 | 2.9 pts | 3.5¢ | 3.2¢ | 3.0¢ | 2.6¢ | 1.9¢ | 1.7¢ | 7% |
 | AFC - Champions League 2 | 13 | 3.4 pts | 3.1¢ | 3.2¢ | 6.1¢ | 6.3¢ | 6.5¢ | 6.3¢ | 15% |
 | Lithuania - National Basketball League | 13 | 3.2 pts | 2.5¢ | 2.5¢ | 1.9¢ | 2.0¢ | 1.6¢ | 6.0¢ | 23% |
-| Serbia - Super Liga | 12 | 3.1 pts | 2.2¢ | 2.2¢ | 2.2¢ | 2.1¢ | 2.1¢ | 6.6¢ | 17% |
+| Serbia - Super Liga | 13 | 3.0 pts | 2.1¢ | 2.1¢ | 2.0¢ | 2.1¢ | 2.0¢ | 6.2¢ | 23% |
 | NBA | 11 | 3.3 pts | 1.3¢ | 1.3¢ | 1.0¢ | 0.8¢ | 0.9¢ | 0.6¢ | 45% |
 | Russia - Kontinental Hockey League | 11 | 3.2 pts | 3.2¢ | 2.7¢ | 2.7¢ | 2.4¢ | 2.3¢ | 1.9¢ | 0% |
 | England - National League | 11 | 2.6 pts | 2.3¢ | 1.8¢ | 1.4¢ | 0.9¢ | 1.0¢ | 1.0¢ | 36% |
