@@ -1,12 +1,12 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 3371 snapshots from 2026-11-25 16:44 to 2026-11-28 13:27 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 3387 snapshots from 2026-11-25 16:44 to 2026-11-28 13:37 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-36,606 Kalshi prices compared with Pinnacle's. 93% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.1¢ from Pinnacle's fair price on average, and 1.2% could be bought at a 3¢+ edge after fees.
+36,622 Kalshi prices compared with Pinnacle's. 93% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.1¢ from Pinnacle's fair price on average, and 1.2% could be bought at a 3¢+ edge after fees.
 
-55 simulated bets so far; 55 have a closing price. Average edge when placed +4.0¢; average closing value +3.5¢ per contract. Kalshi moved toward Pinnacle's price after 40 of them and Pinnacle moved toward Kalshi's after 37. 40 have settled: 17 won, simulated profit $-196.72 on $1,144 staked.
+55 simulated bets so far; 55 have a closing price. Average edge when placed +4.0¢; average closing value +3.5¢ per contract. Kalshi moved toward Pinnacle's price after 40 of them and Pinnacle moved toward Kalshi's after 37. 41 have settled: 18 won, simulated profit $-16.01 on $1,248 staked.
 
 ## By league
 
@@ -17,7 +17,7 @@
 | NCAA | 2522 | 38% | +1.4¢ | 1% | 133 | 1 | +13.8¢ | – |
 | Japan - B.League One | 1852 | 32% | +3.0¢ | 4% | 17 | 8 | +4.3¢ | $-116.76 |
 | NHL | 1352 | 0% | +0.9¢ | 1% | 1,759 | 1 | +4.1¢ | – |
-| USA - American Hockey League | 1262 | 2% | +0.8¢ | 0% | 0 | 2 | +5.6¢ | $-0.82 |
+| USA - American Hockey League | 1278 | 2% | +0.8¢ | 0% | 0 | 2 | +5.6¢ | $-0.82 |
 | NBA | 844 | 0% | +0.7¢ | 1% | 48,168 | 4 | +1.2¢ | $+153.28 |
 | England - League 2 | 840 | 0% | +0.5¢ | 0% | 0 | 0 | – | – |
 | England - National League | 834 | 0% | +0.6¢ | 0% | 0 | 1 | +8.1¢ | – |
@@ -81,8 +81,8 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 439 | 3.1 pts | 3.2¢ | 2.9¢ | 2.6¢ | 2.5¢ | 2.3¢ | 2.4¢ | 20% |
-| NCAA | 44 | 2.6 pts | 2.0¢ | 2.0¢ | 1.8¢ | 1.7¢ | 1.5¢ | 1.2¢ | 18% |
+| All | 443 | 3.0 pts | 3.1¢ | 2.9¢ | 2.6¢ | 2.4¢ | 2.3¢ | 2.4¢ | 20% |
+| NCAA | 45 | 2.6 pts | 2.0¢ | 1.9¢ | 1.8¢ | 1.7¢ | 1.5¢ | 1.2¢ | 18% |
 | Japan - B.League One | 37 | 3.4 pts | 5.8¢ | 5.6¢ | 5.0¢ | 4.8¢ | 5.0¢ | 4.9¢ | 11% |
 | Bolivia - Primera Division | 21 | 3.4 pts | 3.1¢ | 2.5¢ | 2.1¢ | 1.9¢ | 2.0¢ | 1.7¢ | 14% |
 | Finland - SM Liiga | 17 | 3.0 pts | 2.2¢ | 2.1¢ | 1.4¢ | 1.3¢ | 0.9¢ | 1.3¢ | 29% |
@@ -101,7 +101,7 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 |---|---|---|---|---|---|---|---|
 | 11-28 13:07 | Harrogate Town vs Yeovil Town (England - National League) | NO Harrogate | 0.44 | 0.50 | +3.8¢ | +8.1¢ | – |
 | 11-28 11:58 | GV San Jose vs Real Potosi (Bolivia - Primera Division) | NO Real Potosi | 0.45 | 0.54 | +7.3¢ | -0.2¢ | – |
-| 11-28 08:49 | Tadeas Paroulek vs Karl Friberg (ITF Men Hradec Kralove - SF) | NO Karl Friberg | 0.35 | 0.40 | +3.2¢ | +3.9¢ | – |
+| 11-28 08:49 | Tadeas Paroulek vs Karl Friberg (ITF Men Hradec Kralove - SF) | NO Karl Friberg | 0.35 | 0.40 | +3.2¢ | +3.9¢ | won $+180.71 |
 | 11-28 08:48 | Sabah vs Selangor (Malaysia - Super League) | NO Selangor FC | 0.38 | 0.43 | +3.2¢ | +2.9¢ | lost $-47.58 |
 | 11-28 05:35 | Tokushima Gambarous vs Niigata Albirex BB (Japan - B.League One) | NO Tokushima Gambarous | 0.37 | 0.42 | +3.8¢ | +2.1¢ | – |
 | 11-28 05:27 | Iwate Big Bulls vs Aomori Wats (Japan - B.League One) | YES Iwate Bigbulls | 0.75 | 0.82 | +5.5¢ | +8.9¢ | – |
