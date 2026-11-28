@@ -1,11 +1,11 @@
 {
- "updated": "2026-11-28T09:58:18+00:00",
+ "updated": "2026-11-28T10:08:19+00:00",
  "markets_open": 37,
  "markets_in_play": 37,
  "stations_known": 37,
  "signals_today": 1,
  "bets_today": 0,
- "station_checks_since_start": 5499,
+ "station_checks_since_start": 5679,
  "recent_errors": [],
  "host": "render",
  "research": false,
