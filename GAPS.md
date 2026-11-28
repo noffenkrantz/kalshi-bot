@@ -1,12 +1,12 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 2800 snapshots from 2026-11-25 16:44 to 2026-11-28 02:23 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 2812 snapshots from 2026-11-25 16:44 to 2026-11-28 02:33 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-27,185 Kalshi prices compared with Pinnacle's. 91% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.2¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
+27,200 Kalshi prices compared with Pinnacle's. 91% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.2¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
 
-44 simulated bets so far; 44 have a closing price. Average edge when placed +4.0¢; average closing value +3.3¢ per contract. Kalshi moved toward Pinnacle's price after 31 of them and Pinnacle moved toward Kalshi's after 29. 34 have settled: 14 won, simulated profit $-138.67 on $1,046 staked.
+44 simulated bets so far; 44 have a closing price. Average edge when placed +4.0¢; average closing value +3.3¢ per contract. Kalshi moved toward Pinnacle's price after 30 of them and Pinnacle moved toward Kalshi's after 29. 34 have settled: 14 won, simulated profit $-138.67 on $1,046 staked.
 
 ## By league
 
@@ -15,10 +15,10 @@
 | League | Prices compared | No real market | Avg gap (Kalshi mid vs fair) | With a 3¢+ edge | Kalshi volume (24h, median) | Bets | Avg closing value | Profit |
 |---|---|---|---|---|---|---|---|---|
 | NCAA | 2178 | 44% | +1.6¢ | 1% | 132 | 1 | +13.8¢ | – |
-| Japan - B.League One | 1524 | 28% | +3.0¢ | 4% | 17 | 5 | +3.7¢ | $-116.76 |
+| Japan - B.League One | 1534 | 28% | +3.0¢ | 4% | 17 | 5 | +3.7¢ | $-116.76 |
 | NHL | 1082 | 0% | +1.0¢ | 1% | 2,075 | 1 | +4.1¢ | – |
 | USA - American Hockey League | 739 | 2% | +0.8¢ | 0% | 0 | 1 | +4.7¢ | $-0.82 |
-| NBA | 735 | 0% | +0.7¢ | 1% | 56,456 | 4 | +1.2¢ | $+153.28 |
+| NBA | 736 | 0% | +0.7¢ | 1% | 56,699 | 4 | +1.2¢ | $+153.28 |
 | ITF Men Santa Cruz - R1 | 554 | 1% | +1.9¢ | 3% | 1,533 | 2 | +3.2¢ | $+24.16 |
 | Russia - Kontinental Hockey League | 508 | 1% | +0.8¢ | 0% | 3 | 0 | – | – |
 | ITF Men Hradec Kralove - R16 | 481 | 2% | +3.1¢ | 0% | 1,189 | 1 | +0.8¢ | $-0.76 |
@@ -28,7 +28,7 @@
 | England - League 1 | 414 | 0% | +0.5¢ | 0% | 0 | 0 | – | – |
 | Finland - SM Liiga | 390 | 6% | +0.9¢ | 0% | 0 | 0 | – | – |
 | Sweden - SHL | 382 | 4% | +1.0¢ | 0% | 0 | 1 | +3.8¢ | $+0.00 |
-| Australia - WNBL | 367 | 77% | +2.9¢ | 5% | 80 | 1 | -2.4¢ | – |
+| Australia - WNBL | 371 | 77% | +2.8¢ | 5% | 80 | 1 | -2.4¢ | – |
 | Netherlands - Eerste Divisie | 353 | 0% | +0.9¢ | 0% | 1 | 1 | +4.5¢ | – |
 | France - Ligue Magnus | 325 | 38% | +2.4¢ | 14% | 0 | 1 | +3.8¢ | $-68.26 |
 | ITF Men Heraklion - R16 | 322 | 4% | +1.4¢ | 1% | 182 | 1 | -4.8¢ | $+0.00 |
