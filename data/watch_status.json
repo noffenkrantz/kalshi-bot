@@ -1,11 +1,11 @@
 {
- "updated": "2026-11-28T11:05:34+00:00",
+ "updated": "2026-11-28T11:25:19+00:00",
  "markets_open": 74,
  "markets_in_play": 37,
  "stations_known": 37,
  "signals_today": 2,
  "bets_today": 0,
- "station_checks_since_start": 6634,
+ "station_checks_since_start": 6984,
  "recent_errors": [],
  "host": "render",
  "research": false,
@@ -14,6 +14,6 @@
  "last_research_error": null,
  "gap_tracker": true,
  "gap_mode": "live",
- "last_gap_snapshot": "2026-11-28T10:58:35+00:00",
+ "last_gap_snapshot": "2026-11-28T11:16:51+00:00",
  "last_gaps_error": null
 }
