@@ -1,12 +1,12 @@
 # Pinnacle vs Kalshi: gap tracker
 
-*Simulated only, nothing is traded. 2840 snapshots from 2026-11-25 16:44 to 2026-11-28 03:02 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
+*Simulated only, nothing is traded. 2852 snapshots from 2026-11-25 16:44 to 2026-11-28 03:10 UTC. Fair price = Pinnacle's odds with its margin removed. Edge = what a contract is worth at that price minus what Kalshi charges for it, after Kalshi's fee. Closing value = Pinnacle's last fair price before the game minus what we paid: positive on average means the gaps were real.*
 
 ## Bottom line
 
-27,236 Kalshi prices compared with Pinnacle's. 91% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.2¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
+27,919 Kalshi prices compared with Pinnacle's. 91% had a real market (buy and sell prices within 10¢); in those, Kalshi's midpoint was +1.2¢ from Pinnacle's fair price on average, and 1.1% could be bought at a 3¢+ edge after fees.
 
-45 simulated bets so far; 44 have a closing price. Average edge when placed +4.0¢; average closing value +3.3¢ per contract. Kalshi moved toward Pinnacle's price after 31 of them and Pinnacle moved toward Kalshi's after 29. 34 have settled: 14 won, simulated profit $-138.67 on $1,046 staked.
+45 simulated bets so far; 45 have a closing price. Average edge when placed +4.0¢; average closing value +3.3¢ per contract. Kalshi moved toward Pinnacle's price after 32 of them and Pinnacle moved toward Kalshi's after 29. 34 have settled: 14 won, simulated profit $-138.67 on $1,046 staked.
 
 ## By league
 
@@ -14,66 +14,66 @@
 
 | League | Prices compared | No real market | Avg gap (Kalshi mid vs fair) | With a 3¢+ edge | Kalshi volume (24h, median) | Bets | Avg closing value | Profit |
 |---|---|---|---|---|---|---|---|---|
-| NCAA | 2178 | 44% | +1.6¢ | 1% | 132 | 1 | +13.8¢ | – |
-| Japan - B.League One | 1553 | 28% | +2.9¢ | 4% | 17 | 5 | +3.7¢ | $-116.76 |
-| NHL | 1082 | 0% | +1.0¢ | 1% | 2,075 | 1 | +4.1¢ | – |
-| USA - American Hockey League | 739 | 2% | +0.8¢ | 0% | 0 | 1 | +4.7¢ | $-0.82 |
-| NBA | 736 | 0% | +0.7¢ | 1% | 56,699 | 4 | +1.2¢ | $+153.28 |
+| NCAA | 2180 | 44% | +1.6¢ | 1% | 132 | 1 | +13.8¢ | – |
+| Japan - B.League One | 1578 | 28% | +2.9¢ | 4% | 17 | 5 | +3.6¢ | $-116.76 |
+| NHL | 1092 | 0% | +1.0¢ | 1% | 2,053 | 1 | +4.1¢ | – |
+| USA - American Hockey League | 749 | 2% | +0.8¢ | 0% | 0 | 1 | +4.7¢ | $-0.82 |
+| NBA | 738 | 0% | +0.7¢ | 1% | 56,398 | 4 | +1.2¢ | $+153.28 |
 | ITF Men Santa Cruz - R1 | 554 | 1% | +1.9¢ | 3% | 1,533 | 2 | +3.2¢ | $+24.16 |
-| Russia - Kontinental Hockey League | 508 | 1% | +0.8¢ | 0% | 3 | 0 | – | – |
+| Russia - Kontinental Hockey League | 516 | 1% | +0.8¢ | 0% | 3 | 0 | – | – |
 | ITF Men Hradec Kralove - R16 | 481 | 2% | +3.1¢ | 0% | 1,189 | 1 | +0.8¢ | $-0.76 |
-| England - National League | 435 | 0% | +0.6¢ | 0% | 0 | 0 | – | – |
-| England - Championship | 423 | 0% | +0.6¢ | 0% | 83 | 0 | – | – |
-| England - League 2 | 414 | 0% | +0.5¢ | 0% | 0 | 0 | – | – |
-| England - League 1 | 414 | 0% | +0.5¢ | 0% | 0 | 0 | – | – |
-| Finland - SM Liiga | 390 | 6% | +0.9¢ | 0% | 0 | 0 | – | – |
-| Australia - WNBL | 387 | 73% | +2.5¢ | 4% | 53 | 1 | -3.1¢ | – |
-| Sweden - SHL | 382 | 4% | +1.0¢ | 0% | 0 | 1 | +3.8¢ | $+0.00 |
-| Netherlands - Eerste Divisie | 353 | 0% | +0.9¢ | 0% | 1 | 1 | +4.5¢ | – |
+| England - National League | 468 | 0% | +0.6¢ | 0% | 0 | 0 | – | – |
+| England - League 2 | 450 | 0% | +0.5¢ | 0% | 0 | 0 | – | – |
+| England - Championship | 450 | 0% | +0.6¢ | 0% | 85 | 0 | – | – |
+| England - League 1 | 444 | 0% | +0.5¢ | 0% | 0 | 0 | – | – |
+| Finland - SM Liiga | 404 | 6% | +0.9¢ | 0% | 0 | 0 | – | – |
+| Australia - WNBL | 400 | 72% | +2.4¢ | 4% | 53 | 1 | -3.1¢ | – |
+| Sweden - SHL | 394 | 4% | +1.0¢ | 0% | 0 | 1 | +3.8¢ | $+0.00 |
+| Netherlands - Eerste Divisie | 356 | 0% | +0.9¢ | 0% | 1 | 1 | +4.5¢ | – |
 | France - Ligue Magnus | 325 | 38% | +2.4¢ | 14% | 0 | 1 | +3.8¢ | $-68.26 |
 | ITF Men Heraklion - R16 | 322 | 4% | +1.4¢ | 1% | 182 | 1 | -4.8¢ | $+0.00 |
+| Germany - 3. Liga | 318 | 0% | +0.6¢ | 0% | 0 | 0 | – | – |
 | ITF Men Santa Cruz - R16 | 310 | 1% | +1.6¢ | 1% | 245 | 1 | +2.4¢ | $-0.09 |
 | ITF Women Florianopolis - R16 | 303 | 4% | +1.8¢ | 5% | 269 | 3 | +3.5¢ | $+55.80 |
-| Germany - 3. Liga | 300 | 0% | +0.7¢ | 0% | 0 | 0 | – | – |
 | ITF Women Trnava - R16 | 289 | 4% | +1.2¢ | 0% | 23 | 1 | +3.2¢ | $-102.76 |
 | ITF Women Heraklion 2 - R16 | 263 | 6% | +1.7¢ | 4% | 420 | 1 | -0.9¢ | $-28.47 |
+| Indonesia - Super League | 261 | 0% | +0.8¢ | 0% | 0 | 0 | – | – |
 | ITF Men Hradec Kralove - QF | 260 | 0% | +2.6¢ | 10% | 166 | 1 | -4.6¢ | $+0.00 |
+| Italy - Serie C Group C | 258 | 0% | +0.6¢ | 0% | 0 | 0 | – | – |
 | Germany - DEL | 253 | 4% | +0.9¢ | 0% | 0 | 1 | +6.1¢ | $+0.00 |
+| Korea Republic - K League 1 | 252 | 0% | +0.3¢ | 0% | 0 | 0 | – | – |
 | ITF Men Monastir 2 - R16 | 250 | 5% | +1.5¢ | 0% | 195 | 0 | – | – |
-| Italy - Serie C Group C | 249 | 0% | +0.6¢ | 0% | 0 | 0 | – | – |
-| Indonesia - Super League | 249 | 0% | +0.8¢ | 0% | 0 | 0 | – | – |
 | ITF Women Lousada - R16 | 244 | 3% | +1.4¢ | 0% | 65 | 0 | – | – |
 | Czech Republic - Extraliga | 244 | 6% | +1.6¢ | 0% | 0 | 0 | – | – |
+| Poland - Ekstraklasa | 243 | 0% | +0.5¢ | 0% | 0 | 0 | – | – |
+| Ecuador - Serie A | 243 | 0% | +0.4¢ | 0% | 50 | 0 | – | – |
 | ITF Women Monastir - R16 | 241 | 8% | +1.7¢ | 0% | 0 | 1 | +1.3¢ | $-11.82 |
-| Korea Republic - K League 1 | 240 | 0% | +0.3¢ | 0% | 0 | 0 | – | – |
-| Czech Republic - FNL | 237 | 0% | +0.9¢ | 0% | 2 | 0 | – | – |
-| Poland - Ekstraklasa | 234 | 0% | +0.5¢ | 0% | 1 | 0 | – | – |
-| Ecuador - Serie A | 234 | 0% | +0.4¢ | 0% | 50 | 0 | – | – |
-| Serbia - Super Liga | 215 | 0% | +1.4¢ | 0% | 0 | 1 | +3.9¢ | $+0.00 |
-| Turkey - Super League | 213 | 0% | +0.4¢ | 0% | 100 | 0 | – | – |
-| Portugal - Liga 2 | 210 | 0% | +0.5¢ | 0% | 0 | 0 | – | – |
-| USA - Major League Soccer | 207 | 0% | +0.6¢ | 0% | 1,052 | 0 | – | – |
-| Spain - Segunda Division | 207 | 0% | +0.4¢ | 0% | 0 | 0 | – | – |
-| Mexico - Liga MX | 207 | 0% | +0.6¢ | 0% | 22,882 | 0 | – | – |
+| Czech Republic - FNL | 240 | 0% | +0.9¢ | 0% | 2 | 0 | – | – |
+| Serbia - Super Liga | 227 | 0% | +1.4¢ | 0% | 0 | 1 | +3.9¢ | $+0.00 |
+| Portugal - Liga 2 | 222 | 0% | +0.5¢ | 0% | 0 | 0 | – | – |
+| USA - Major League Soccer | 219 | 0% | +0.6¢ | 0% | 1,052 | 0 | – | – |
+| Turkey - Super League | 219 | 0% | +0.4¢ | 0% | 100 | 0 | – | – |
+| Spain - Segunda Division | 219 | 0% | +0.4¢ | 0% | 0 | 0 | – | – |
+| Thailand - League 1 | 210 | 0% | +1.0¢ | 0% | 0 | 0 | – | – |
+| Mexico - Liga MX | 210 | 0% | +0.6¢ | 0% | 21,360 | 0 | – | – |
 | AFC - Champions League 2 | 206 | 1% | +2.2¢ | 6% | 1,278 | 1 | +11.3¢ | $-0.28 |
-| Thailand - League 1 | 201 | 0% | +1.0¢ | 0% | 0 | 0 | – | – |
-| Colombia - Primera A | 201 | 0% | +0.6¢ | 0% | 844 | 0 | – | – |
-| Lithuania - National Basketball League | 198 | 22% | +1.1¢ | 0% | 0 | 0 | – | – |
-| Spain - La Liga | 189 | 0% | +0.6¢ | 0% | 14,196 | 0 | – | – |
-| Germany - Bundesliga 2 | 189 | 0% | +0.4¢ | 0% | 1 | 0 | – | – |
-| Bolivia - Primera Division | 188 | 1% | +1.8¢ | 2% | 148 | 2 | +4.9¢ | $+0.00 |
-| South Africa - PSL | 184 | 0% | +1.4¢ | 1% | 0 | 1 | +3.5¢ | $+0.47 |
+| Colombia - Primera A | 204 | 0% | +0.6¢ | 0% | 817 | 0 | – | – |
+| Lithuania - National Basketball League | 202 | 22% | +1.1¢ | 0% | 0 | 0 | – | – |
+| Spain - La Liga | 201 | 0% | +0.6¢ | 0% | 10,049 | 0 | – | – |
+| Germany - Bundesliga 2 | 201 | 0% | +0.4¢ | 0% | 1 | 0 | – | – |
+| Italy - Serie B | 198 | 0% | +0.4¢ | 0% | 0 | 0 | – | – |
+| Bolivia - Primera Division | 194 | 1% | +1.8¢ | 2% | 148 | 2 | +4.9¢ | $+0.00 |
+| South Africa - PSL | 193 | 0% | +1.4¢ | 1% | 0 | 1 | +3.5¢ | $+0.47 |
+| Germany - Bundesliga | 186 | 0% | +0.6¢ | 0% | 239 | 0 | – | – |
 | ATP Challenger Florianopolis - R16 | 184 | 3% | +1.2¢ | 0% | 159 | 0 | – | – |
-| Italy - Serie B | 183 | 0% | +0.4¢ | 0% | 0 | 0 | – | – |
 | ITF Men Madrid - R16 | 180 | 2% | +1.1¢ | 0% | 5 | 0 | – | – |
+| France - Ligue 1 | 180 | 0% | +0.4¢ | 0% | 300 | 0 | – | – |
+| Belgium - Pro League | 177 | 0% | +0.4¢ | 0% | 0 | 0 | – | – |
+| Hungary - NB 1 | 174 | 0% | +0.4¢ | 0% | 0 | 0 | – | – |
+| England - Premier League | 174 | 0% | +0.6¢ | 0% | 3,308 | 0 | – | – |
+| Brazil - Serie A | 174 | 0% | +0.6¢ | 0% | 1,315 | 0 | – | – |
 | ITF Men Bhopal - R16 | 171 | 0% | +1.5¢ | 1% | 185 | 1 | +5.8¢ | $+0.00 |
-| Germany - Bundesliga | 171 | 0% | +0.7¢ | 0% | 212 | 0 | – | – |
-| Brazil - Serie A | 171 | 0% | +0.6¢ | 0% | 1,315 | 0 | – | – |
 | ITF Men Bhopal - QF | 170 | 0% | +2.1¢ | 8% | 764 | 2 | +3.1¢ | $-85.65 |
-| France - Ligue 1 | 168 | 0% | +0.4¢ | 0% | 300 | 0 | – | – |
-| Hungary - NB 1 | 165 | 0% | +0.4¢ | 0% | 0 | 0 | – | – |
-| England - Premier League | 165 | 0% | +0.6¢ | 0% | 3,315 | 0 | – | – |
-| Belgium - Pro League | 165 | 0% | +0.4¢ | 0% | 0 | 0 | – | – |
 
 ## How fast Kalshi follows Pinnacle (live mode)
 
@@ -81,12 +81,12 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | | Moves | Avg move | Gap before | When seen | 5 s later | 15 s later | 1 min later | 5 min later | Already there |
 |---|---|---|---|---|---|---|---|---|---|
-| All | 337 | 3.2 pts | 3.2¢ | 3.0¢ | 2.7¢ | 2.6¢ | 2.3¢ | 2.3¢ | 18% |
+| All | 341 | 3.2 pts | 3.3¢ | 3.0¢ | 2.8¢ | 2.6¢ | 2.4¢ | 2.4¢ | 18% |
 | NCAA | 37 | 2.6 pts | 2.0¢ | 2.0¢ | 1.9¢ | 1.8¢ | 1.5¢ | 1.2¢ | 19% |
-| Japan - B.League One | 25 | 3.7 pts | 5.2¢ | 4.8¢ | 4.1¢ | 3.9¢ | 4.2¢ | 3.9¢ | 12% |
+| Japan - B.League One | 28 | 3.6 pts | 5.8¢ | 5.4¢ | 4.9¢ | 4.6¢ | 4.9¢ | 4.6¢ | 11% |
 | Bolivia - Primera Division | 15 | 3.5 pts | 3.3¢ | 2.4¢ | 2.1¢ | 1.9¢ | 2.0¢ | 1.9¢ | 7% |
+| USA - American Hockey League | 14 | 2.9 pts | 3.4¢ | 3.1¢ | 3.0¢ | 2.5¢ | 1.7¢ | 1.6¢ | 7% |
 | AFC - Champions League 2 | 13 | 3.4 pts | 3.1¢ | 3.2¢ | 6.1¢ | 6.3¢ | 6.5¢ | 6.3¢ | 15% |
-| USA - American Hockey League | 13 | 2.9 pts | 3.4¢ | 3.3¢ | 3.2¢ | 2.7¢ | 1.9¢ | 1.7¢ | 0% |
 | Lithuania - National Basketball League | 13 | 3.2 pts | 2.5¢ | 2.5¢ | 1.9¢ | 2.0¢ | 1.6¢ | 6.0¢ | 23% |
 | NBA | 11 | 3.3 pts | 1.3¢ | 1.3¢ | 1.0¢ | 0.8¢ | 0.9¢ | 0.6¢ | 45% |
 | Russia - Kontinental Hockey League | 11 | 3.2 pts | 3.2¢ | 2.7¢ | 2.7¢ | 2.4¢ | 2.3¢ | 1.9¢ | 0% |
@@ -99,10 +99,10 @@ Each row: Pinnacle's fair price moved 2 points or more on a paired game. Gap = h
 
 | Placed (UTC) | Game | Bet | Paid | Fair | Edge | Closing value | Result |
 |---|---|---|---|---|---|---|---|
-| 11-28 03:02 | Priska Madelyn Nugroho vs Kamonwan Yodpetch (ITF Women Kolkata - SF) | YES Priska Madelyn Nugroho | 0.83 | 0.88 | +4.2¢ | – | – |
+| 11-28 03:02 | Priska Madelyn Nugroho vs Kamonwan Yodpetch (ITF Women Kolkata - SF) | YES Priska Madelyn Nugroho | 0.83 | 0.88 | +4.2¢ | +5.2¢ | – |
 | 11-28 01:44 | Rizing Fukuoka vs Koshigaya Alphas (Japan - B.League One) | YES Koshigaya Alphas | 0.80 | 0.84 | +3.1¢ | +4.2¢ | – |
 | 11-28 00:02 | Nacional Potosi vs Oriente Petrolero (Bolivia - Primera Division) | NO Nacional Potosi | 0.13 | 0.17 | +3.3¢ | +4.1¢ | – |
-| 11-27 19:21 | Veltex Shizuoka vs Fukui Blowwinds (Japan - B.League One) | YES Veltex Shizuoka | 0.55 | 0.60 | +3.1¢ | +9.8¢ | – |
+| 11-27 19:21 | Veltex Shizuoka vs Fukui Blowwinds (Japan - B.League One) | YES Veltex Shizuoka | 0.55 | 0.60 | +3.1¢ | +9.6¢ | – |
 | 11-27 18:29 | Portland Trail Blazers vs Golden State Warriors (NBA) | NO Golden State | 0.72 | 0.78 | +4.2¢ | +1.9¢ | – |
 | 11-27 18:19 | Augsburger Panther vs Eisbaren Berlin (Germany - DEL) | NO Eisbären Berlin | 0.37 | 0.43 | +3.9¢ | +6.1¢ | lost $+0.00 |
 | 11-27 17:19 | Sydney Uni Flames vs Townsville Fire (Australia - WNBL) | YES Sydney Uni Flames | 0.21 | 0.26 | +3.7¢ | -3.1¢ | – |
